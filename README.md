@@ -5,6 +5,41 @@ Weight-level and in-situ analysis of the learned relative-position mechanism in
 (952B MoE, 66 layers, 64 heads, d_rel=16, rel_extent 1024 global / 512 local),
 run on a single RTX 4090 via HTTP range requests + a streaming NVFP4 prefill pass.
 
+## Plain-language summary
+
+When a language model reads text, every word needs a sense of *how far back* each
+earlier word is — otherwise "the dog bit the man" and "the man bit the dog" look the
+same. Most models are given a hand-designed distance formula (RoPE, ALiBi, etc.).
+Inkling is unusual: it **learned its sense of distance from scratch** during training,
+as a table of numbers nobody designed. This project reads that table — first directly
+from the weights, then by running the model and watching the mechanism operate — all
+on one consumer GPU.
+
+What we found, in plain terms:
+
+- **The learned rule is simple: closer = more attention, fading smoothly with
+  distance.** No rhythm, no waves. The model was free to learn wave-like patterns
+  (the way older hand-designed schemes work); everywhere we looked, fits that
+  seemed wavy turned out to be fractions of one slow hump, not real oscillation.
+- **It resembles known designs in silhouette but copied none of them.** The fade-out
+  is exponential-ish like RetNet's, but RetNet spreads its heads' fade speeds over a
+  ~128× range in a fixed ladder; Inkling's heads all fade within a narrow ~3× band.
+  SGD converged on the same *shape* engineers picked, with a different organization.
+- **Its sense of distance ends at 1024 tokens.** Beyond that there is literally no
+  positional signal — a hard wall in the table. Yet the model still finds things past
+  the wall: when we planted rare facts ~1100 tokens back, most layers retrieved them
+  as well as facts inside the wall, using pure content matching ("these words look
+  like those words"). Distance gets it oriented; content does the long-range work.
+- **The final layer is a strict gatekeeper.** Layer 65 adds a large bonus to
+  everything within 1024 tokens, effectively ignoring anything older — the model's
+  last step is deliberately near-sighted.
+- **The layers divide the labor.** Five of six layers can only see 512 tokens back;
+  the remaining "global" layers learned to boost exactly the region *past* 512 —
+  they pick up precisely where the near-sighted layers stop.
+- **Early layers look far, deep layers focus near**, and the handoff around
+  layers 13–28 is a fairly abrupt regime switch, passing through hump-shaped
+  (rise-then-fall) curves rather than morphing smoothly.
+
 ## Highlights
 
 - The transport b(d) is **decay-dominated and low-rank** (~1.5–3 of 16 modes); no
