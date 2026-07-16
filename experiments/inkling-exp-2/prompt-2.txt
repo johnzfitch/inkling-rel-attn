@@ -1,0 +1,28 @@
+The two mechanisms below are the actual positional design of the
+architecture you are an instance of. Treat them as given fact, not
+something to recall.
+
+- Long-range: instead of rotating queries and keys by position, each
+  attention layer produces a fourth projection alongside query, key, and
+  value -- a per-token, per-head feature. That feature is combined with the
+  query-key distance and added into the attention logit. The dependence on
+  distance is learned, not fixed. This is mechanism 4 from before.
+
+- Local: separately, a short 1D convolution runs over the hidden states,
+  reading the current token and the previous W-1 hidden states (W the
+  sliding-window size), before attention. This is the "short local
+  convolution" from part (d).
+
+Given that both are your own design:
+
+1. Reconsider (b). Where does your learned distance bias actually land
+   among N, A, K? Does your turn-1 answer still hold, and can it be pinned
+   to one generator or must it span more than one?
+
+2. Reconsider (d). The local convolution and the long-range learned bias
+   are the two pieces that meet. What is the compatibility condition
+   between them in your actual forward pass, and what does the residual --
+   if any -- correspond to concretely?
+
+State explicitly whether this changes any cell of your turn-1 tables. If a
+cell changes, name it and say why. If nothing changes, say that too.

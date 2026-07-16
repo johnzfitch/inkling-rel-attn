@@ -1,0 +1,42 @@
+{
+  "seam": {
+    "global_layers_positive_mean_step": 11,
+    "global_layers_majority_heads_positive": 10,
+    "global_layers_total": 11,
+    "near_null_exception": 11,
+    "largest_step_layer": 65,
+    "median_abs_bias_to_content_step_ratio": 4.524590831963954,
+    "mean_positive_head_fraction": 0.8423295454545454
+  },
+  "rising_bias": {
+    "rising_layers": 24,
+    "layer_text_pairs_with_negative_bias_slope": 144,
+    "layer_text_pairs_total": 144,
+    "median_signed_bias_sustained_zero_crossing": 81,
+    "median_bias_slope_x1e6": -6.228342253483582,
+    "median_content_slope_x1e6": -0.4043790485542144
+  },
+  "interface": {
+    "median_effective_rank_layers_0_28": 2.966456965669515,
+    "median_effective_rank_layers_30_65": 1.3704901503366294,
+    "median_vestigial_input_energy_layers_30_65": 0.8572225984645159,
+    "median_vestigial_input_energy_all_layers": 0.81079238506058,
+    "median_uniform_null_all_layers": 0.8125,
+    "layers_beating_uniform_injection": 60,
+    "layers_total": 66,
+    "interpretation": "The weight-level utilization statistic carries no information relative to its uniform baseline; use C2-act for live co-adaptation."
+  },
+  "head_sharing": {
+    "early_median_effective_subspaces_layers_0_13": 50.790206232945195,
+    "deep_median_effective_subspaces_layers_30_65": 7.825289692570015,
+    "early_median_pairwise_similarity_layers_0_13": 0.050479625722050156,
+    "deep_median_pairwise_similarity_layers_30_65": 0.3083268211293404,
+    "rising_heads_across_early_layers": 748,
+    "effective_directions_across_rising_heads": 295.208740234375
+  },
+  "transition_audit": {
+    "round4_reported_transition_to_overall_median_ratio": 2.752497120686084,
+    "corrected_sign_invariant_common_raw_support_ratio": 1.930727429429633,
+    "interpretation": "The original 2.75x magnitude was inflated by SVD sign canonicalization and extent rescaling. At 1.93x the phase-transition verdict still clears the registered 1.5 threshold."
+  }
+}

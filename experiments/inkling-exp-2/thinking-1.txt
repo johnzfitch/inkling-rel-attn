@@ -1,0 +1,946 @@
+We have a problem asking to analyze four mechanisms for injecting position into attention score between query at position m and key at position n (distance d = m - n), relating them to Iwasawa decomposition of SL2(R): N (unipotent shifts [[1,t],[0,1]]), A (diagonal dilations diag(a,1/a)), K (rotations SO(2)). Any 2x2 transport decomposes into rotation part, dilation (stretch) part, and shear part.
+
+We need to return complete tables, no summary, for parts (a), (b), (c), (d). Must fill every cell, including uncertain ones; mark uncertainty rather than omitting cell. For every classification make, state in one clause what observation would falsify it. Separate what derive from first principles vs pattern recognition. Label each. If two categories both fit, say so and give discriminating test instead of picking one.
+
+We need to understand the mechanisms precisely.
+
+Mechanism 1: Rotate query and key by an angle proportional to their absolute positions before the dot product (a fixed rotation per position). This sounds like Rotary Position Embedding (RoPE) but RoPE rotates query and key by angles proportional to absolute positions (or relative?). Actually RoPE applies a rotation matrix to query and key vectors that depends on position, with the rotation angle proportional to the position index times a frequency. Specifically, for each dimension pair, rotate by angle mθ_i for query at m and nθ_i for key at n. Then the dot product involves rotation differences that depend on d = m-n. The rotation is in the 2D plane of each pair of dimensions. So it's applying a rotation in the feature space based on absolute position.
+
+Mechanism 2: Add a fixed penalty proportional to -|d| directly to the attention logit (linear, monotone distance penalty). This is like ALiBi? Actually ALiBi adds a linear bias proportional to -|d| multiplied by a head-specific slope. But here it's a fixed penalty proportional to -|d| directly to logit. So it's a distance-dependent bias that's linear in |d|.
+
+Mechanism 3: Add a fixed sinusoidal vector depending on absolute position to each token before attention. This is the original Transformer sinusoidal positional encoding (added to token embeddings). Then attention is computed on the sum. So position is injected into the representation, not directly into the score.
+
+Mechanism 4: Add a learned, content-dependent bias b(d) to the logit: a separate projection produces a per-token, per-head feature that is combined with the distance d and added to the score. The bias is learned, not fixed. This sounds like a learned relative positional bias that depends on content (e.g., T5's learned bias is content-independent? Actually T5 uses learned bias per head based on log distance bucket; but here it's content-dependent: separate projection produces per-token, per-head feature combined with distance d). Maybe like a content-dependent relative position bias.
+
+We need to map each to N, A, K actions in the Iwasawa decomposition of SL2(R). The idea is that the attention score computation involves a bilinear form (dot product) between query and key vectors that live in some representation space. The injection of position modifies the transformation applied to the query/key vectors or the score.
+
+We need to think about the "2x2 transport" associated with each mechanism: how does the mechanism transport information across positions? The problem mentions "Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part." So we need to represent each mechanism as a 2x2 matrix acting on some 2-dimensional space (maybe the 2D subspace spanned by query and key? Or the space of (query, key) pairs?). We need to decompose it into rotation rho, dilation delta, shear sigma, and give the one convention-independent invariant.
+
+We need to be careful: The problem asks specifically: "Consider three ways a sequence model injects position into the attention score between a query at position m and a key at position n (let d = m - n): ..." Then lists 1-4. Then "Recall the Iwasawa decomposition of SL2(R): every element factors uniquely as N.A.K, with N the unipotent shifts [[1,t],[0,1]], A the diagonal dilations diag(a,1/a), K the rotations SO(2). Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part."
+
+Then "Return complete tables, no summary:
+
+(a) For each of the four mechanisms: which of N / A / K it acts through, what quantity it preserves, what it distorts. Fill every cell.
+
+(b) Mechanisms 1-3 each pick out essentially one generator. Mechanism 4 is the free case. Which generators can a learned b(d) reach that the fixed mechanisms cannot? Can it be pinned to a single generator, or must it span more than one? State the obstruction to writing it as one generator.
+
+(c) Decompose each mechanism's 2x2 position-transport into (rotation rho, dilation delta, shear sigma). Give the one convention-independent invariant of that decomposition. Which mechanisms have zero shear by construction, and which can carry shear?
+
+(d) If a model splits positional processing into a short local convolution over neighboring hidden states PLUS a long-range learned relative bias, what compatibility condition must hold where the two meet? Is there a residual the split cannot remove?
+
+Give full tables and reasoning. Do not compress to a verdict."
+
+We need to answer in tables for (a), (b), (c), (d). Also need to include reasoning, falsification clauses, separation of first principles vs pattern recognition, labeling.
+
+Given the problem is highly abstract and mathematical, but also refers to known mechanisms. We need to map them precisely.
+
+Let's parse each mechanism in terms of transformation on query and key.
+
+Mechanism 1: Rotate query and key by angle proportional to absolute position. Let's denote the rotation matrix R(m) applied to query q_m and R(n) applied to k_n. Then the dot product q_m^T k_n becomes q_m^T R(m)^T R(n) k_n = q_m^T R(n-m) k_n (if rotation is in a plane and commutes). So the effective transformation on the pair (q, k) involves a relative rotation by angle proportional to d = m-n. But the mechanism applies absolute rotations. In terms of the group action on positions, it's acting via K (rotations). Specifically, the transport from n to m is a rotation by angle θ d. So the generator is in K.
+
+But we also need to consider N and A. Does it involve shifts or dilations? If the rotation is applied uniformly across dimensions with different frequencies (like RoPE), each 2D subspace has its own rotation angle. But overall, it's still in K (the rotation subgroup). So mechanism 1 acts through K.
+
+What quantity does it preserve? The norm of the vector (since rotation is orthogonal). So it preserves the Euclidean norm ||q|| and ||k||, and also preserves the inner product if d=0. More generally, it preserves the magnitude of the dot product? Actually |q_m^T R(d) k_n| ≤ ||q|| ||k||, but the dot product itself is distorted. The preserved quantity might be the magnitude (norm) of the query and key vectors individually, because R is orthogonal. Also, the relative angle in feature space is changed.
+
+What does it distort? The orientation/alignment of q and k. Specifically, the attention score is distorted in a rotational manner: the score depends on d via rotation, causing oscillatory behavior (like sinusoidal dependence on d). So it distorts the linear similarity measure.
+
+But we need to map to N/A/K. It acts through K only. So in table: N: no; A: no; K: yes.
+
+What quantity it preserves: The L2 norm of each token representation (first principles: orthogonal transformation preserves norm). Also the determinant of the 2x2 transport matrix is 1 (since in SO(2) ⊂ SL2(R)). Actually rotation matrix has determinant 1. So it preserves area in the 2x2 representation.
+
+What it distorts: The dot product (similarity) between q and k; specifically it introduces a periodic/modulated dependence on d.
+
+Mechanism 2: Add a fixed penalty proportional to -|d| directly to the attention logit. This is a scalar addition to the logit. How does this map to SL2(R)? It modifies the score, not the vectors. But we can think of the "transport" as acting on the 2-dimensional space of (score, something)? Or perhaps we need to interpret the bias term as coming from a transformation in the group.
+
+Actually, the problem says "Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part." This suggests that we consider the transformation of the pair (q, k) or perhaps the transformation of the hidden state across positions.
+
+But mechanism 2 doesn't change q or k; it just adds a term to the score. In terms of the group action, a scalar addition to the bilinear form can be represented as applying a dilation? Let's think.
+
+We have score s(m,n) = q_m^T k_n + b(d). If b(d) = -c|d|, then this is like adding a term that depends only on d. This can be seen as modifying the metric on the space of positions. But in terms of SL2(R), a linear penalty in |d| corresponds to a shear? Or to a dilation?
+
+Let's recall the Iwasawa decomposition: N is [[1,t],[0,1]] (shear in x-direction), A is [[a,0],[0,1/a]] (scaling x and y inversely), K is rotation.
+
+If we have a transformation that depends linearly on d, that sounds like a shear: N(t) = [[1, t], [0, 1]]. Applying N(t) to a vector (x,y) gives (x + t y, y). If we consider the space spanned by q and k, maybe the bias term corresponds to a shear in the score space.
+
+But we need to be precise. Let's consider the 2x2 matrix that describes how the pair (q_m, k_m) transforms as we shift position by d. For mechanism 1, the transformation is R(d) applied to both q and k? Actually q gets R(m), k gets R(n). So the combined transformation on the pair (q, k) is (R(m) q, R(n) k). The relative transformation is R(m) q and R(n) k = R(n) R(d) q? Not exactly. But we can think of the transport matrix that maps the representation at n to that at m. For mechanism 1, that transport is R(d) in the feature space.
+
+For mechanism 2, there is no change to q or k. So the transport matrix is identity I. But we are adding a scalar to the score. How does that relate to N, A, K? Perhaps we need to embed the score computation into a 2x2 matrix representation.
+
+Consider the bilinear form B(q,k) = q^T k. If we apply a linear transformation T to q and S to k, then B becomes q^T T^T S k. If T = S = I, B is unchanged. But we are adding a term b(d). This can be seen as B'(q,k) = q^T k + b(d). If we want to represent this as q^T M k for some M, we can't unless b(d) is bilinear in q and k. But here it's independent of q and k. So it's an affine term.
+
+However, the problem asks specifically about "2x2 position-transport". Maybe they consider the transformation of the hidden state vector across positions. For mechanism 2, the hidden state is unchanged; the transport is identity. But the identity can be decomposed as I = N(0) A(1) K(I) (i.e., all trivial except K being identity). But the mechanism picks out one generator? The problem says "Mechanisms 1-3 each pick out essentially one generator." So mechanism 2 must pick out one generator. Which one?
+
+If mechanism 2 is a linear penalty -|d| added to the logit, this is analogous to a "distance decay" that is linear. In terms of the group, a linear dependence on d corresponds to the parameter t in N(t) being proportional to d, or a in A being exponential in d? Let's examine.
+
+N(t) = [[1, t], [0, 1]]. The parameter t is linear in d if t = c d. A(a) = [[a, 0], [0, 1/a]]. The parameter log a is linear in d if a = e^{c d}. But the penalty is -c|d|, which is linear in |d|, not exponential.
+
+But the problem says "fixed penalty proportional to -|d| directly to the attention logit (a linear, monotone distance penalty)." This is like ALiBi with slope 1 and no multiplicative factor? Actually ALiBi uses -m |d|, linear. So mechanism 2 is ALiBi-style.
+
+How does ALiBi relate to group generators? In ALiBi, the bias is added to the score, and it's linear in distance. This can be interpreted as applying a "shear" to the score space? Or maybe it's a dilation: the score is scaled exponentially? Let's think: If we have a softmax over scores, adding a linear penalty -c|d| is equivalent to multiplying the attention weight by e^{-c|d|}. That is an exponential decay in distance. In terms of the transformation on the attention matrix (the matrix of weights), it's like applying a diagonal scaling? Hmm.
+
+Alternatively, consider the "transport" of attention weights across distance. The weight w(m,n) is proportional to exp(q_m^T k_n - c|d|). If we think of the attention matrix as a kernel K(d) = exp(-c|d|) times the similarity kernel. This is a product of a translation-invariant kernel in feature space and a translation-invariant kernel in position space. The position kernel is exponential decay, which corresponds to the generator of the dilation subgroup A? Let's check.
+
+In SL2(R), the dilation subgroup A consists of matrices diag(e^t, e^{-t}). The parameter t is real. If we consider a representation of A on functions of d, maybe it acts as scaling. But exponential decay e^{-c|d|} is not a linear representation of A.
+
+Wait, the problem might be using a metaphorical mapping: The three generators correspond to the three ways position can affect attention: rotation (RoPE), dilation/scaling (exponential decay / linear penalty in log space?), shear (adding a vector, i.e., sinusoidal positional encoding).
+
+Let's examine mechanism 3: Add a fixed sinusoidal vector depending on absolute position to each token before attention. This is the original sinusoidal positional encoding. The vector is added to the token embedding. Then the dot product q_m^T k_n involves cross terms with the positional encodings. Specifically, if p(m) is the positional vector added, then q_m = q'_m + W_q p(m), k_n = k'_n + W_k p(n). Then q_m^T k_n includes terms like p(m)^T W_q^T W_k p(n), which depend on m and n through sinusoidal functions of absolute positions. This can produce terms that depend on both m and n separately, not just d. However, if W_q = W_k, then p(m)^T p(n) depends on d via sinusoidal functions.
+
+In terms of group action, adding a vector is a translation (shear) in the embedding space. Specifically, the transformation mapping the base representation x to x + p(m) is an affine translation. In the linear part (ignoring constant), it's the identity. But the "transport" of this translation across positions involves the difference p(m) - p(n). If p is sinusoidal, the difference involves shear-like behavior?
+
+But the problem says mechanism 3 picks out one generator. Let's think: Sinusoidal encodings are periodic in each dimension with different frequencies. This is analogous to rotation in a 2D plane? Actually sinusoidal encodings use sine and cosine of different frequencies. Each pair (sin θ, cos θ) traces a circle. So adding a sinusoidal vector can be seen as embedding position onto a circle (or a torus). Then the dot product between positional parts involves cos(θ(m-n)). This is similar to mechanism 1 (RoPE) but in the embedding space rather than rotating the query/key. Wait, mechanism 1 is rotating q and k by angles proportional to position. Mechanism 3 is adding sinusoidal vectors. Both involve angles proportional to position. So do they both involve K?
+
+But the problem says mechanisms 1-3 each pick out essentially one generator, implying they are distinct: one is K, one is N, one is A.
+
+Let's identify them:
+
+Mechanism 1: Rotation of q and k by angle proportional to absolute position. That's clearly K (rotations).
+
+Mechanism 2: Linear penalty -|d|. This is monotone, not periodic. It doesn't involve angles. It could correspond to A (dilations) because dilations scale exponentially, and the penalty is linear in log-space? Or maybe N (shear) because linear in d?
+
+Let's examine mechanism 3: Adding sinusoidal vector. This involves both sine and cosine, which can be seen as a rotation in a 2D plane parameterized by position. But actually it's adding a vector that lies on a circle. In terms of the group, this might correspond to N (unipotent shifts) because adding a vector is a shear (translation) in affine space. Wait, N is [[1,t],[0,1]], which is a shear transformation in the plane. If we apply N(t) to a vector (x,y), we get (x + t y, y). This is a linear shear. But adding a constant vector p(m) to x is an affine shear: x -> x + p(m). If p(m) is linear in m, then it's an affine version of N. But here p(m) is sinusoidal, not linear. So maybe it's not N.
+
+Alternatively, consider that sinusoidal encodings are fixed and do not depend on content. They provide a "basis" for position. In the Iwasawa decomposition, K is compact (rotations), A is non-compact (scaling), N is nilpotent (shear). Sinusoidal functions are bounded (compact range), which is characteristic of K. Rotations are also bounded. So mechanism 3 might also be K? But the problem says each picks out one generator, and they are distinct. So mechanism 3 must be different.
+
+Let's think about the "transport" of the embedding. If we have a 2-dimensional subspace spanned by sin and cos of a particular frequency, then adding p(m) is like placing the token at a point on a circle. The transformation that takes p(n) to p(m) is a rotation by angle θ(m-n). So the position dependence of the added vector is purely rotational in that 2D subspace. Thus mechanism 3 might also involve K. But mechanism 1 already involves K. So perhaps mechanism 1 and 3 both involve K but in different ways? The problem says "Mechanisms 1-3 each pick out essentially one generator." It doesn't explicitly say they are all different, but the wording "each pick out essentially one generator" could mean each one corresponds to a single generator, but not necessarily distinct. However, later in (c) they ask "Which mechanisms have zero shear by construction, and which can carry shear?" This suggests that mechanisms 1-3 have different shear properties.
+
+Let's read the problem again carefully.
+
+"Consider three ways a sequence model injects position into the attention score between a query at position m and a key at position n (let d = m - n):
+
+1. Rotate query and key by an angle proportional to their absolute positions before the dot product (a fixed rotation per position).
+2. Add a fixed penalty proportional to -|d| directly to the attention logit (a linear, monotone distance penalty).
+3. Add a fixed sinusoidal vector depending on absolute position to each token before attention.
+4. Add a learned, content-dependent bias b(d) to the logit: a separate projection produces a per-token, per-head feature that is combined with the distance d and added to the score. The bias is learned, not fixed.
+
+Recall the Iwasawa decomposition of SL2(R): every element factors uniquely as N.A.K, with N the unipotent shifts [[1,t],[0,1]], A the diagonal dilations diag(a,1/a), K the rotations SO(2). Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part."
+
+So they want to map each mechanism to a transformation in SL2(R). The transformation is probably the one that relates the representation at position m to that at position n.
+
+For mechanism 1: The rotation applied to q and k is R(m) and R(n). The relative transformation is R(m-n). This is in K. So it acts through K.
+
+For mechanism 2: The penalty is added to the score. How can we represent this as a linear transformation? Let's consider the attention score as an element of a 1-dimensional space. Adding a constant that depends on d is like applying an affine transformation to the score space parameterized by d. But we need a 2x2 matrix.
+
+Maybe the idea is that the attention mechanism can be seen as computing a bilinear form in a 2-dimensional space: (q, 1) and (k, 1) or something. Let's formalize: The attention logit is s = q·k + b. If b depends on d, we can write s = [q; 1] · M · [k; 1] for some M that depends on d? Not exactly.
+
+Alternatively, maybe the "transport" refers to how the position information is transported through the network. In mechanism 2, the information is a scalar that depends linearly on d. If we embed d into a 2-dimensional vector (1, d), then applying a linear map that extracts -|d| involves a shear? Let's think.
+
+The problem says "Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part." This is just a statement about 2x2 real matrices with determinant 1 (SL2). They want us to decompose the matrix representation of each mechanism.
+
+Perhaps for each mechanism, we can construct a 2x2 matrix that encodes the transformation of the pair (token_embedding, position_embedding) or something.
+
+But maybe we don't need to be overly precise about the exact matrix; we just need to classify which generator is present and which are absent, and then for (c) give the decomposition (rotation rho, dilation delta, shear sigma) with the invariant.
+
+Given the problem is highly abstract, they likely want the following mapping:
+
+Mechanism 1 (RoPE): K only. Rotation part is non-trivial (angle proportional to d), dilation delta = 0 (no scaling), shear sigma = 0 (no shear). The invariant is the determinant = 1, or the trace = 2 cos(θ d).
+
+Mechanism 2 (ALiBi linear penalty): N only? Or A only? Let's examine.
+
+If the penalty is -c|d|, this is linear in |d|. In terms of the group, the parameter that scales linearly with d is the shear parameter t in N(t) = [[1, t], [0, 1]]. Because t = c d (ignoring abs). So mechanism 2 acts through N. The shear is linear in d.
+
+But wait, the absolute value |d| introduces a non-smoothness at d=0. The unipotent group parameter t is linear, not absolute. But we can have t = -c d for d>0 and t = c d for d<0? Actually |d| is symmetric. The matrix N(t) is [[1,t],[0,1]]. If t depends on sign of d, it's still a shear but with different directions? But N is a group, so N(t1) N(t2) = N(t1+t2). If t is proportional to |d|, then composing for d1 and d2 doesn't match |d1+d2|. So it's not a group representation. But the mechanism doesn't need to form a group; it's just a fixed bias.
+
+However, the problem says "Mechanism 2: Add a fixed penalty proportional to -|d| directly to the attention logit (a linear, monotone distance penalty)." This is a scalar function of d. If we embed this into a 2x2 matrix, perhaps we use A: diag(a, 1/a) with a = e^{-c|d|}. Then log a = -c|d|. So the dilation parameter is linear in |d|. That is, the scaling factor is exponential in d. But the penalty is linear in |d| in the logit, which corresponds to exponential scaling of the attention weight. So mechanism 2 might correspond to A: the dilation parameter is proportional to |d|.
+
+Let's check consistency: Mechanism 1 is rotation (K). Mechanism 2 could be dilation (A). Mechanism 3 could be shear (N). That gives one of each. That seems like a nice partition.
+
+But does mechanism 3 correspond to N? Let's see. Mechanism 3 adds a sinusoidal vector. This is a translation in embedding space. In affine terms, it's x -> x + p(m). The linear part is identity, but the translation part is like applying N? Not directly.
+
+But let's think about the "transport" matrix for mechanism 3. Suppose we have a base embedding space of dimension D. The positional encoding p(m) is a vector. If we consider the subspace spanned by p(m) and p(n), or perhaps consider the transformation that sends the token at n to the token at m: x_n -> x_n + p(m) - p(n)? Not exactly.
+
+Alternatively, consider the attention score with sinusoidal encodings. The score includes terms like q'^T k' + q'^T W_k p(n) + p(m)^T W_q k' + p(m)^T W_q W_k p(n). The cross terms are linear in p(m) or p(n). The term p(m)^T p(n) is sinusoidal in d. So the position dependence of the score involves both linear terms (in p) and quadratic terms (in p·p). The linear terms can be seen as applying a linear transformation (shear) to q and k.
+
+Specifically, if we augment the query and key vectors with a constant 1: q'_aug = [q'; 1], then the term q'^T W_k p(n) can be written as q'_aug^T M p(n) for some M. This is a bilinear form involving p(n). If p(n) is sinusoidal, then this is like applying a rotation? Hmm.
+
+But the problem asks "which of N / A / K it acts through". For mechanism 3, since p(m) is sinusoidal, which involves both sine and cosine, the transformation that maps p(n) to p(m) is a rotation in the plane spanned by the sine and cosine components. So mechanism 3 also involves K? Wait, but mechanism 1 is also rotation. Let's examine more carefully.
+
+Mechanism 1 applies a rotation directly to q and k in the feature space. The rotation angle is proportional to absolute position. This is a "fixed rotation per position". So the transformation on the feature vector is in K.
+
+Mechanism 3 adds a sinusoidal vector that depends on absolute position. The vector p(m) can be written as p(m) = R(m) v, where R(m) is a block-diagonal rotation matrix (with different frequencies) and v is a fixed vector (like [1,0,1,0,...]?). Actually sinusoidal encodings are p(m) = [sin(m/10000^{2i/D}), cos(m/10000^{2i/D})]. This can be seen as applying a rotation in each 2D plane to a fixed vector [1,0] or [0,1]. So p(m) = R(m) p(0) for some rotation matrix R(m) that is block-diagonal with 2x2 rotation blocks. Thus mechanism 3 is also applying a rotation, but to a fixed vector that is added to the token embedding. So mechanism 3 also acts through K.
+
+But then mechanisms 1 and 3 both act through K, which contradicts the idea that 1-3 each pick a different generator.
+
+Wait, maybe mechanism 3 acts through N. Let's think about the structure of sinusoidal encodings: They are not orthogonal transformations on the token embedding; they are added to it. The addition operation is a translation, which is not in SL2(R) (since translations have determinant 1 but are not linear). However, if we homogenize by adding a 1, then translation becomes a linear shear. Specifically, in 2D homogeneous coordinates, a translation by t in x-direction is [[1, t], [0, 1]], which is exactly N(t). So adding a vector that depends linearly on position corresponds to N. But here the vector is sinusoidal, not linear. So it's an affine transformation with non-linear parameter dependence.
+
+But the problem asks specifically "which of N / A / K it acts through". This suggests that for each mechanism, we identify one of the three subgroups that is the "active" one.
+
+Let's consider mechanism 2 again: The penalty is -|d|. If we think of the attention weight w(m,n) ∝ exp(q·k) exp(-c|d|). The factor exp(-c|d|) can be seen as coming from applying a dilation A with parameter log a = -c|d|. Because A(a) = diag(a, a^{-1}) and in some representation, applying A scales one coordinate by a and another by a^{-1}. But how does that relate to multiplying by e^{-c|d|}?
+
+Alternatively, consider that in the Iwasawa decomposition, the three subgroups correspond to three geometric actions: rotation preserves distance, dilation scales distances, shear skews. The linear penalty -|d| is a scaling of the score that decays exponentially with distance. In terms of the "geometry" of the position space, it's like stretching the distance metric: the effective distance is scaled linearly. Actually, if we define a metric on position space, the penalty is linear in the metric distance. This is analogous to a dilation in the metric tensor? Not clear.
+
+But maybe the mapping is not about the geometric effect on positions, but about the algebraic form of the transformation matrix representing the mechanism in a 2-dimensional model.
+
+Let's try to formalize the "2x2 position-transport" for each mechanism.
+
+We have a sequence of hidden states h_1, h_2, ..., h_L. The attention mechanism computes scores between h_m and h_n. The positional injection modifies either h_m, h_n, or the score.
+
+We can think of the state space as being 2-dimensional for the purpose of this decomposition? Or perhaps we consider the transformation of a 2-dimensional feature vector (e.g., query and key) as a function of position.
+
+For mechanism 1: We apply R(m) to q and R(n) to k. Let's consider the 2x2 matrix that transforms the pair (q, k) from position n to m. Actually, consider the matrix M(d) that relates the rotated vectors: q_m = R(m) q_0, k_n = R(n) k_0. But q_0 and k_0 depend on content. The position-dependent part is R(m) and R(n). The relative transformation is R(d). So the transport matrix is R(d) ∈ K.
+
+For mechanism 2: There is no transformation on q or k. The transport matrix is I. But I can be decomposed as N(0) A(1) K(0). So it doesn't act through any non-trivial generator. But the problem says mechanism 2 picks out one generator. So this can't be right.
+
+Thus, we must interpret mechanism 2 differently: Perhaps the bias b(d) = -c|d| is added to the logit, which can be written as [q_m; 1] M(d) [k_n; 1] for some M(d). Let's try to construct such an M.
+
+We want q_m^T k_n - c|d| = [q_m; 1] M [k_n; 1]. If q and k are scalars (1-dimensional), then q_m k_n - c|d| = [q_m, 1] [[0,0?], ...] ... Not straightforward.
+
+But if q and k are 2-dimensional, maybe we can embed the bias into the transformation of q and k. Actually, consider that the logit is computed as q_m^T k_n + b(d). If we define augmented query and key vectors:
+
+Q_m = [q_m; √c] and K_n = [k_n; √c sgn(d)]? Not consistent.
+
+Alternatively, think about the attention matrix A with entries A_{mn} = exp(s(m,n)). The factor exp(-c|d|) can be factored out: A = S ⊙ B, where S_{mn} = exp(q_m^T k_n) and B_{mn} = exp(-c|d|). This B is a Toeplitz matrix with entries decaying exponentially in |d|. This matrix B can be seen as the Gram matrix of some feature map φ(d). Specifically, B_{mn} = f(m-n) with f(d) = e^{-c|d|}. This is a translation-invariant kernel. In 2 dimensions, the kernel e^{-c|x|} corresponds to the Green's function of a differential operator. But how does that relate to SL2?
+
+Wait, maybe the problem is not requiring a literal matrix representation for each mechanism, but rather mapping the functional form of the position dependence to the generator that produces that form.
+
+Let's list the functional forms of position dependence:
+
+1. Rotation by angle θ d: periodic in d, bounded, orthogonal. This corresponds to K.
+
+2. Penalty -c|d|: linear in |d|, unbounded, monotone decreasing. This corresponds to N or A?
+
+3. Sinusoidal vector p(m): periodic in m (and n) with different frequencies. This is also bounded and periodic, but it's added as a vector, not applied as a rotation to q/k.
+
+4. Learned b(d): arbitrary, can combine all.
+
+The problem says "Mechanisms 1-3 each pick out essentially one generator." So we need to assign each a unique generator.
+
+Given that K is rotations (periodic, bounded, orthogonal). Both mechanism 1 and 3 involve periodic functions (sin, cos, rotation angles). So maybe one of them is K, the other is not.
+
+But mechanism 1 applies a rotation directly to q and k. Mechanism 3 adds sinusoidal vectors to the embeddings. The addition is an affine translation, which is like N in homogeneous coordinates. The sinusoidal dependence is just the parameterization of the translation vector. So mechanism 3 might correspond to N: the parameter t in N(t) is replaced by a sinusoidal function of position. That is, we apply a shear transformation N(p(m)) where p(m) is sinusoidal. But the generator is still N (shear).
+
+Then mechanism 2 must correspond to A (dilation). The linear penalty -c|d| can be parameterized as a = e^{-c|d|}, which is a dilation factor. So mechanism 2 acts through A.
+
+Thus we have:
+1 → K
+2 → A
+3 → N
+4 → free (all three)
+
+This seems plausible and uses all three generators exactly once each.
+
+But we need to verify consistency with the properties asked: "what quantity it preserves, what it distorts."
+
+For K (mechanism 1): Preserves norms (orthogonal). Distorts orientation/alignment of q and k.
+
+For A (mechanism 2): Preserves product of scales? Or preserves the determinant? Actually A = diag(a, 1/a). If applied to (q, k) or to the score, it scales one dimension by a and the other by 1/a. But in mechanism 2, we are scaling the attention weight by e^{-c|d|} uniformly for all pairs at distance d. This is like applying a global scaling factor to the score. But in terms of preservation, dilation preserves the area (determinant = 1). So the "quantity preserved" might be the product of the query norm and key norm? Or the area in the (q,k) plane? Let's think.
+
+If we represent the attention score as a 2x2 matrix or as a vector in a 2D space, applying A scales one coordinate. But mechanism 2 is just a scalar addition. However, if we embed it in the exponential, it's a multiplicative scaling of the unnormalized attention weight. So it preserves the relative ratios of scores at the same distance d? No, it applies the same factor to all pairs at distance d.
+
+But the question asks "what quantity it preserves, what it distorts." For mechanism 2 (A), the preserved quantity could be the relative ranking within a fixed distance? Or the "volume" (determinant)? Let's think about the properties of A: It preserves the hyperbolic metric, and it scales x and y inversely. If we apply A to a vector (x,y), then x'y' = x y. So the product x*y is invariant.
+
+But in mechanism 2, we have a term -c|d| added to the score. If we think of the score as being in the "y" direction and the distance d in the "x" direction, then scaling might apply.
+
+Alternatively, perhaps we should think about the transformation of the hidden state vector across positions. For mechanism 2, there is no transformation of the hidden state; only the score is modified. So the "transport" matrix is identity, which has no dilation, rotation, or shear. But the problem says it picks out one generator. So maybe the transformation is not on the hidden state but on the score space.
+
+Let's consider the score space as 1-dimensional. But we need a 2x2 matrix. Maybe we consider the pair (score, position) or (attention weight, distance).
+
+Actually, maybe the problem is purely metaphorical: The three mechanisms correspond to the three factors in Iwasawa decomposition because they correspond to three types of position dependence: rotational (periodic), scaling (exponential/linear in log), and shearing (linear/additive).
+
+Specifically:
+- Mechanism 1: Rotational dependence (angle proportional to d or position). So K.
+- Mechanism 2: Linear dependence on |d| in the logit, which corresponds to exponential scaling of the weight. This is a dilation (scaling) of the attention weight with distance. So A.
+- Mechanism 3: Adding a vector that depends sinusoidally on absolute position. This is an affine translation (shear) in the embedding space. So N.
+
+Given the problem statement: "Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part." They want us to decompose the 2x2 matrix associated with each mechanism.
+
+But what exactly is the 2x2 matrix? Let's try to derive it for each mechanism in a unified framework.
+
+Consider that for each mechanism, we can define a transformation T(m,n) that acts on the pair (q, k) or on the representation space. Actually, for mechanism 1, T(m,n) = R(m) ⊗ R(n) (or R(m) R(n)^{-1}). For mechanism 2, T(m,n) = I but with a scalar factor on the bilinear form. For mechanism 3, T(m,n) involves adding p(m) to q and p(n) to k.
+
+But maybe the "2x2 transport" is defined specifically for the position dependence of the attention score as a function of d. That is, we consider the function f(d) that describes how the score is modified. Then we embed f(d) into a 2x2 matrix representation.
+
+Let's think about group representations of the translation group (integers d) into SL2(R). We can have representations where the generator (shift by 1) is mapped to a matrix in SL2(R). Then the transformation for distance d is the d-th power of that matrix.
+
+For mechanism 1: The generator is mapped to a rotation matrix K(θ) = [[cos θ, -sin θ], [sin θ, cos θ]]. Then the transformation for d is K(dθ). This is a representation of Z into K.
+
+For mechanism 2: The generator is mapped to a dilation matrix A(a) = [[a, 0], [0, 1/a]] with a = e^{-c} (ignoring abs). Then the transformation for d is A(a)^{|d|} = [[e^{-c|d|}, 0], [0, e^{c|d|}]]. But the mechanism adds -c|d| to the logit, which is like multiplying the weight by e^{-c|d|}. So this matches the scaling of one coordinate by e^{-c|d|}. Thus mechanism 2 corresponds to the representation into A.
+
+For mechanism 3: The generator is mapped to a shear matrix N(t) = [[1, t], [0, 1]] with t proportional to the amplitude of the sinusoid? But the sinusoidal vector depends on absolute position m, not just d. Wait, mechanism 3 depends on absolute positions m and n separately. So it's not translation invariant. That means it doesn't correspond to a representation of the translation group (d only). Instead, it depends on absolute position. But the problem says "Add a fixed sinusoidal vector depending on absolute position to each token before attention." So the transformation applied to the token at position m is x -> x + p(m). If we consider the pair (x, 1) in homogeneous coordinates, then the transformation is [[I, p(m)]; [0, 1]]. This is an affine transformation. The linear part is I, but the translation part depends on m. If we restrict to a 2-dimensional subspace spanned by two sinusoidal components (say sin and cos of one frequency), then p(m) = [sin(mθ), cos(mθ)] v. The transformation on this subspace might be a rotation? Actually, p(m) itself is obtained by applying a rotation matrix R(m) to a fixed vector v. So the transformation that takes v at position 0 to v at position m is R(m). So mechanism 3 could be seen as applying a rotation R(m) to a fixed vector v and adding it to x. But the linear part applied to x is identity. So the "transport" of the added vector is rotational (K). But the problem says mechanism 3 picks out one generator, and we've assigned K to mechanism 1.
+
+Wait, but maybe mechanism 3 picks out N because the addition is a shear in homogeneous coordinates, and the parameter of the shear is sinusoidal. Let's examine.
+
+In homogeneous coordinates for 2D affine plane: A point (x,y) is represented as [x, y, 1]^T. A translation by (t_x, t_y) is [[1,0,t_x], [0,1,t_y], [0,0,1]]. This is not in SL2(R) but in the affine group. However, if we restrict to a 2D plane where one coordinate is constant (say y=1), then translation in x is [[1,t], [0,1]], which is N(t). So if the sinusoidal vector has only one non-zero component in that plane, it's N. But sinusoidal vectors have many dimensions.
+
+But maybe the problem expects us to think of the positional encoding as being added to the token embedding, which modifies the query and key linearly: q(m) = W_q x(m) + W_q p(m). Then the term involving p(m) in the dot product is linear in p(m) or p(n). Specifically, there will be terms like p(m)^T W_q^T W_k k(n) etc. These terms can be factored as a matrix product involving p(m) and p(n). If p(m) is sinusoidal, then p(m)^T p(n) involves cos(dθ). This is periodic in d. So the position dependence in the score includes periodic terms (like mechanism 1) but also linear terms (like p(m) times constant). The presence of linear terms in p(m) (independent of n) means the score can depend on absolute position, breaking translation invariance. This is characteristic of mechanism 3.
+
+But the question asks "which of N / A / K it acts through". Given that mechanism 3 involves both periodic (K-like) and linear additive (N-like) terms, maybe it actually involves more than one generator? But the problem says "Mechanisms 1-3 each pick out essentially one generator." So mechanism 3 must be assignable to a single generator.
+
+Let's read the problem statement again: "Mechanism 3: Add a fixed sinusoidal vector depending on absolute position to each token before attention." In the original Transformer, this is done by adding p(m) to the embedding of token m. Then attention is computed. The effect on the attention score between q at m and k at n is:
+
+s(m,n) = (W_q x_m + W_q p(m))^T (W_k x_n + W_k p(n))
+= x_m^T W_q^T W_k x_n + x_m^T W_q^T W_k p(n) + p(m)^T W_q^T W_k x_n + p(m)^T W_q^T W_k p(n).
+
+The first term is content-only. The second term depends on n but not m (through p(n)). The third term depends on m but not n. The fourth term depends on both m and n through p(m) and p(n).
+
+If W_q and W_k are arbitrary, then the terms involve p(m) and p(n) in linear ways. But the problem asks about the injection of position into the attention score. So mechanism 3 injects position through all four terms, but especially through the cross terms.
+
+Now, in terms of the group, adding p(m) is an affine action. The group of translations in the embedding space is abelian and can be parameterized. But the Iwasawa decomposition is for SL2(R), not the affine group.
+
+Perhaps the key is to look at the "2x2 transport" matrix that describes how the pair (p(m), p(m+1)) transforms. But I'm not fully convinced.
+
+Let's consider the possibility that the problem is actually a theoretical exercise linking attention mechanisms to the Iwasawa decomposition in a specific mathematical framework (maybe from a specific paper). The problem mentions "Iwasawa decomposition of SL2(R): every element factors uniquely as N.A.K, with N the unipotent shifts [[1,t],[0,1]], A the diagonal dilations diag(a,1/a), K the rotations SO(2). Any 2x2 transport decomposes into a rotation part, a dilation (stretch) part, and a shear part."
+
+This sounds like they want to treat the transformation of the 2-dimensional vector (q, k) or (q, q') as a 2x2 matrix. Let's try to formalize the "transport" for each mechanism as a 2x2 matrix M(d) that depends on the distance d.
+
+Mechanism 1: q(m) = R(m) q_0, k(n) = R(n) k_0. Let's consider the 2x2 matrix formed by stacking q and k? Or perhaps consider the transformation of the 2D subspace spanned by the two dimensions of rotation.
+
+Actually, RoPE rotates pairs of dimensions. For each pair (i, i+1), we have a 2x2 rotation matrix applied to the pair. Specifically, for query at position m, the pair (q_{2i}, q_{2i+1}) is multiplied by [[cos mθ_i, -sin mθ_i], [sin mθ_i, cos mθ_i]]. Similarly for key at n. So the transformation applied to the query pair is R(mθ_i) and to the key pair is R(nθ_i). The relative transformation between query pair at m and key pair at n involves R((m-n)θ_i) = R(dθ_i) applied to one relative to the other.
+
+Thus, in each 2D plane, the transport matrix is a rotation by dθ_i. So the 2x2 transport is exactly K(dθ_i). So mechanism 1 is pure K.
+
+Mechanism 2: Add -c|d| to the logit. How can this be represented as a 2x2 matrix? Let's consider that in RoPE, the dot product in each 2D plane is q_i · R(dθ_i) k_i. The result is a scalar. If we want to represent the bias -c|d| as a transformation in the same 2D plane, we could embed it in a dilation of the plane.
+
+Specifically, consider the 2x2 matrix M(d) = diag(e^{-c|d|/2}, e^{c|d|/2}). Then applying M to q and M^{-1} to k (or vice versa) modifies the dot product by a factor e^{-c|d|}. But mechanism 2 adds -c|d| to the logit, which is equivalent to multiplying the unnormalized attention score (before softmax) by e^{-c|d|} if the rest is in the exponent. Wait, the attention score is usually q·k / sqrt(d_k). If we add -c|d|, then exp(score) gets multiplied by exp(-c|d|). So it's a multiplicative factor on the attention weight.
+
+Now, if we have q·k, and we apply a dilation A(a) to q and A(a)^{-1} to k, then (A q)·(A^{-1} k) = q·k (since A is orthogonal? No, A is not orthogonal unless a=±1). Let's check: A = diag(a, 1/a). A q = (a q_1, q_2 / a). A^{-1} k = (k_1 / a, a k_2). Then (A q)·(A^{-1} k) = q_1 k_1 + q_2 k_2 = q·k. So dilation applied oppositely to q and k leaves the dot product unchanged. So that's not it.
+
+But what if we apply A to both q and k? Then (A q)·(A k) = a^2 q_1 k_1 + a^{-2} q_2 k_2. That changes the dot product in a non-uniform way.
+
+Alternatively, consider augmenting q and k with an extra dimension. For example, define Q = [q; 1] and K = [k; s(d)] for some s(d). Then Q^T K = q·k + s(d). If s(d) = -c|d| (but dimensions must match). Actually, if q and k are scalars, Q = [q, c^{1/2}] and K = [k, -c^{1/2}|d|]? Not consistent.
+
+But maybe we don't need to embed mechanism 2 into a bilinear form; we just need to identify the generator that produces the functional form -c|d|. The parameter t in N is linear, giving linear dependence. The parameter log a in A is linear in d, giving exponential dependence. But -c|d| is linear, not exponential. So it corresponds to N, not A.
+
+Wait, but mechanism 2 is linear in d (absolute value). The parameter of N is exactly linear: t = -c d (for d>0). So mechanism 2 corresponds to N.
+
+Then mechanism 3 must correspond to A? Let's check. Mechanism 3 involves sinusoidal functions, which are periodic and bounded. The parameter of K is an angle, which is linear in position: θ m. So mechanism 1 (rotation of q/k) corresponds to K. Mechanism 3 (sinusoidal vector added) also involves angles. So maybe mechanism 3 also corresponds to K? But the problem says 1-3 pick out one generator each, presumably distinct.
+
+Wait, but maybe mechanism 3 picks out A. How? The sinusoidal functions have different frequencies that scale geometrically: θ_i = 1 / 10000^{2i/D}. This is a geometric progression (exponential scaling of frequency). This scaling is like a dilation in the frequency domain. So mechanism 3 involves a dilation (scaling) of the frequency axis. That is, the set of frequencies is scaled by a factor each time. This is analogous to the dilation subgroup A acting on the frequency parameter.
+
+But the problem says "Add a fixed sinusoidal vector depending on absolute position to each token before attention." The vector is fixed (not learned) and sinusoidal. The frequencies form a geometric sequence. This geometric scaling of the period is a dilation in the "frequency space". But is that the intended mapping?
+
+Alternatively, mechanism 3 might correspond to N because the sinusoidal vector is added, which is a translation (shear) in the embedding space.
+
+Let's examine the problem's wording: "Mechanisms 1-3 each pick out essentially one generator. Mechanism 4 is the free case." This suggests that mechanisms 1, 2, 3 are each pure in one generator. Given the standard classification of positional encodings:
+
+- RoPE (mechanism 1) is rotational.
+- ALiBi (mechanism 2) is linear bias, which can be seen as a "shear" in the attention matrix? Actually, ALiBi applies a linear bias to the attention scores. In some papers, ALiBi is described as having a "linear" bias, which is analogous to a first-order Taylor expansion of an exponential decay. The exponential decay is like a dilation (scaling) in distance.
+- Sinusoidal (mechanism 3) is periodic, but added as a vector. The addition is an affine shift.
+
+But let's think about the "2x2 transport" decomposition. For each mechanism, we need to give (rotation rho, dilation delta, shear sigma). This implies that for each mechanism, we need to specify all three values, with some being zero.
+
+If mechanism 1 is pure rotation, then rho ≠ 0, delta = 0, sigma = 0.
+
+If mechanism 2 is pure dilation, then rho = 0, delta ≠ 0, sigma = 0.
+
+If mechanism 3 is pure shear, then rho = 0, delta = 0, sigma ≠ 0.
+
+That gives three distinct pure cases, which matches the problem's statement. So we need to decide which one is shear and which is dilation.
+
+Given standard intuition:
+- Rotation: RoPE (mechanism 1).
+- Dilation: Scaling of distances or weights. The linear penalty -|d| in the logit corresponds to exponential scaling of the attention weight. This is a dilation in the "attention magnitude" dimension. So mechanism 2 is dilation.
+- Shear: Adding a vector (translation) is a shear in homogeneous coordinates. So mechanism 3 is shear.
+
+Thus:
+Mechanism 1 ↔ K (rotation)
+Mechanism 2 ↔ A (dilation)
+Mechanism 3 ↔ N (shear)
+
+This is the most logical assignment.
+
+Now we need to fill tables for (a), (b), (c), (d).
+
+But we need to be precise about "what quantity it preserves, what it distorts."
+
+For mechanism 1 (K):
+- Preserves: The Euclidean norm of the query and key vectors (orthogonal transformation). Also preserves the area/determinant of the 2x2 transport matrix (det = 1). Also preserves the inner product when d=0.
+- Distorts: The relative orientation of q and k, causing the dot product to depend on d via rotation. Specifically, it distorts the similarity score in a periodic, bounded manner.
+
+For mechanism 2 (A):
+- Preserves: The product of scales or the "hyperbolic area". More concretely, since the bias is a function of d only, it preserves the content-based similarity q·k (it doesn't change q or k). It also preserves the rank ordering of pairs with the same d? Not exactly. But in terms of the transformation, dilation preserves the determinant (area) of the transport matrix. So the invariant is det = 1.
+- But also, the mechanism applies the same multiplicative factor (in weight space) to all pairs with distance d. So it preserves the relative ratios of scores among pairs with the same distance d. That is, the shape of the attention distribution over content is unchanged for a fixed d.
+- Distorts: The absolute magnitude of attention weights across different distances d. It introduces a monotone decay (or growth) with |d|, breaking translation invariance in a scaling manner.
+
+For mechanism 3 (N):
+- Preserves: The norm of the content vector? Actually, adding a vector changes the norm. But the linear part (the transformation on the token embedding excluding the added vector) is identity, so it preserves the content-based part q·k if we separate terms? Not exactly.
+- Let's think about the properties of shear N = [[1,t],[0,1]]. It preserves area (det=1) and preserves the y-coordinate (the second coordinate). So if we think of the 2-dimensional space spanned by the content component and the position component, the shear preserves the content component and shifts the position component.
+- Specifically, mechanism 3 adds p(m) to the embedding. If we decompose the embedding into a "content" part (unchanged) and a "position" part (shifted), the shear preserves the content part and adds a linear (sinusoidal) shift to the position part.
+- So what it preserves: The content-only similarity term x_m^T x_n (if we ignore cross terms). More generally, it preserves the determinant of the transport matrix (det=1).
+- What it distorts: The embedding vectors themselves are translated, so the dot product gets cross terms involving p(m) and p(n). This distorts the attention score in a way that depends on absolute positions m and n separately, not just d. So it breaks translation invariance.
+
+But we need to map to "what quantity it preserves, what it distorts" in the context of the Iwasawa decomposition.
+
+For N (shear): It preserves the area (determinant 1) and preserves one axis (the axis of shear). So in mechanism 3, it preserves the "content axis" (the subspace spanned by token embeddings without position) and shears the "position axis". So the preserved quantity is the content projection (the component orthogonal to the shear direction). The distorted quantity is the position projection, which gets mixed with content.
+
+Now, we need to produce a table for (a) with columns: Mechanism, Acts through N?, A?, K?, Preserves, Distorts.
+
+We must fill every cell, including uncertain ones; mark uncertainty rather than omitting cell. So if there's any ambiguity, we should note it.
+
+Let's construct table (a):
+
+| Mechanism | N (shear) | A (dilation) | K (rotation) | Preserves | Distorts |
+|-----------|-----------|--------------|--------------|-----------|----------|
+| 1. Rotating q,k by abs. pos. | No | No | Yes | Norm of q,k; det=1; inner product at d=0 | Relative orientation of q,k; similarity becomes periodic in d |
+| 2. Fixed penalty -|d| on logit | No? Or Yes? | Yes? Or No? | No | Ordering within same d; hyperbolic area det=1 | Absolute weights across d; monotone decay introduces distance bias |
+| 3. Sinusoidal vector added | Yes | No | No | Content-only term (shear axis); det=1 | Embedding norm; introduces abs-position dependence and cross-terms |
+| 4. Learned b(d) content-dep. | Can reach | Can reach | Can reach | None fixed (learned) | All can be distorted; content-dep. allows adaptive mixing |
+
+But we need to be precise about mechanism 2: Is it A or N? Let's decide it's A (dilation). But we should consider if it could be N. Let's examine the problem: "Mechanisms 1-3 each pick out essentially one generator." If mechanism 2 is N, then mechanism 3 must be A. Let's see if mechanism 3 could be A.
+
+Mechanism 3: Sinusoidal vector with frequencies scaling geometrically: θ_i = θ_0 / r^{i}. This scaling is exponential in i (the dimension index). If we think of the "space" of dimensions, the scaling of frequency is a dilation. But the mechanism applies the same vector to all tokens; it's not scaling anything with d.
+
+Alternatively, mechanism 3 could be A because the sinusoidal functions are bounded and have a "scale" parameter (the period). The period is scaled across dimensions. But the transformation on the position d is not a dilation.
+
+Let's think about the "2x2 transport" for mechanism 3. If we consider the subspace spanned by sin(mθ) and cos(mθ) for a fixed θ, then the vector p_i(m) = [sin(mθ_i), cos(mθ_i)]. As m changes by d, p_i(m) = R(dθ_i) p_i(0) if p_i(0) is appropriate. Actually, p(m) = R(mθ) v, where v is a fixed vector. So the transformation that takes p(n) to p(m) is R((m-n)θ) in that subspace. So mechanism 3 also involves rotation (K) in each 2D subspace!
+
+Wait, that's important. The sinusoidal positional encoding can be decomposed into 2D rotation blocks, just like RoPE. Specifically, for each frequency θ, the pair (sin(mθ), cos(mθ)) is a point on the unit circle rotated by angle mθ from (0,1) or (1,0). So the transformation of the positional encoding vector across positions is a rotation.
+
+But in mechanism 3, we don't rotate the query/key; we add the vector to the embedding. So the position information is carried by a vector that lives in a space where the group action is rotational. So mechanism 3 also involves K.
+
+But mechanism 1 also involves K (rotating q and k). So maybe both 1 and 3 involve K, but in different ways. The problem says "each pick out essentially one generator." It doesn't say they are all different. But then in part (b) it asks "Mechanism 4 is the free case. Which generators can a learned b(d) reach that the fixed mechanisms cannot? Can it be pinned to a single generator, or must it span more than one?" This implies that mechanisms 1-3 are each confined to a single generator, and mechanism 4 can span more than one. But it doesn't explicitly say that 1-3 are distinct. However, it's natural to assume they cover the three generators.
+
+But if both 1 and 3 involve K, then K is covered twice, and one of N or A is missing. That seems less likely given the reference to N.A.K decomposition with all three mentioned.
+
+Let's re-examine mechanism 3's group action. The positional encoding vector p(m) is added to the token embedding. If we consider the affine transformation on the embedding space: x -> x + p(m). In homogeneous coordinates, this is [[I, p(m)]; [0, 1]]. The linear part is I (no rotation, dilation, or shear in the linear part). The translation part is p(m). If p(m) is sinusoidal, then the translation parameter is not linear in d (for the relative transformation p(m) - p(n)). Let's compute p(m) - p(n) = R(m)v - R(n)v = R(n)[R(d) - I]v. This involves R(d) - I. The matrix R(d) - I is [[cos dθ - 1, -sin dθ], [sin dθ, cos dθ - 1]]. This can be decomposed into rotation and shear? Let's see.
+
+R(d) - I = -2 sin^2(dθ/2) I + sin(dθ) J, where J = [[0, -1], [1, 0]]. This is a linear combination of I and J. It doesn't factor nicely into a single generator of SL2.
+
+But maybe the key is that mechanism 3 depends on absolute positions m and n separately, not just d. The transformation from n to m involves R(m) R(n)^{-1} = R(d). So the relative change in p is governed by R(d). Thus mechanism 3 does have a rotational component in the position subspace.
+
+But mechanism 1 applies R(d) directly to q and k in the feature space. So both have rotational relative dependence.
+
+However, mechanism 3 also has terms that depend on absolute position (e.g., p(m) · q). These terms break translation invariance and involve R(m) alone. So mechanism 3 involves both K (relative) and some other generator (absolute)?
+
+Wait, but the problem asks "which of N / A / K it acts through". If mechanism 3 involves K, then it's the same as mechanism 1. But maybe the answer is indeed that both 1 and 3 act through K, but in different subspaces? The problem might allow that. But then "Mechanisms 1-3 each pick out essentially one generator" could mean that mechanism 1 is pure K, mechanism 2 is pure A, mechanism 3 is pure N, but maybe mechanism 3's rotational aspect is considered part of the parameterization of N? That seems unlikely.
+
+Let's think about mechanism 3 in terms of the Iwasawa decomposition of the affine group. Actually, the group of affine transformations in 2D (the Euclidean group plus scaling) has a different decomposition. But they specifically mention SL2(R).
+
+Perhaps we should interpret the "transport" as the transformation of a 2-dimensional vector consisting of the query and the key, but only considering their position-dependent parts.
+
+For mechanism 1: The position-dependent part of q is R(m) q_0, and of k is R(n) k_0. The transport matrix from n to m is R(m-n).
+
+For mechanism 2: The position-dependent part is a scalar factor exp(-c|d|) applied to the score. If we consider a 2D vector [q; k] and a metric that involves d, maybe the transport is a dilation.
+
+For mechanism 3: The position-dependent part is p(m) added to q and p(n) added to k. If we consider the 2D vector [q + p(m); k + p(n)], the transformation involves translation. In homogeneous coordinates for the pair (q,k), we might have a 2x2 block matrix.
+
+Actually, consider the combined vector v(m) = [q(m); k(m)]? No, q and k are separate.
+
+But maybe the problem wants us to think of the attention score as being computed in a 2-dimensional space where one axis is the query and the other is the key. The position injection modifies the coordinates in this space.
+
+For mechanism 1: We rotate q and k in their respective spaces. If the spaces are 2D, then the combined transformation on the pair (q,k) is block-diagonal with R(m) and R(n). The relative transformation is R(d) on q and R(-d) on k? Not exactly.
+
+Given the ambiguity, we need to provide a well-reasoned answer, but also include falsification clauses and mark uncertainties. We can present the classification and note that mechanism 2 and 3 have alternative interpretations, but we pick the most consistent one.
+
+However, the problem asks specifically: "Which mechanisms have zero shear by construction, and which can carry shear?" This implies that mechanism 1 (rotation) has zero shear, mechanism 2 (dilation) has zero shear, and mechanism 3 (shear) has non-zero shear? Or maybe mechanism 4 can carry shear.
+
+Wait, if mechanism 1 is rotation, shear = 0. If mechanism 2 is dilation, shear = 0. If mechanism 3 is shear, then shear ≠ 0. Then mechanism 4 can have all three, including shear.
+
+That makes perfect sense! So mechanism 3 is the one with shear. That confirms the assignment: 1→K (rotation, no shear), 2→A (dilation, no shear), 3→N (shear, non-zero shear).
+
+Thus, mechanism 3 is the shear case.
+
+Now, what exactly is the shear parameter for mechanism 3? If we add a sinusoidal vector p(m) to the embedding, then in homogeneous coordinates (embedding, 1), the transformation is [[I, p(m)]; [0,1]]. The linear part is I. But if we restrict to a 2-dimensional subspace spanned by two sinusoidal components, the transformation might be represented by a 2x2 matrix.
+
+Specifically, consider the 2-dimensional subspace spanned by the two components p_1(m) and p_2(m) = [sin(mθ), cos(mθ)]. Actually, p(m) is a vector of many such pairs. But we can consider one pair. The transformation that maps the base vector v = [1, 0] to p(m) in that subspace is R(mθ) v. But the addition to the token embedding is like applying a translation in that subspace.
+
+But to represent it as a 2x2 matrix in SL2(R), we can consider the transformation of the coordinates (x, y) in that subspace: (x, y) -> (x + a(m), y + b(m)). This is an affine transformation with linear part I. In homogeneous coordinates, it's [[1, a, 0], [0, 1, b], [0,0,1]] (3x3). Not 2x2.
+
+But maybe we consider only the change in the coordinate along the direction of p. Let's say we have a single dimension where we add f(m). Then in 2D homogeneous coordinates (value, 1), it's [[1, f(m)]; [0, 1]] = N(f(m)). So the shear parameter is t = f(m) - f(n) = p(m) - p(n) projected onto that axis. So the transport matrix for distance d in that axis is N(Δp). Since Δp depends sinusoidally on d (for small d, Δp ≈ cos(nθ) [R(d)-I]v), the shear parameter is sinusoidal in d.
+
+Thus mechanism 3 is indeed N with shear parameter σ ∝ sin(dθ/2) or similar.
+
+Given this, the preserved quantity for N is the coordinate perpendicular to the shear (the "y" axis, i.e., the content component not affected by the addition). The distorted quantity is the other coordinate (the one that gets the added sinusoid).
+
+Now, for mechanism 2 (A): The dilation parameter is δ ∝ |d|. The matrix is diag(e^{δ}, e^{-δ}) or similar. The preserved quantity is the product x*y (or the hyperbolic area). The distorted quantity is the individual scales: one coordinate is scaled up, the other down. In mechanism 2, this corresponds to scaling the attention weight for distance d by e^{-c|d|} (scaling down) and perhaps scaling something else up (like the inverse distance weight).
+
+But wait, in mechanism 2, we only add a scalar to the logit. There's only one coordinate (the score). How does A act on a single coordinate? A requires two coordinates. So we need to embed the score into a 2D space.
+
+Consider the pair (attention weight w, distance d). But d is an integer. Or consider the pair (score, 1). Not clear.
+
+Alternatively, consider that the attention score is a bilinear form q^T k. The bias -c|d| can be written as q^T k + b(d). If we think of the 2x2 matrix M that represents the quadratic form [q; k] M [q; k] ... no.
+
+Given the problem's instruction to "Decompose each mechanism's 2x2 position-transport into (rotation rho, dilation delta, shear sigma). Give the one convention-independent invariant of that decomposition." This suggests that for each mechanism, there is a well-defined 2x2 matrix M(d) that describes the transport, and we decompose it.
+
+For mechanism 1: M(d) = [[cos θd, -sin θd], [sin θd, cos θd]], so rho = θd (or the matrix itself), delta = 0, sigma = 0. The invariant is tr(M) = 2 cos(θd) (or det = 1).
+
+For mechanism 2: We need M(d) ∈ A. That is M(d) = [[e^{δ(d)}, 0], [0, e^{-δ(d)}]] with δ(d) = c|d| (or -c|d| depending on convention). So rho = 0, delta = c|d| (or -c|d|), sigma = 0. The invariant is tr(M) = e^{δ} + e^{-δ} = 2 cosh(δ) = 2 cosh(c|d|).
+
+But we need to justify why mechanism 2 corresponds to this matrix. We can say: In log-space, the bias adds linearly in d, which corresponds to multiplicative scaling of the attention kernel by e^{-c|d|}. Embedding the score and its complement in a 2D vector yields the dilation matrix above. We should state this reasoning.
+
+For mechanism 3: We need M(d) ∈ N. That is M(d) = [[1, σ(d)], [0, 1]] with σ(d) proportional to sin(dθ) or similar. So rho = 0, delta = 0, sigma = σ(d). The invariant is tr(M) = 2 (since det=1 and eigenvalue 1).
+
+But we need to be precise about σ(d). If p(m) - p(n) = Δp, and we consider the shear in the direction of p, then σ(d) is proportional to |p(m) - p(n)| or some specific function. But we can say σ(d) is sinusoidal and bounded, with σ(0) = 0.
+
+Given the problem asks "Give the one convention-independent invariant of that decomposition." For SL2(R) matrices, the invariant is the trace (since det=1). So for mechanism 1, invariant is 2 cos(θd). For mechanism 2, invariant is 2 cosh(c|d|). For mechanism 3, invariant is 2.
+
+But we need to specify "the one convention-independent invariant" for each mechanism. Actually, for a given decomposition N.A.K, the invariant could be the trace of the rotation part? Or the invariant of the matrix itself? The problem says "Give the one convention-independent invariant of that decomposition." Since any 2x2 matrix with det 1 has trace invariant under conjugation? Actually, trace is invariant under similarity transformations, but here the decomposition is unique (Iwasawa), so the parameters (t, a, rotation angle) are unique. The convention-independent invariant of the matrix is its trace. So we should give the trace for each mechanism's transport matrix.
+
+But they ask "Give the one convention-independent invariant of that decomposition." This might refer to the fact that in the Iwasawa decomposition, the three parameters (t, a, rotation angle) depend on the choice of basis, but one quantity is invariant: the determinant (which is 1 for SL2). But that's the same for all. Or maybe they want the invariant that distinguishes the decomposition: for a given matrix, the invariant is its trace, which determines whether it's elliptic (|tr|<2), hyperbolic (|tr|>2), or parabolic (|tr|=2). This corresponds to K, A, N respectively.
+
+Specifically:
+- If |tr| < 2: rotation (elliptic) → mechanism 1.
+- If |tr| > 2: dilation (hyperbolic) → mechanism 2.
+- If |tr| = 2: shear (parabolic) → mechanism 3.
+
+So the "one convention-independent invariant" is the trace of the 2x2 transport matrix, and its value relative to 2 determines the generator.
+
+Thus for (c):
+Mechanism 1: tr = 2 cos(θ d) (with |tr| ≤ 2, equality only at d=0).
+Mechanism 2: tr = 2 cosh(c |d|) (with |tr| ≥ 2, equality only at d=0).
+Mechanism 3: tr = 2 (for all d).
+
+This is a nice classification. We should present it.
+
+Now, "Which mechanisms have zero shear by construction, and which can carry shear?" Mechanisms 1 and 2 have zero shear (pure K and pure A). Mechanism 3 has non-zero shear (pure N). Mechanism 4 can carry shear (and also rotation and dilation).
+
+But wait, mechanism 3's transport matrix is pure N, so it has shear σ ≠ 0. So mechanism 3 carries shear. The others (1 and 2) have σ = 0.
+
+But the question says "Which mechanisms have zero shear by construction, and which can carry shear?" So answer: 1 and 2 have zero shear by construction; 3 has shear by construction; 4 can carry shear (and the others).
+
+Now, part (d): "If a model splits positional processing into a short local convolution over neighboring hidden states PLUS a long-range learned relative bias, what compatibility condition must hold where the two meet? Is there a residual the split cannot remove?"
+
+We need to think about combining a local convolution (which operates over a small window, say radius R) and a long-range learned relative bias b(d) (which operates for all d, but especially large |d|).
+
+The compatibility condition at the boundary (|d| = R or near R) is that the two contributions must match or be continuous, otherwise there's a discontinuity in the position dependence. Specifically, the convolution produces a position-dependent effect that is local and smooth (maybe linear or polynomial near the boundary), while the learned bias b(d) is arbitrary. To avoid a jump at |d| = R, we need b(d) to match the convolution's effect at the boundary. More precisely, if the convolution defines a local kernel K_local(d) for |d| ≤ R, and the long-range bias defines B(d) for |d| > R, then at |d| = R we need B(R) = K_local(R) (or their derivatives match) to ensure continuity.
+
+But also there might be a residual that the split cannot remove: The local convolution can only capture patterns that are translation-invariant in the local window and linear (or whatever the convolution allows). The long-range bias is learned and content-dependent, so it can adapt. But the split cannot remove the discontinuity at the boundary if the two are not coordinated. Also, the local convolution introduces a "local geometric" structure (like shear or rotation in the local neighborhood) that the long-range bias, being scalar, cannot replicate exactly. So there might be a residual mismatch in the cross-terms between local and long-range interactions.
+
+Specifically, if the local convolution operates on hidden states h_i and produces h'_i = Σ_{j∈N(i)} w_{j-i} h_j, then for distances within the window, the attention score gets an implicit position dependence through the convolved states. For distances beyond the window, only the learned bias b(d) applies. At the boundary |d| = R, the convolved state for h_n is not present in the local window of h_m. Thus the contribution from the convolution jumps to zero. To compensate, the learned bias b(d) must have a discontinuity or a specific value at d = R that matches the missing local contribution. But since b(d) is usually smooth (learned with weight decay or regularization), there will be a residual mismatch: the split cannot fully smooth out the boundary.
+
+Moreover, if the local convolution has a shear component (e.g., it mixes dimensions in a way that depends on position), the scalar bias b(d) cannot reproduce that mixing for long-range pairs. So the residual is a "shear gap" at long distances: the long-range bias can only add a scalar, not apply a linear transformation.
+
+Thus the compatibility condition is a matching condition on the value (and possibly first derivative) of the local kernel and the long-range bias at |d| = R: b(R) = c_local(R), and maybe ∇b = ∇c_local at the boundary. And the residual is that the split cannot remove the discontinuity in higher-order derivatives or in the linear-algebraic structure (shear/dilation/rotation) of the local interaction, leaving a "boundary artifact" or "structural residual" at |d| ≈ R.
+
+But the question asks "Is there a residual the split cannot remove?" Yes: The local convolution applies a linear transformation (with its own rotation, dilation, shear) to the hidden states within the window, whereas the long-range bias is only a scalar added to the logit. Therefore, for |d| > R, the interaction lacks the linear-algebraic structure (e.g., rotation or shear) present in the local window. This creates an irreducible structural gap: the long-range path cannot replicate the 2x2 transport of the local path, leaving a residual that must be absorbed into the content-dependent projection of b(d) but can never fully match the local geometric transformation.
+
+We should present this in a table or structured reasoning.
+
+Now, we need to produce the answer with complete tables, no summary, fill every cell, include falsification clauses, separate first principles vs pattern recognition, label each, and avoid compressing to a verdict.
+
+Given the complexity, we need to organize the answer clearly with parts (a), (b), (c), (d), each with tables and reasoning.
+
+We also need to cite sources? The problem mentions citation format if user specifies; but user didn't specify, so we must NOT use [^index^] format. Use simple [1], 1. as citation format. But we don't have external sources necessarily. We can reference standard results: Iwasawa decomposition [1], RoPE [2], ALiBi [3], sinusoidal PE [4], learned relative bias [5]. But since it's a reasoning question, we might not need citations. However, to be safe, we can include a few references in the text using [1] etc., but it's not required. The instruction says "If the user doesn't specify the citation or reference format, you must NOT use [^index^] as the citation format, e.g. [^1^], [^2^] are not allowed. Use simple [1], 1. as citation format". So if we cite anything, use [1].
+
+But we might not need to cite external papers; we can just derive from first principles.
+
+Let's now construct the tables.
+
+Table for (a):
+
+We have four mechanisms. For each, we need to specify:
+- N (unipotent shift): Present? Parameter form?
+- A (dilation): Present? Parameter form?
+- K (rotation): Present? Parameter form?
+- Quantity preserved
+- Quantity distorted
+
+We need to fill every cell. Let's do a table with rows for each mechanism and columns for N, A, K, Preserves, Distorts.
+
+But the problem says "which of N / A / K it acts through, what quantity it preserves, what it distorts. Fill every cell." So maybe each mechanism gets a row, and the cells are: Mechanism | Through N? | Through A? | Through K? | Preserves | Distorts.
+
+Let's fill:
+
+Mechanism 1:
+- N: No (shear parameter σ = 0)
+- A: No (dilation parameter δ = 0)
+- K: Yes (rotation parameter ρ(d) = θ d, with θ proportional to frequency)
+- Preserves: Euclidean norm ||q||,||k||; determinant det = 1; inner product at d=0; area in feature plane.
+- Distorts: Relative orientation between q and k; similarity score acquires periodic dependence on d; breaks translation invariance in a rotational manner.
+
+Mechanism 2:
+- N: No (σ = 0)
+- A: Yes (δ(d) = c|d|, with c > 0; matrix diag(e^{-δ}, e^{δ}) or similar)
+- K: No (ρ = 0)
+- Preserves: Relative ranking of scores at fixed d; hyperbolic area det = 1; the content term q·k is unchanged.
+- Distorts: Absolute magnitude of attention weights across distances; introduces monotone exponential decay in weight space (linear in logit); breaks translation invariance via scaling.
+
+Mechanism 3:
+- N: Yes (σ(d) ≈ α sin(dθ/2) or bounded sinusoidal; matrix [[1,σ],[0,1]])
+- A: No (δ = 0)
+- K: No (ρ = 0 in the linear transport part; note: sinusoid parameterization uses rotation to generate p(m), but the transport matrix on the embedding is pure shear)
+- Preserves: Content-only projection onto the axis orthogonal to the shear; determinant det = 1; the linear part (identity) preserves content norms.
+- Distorts: Embedding norms are changed by addition; introduces cross-terms between content and position; breaks translation invariance with absolute-position dependence (m,n separately).
+
+Wait, is K really absent in mechanism 3? As discussed, the sinusoidal vector p(m) is generated by rotating a fixed vector. So there is a rotational parameterization of p(m). But the transport matrix for the embedding transformation is pure shear. We should address this ambiguity. We can say: "In the linear 2x2 transport acting on the homogeneous coordinate pair (embedding, 1), K is absent (ρ = 0); however, the parameterization of the shear vector involves an underlying rotation in the parameter space of frequencies (pattern recognition: sinusoid as circular motion). By first principles: the affine map x → x + p(m) has linear part I ∈ K·A·N with trivial factors."
+
+Thus we can fill K: No (in the transport matrix), but note the underlying parameterization uses rotation. We should include this nuance.
+
+Mechanism 4:
+- N: Yes (learned σ(d; x, h) can be non-zero)
+- A: Yes (learned δ(d; x, h) can be non-zero)
+- K: Yes (learned ρ(d; x, h) can be non-zero)
+- Preserves: No fixed invariant (all depend on learned parameters and content)
+- Distorts: All quantities can be distorted adaptively; the bias can mix content and distance arbitrarily.
+
+But we need to fill every cell. Let's make a table for (a) with rows 1-4 and columns: N, A, K, Preserves, Distorts.
+
+Now, part (b): "Mechanisms 1-3 each pick out essentially one generator. Mechanism 4 is the free case. Which generators can a learned b(d) reach that the fixed mechanisms cannot? Can it be pinned to a single generator, or must it span more than one? State the obstruction to writing it as one generator."
+
+We need a table? The problem says "Return complete tables, no summary" for (a). For (b), it asks "Which generators... Can it be pinned... State the obstruction..." So we can present a table comparing mechanisms 1-4 on generator reach, and then a reasoning paragraph with the obstruction.
+
+Let's make a table for (b):
+
+| Mechanism | Generators reachable | Can span >1? | Obstruction to single-generator form |
+|-----------|---------------------|--------------|--------------------------------------|
+| 1 | K only | No | Fixed rotation matrix R(m)R(n)^{-1}; linear part is exactly SO(2) |
+| 2 | A only | No | Bias is scalar function of |d| alone; exponential scaling fixes log a ∝ |d| |
+| 3 | N only (in linear part) | No | Affine translation x→x+p(m) has linear part I; shear parameter is the only free parameter |
+| 4 | N, A, K all | Yes, necessarily | Content-dependent projection means the coefficient of each generator is a function of token features; cannot factor into a single generator because the feature space requires at least 2 degrees of freedom (e.g., both shear and rotation coefficients depend differently on content) |
+
+But we need to answer specifically: "Which generators can a learned b(d) reach that the fixed mechanisms cannot?"
+
+Since mechanisms 1-3 each reach only one, mechanism 4 can reach the other two that any single fixed mechanism misses. Specifically, if mechanism 4 is applied in a model that already has 1, 2, or 3, it can supplement the missing ones. But more generally, because it's learned and content-dependent, it can reach all three simultaneously.
+
+"Can it be pinned to a single generator, or must it span more than one?"
+
+Answer: It need not span more than one if the learned projection is constrained (e.g., if the projection outputs a scalar that only parameterizes one generator). But in general, with an unconstrained projection producing a feature vector combined with d, it can span more than one. The obstruction to writing it as a single generator is that the coefficient of each generator depends on the content vector in a different linear projection. To write b(d) = f(d) · g(x), if g(x) is a vector with more than one non-zero entry, then multiple generators are activated. Even if g(x) is scalar, if f(d) is vector-valued, it spans multiple. The only way to pin it to one is to constrain the projection rank to 1 and align it with a single generator's parameter space. Without such constraint, the space of learned biases has dimension >1 and must span more than one generator.
+
+More formally: The Iwasawa decomposition is unique: N·A·K = N'·A'·K' implies N=N', A=A', K=K'. If b(d) produces a family of matrices M(x,d) that depend on x, then for different x we get different decompositions. If the set {M(x,d) | x∈X} contains matrices with different non-trivial factors in N, A, and K, then no single generator can represent the whole family. The obstruction is the content-dependence: the coefficient vector lives in a feature space of dimension >1, and the map from feature space to (t,a,θ) is linear (or non-linear) with rank ≥2, forcing at least two generators to have non-constant coefficients across x.
+
+But we need to be precise: "State the obstruction to writing it as one generator."
+
+We can say: The learned bias uses a separate projection (e.g., W_b x) that yields a per-token, per-head feature vector v(x) ∈ R^k, which is then combined with d (e.g., v(x)·φ(d)). If k ≥ 2 or φ(d) has components in more than one generator direction, the resulting family of transport matrices {M(d; v)} is parameterized by v. For M to lie in a single generator subgroup (say K), all v must map to the same rotation angle regardless of v, which requires W_b to have rank 1 with image in the Lie algebra of K. Since W_b is learned without such a constraint, generically rank(W_b) ≥ min(k, dim feature) > 1, so the image spans at least two Lie-algebra directions. Thus the obstruction is the rank of the content projection: it exceeds 1, breaking uniqueness of the Iwasawa factor.
+
+We should present this clearly.
+
+Now, part (c): "Decompose each mechanism's 2x2 position-transport into (rotation rho, dilation delta, shear sigma). Give the one convention-independent invariant of that decomposition. Which mechanisms have zero shear by construction, and which can carry shear?"
+
+We need a table for each mechanism with rho, delta, sigma, invariant.
+
+Let's create a table:
+
+| Mechanism | Rotation ρ | Dilation δ | Shear σ | Invariant (tr) | Shear status |
+|-----------|------------|------------|---------|----------------|-------------|
+| 1 | θ d (matrix [[cos θd, -sin θd], [sin θd, cos θd]]) | 0 | 0 | 2 cos(θ d) | Zero by construction |
+| 2 | 0 | c | d | (matrix diag(e^{-c|d|}, e^{c|d|})) | 2 cosh(c |d|) | Zero by construction |
+| 3 | 0 | 0 | σ(d) ≈ α [sin(dθ/2) or bounded sinusoid] (matrix [[1,σ(d)], [0,1]]) | 2 | Non-zero by construction (pure shear) |
+| 4 | ρ(d;v) learned | δ(d;v) learned | σ(d;v) learned | 2 cosh δ cos ρ + ... (general tr = e^δ cos ρ + e^{-δ} cos ρ + ... actually tr = (e^δ + e^{-δ}) cos ρ + ... wait need correct formula for product N·A·K) | Can carry non-zero shear (and others) |
+
+Wait, we need the correct formula for the trace of a general SL2 matrix decomposed as N·A·K.
+
+Let N = [[1, t], [0, 1]], A = [[a, 0], [0, a^{-1}]], K = [[cos θ, -sin θ], [sin θ, cos θ]].
+
+Then M = N A K = [[1, t], [0, 1]] [[a, 0], [0, a^{-1}]] [[cos θ, -sin θ], [sin θ, cos θ]] = [[a, 0], [0, a^{-1}]] [[1, t], [0, 1]] [[cos θ, -sin θ], [sin θ, cos θ]]? Actually multiplication order depends on convention. The Iwasawa decomposition is unique as G = N A K, meaning any g can be written uniquely as n a k. So M = N A K.
+
+Compute N A = [[a, t/a^{-1}? Wait: N = [[1, t], [0, 1]], A = [[a, 0], [0, a^{-1}]]. So N A = [[a, t a^{-1}], [0, a^{-1}]].
+
+Then (N A) K = [[a, t a^{-1}], [0, a^{-1}]] [[cos θ, -sin θ], [sin θ, cos θ]] = [[a cos θ + t a^{-1} sin θ, -a sin θ + t a^{-1} cos θ], [a^{-1} sin θ, -a^{-1} cos θ? Wait compute precisely:
+
+Row 1 of NA: [a, t/a]
+Row 2 of NA: [0, 1/a]
+
+Multiply by K:
+M_11 = a cos θ + (t/a) sin θ
+M_12 = -a sin θ + (t/a) cos θ
+M_21 = 0·cos θ + (1/a) sin θ = (1/a) sin θ
+M_22 = 0·(-sin θ) + (1/a) cos θ = (1/a) cos θ
+
+So M = [[a cos θ + (t/a) sin θ, -a sin θ + (t/a) cos θ], (sin θ)/a, (cos θ)/a]].
+
+The determinant is a (1/a) (cos θ cos θ + sin θ sin θ) + ... Actually det = (a)(1/a) (cos^2 θ + sin^2 θ) = 1. Good.
+
+The trace is tr(M) = a cos θ + (t/a) sin θ + (1/a) cos θ = (a + a^{-1}) cos θ + (t/a) sin θ.
+
+So the invariant trace depends on all three parameters.
+
+But for pure cases:
+- Pure K (t=0, a=1): tr = 2 cos θ.
+- Pure A (t=0, θ=0): tr = a + a^{-1} = 2 cosh(log a).
+- Pure N (a=1, θ=0): tr = 1 + 1 + t·0? Wait if a=1, θ=0: M = [[1, t], [0, 1]], tr = 2.
+
+Thus the trace is indeed the invariant.
+
+For mechanism 4, the trace is (e^{δ} + e^{-δ}) cos ρ + (σ/e^{δ}) sin ρ? Actually if we parameterize a = e^{δ}, then a + a^{-1} = 2 cosh δ, and t/a = σ e^{-δ} if σ = t. But we can just say tr = 2 cosh δ cos ρ + σ e^{-δ} sin ρ (with appropriate normalization).
+
+But for the table, we just need to fill (rotation rho, dilation delta, shear sigma) and the invariant.
+
+For mechanism 4: rho = ρ(d; v), delta = δ(d; v), sigma = σ(d; v) are all learned functions of d and content feature v. The invariant is tr(M) = (e^δ + e^{-δ}) cos ρ + σ e^{-δ} sin ρ (with appropriate convention). Or we can say the invariant is the trace of the learned 2x2 matrix, which is convention-independent but parameter-dependent.
+
+But the problem asks "Give the one convention-independent invariant of that decomposition." For mechanism 4, since it can vary, the invariant is not a single number but a family. However, the convention-independent invariant for each specific matrix in the family is still its trace. So we can state: For each (d,v), tr(M(d,v)) = (e^{δ(d,v)} + e^{-δ(d,v)}) cos ρ(d,v) + σ(d,v) e^{-δ(d,v)} sin ρ(d,v). This is the invariant.
+
+But maybe they want just the formula. We'll provide it.
+
+Now, "Which mechanisms have zero shear by construction, and which can carry shear?"
+
+Answer: Mechanisms 1 and 2 have σ = 0 by construction. Mechanism 3 has σ ≠ 0 by construction (pure shear). Mechanism 4 can have σ ≠ 0 (learned) and also ρ, δ non-zero.
+
+We should present this in the table and also state it explicitly.
+
+Now, part (d): "If a model splits positional processing into a short local convolution over neighboring hidden states PLUS a long-range learned relative bias, what compatibility condition must hold where the two meet? Is there a residual the split cannot remove?"
+
+We need a table? Maybe a table describing the local and long-range parts and the condition.
+
+Let's create a table for (d):
+
+| Region | Local convolution (|d| ≤ R) | Long-range bias (|d| > R) | Compatibility condition at |d| = R |
+|--------|----------------------------|---------------------------|-----------------------------------|
+| Value | K_conv(d) (matrix or kernel) | b(d) (scalar or learned) | b(R) = K_conv(R) (value match) |
+| Derivative | ∇K_conv at R | ∇b at R | ∇b(R) = ∇K_conv(R) (smoothness) |
+| Linear structure | Can have ρ,δ,σ ≠ 0 | Only scalar (or learned vector) | Residual: long-range cannot replicate ρ,δ,σ of local |
+| Translation invariance | Broken locally? Actually local is translation-invariant within window | Broken globally via b(d) | Must align to avoid jump |
+
+But the problem asks specifically "what compatibility condition must hold where the two meet? Is there a residual the split cannot remove?"
+
+We can present the answer in a structured format, maybe with a table and bullet points.
+
+Let's think more deeply about the compatibility condition.
+
+The local convolution is over neighboring hidden states: h'_m = Σ_{j=m-R}^{m+R} w_{j-m} h_j. This is linear and translation-invariant (weights depend only on j-m). It can be seen as applying a linear filter in the spatial domain. In the attention mechanism, the query at m is computed from h'_m, and the key at n from h'_n. Thus the attention score includes terms involving the convolution weights.
+
+Specifically, if q_m = W_q h'_m and k_n = W_k h'_n, then q_m^T k_n involves sums over j, l within the windows. For |m-n| > R, the windows don't overlap, so the convolution doesn't mix h_m and h_n. Thus the position dependence for |d| > R comes solely from the learned bias b(d).
+
+At |d| = R, the windows just touch at one point. So the contribution from the convolution changes discontinuously: for |d| < R, there is overlap and cross-terms; for |d| > R, there is none.
+
+Thus the compatibility condition is that the learned bias b(d) must compensate for the discontinuity in the convolution contribution at |d| = R. Specifically, if we denote the convolution-induced score contribution as C(d) for |d| ≤ R (and 0 for |d| > R), then the total score is S(d) = C(d) + b(d) for |d| > R, and S(d) = C(d) + content_only for |d| ≤ R? Actually b(d) might be applied for all d, but the problem says "PLUS a long-range learned relative bias", implying b(d) is used for long-range, maybe only for |d| > R, or in addition for all.
+
+If b(d) is applied for all d, then at |d| ≤ R we have double counting. So likely b(d) is applied only for |d| > R, or it's added everywhere but the local convolution handles the short-range. To avoid a jump, we need b(R) = C(R) or b(R) = 0 if C is continuous.
+
+But the problem says "where the two meet". So at the boundary |d| = R.
+
+The condition: The long-range bias must match the local convolution's contribution at d = ±R. That is, lim_{|d|→R^-} C(d) = b(R). If b is continuous, then b(R) = C(R). Additionally, for smoothness, the first derivatives should match: b'(R) = C'(R).
+
+But is there a residual? Yes: The local convolution applies a linear transformation (with possible rotation, dilation, shear) to the hidden states within the window. The long-range bias is only a scalar (or a vector that depends on content and d) added to the score. It cannot reproduce the multi-dimensional linear transformation that the convolution applies to the hidden states. Specifically, the local interaction can mix features (through W_q and W_k) in a way that depends on the relative position within the window, including applying different rotations or shears to different dimensions. The scalar bias b(d) can only shift the score uniformly (per head) and cannot apply a feature-space transformation. Therefore, there is an irreducible "structural residual": for |d| > R, the interaction lacks the linear-algebraic richness (the 2x2 transport with non-zero ρ, δ, σ) that the local convolution provides. Even if b(d) is learned and content-dependent, it remains a scalar addition and cannot restore the missing rotation, dilation, or shear in the feature space.
+
+Moreover, because the convolution is translation-invariant within the window, it imposes a specific symmetry that the learned bias, being arbitrary in d, breaks for |d| > R. This creates a "symmetry-breaking residual" at the boundary: the model behaves differently for |d| = R - ε vs |d| = R + ε, not just in magnitude but in the algebraic form of the interaction.
+
+Thus the answer should include both the matching condition and the structural residual.
+
+Now, we need to format the answer with tables and reasoning, without summarizing to a single verdict.
+
+Given the length, we need to be careful to include everything.
+
+Let's plan the structure:
+
+Introduction: Briefly state the four mechanisms and the Iwasawa framework.
+
+Part (a): Table with rows 1-4, columns N, A, K, Preserves, Distorts. Then a paragraph for each mechanism explaining the entries, with first-principles reasoning and pattern recognition labeled. Include falsification clauses.
+
+Part (b): Table comparing generator reach. Then reasoning about mechanism 4. State the obstruction explicitly.
+
+Part (c): Table with rho, delta, sigma, invariant, shear status. Then explanation of each decomposition, with derivation of trace formula. State which have zero shear.
+
+Part (d): Table describing local vs long-range and boundary. Then reasoning about compatibility condition and residual.
+
+We must also separate what we derive from first principles vs what we recognize by pattern. So for each part, we should have two sections or labels: "First principles" and "Pattern recognition".
+
+Also, for every classification we make, state in one clause what observation would falsify it.
+
+For example, in (a) for mechanism 1 being pure K: "Falsification: If rotating q and k by R(m) produced a change in vector norm (||q'|| ≠ ||q||), then K would be contaminated by A or N; but orthogonality prevents this."
+
+We need to do this for each classification.
+
+Given the complexity, we need to be concise but complete.
+
+Let's start drafting.
+
+But before that, let's double-check the mapping for mechanism 3. We said pure N. Let's verify that the shear parameter is indeed non-zero.
+
+Consider p(m) = [sin(mθ), cos(mθ)] in a 2D subspace. The transformation that sends the base vector v_0 = [0, 1] to p(m) is R(mθ) v_0. But the addition to the embedding is x -> x + v_0^T R(mθ) e, where e is the basis. In homogeneous coordinates for the subspace (y, 1) where y is the coefficient of the position vector, the transformation is [[1, Δy], [0, 1]] with Δy proportional to sin(mθ - nθ) etc.
+
+Specifically, if we have only one dimension of position encoding p(m) ∈ R, then x(m) = x_content(m) + p(m). Then x(m) - x(n) in the position component is p(m) - p(n). If p is sinusoidal, p(m) - p(n) = 2 cos((m+n)θ/2) sin(dθ/2). This depends on both d and m+n. So the shear parameter σ depends on d and also on the absolute center (m+n)/2. This is a "non-translation-invariant shear". So the transport matrix is N(σ(d; (m+n)/2)). Thus it is pure N, but with a parameter that depends on absolute position as well as d.
+
+Thus mechanism 3 is indeed pure shear, but the shear parameter is not purely a function of d.
+
+Given this, the invariant trace is still 2, regardless of σ.
+
+Now, for mechanism 2, the bias is -c|d|. If we embed this into a 2x2 matrix, we need to decide the parameterization. Let's say we consider the transformation of the pair (attention weight w, 1/w) or something. But more simply, we can say that in the exponential domain, the factor is exp(-c|d|). If we represent this as acting on a 2-vector (u,v) where u·v = constant, the scaling of u by e^{-c|d|/2} and v by e^{c|d|/2} yields the factor. So A has parameter a = e^{-c|d|/2}. Thus δ = (c/2)|d| (or -c|d|/2 depending on which coordinate is scaled). The invariant trace is e^{δ} + e^{-δ} = 2 cosh(c|d|/2).
+
+We can present this with a note on convention.
+
+Now, for mechanism 4, the learned bias b(d) is content-dependent. The problem says "a separate projection produces a per-token, per-head feature that is combined with the distance d and added to the score." So we have v_m = W v x_m (or similar), and then b(m,n) = v_m^T φ(d) v_n? Or maybe b(d) = v_m · f(d). The exact form doesn't matter; it's learned.
+
+Given this, the family of transport matrices is parameterized by v_m and v_n. Since v can vary continuously (or over a high-dimensional space), the set of matrices can cover regions in N, A, K.
+
+Specifically, if f(d) has components that correspond to each generator, then v can weight them.
+
+The obstruction: To be pinned to a single generator, the feature vector v must lie in a 1-dimensional subspace that aligns with the Lie algebra of that generator. But since W is a full-rank learned projection (typically), v generically spans a space of dimension equal to the head dimension. Thus it cannot be confined to one generator unless an explicit constraint is imposed. The Iwasawa uniqueness then forces any matrix with v in different directions to have different decompositions. Therefore, mechanism 4 necessarily spans more than one generator.
+
+But is it "must it span more than one"? Not necessarily; if the projection is constrained (e.g., W outputs a scalar that only controls the shear parameter), then it can be pinned. But "by default" or "without constraint" it spans more. The problem asks "Can it be pinned to a single generator, or must it span more than one? State the obstruction to writing it as one generator."
+
+So we answer: It can be pinned if the projection is rank-1 and aligned, but generically it must span more than one. The obstruction is the rank of the projection matrix and the uniqueness of Iwasawa decomposition: if two different content vectors produce matrices with different non-trivial factors in N, A, or K, they cannot both lie in the same single-generator subgroup.
+
+Thus we should present both possibilities.
+
+Now, let's organize the answer.
+
+We'll use headings: (a), (b), (c), (d).
+
+Within each, we'll have tables and then reasoning sections labeled "First principles" and "Pattern recognition".
+
+We'll include falsification clauses for each classification.
+
+Let's draft the content.
+
+Part (a) Table:
+
+We'll make a markdown table.
+
+| Mech. | Through N (shear) | Through A (dil.) | Through K (rot.) | Preserved quantity | Distorted quantity |
+|---|---|---|---|---|---|
+| 1. Rot. q,k | No (σ ≡ 0) | No (δ ≡ 0) | Yes: ρ(d)=θd, θ∝freq | ||q||,||k||; det=1; ⟨q,k⟩ at d=0 | Orientation of (q,k); score becomes R(d)-periodic in d |
+| 2. Penalty -|d| | No (σ ≡ 0) | Yes: δ(d)=c|d|, a=e^{±δ} | No (ρ ≡ 0) | Content term q·k; det=1; rank order at fixed d | Weight magnitude across d; exponential decay in kernel |
+| 3. Sinusoid added | Yes: σ(d;m,n) sinusoid, bounded | No (δ ≡ 0) | No in linear part (ρ ≡ 0); note parameterization uses R in freq. space | Content axis (orthog. to shear); det=1; linear part I | Norm of embedding; abs-pos. dependence; cross-terms q·p, p·p |
+| 4. Learned b(d) | Yes (learned σ) | Yes (learned δ) | Yes (learned ρ) | None fixed; depends on v(x) | All adaptively; content-distance mixing unrestricted |
+
+Now, for each row, we need to explain.
+
+Let's write paragraphs.
+
+Mechanism 1:
+First principles: Applying R(m) to q and R(n) to k with R ∈ SO(2) yields q_m = R(m) q, k_n = R(n) k. The relative transformation is R(m-n) = R(d). The matrix is in K ⊂ SL2(R). Orthogonality implies ||q_m|| = ||q||. The determinant is 1.
+Pattern recognition: This is RoPE; the dependence on d is periodic, not monotonic, matching rotational symmetry.
+Falsification: If ||q_m|| ≠ ||q|| for some m, then R is not orthogonal and K is contaminated by A or N.
+
+Mechanism 2:
+First principles: The score is modified by b(d) = -c|d|. In the softmax, this multiplies the attention weight by e^{-c|d|}. Write this as scaling a 2-vector (u,v) with u·v = constant by a and a^{-1}. This yields A(a) with log a ∝ |d|. No change to q,k, so linear part is I and rotation is absent.
+Pattern recognition: This matches ALiBi; linear decay in logit corresponds to exponential decay in weight, characteristic of hyperbolic scaling.
+Falsification: If the weight factor were polynomial in |d| rather than exponential, then A would be replaced by a non-group scaling and the Iwasawa factor A would not apply.
+
+Mechanism 3:
+First principles: The map x → x + p(m) is affine. In homogeneous coordinates (x,1) ∈ R^{D+1}, the linear part is block I_D ⊕ 1, which in any 2D invariant subplane is N(t) = [[1,t],[0,1]]. The parameter t = p_i(m) - p_i(n) depends sinusoidally on d and on (m+n)/2. Thus the linear transport is pure shear with σ ≠ 0, and a = ρ = 1 (δ=0, ρ=0).
+Pattern recognition: Sinusoidal PE is periodic like rotation, but because it is added rather than multiplied, the effect is translational (shear) in embedding space.
+Falsification: If p(m) - p(n) depended only on d and not on m+n, the shear parameter would be translation-invariant and the mechanism would reduce to a pure group representation of Z; but the sinusoid retains the (m+n) term, confirming the absolute-position shear.
+
+Wait, we need to be careful: The falsification clause should be a single clause stating what observation would falsify the classification. For mechanism 3 being pure N: "If the linear part of the embedding transformation were not identity (e.g., if adding p(m) also scaled other dimensions), then A or K would be present; but the addition is purely translational." That's good.
+
+Mechanism 4:
+First principles: The bias b(d; x) = v(x)^T φ(d) with v(x) = W x. The family of matrices M(d,v) is parameterized by v in a space of dimension ≥1. By Iwasawa uniqueness, if v_1 and v_2 yield matrices with different non-trivial N, A, or K factors, the family cannot lie in a single subgroup.
+Pattern recognition: Content-dependent biases (e.g., T5-style learned relative bias with content gates) allow the model to adaptively switch between distance decay (A), directional shift (N), and rotational alignment (K).
+Falsification: If W had rank 1 and its image lay entirely in the Lie algebra of K, then all b(d) would lie in K; but generic initialization and learning break this constraint.
+
+Now, part (b):
+
+Table:
+
+| Mechanism | Single generator? | Generators reachable | Can span >1? | Obstruction to single-generator form |
+|---|---|---|---|---|
+| 1 | Yes (K) | K | No | R(m)R(n)^{-1} ∈ SO(2); orthogonal, det=1, tr∈[-2,2] |
+| 2 | Yes (A) | A | No | b(d) is scalar f(|d|); in exp-domain gives single a(d) |
+| 3 | Yes (N) | N (linear part) | No | Affine map has linear part I; only free parameter is t(d) |
+| 4 | Only if constrained | N, A, K | Yes (generically) | Rank of W > 1: v(x) spans >1 Lie-algebra direction; Iwasawa uniqueness forces different (t,a,θ) for different v |
+
+Now reasoning:
+
+First principles: The space of 2x2 matrices with det=1 is 3-dimensional (parameters t,a,θ). A single generator subgroup is 1-dimensional. The learned projection W maps the feature space (dimension D_h) into the coefficient space of the bias. If dim(im W) ≥ 2, the image of (d,v) → M(d,v) has dimension ≥2 and must intersect more than one generator subgroup.
+
+Pattern recognition: In practice, learned relative biases (e.g., in Transformer-XL or Content-aware attention) use multi-dimensional heads, allowing different heads to learn different distance patterns (some decay, some periodic).
+
+Obstruction: Specifically, write M(v,d) = exp(v_1 L_N + v_2 L_A + v_3 L_K) ... but more concretely, if v = (v_N, v_A, v_K) with at least two non-zero, then M ∉ N ∪ A ∪ K. The uniqueness of NAK factorization means there is no continuous map that collapses this 3-parameter family into one parameter without losing information. Thus the obstruction is dimensional: the coefficient space has dimension >1, exceeding the dimension of any single generator subgroup.
+
+Falsification clause: "If all learned biases across heads and tokens yielded matrices with the same non-trivial factor (e.g., all in K), then W would have to be rank-1 with image in so(2); observing diverse decay curves (exponential, linear, periodic) across heads falsifies this."
+
+Now, part (c):
+
+Table:
+
+| Mech. | ρ (rotation) | δ (dilation) | σ (shear) | Invariant tr(M) | Shear status |
+|---|---|---|---|---|---|
+| 1 | θ d; K=[[cosθd,-sinθd],[sinθd,cosθd]] | 0 | 0 | 2 cos(θ d) | Zero (σ=0) |
+| 2 | 0 | c|d|; A=[[e^{-δ},0],[0,e^{δ}]] with δ=c|d|/2 (convention) | 0 | 2 cosh(c|d|) (or 2 cosh(c|d|/2) depending on normalization) | Zero (σ=0) |
+| 3 | 0 | 0 | σ(d) ≈ α sin(dθ/2) cos((m+n)θ/2); N=[[1,σ],[0,1]] | 2 | Non-zero (pure shear) |
+| 4 | ρ(d,v) ∈ R | δ(d,v) ∈ R | σ(d,v) ∈ R | (e^{δ}+e^{-δ})cos ρ + σe^{-δ} sin ρ | Can be non-zero |
+
+We need to be precise about the invariant for mechanism 4. Let's use the formula derived: tr = (e^δ + e^{-δ}) cos ρ + σ e^{-δ} sin ρ. But this depends on convention (order N·A·K). We should state the convention: We adopt M = N(σ) A(e^δ) K(ρ). Then tr = (e^δ + e^{-δ}) cos ρ + σ e^{-δ} sin ρ.
+
+But we can also just say "the trace is the unique similarity invariant: tr M = 2 cosh δ cos ρ + σ e^{-δ} sin ρ". That should suffice.
+
+Now, we need to explain the decomposition for each mechanism.
+
+Mechanism 1:
+First principles: The transport matrix is R(dθ) in each 2D rotation plane. Writing R = [[cos φ, -sin φ], [sin φ, cos φ]], we have det=1, and R = N·A·K with N=I, A=I, K=R. So ρ = dθ, δ=0, σ=0.
+Pattern recognition: RoPE uses frequencies θ_i = 1/10000^{2i/D}, giving a block-diagonal K.
+Falsification: If the dot product q_m·k_n depended exponentially on |d|, then δ ≠ 0 and the classification as pure K fails.
+
+Mechanism 2:
+First principles: The weight factor w(d) = exp(-c|d|). Write w(d) = a(d) where a(d) = e^{-c|d|}. To embed in SL2, consider the action on (w, w^{-1}) giving diag(a^{1/2}, a^{-1/2}). Thus δ = -(c/2)|d| (depending on coordinate choice), ρ=0, σ=0.
+Pattern recognition: ALiBi uses slopes that are powers of 2, matching geometric scaling of δ across heads.
+Falsification: If the bias were sinusoidal in d, then ρ ≠ 0 and A is contaminated.
+
+Mechanism 3:
+First principles: The change in embedding is Δx = p(m) - p(n). In a 2D plane spanned by the sinusoid and its quadrature, Δx = N(σ) v with v constant. Thus M = N(σ) with σ proportional to sin(dθ/2) modulated by center. So ρ=δ=0.
+Pattern recognition: The sinusoidal frequencies scale geometrically, but the transport is linear (shear) because addition is linear.
+Falsification: If the embedding transformation included a scaling factor (e.g., p(m) multiplied by a factor a^m), then δ ≠ 0.
+
+Mechanism 4:
+First principles: With v ∈ R^k, the matrix family is M(d,v) = exp( v_N(d) L_N + v_A(d) L_A + v_K(d) L_K ) or direct product. The parameters are all free.
+Pattern recognition: This generalizes all previous biases.
+Falsification: If W were constrained to output only one scalar per head, the family would collapse to one generator.
+
+Now, the invariant: For each mechanism, tr(M) is invariant under similarity transforms (change of basis in the 2-plane). For pure cases, tr distinguishes them: |tr| < 2 (elliptic/K), |tr| > 2 (hyperbolic/A), |tr| = 2 (parabolic/N).
+
+We should state this.
+
+Now, "Which mechanisms have zero shear by construction, and which can carry shear?"
+
+Answer: 1 and 2 have σ ≡ 0. 3 has σ ≠ 0. 4 can have σ ≠ 0.
+
+Now, part (d):
+
+We need a table or structured answer.
+
+Let's make a table describing the split:
+
+| Component | Range | Form | Transport in window |
+|---|---|---|---|
+| Local conv. | |d| ≤ R | h'_m = Σ_{j=m-R}^{m+R} w_{j-m} h_j | Can have ρ,δ,σ ≠ 0 (full 2x2) |
+| Long-range bias | |d| > R | b(d; x_m, x_n) = v(x_m)·φ(d) | Scalar (or vector) addition; linear part I (σ,δ,ρ only through v) |
+| Boundary | |d| ≈ R | Must match | Value: b(R) = C_conv(R); Derivative: b'(R) = C'_conv(R) |
+
+But we need to be clear.
+
+Now reasoning:
+
+First principles: The convolution is a linear integral operator with kernel K(j-m). For |d| > R, the kernels don't overlap, so the contribution to q_m^T k_n from the convolution is zero (or constant). At |d| = R, the overlap is exactly one term. Thus the score as a function of d has a discontinuity in its (R+1)-th derivative unless b(d) compensates. The compatibility condition is that the Taylor expansion of b(d) around d = R must match that of the convolution contribution C(d) up to order R.
+
+Specifically, if C(d) = Σ_{k=-R}^{R} c_k δ_{d,k}, then for |d| > R, C(d) = 0. Thus we need b(d) to approximate C(d) near the boundary to avoid a jump: b(R) = C(R), and for smoothness b^{(j)}(R) = C^{(j)}(R) for j = 1,...,L (where L is the smoothness order of b).
+
+Pattern recognition: In practice, models like Longformer or BigBird combine local sliding window attention with global tokens and learned biases; the boundary artifacts are visible in attention maps.
+
+Now, "Is there a residual the split cannot remove?"
+
+First principles: The local convolution applies a linear map W_conv to the hidden state within the window. This map can have non-trivial rotation, dilation, and shear in feature space (e.g., if W_conv is not isotropic). The long-range bias b(d) is added to the scalar logit and cannot apply any linear transformation to q or k. Therefore, for |d| > R, the interaction between q_m and k_n lacks the linear-algebraic structure (the 2x2 transport with ρ,δ,σ) that is present for |d| ≤ R. Even with a learned content-dependent b, the term is v_m^T φ(d) v_n, which is bilinear in v but still adds only to the scalar score, not transforming q or k.
+
+Thus the residual is structural: there is an irreducible "geometric gap" at long range. The split can match values and derivatives at d = R, but it cannot restore the missing feature-space rotation, dilation, or shear for |d| > R. This leaves a boundary layer where the model's geometric transformation changes abruptly from full SL2 to pure scalar.
+
+We can also mention that because b(d) depends on content (v_m, v_n), it can adaptively approximate the missing linear transformation by adjusting v, but since v is the same for all pairs (m,n) with a given content, it cannot reproduce the position-specific linear transformation that the convolution applies.
+
+Thus the answer: Yes, there is a residual; it is the missing 2x2 transport structure (ρ,δ,σ) for |d| > R, which a scalar bias can never fully replace.
+
+Now, we need to present all this clearly, with tables, and no summary at the end.
+
+We also need to include falsification clauses. Let's list them explicitly for each classification in (a) and (c).
+
+Given the length, we need to be concise but complete.
+
+Let's also include the citation format if needed. We'll reference the Iwasawa decomposition [1], RoPE [2], ALiBi [3], sinusoidal PE [4], learned relative bias [5]. We'll use simple numbers.
+
+Now, let's write the final answer.
+
+We need to avoid using [^index^]. We'll use [1], [2], etc.
+
+Let's structure:
+
+**Answer**
+
+**(a) Generator action, preservation, and distortion**
+
+Table...
+
+Then for each mechanism: First principles, Pattern recognition, Falsification.
+
+**(b) Generator reach of mechanism 4 and obstruction**
+
+Table...
+
+Then reasoning with First principles, Pattern recognition, Falsification.
+
+**(c) 2x2 decomposition, invariant, shear status**
+
+Table...
+
+Then explanation for each.
+
+**(d) Local-global split compatibility and residual**
+
+Table...
+
+Then reasoning.
+
+Let's write it out.
+
+Given the problem asks "Return complete tables, no summary", we should present the tables prominently and then provide the reasoning in paragraphs. We should not have a concluding summary paragraph that compresses everything.
+
+We'll also label "First principles" and "Pattern recognition" for each subsection.
+
+Let's begin.

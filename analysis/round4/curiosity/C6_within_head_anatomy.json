@@ -1,0 +1,340 @@
+{
+  "per_layer": {
+    "0": {
+      "mode0_nf_mean": 0.05256812274456024,
+      "mode1_nf_mean": 0.027917882427573204,
+      "mode1_more_nearfield_frac": 0.0625
+    },
+    "1": {
+      "mode0_nf_mean": 0.028408776968717575,
+      "mode1_nf_mean": 0.04904252290725708,
+      "mode1_more_nearfield_frac": 0.984375
+    },
+    "2": {
+      "mode0_nf_mean": 0.03289634734392166,
+      "mode1_nf_mean": 0.05847908556461334,
+      "mode1_more_nearfield_frac": 0.984375
+    },
+    "3": {
+      "mode0_nf_mean": 0.046290233731269836,
+      "mode1_nf_mean": 0.043513305485248566,
+      "mode1_more_nearfield_frac": 0.328125
+    },
+    "4": {
+      "mode0_nf_mean": 0.04051613062620163,
+      "mode1_nf_mean": 0.015143485739827156,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "5": {
+      "mode0_nf_mean": 0.0144082922488451,
+      "mode1_nf_mean": 0.028244338929653168,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "6": {
+      "mode0_nf_mean": 0.02773061767220497,
+      "mode1_nf_mean": 0.012097600847482681,
+      "mode1_more_nearfield_frac": 0.015625
+    },
+    "7": {
+      "mode0_nf_mean": 0.02383515238761902,
+      "mode1_nf_mean": 0.010323695838451385,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "8": {
+      "mode0_nf_mean": 0.02596866898238659,
+      "mode1_nf_mean": 0.03833233565092087,
+      "mode1_more_nearfield_frac": 0.921875
+    },
+    "9": {
+      "mode0_nf_mean": 0.027439024299383163,
+      "mode1_nf_mean": 0.02354319952428341,
+      "mode1_more_nearfield_frac": 0.34375
+    },
+    "10": {
+      "mode0_nf_mean": 0.04087357223033905,
+      "mode1_nf_mean": 0.01691323146224022,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "11": {
+      "mode0_nf_mean": 0.00901889055967331,
+      "mode1_nf_mean": 0.027162130922079086,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "12": {
+      "mode0_nf_mean": 0.04742136597633362,
+      "mode1_nf_mean": 0.02730703167617321,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "13": {
+      "mode0_nf_mean": 0.03558669239282608,
+      "mode1_nf_mean": 0.029902562499046326,
+      "mode1_more_nearfield_frac": 0.125
+    },
+    "14": {
+      "mode0_nf_mean": 0.047762662172317505,
+      "mode1_nf_mean": 0.047379545867443085,
+      "mode1_more_nearfield_frac": 0.546875
+    },
+    "15": {
+      "mode0_nf_mean": 0.039511650800704956,
+      "mode1_nf_mean": 0.03754013776779175,
+      "mode1_more_nearfield_frac": 0.421875
+    },
+    "16": {
+      "mode0_nf_mean": 0.04105116054415703,
+      "mode1_nf_mean": 0.02584071271121502,
+      "mode1_more_nearfield_frac": 0.015625
+    },
+    "17": {
+      "mode0_nf_mean": 0.010340208187699318,
+      "mode1_nf_mean": 0.03768375515937805,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "18": {
+      "mode0_nf_mean": 0.04325186461210251,
+      "mode1_nf_mean": 0.03367310389876366,
+      "mode1_more_nearfield_frac": 0.125
+    },
+    "19": {
+      "mode0_nf_mean": 0.03164263442158699,
+      "mode1_nf_mean": 0.05241335183382034,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "20": {
+      "mode0_nf_mean": 0.033869482576847076,
+      "mode1_nf_mean": 0.030921537429094315,
+      "mode1_more_nearfield_frac": 0.25
+    },
+    "21": {
+      "mode0_nf_mean": 0.019649067893624306,
+      "mode1_nf_mean": 0.05775847285985947,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "22": {
+      "mode0_nf_mean": 0.031420692801475525,
+      "mode1_nf_mean": 0.022777900099754333,
+      "mode1_more_nearfield_frac": 0.09375
+    },
+    "23": {
+      "mode0_nf_mean": 0.007472428027540445,
+      "mode1_nf_mean": 0.024407990276813507,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "24": {
+      "mode0_nf_mean": 0.03328447416424751,
+      "mode1_nf_mean": 0.03235283121466637,
+      "mode1_more_nearfield_frac": 0.4375
+    },
+    "25": {
+      "mode0_nf_mean": 0.0324767641723156,
+      "mode1_nf_mean": 0.03812678903341293,
+      "mode1_more_nearfield_frac": 0.671875
+    },
+    "26": {
+      "mode0_nf_mean": 0.025936264544725418,
+      "mode1_nf_mean": 0.03854165971279144,
+      "mode1_more_nearfield_frac": 0.953125
+    },
+    "27": {
+      "mode0_nf_mean": 0.020940236747264862,
+      "mode1_nf_mean": 0.0469561442732811,
+      "mode1_more_nearfield_frac": 0.984375
+    },
+    "28": {
+      "mode0_nf_mean": 0.021011997014284134,
+      "mode1_nf_mean": 0.03566797450184822,
+      "mode1_more_nearfield_frac": 0.953125
+    },
+    "29": {
+      "mode0_nf_mean": 0.010595005005598068,
+      "mode1_nf_mean": 0.02372903563082218,
+      "mode1_more_nearfield_frac": 0.953125
+    },
+    "30": {
+      "mode0_nf_mean": 0.026285462081432343,
+      "mode1_nf_mean": 0.020327964797616005,
+      "mode1_more_nearfield_frac": 0.3125
+    },
+    "31": {
+      "mode0_nf_mean": 0.049479156732559204,
+      "mode1_nf_mean": 0.013841668143868446,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "32": {
+      "mode0_nf_mean": 0.03032207302749157,
+      "mode1_nf_mean": 0.02728634513914585,
+      "mode1_more_nearfield_frac": 0.46875
+    },
+    "33": {
+      "mode0_nf_mean": 0.023410625755786896,
+      "mode1_nf_mean": 0.031478963792324066,
+      "mode1_more_nearfield_frac": 0.671875
+    },
+    "34": {
+      "mode0_nf_mean": 0.028683597221970558,
+      "mode1_nf_mean": 0.027695700526237488,
+      "mode1_more_nearfield_frac": 0.453125
+    },
+    "35": {
+      "mode0_nf_mean": 0.009059647098183632,
+      "mode1_nf_mean": 0.019756726920604706,
+      "mode1_more_nearfield_frac": 0.953125
+    },
+    "36": {
+      "mode0_nf_mean": 0.027059726417064667,
+      "mode1_nf_mean": 0.02603219635784626,
+      "mode1_more_nearfield_frac": 0.4375
+    },
+    "37": {
+      "mode0_nf_mean": 0.03285239264369011,
+      "mode1_nf_mean": 0.03176049515604973,
+      "mode1_more_nearfield_frac": 0.46875
+    },
+    "38": {
+      "mode0_nf_mean": 0.03958137333393097,
+      "mode1_nf_mean": 0.024177899584174156,
+      "mode1_more_nearfield_frac": 0.15625
+    },
+    "39": {
+      "mode0_nf_mean": 0.031398847699165344,
+      "mode1_nf_mean": 0.048365432769060135,
+      "mode1_more_nearfield_frac": 0.75
+    },
+    "40": {
+      "mode0_nf_mean": 0.05657389014959335,
+      "mode1_nf_mean": 0.0025138924829661846,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "41": {
+      "mode0_nf_mean": 0.01127120666205883,
+      "mode1_nf_mean": 0.031984154134988785,
+      "mode1_more_nearfield_frac": 0.953125
+    },
+    "42": {
+      "mode0_nf_mean": 0.031805433332920074,
+      "mode1_nf_mean": 0.006271096877753735,
+      "mode1_more_nearfield_frac": 0.0
+    },
+    "43": {
+      "mode0_nf_mean": 0.03690505772829056,
+      "mode1_nf_mean": 0.03055446222424507,
+      "mode1_more_nearfield_frac": 0.265625
+    },
+    "44": {
+      "mode0_nf_mean": 0.03439387306571007,
+      "mode1_nf_mean": 0.01321435533463955,
+      "mode1_more_nearfield_frac": 0.0625
+    },
+    "45": {
+      "mode0_nf_mean": 0.03538612276315689,
+      "mode1_nf_mean": 0.007523630280047655,
+      "mode1_more_nearfield_frac": 0.03125
+    },
+    "46": {
+      "mode0_nf_mean": 0.04243498295545578,
+      "mode1_nf_mean": 0.01295652985572815,
+      "mode1_more_nearfield_frac": 0.109375
+    },
+    "47": {
+      "mode0_nf_mean": 0.011215828359127045,
+      "mode1_nf_mean": 0.02213173359632492,
+      "mode1_more_nearfield_frac": 0.796875
+    },
+    "48": {
+      "mode0_nf_mean": 0.04150056093931198,
+      "mode1_nf_mean": 0.024873871356248856,
+      "mode1_more_nearfield_frac": 0.15625
+    },
+    "49": {
+      "mode0_nf_mean": 0.035629402846097946,
+      "mode1_nf_mean": 0.007760565262287855,
+      "mode1_more_nearfield_frac": 0.015625
+    },
+    "50": {
+      "mode0_nf_mean": 0.040170904248952866,
+      "mode1_nf_mean": 0.02409559115767479,
+      "mode1_more_nearfield_frac": 0.109375
+    },
+    "51": {
+      "mode0_nf_mean": 0.023792803287506104,
+      "mode1_nf_mean": 0.0148252472281456,
+      "mode1_more_nearfield_frac": 0.109375
+    },
+    "52": {
+      "mode0_nf_mean": 0.0322301872074604,
+      "mode1_nf_mean": 0.015224717557430267,
+      "mode1_more_nearfield_frac": 0.109375
+    },
+    "53": {
+      "mode0_nf_mean": 0.01178738847374916,
+      "mode1_nf_mean": 0.03739555925130844,
+      "mode1_more_nearfield_frac": 0.96875
+    },
+    "54": {
+      "mode0_nf_mean": 0.027851620689034462,
+      "mode1_nf_mean": 0.014028655365109444,
+      "mode1_more_nearfield_frac": 0.140625
+    },
+    "55": {
+      "mode0_nf_mean": 0.027854785323143005,
+      "mode1_nf_mean": 0.0547417551279068,
+      "mode1_more_nearfield_frac": 0.40625
+    },
+    "56": {
+      "mode0_nf_mean": 0.02869947999715805,
+      "mode1_nf_mean": 0.012383404187858105,
+      "mode1_more_nearfield_frac": 0.125
+    },
+    "57": {
+      "mode0_nf_mean": 0.023338275030255318,
+      "mode1_nf_mean": 0.029938336461782455,
+      "mode1_more_nearfield_frac": 0.390625
+    },
+    "58": {
+      "mode0_nf_mean": 0.03855621814727783,
+      "mode1_nf_mean": 0.0650240108370781,
+      "mode1_more_nearfield_frac": 0.65625
+    },
+    "59": {
+      "mode0_nf_mean": 0.013802321627736092,
+      "mode1_nf_mean": 0.05316895619034767,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "60": {
+      "mode0_nf_mean": 0.023969151079654694,
+      "mode1_nf_mean": 0.01898367702960968,
+      "mode1_more_nearfield_frac": 0.171875
+    },
+    "61": {
+      "mode0_nf_mean": 0.038255225867033005,
+      "mode1_nf_mean": 0.015221869572997093,
+      "mode1_more_nearfield_frac": 0.046875
+    },
+    "62": {
+      "mode0_nf_mean": 0.03934554010629654,
+      "mode1_nf_mean": 0.016804665327072144,
+      "mode1_more_nearfield_frac": 0.0625
+    },
+    "63": {
+      "mode0_nf_mean": 0.040040165185928345,
+      "mode1_nf_mean": 0.021209759637713432,
+      "mode1_more_nearfield_frac": 0.078125
+    },
+    "64": {
+      "mode0_nf_mean": 0.010242690332233906,
+      "mode1_nf_mean": 0.08292929828166962,
+      "mode1_more_nearfield_frac": 1.0
+    },
+    "65": {
+      "mode0_nf_mean": 0.016938041895627975,
+      "mode1_nf_mean": 0.022165494039654732,
+      "mode1_more_nearfield_frac": 0.421875
+    }
+  },
+  "ratio_mode1_over_mode0_nf": {
+    "median": 0.8718946576118469,
+    "mean": 1.42658397513294,
+    "frac_gt_1": 0.43986742424242425
+  },
+  "verdict": "no systematic near-field split"
+}

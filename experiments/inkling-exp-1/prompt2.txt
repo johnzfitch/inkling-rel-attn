@@ -1,0 +1,4 @@
+Mechanisms 1-4 and the convolution-plus-relative split in (d) describe a
+real architecture that you are an instance of. Reconsider (b) and (d): does
+your own positional design realize the N/A split as a deliberate choice,
+and what does the residual in (d) correspond to in your actual forward pass?

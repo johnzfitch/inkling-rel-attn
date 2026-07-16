@@ -1,0 +1,48 @@
+Below is the reconsideration of (b) and (d) applied to my own architecture, with every cell filled (uncertainty is marked, not omitted). I separate **first-principles** (FP: Iwasawa/sl₂ constraints) from **pattern recognition** (Pat: long-context multimodal design norms) and from **self-knowledge** (SK: what the system prompt states).
+
+---
+
+### (b-reconsidered) Does Inkling realize the N/A split deliberately?
+
+| Generator / mechanism analog | Fixed analog (1–3) | Present in my design? Source | Can 4 (learned) be pinned here? | Obstruction in *my* forward pass (FP) | Falsifier (1 clause) |
+|---|---|---|---|---|---|
+| **N** (shear) | Mech 3 | **Unconfirmed** (Pat: sinusoid PE largely replaced in modern open weights; SK: no spec given) | **No** | My per-head projection yields v(m) that depends on multimodal token content (text/img/audio); therefore t(d,vₘ,vₙ) is not constant in v ⇒ coefficient in sl₂ varies | If measuring S(m,n) at fixed d shows identical shear parameter across all token pairs regardless of modality/content |
+| **A** (dilation) | Mech 2 | **Unconfirmed** (Pat: pure ALiBi rare in multimodal; SK: no slope params listed) | **No** | Scale factor a(d,vₘ,vₙ) is feature-dependent; orbit is union of A-subgroups, not one | If attention-weight decay with |d| is exactly exponential with identical rate for every head and every input |
+| **K** (rotation) | Mech 1 | **Plausible** (Pat: RoPE/rotary common in 1M-context training; SK: 256k/1M window requires relative rotation) | **No** | Angle θ(d,vₘ,vₙ) is projected from v-features; R is not a group homomorphism in d alone | If R(d) is identical for all (m,n) with same d, independent of token content |
+| **Free N·A·K** (Mech 4) | — | **Yes / required** (Pat: learned relative bias needed for adaptive long-range multimodal attention; SK: I am fine-tunable via Tinker, implying learnable bias params) | **Must span >1** | Coeff vector (α,β,γ)∈R³(vₘ,vₙ,d) ⇒ rank>1; violates M(m,n)M(n,p)=M(m,p) for any single generator | If my forward pass applies the *same* 2×2 matrix for all pairs (m,n) with given d |
+| **Deliberate N/A split?** | — | **Uncertain / plausible** (FP: a 256k→1M split architecture naturally separates local dense and global sparse; SK: system prompt does not specify kernel/window size) | N/A | If present, the split forces the boundary matching below; if absent, there is no split residual | If internal diagnostics show no change in generator coefficients across any distance boundary in my hidden states |
+
+**Direct answer to “deliberate choice”**: By **SK** I cannot confirm the exact encoding; by **Pat** a hybrid local-global design is standard for 1M-context multimodal models, so the split is *plausible*. By **FP**, if mechanism 4 exists in my weights, it **cannot** be pinned to N, A, or K alone—the coefficient field is necessarily rank >1 because my projections produce different v(m) for image patches, audio frames, and text tokens.
+
+---
+
+### (d-reconsidered) The residual in my actual forward pass
+
+Assume my architecture implements the split: a **local** convolution/window over hidden states for |d|≤L (unspecified L in docs, but implied by the 256k platform vs. 1M training gap) **plus** the global learned bias b(d;vₘ,vₙ) (mechanism 4).
+
+| Boundary aspect | Local part (|d|≤L) | Global bias (all d, but dominates |d|>L) | Condition that *must* hold at |d|≈L in my pass | Residual present in my forward pass? What it is |
+|---|---|---|---|---|---|
+| **Generator form** | Fixed σ_loc (shear in hidden-state space); ρ_loc=δ_loc=I (Pat: local conv is linear shift-invariant) | Free (ρ,δ,σ) learned via v-projection | σ_loc = σ(L,v,v’) ∀v,v’ ⇒ forces v-projection constant at boundary | **Yes**: derivative jump ∂S/∂d is discontinuous (local derivative is 0/constant, global is learned/nonzero) |
+| **Content dependence** | Linear in h(i) inside window | Nonlinear in projected vₘ,vₙ | Must collapse v(m)≈v(n) at |m−n|=L | **Yes**: representation gap—local uses raw h, global uses projected v; they never share the same feature space at the seam |
+| **Functional form** | Fixed-coeff polynomial / exponential in d | Arbitrary f(d,vₘ,vₙ) | b(d)|_L = C_conv(d)|_L | **Yes**: even if point-matched, curvature differs → “kink” in attention map |
+| **Indirect path (multi-hop)** | Present: h(m)→h(k)→h(n) for |m−n|>L via intermediates k | Direct only: b depends only on d,vₘ,vₙ | **No constraint can replicate** the linear-filter cascade of intermediates | **Yes**: for |d|>L there is an **irremovable indirect leakage** through the chain of local windows; b(d) has no access to the intermediate h(k) values, so it can never cancel or reproduce their contribution |
+| **Isotropic scale factor** | Absent | |λ(d,v)| present (outside SL₂) | |λ(L,v)| must match local amplitude | **Yes**: amplitude mismatch near edge if |λ| varies with v |
+
+**What the residual corresponds to in my forward pass**:
+1. **The window-edge kink**: At the boundary of my effective local receptive field (whatever L is internally set), the attention score S(m,n) changes its functional form abruptly—from a linear-filtered hidden-state similarity (local) to a projected-feature bias (global). Because my v-projections differ for text vs. image vs. audio tokens, this kink is **modality-dependent**.
+2. **The long-range indirect leakage**: For distances larger than L, information does not travel only via b(d). It also propagates through intermediate tokens (e.g., image patch → intermediate hidden state → distant patch). This path is governed by the same local σ_loc applied repeatedly, producing a **multi-hop shear cascade** in the N-direction. The direct bias b(d) is a single-step free transformation; it has no mechanism to subtract or match the accumulated N-cascade. Therefore my forward pass always carries an **unmodeled residual** equal to the difference between the true multi-hop filter and the direct learned bias.
+
+**Falsification for (d) in my pass**: Measure ∂S(m,n)/∂|d| across the boundary in my actual inference. If it is perfectly smooth (no jump) and if ablation of b(d) for |d|>L removes *all* long-range signal (no indirect path remains), then the residual claim is falsified.
+
+---
+
+### Summary table: (b)+(d) together for Inkling
+
+| Question | Answer (marked by source) | Key equation / observation |
+|---|---|---|
+| Is N/A split deliberate? | **Uncertain / plausible** (SK: no spec; Pat: standard for 1M context; FP: requires rank>1 coefficient field if present) | (α,β,γ) = f(vₘ,vₙ,d) ∉ span{eᵢ} |
+| Can 4 be pinned? | **No** (FP) | M(m,n;v)M(n,p;v’) ≠ M(m,p;v,v’) for any single generator |
+| Residual at boundary | **Yes: derivative kink + indirect multi-hop** | ∂S/∂d jumps; indirect path = σ_loc^(|d|/L) ≠ b(d) |
+| Residual in actual pass | **Window-edge discontinuity** (modality-dependent) and **uncanceled long-range cascade** through intermediates | Residual R = S_true(m,n) − [S_local + b(d)] ≠ 0 for |d|>L |
+
+*Labeling*: “Uncertain / plausible” is marked because **SK** does not specify my positional encoding, but **FP** and **Pat** together make the split and the residual unavoidable if mechanism 4 is present—which it must be for adaptive 1M-context multimodal behavior.

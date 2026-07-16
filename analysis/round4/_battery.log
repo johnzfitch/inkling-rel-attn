@@ -1,0 +1,95 @@
+=== family battery (per layer: mode-0 winner + per-head winner counts) ===
+L 0   mode0=F9_exp2     head-winners: {'F9_exp2': 62, 'F3_log': 2}
+L 1   mode0=F9_exp2     head-winners: {'F9_exp2': 53, 'F10_dsin': 11}
+L 2   mode0=F9_exp2     head-winners: {'F9_exp2': 57, 'F10_dsin': 7}
+L 3   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L 4   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L 5 G mode0=F3_log      head-winners: {'F3_log': 36, 'F7_rope': 12, 'F9_exp2': 8, 'F10_dsin': 5, 'F8_gaussian': 2, 'F4_power': 1}
+L 6   mode0=F9_exp2     head-winners: {'F9_exp2': 63, 'F10_dsin': 1}
+L 7   mode0=F9_exp2     head-winners: {'F9_exp2': 57, 'F10_dsin': 7}
+L 8   mode0=F10_dsin    head-winners: {'F10_dsin': 37, 'F9_exp2': 27}
+L 9   mode0=F9_exp2     head-winners: {'F9_exp2': 46, 'F10_dsin': 18}
+L10   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L11 G mode0=F9_exp2     head-winners: {'F9_exp2': 48, 'F3_log': 7, 'F4_power': 5, 'F2_linear': 2, 'F10_dsin': 2}
+L12   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L13   mode0=F9_exp2     head-winners: {'F9_exp2': 58, 'F10_dsin': 6}
+L14   mode0=F9_exp2     head-winners: {'F9_exp2': 39, 'F10_dsin': 25}
+L15   mode0=F10_dsin    head-winners: {'F10_dsin': 54, 'F9_exp2': 10}
+L16   mode0=F10_dsin    head-winners: {'F9_exp2': 32, 'F10_dsin': 32}
+L17 G mode0=F2_linear   head-winners: {'F2_linear': 26, 'F3_log': 15, 'F9_exp2': 12, 'F4_power': 8, 'F7_rope': 2, 'F8_gaussian': 1}
+L18   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L19   mode0=F9_exp2     head-winners: {'F9_exp2': 62, 'F10_dsin': 2}
+L20   mode0=F10_dsin    head-winners: {'F10_dsin': 56, 'F9_exp2': 8}
+L21   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L22   mode0=F9_exp2     head-winners: {'F10_dsin': 45, 'F9_exp2': 19}
+L23 G mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L24   mode0=F10_dsin    head-winners: {'F10_dsin': 43, 'F9_exp2': 21}
+L25   mode0=F9_exp2     head-winners: {'F9_exp2': 57, 'F10_dsin': 7}
+L26   mode0=F10_dsin    head-winners: {'F9_exp2': 37, 'F10_dsin': 22, 'F7_rope': 5}
+L27   mode0=F7_rope     head-winners: {'F9_exp2': 49, 'F7_rope': 13, 'F10_dsin': 2}
+L28   mode0=F7_rope     head-winners: {'F9_exp2': 33, 'F7_rope': 30, 'F3_log': 1}
+L29 G mode0=F9_exp2     head-winners: {'F9_exp2': 47, 'F10_dsin': 16, 'F7_rope': 1}
+L30   mode0=F9_exp2     head-winners: {'F9_exp2': 34, 'F10_dsin': 19, 'F7_rope': 6, 'F4_power': 2, 'F3_log': 1, 'F8_gaussian': 1, 'F2_linear': 1}
+L31   mode0=F4_power    head-winners: {'F9_exp2': 42, 'F7_rope': 10, 'F4_power': 7, 'F10_dsin': 5}
+L32   mode0=F9_exp2     head-winners: {'F10_dsin': 34, 'F9_exp2': 25, 'F7_rope': 2, 'F5_bucket': 2, 'F2_linear': 1}
+L33   mode0=F9_exp2     head-winners: {'F9_exp2': 61, 'F7_rope': 2, 'F3_log': 1}
+L34   mode0=F9_exp2     head-winners: {'F9_exp2': 29, 'F4_power': 28, 'F3_log': 4, 'F2_linear': 2, 'F7_rope': 1}
+L35 G mode0=F9_exp2     head-winners: {'F10_dsin': 46, 'F9_exp2': 15, 'F4_power': 2, 'F2_linear': 1}
+L36   mode0=F10_dsin    head-winners: {'F10_dsin': 27, 'F7_rope': 23, 'F9_exp2': 12, 'F4_power': 2}
+L37   mode0=F9_exp2     head-winners: {'F9_exp2': 34, 'F10_dsin': 25, 'F7_rope': 3, 'F4_power': 1, 'F3_log': 1}
+L38   mode0=F9_exp2     head-winners: {'F9_exp2': 31, 'F10_dsin': 31, 'F7_rope': 2}
+L39   mode0=F7_rope     head-winners: {'F4_power': 20, 'F9_exp2': 19, 'F10_dsin': 11, 'F3_log': 6, 'F2_linear': 5, 'F7_rope': 2, 'F8_gaussian': 1}
+L40   mode0=F9_exp2     head-winners: {'F9_exp2': 57, 'F10_dsin': 4, 'F5_bucket': 3}
+L41 G mode0=F9_exp2     head-winners: {'F10_dsin': 34, 'F9_exp2': 28, 'F3_log': 1, 'F7_rope': 1}
+L42   mode0=F9_exp2     head-winners: {'F9_exp2': 48, 'F10_dsin': 10, 'F5_bucket': 5, 'F7_rope': 1}
+L43   mode0=F3_log      head-winners: {'F9_exp2': 51, 'F4_power': 7, 'F10_dsin': 3, 'F5_bucket': 1, 'F2_linear': 1, 'F3_log': 1}
+L44   mode0=F3_log      head-winners: {'F9_exp2': 54, 'F3_log': 4, 'F4_power': 3, 'F5_bucket': 2, 'F10_dsin': 1}
+L45   mode0=F9_exp2     head-winners: {'F9_exp2': 63, 'F4_power': 1}
+L46   mode0=F9_exp2     head-winners: {'F9_exp2': 34, 'F10_dsin': 26, 'F3_log': 2, 'F7_rope': 1, 'F2_linear': 1}
+L47 G mode0=F10_dsin    head-winners: {'F10_dsin': 37, 'F9_exp2': 26, 'F4_power': 1}
+L48   mode0=F4_power    head-winners: {'F9_exp2': 24, 'F4_power': 15, 'F7_rope': 12, 'F10_dsin': 11, 'F3_log': 1, 'F8_gaussian': 1}
+L49   mode0=F9_exp2     head-winners: {'F9_exp2': 40, 'F7_rope': 9, 'F10_dsin': 9, 'F8_gaussian': 3, 'F5_bucket': 1, 'F4_power': 1, 'F2_linear': 1}
+L50   mode0=F10_dsin    head-winners: {'F9_exp2': 29, 'F7_rope': 22, 'F4_power': 6, 'F5_bucket': 2, 'F10_dsin': 2, 'F3_log': 2, 'F2_linear': 1}
+L51   mode0=F9_exp2     head-winners: {'F9_exp2': 28, 'F10_dsin': 23, 'F7_rope': 7, 'F5_bucket': 5, 'F4_power': 1}
+L52   mode0=F9_exp2     head-winners: {'F9_exp2': 55, 'F5_bucket': 9}
+L53 G mode0=F8_gaussian head-winners: {'F10_dsin': 44, 'F9_exp2': 13, 'F4_power': 5, 'F8_gaussian': 1, 'F7_rope': 1}
+L54   mode0=F9_exp2     head-winners: {'F9_exp2': 50, 'F10_dsin': 10, 'F4_power': 2, 'F5_bucket': 1, 'F3_log': 1}
+L55   mode0=F9_exp2     head-winners: {'F9_exp2': 23, 'F4_power': 20, 'F7_rope': 17, 'F10_dsin': 2, 'F2_linear': 1, 'F8_gaussian': 1}
+L56   mode0=F9_exp2     head-winners: {'F9_exp2': 53, 'F5_bucket': 4, 'F3_log': 3, 'F4_power': 2, 'F10_dsin': 2}
+L57   mode0=F4_power    head-winners: {'F9_exp2': 26, 'F4_power': 22, 'F8_gaussian': 7, 'F2_linear': 4, 'F7_rope': 2, 'F10_dsin': 2, 'F1_const': 1}
+L58   mode0=F10_dsin    head-winners: {'F9_exp2': 28, 'F10_dsin': 12, 'F7_rope': 8, 'F4_power': 8, 'F2_linear': 5, 'F3_log': 3}
+L59 G mode0=F9_exp2     head-winners: {'F10_dsin': 43, 'F9_exp2': 16, 'F4_power': 3, 'F3_log': 2}
+L60   mode0=F3_log      head-winners: {'F10_dsin': 14, 'F4_power': 14, 'F2_linear': 13, 'F3_log': 11, 'F9_exp2': 8, 'F7_rope': 4}
+L61   mode0=F10_dsin    head-winners: {'F9_exp2': 23, 'F10_dsin': 22, 'F7_rope': 13, 'F3_log': 4, 'F5_bucket': 1, 'F2_linear': 1}
+L62   mode0=F9_exp2     head-winners: {'F9_exp2': 45, 'F4_power': 7, 'F2_linear': 7, 'F8_gaussian': 4, 'F3_log': 1}
+L63   mode0=F9_exp2     head-winners: {'F9_exp2': 41, 'F10_dsin': 10, 'F3_log': 5, 'F7_rope': 4, 'F4_power': 3, 'F5_bucket': 1}
+L64   mode0=F9_exp2     head-winners: {'F9_exp2': 64}
+L65 G mode0=F9_exp2     head-winners: {'F9_exp2': 32, 'F10_dsin': 16, 'F3_log': 16}
+
+VERDICT: {
+  "mode0_winner_counts": {
+    "F9_exp2": 43,
+    "F10_dsin": 11,
+    "F3_log": 4,
+    "F7_rope": 3,
+    "F4_power": 3,
+    "F2_linear": 1,
+    "F8_gaussian": 1
+  },
+  "head_winner_counts": {
+    "F9_exp2": 2614,
+    "F10_dsin": 933,
+    "F7_rope": 216,
+    "F4_power": 197,
+    "F3_log": 131,
+    "F2_linear": 73,
+    "F5_bucket": 37,
+    "F8_gaussian": 22,
+    "F1_const": 1
+  },
+  "dominant_family": "F9_exp2",
+  "dominant_named_scheme": "RetNet/decay",
+  "note": "'shape' verdict only; named-scheme requires the fingerprint ladder (see fingerprints.json)."
+}
+
+wrote R:\inkling\analysis\round4\family_battery.json

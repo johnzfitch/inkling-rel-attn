@@ -1,0 +1,69 @@
+{
+  "_desc": "unbounded (well, 1e-8-bounded) slow-rate preference per global layer, c=0 form; decay_len = 1/r_slow in tokens; resolvable if decay_len <= 2*extent",
+  "5": {
+    "fit_r2": 0.4639700797635057,
+    "slow_decay_len_tokens": 3522.8622498242385,
+    "resolvable": false,
+    "trunc_if_trusted": 1.6082580278330487
+  },
+  "11": {
+    "fit_r2": 0.8675664718528533,
+    "slow_decay_len_tokens": 414.46898006373846,
+    "resolvable": true,
+    "trunc_if_trusted": 0.25563466695413595
+  },
+  "17": {
+    "fit_r2": 0.7001444843780551,
+    "slow_decay_len_tokens": 885.1515657631454,
+    "resolvable": true,
+    "trunc_if_trusted": 0.4575404059131613
+  },
+  "23": {
+    "fit_r2": 0.8982863412971153,
+    "slow_decay_len_tokens": 701.8123313992915,
+    "resolvable": true,
+    "trunc_if_trusted": 0.3212710220747117
+  },
+  "29": {
+    "fit_r2": 0.9733225240648786,
+    "slow_decay_len_tokens": 521.6539959458323,
+    "resolvable": true,
+    "trunc_if_trusted": 0.17213975796137013
+  },
+  "35": {
+    "fit_r2": 0.9513817758414149,
+    "slow_decay_len_tokens": 475.34466403533065,
+    "resolvable": true,
+    "trunc_if_trusted": 0.36232933060759936
+  },
+  "41": {
+    "fit_r2": 0.9811782396924904,
+    "slow_decay_len_tokens": 612.3260116764662,
+    "resolvable": true,
+    "trunc_if_trusted": 0.2803013533964841
+  },
+  "47": {
+    "fit_r2": 0.8539332762763097,
+    "slow_decay_len_tokens": 299.1292692903869,
+    "resolvable": true,
+    "trunc_if_trusted": 0.1422971240708773
+  },
+  "53": {
+    "fit_r2": 0.9271143883745416,
+    "slow_decay_len_tokens": 444.78448713954873,
+    "resolvable": true,
+    "trunc_if_trusted": 0.3165695308271396
+  },
+  "59": {
+    "fit_r2": 0.9663854491881881,
+    "slow_decay_len_tokens": 483.5931246541447,
+    "resolvable": true,
+    "trunc_if_trusted": 0.3314958574944577
+  },
+  "65": {
+    "fit_r2": 0.9020157637937575,
+    "slow_decay_len_tokens": 3752.8161350715636,
+    "resolvable": false,
+    "trunc_if_trusted": 1.7091931769977442
+  }
+}

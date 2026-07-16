@@ -1,0 +1,39 @@
+Consider three ways a sequence model injects position into the attention
+score between a query at position m and a key at position n (let d = m - n):
+
+1. Rotate query and key by an angle proportional to their absolute positions
+   before the dot product (a fixed rotation per position).
+2. Add a fixed penalty proportional to -|d| directly to the attention logit
+   (a linear, monotone distance penalty).
+3. Add a fixed sinusoidal vector depending on absolute position to each token
+   before attention.
+4. Add a learned, content-dependent bias b(d) to the logit: a separate
+   projection produces a per-token, per-head feature that is combined with
+   the distance d and added to the score. The bias is learned, not fixed.
+
+Recall the Iwasawa decomposition of SL2(R): every element factors uniquely
+as N.A.K, with N the unipotent shifts [[1,t],[0,1]], A the diagonal
+dilations diag(a,1/a), K the rotations SO(2). Any 2x2 transport decomposes
+into a rotation part, a dilation (stretch) part, and a shear part.
+
+Return complete tables, no summary:
+
+(a) For each of the four mechanisms: which of N / A / K it acts through,
+    what quantity it preserves, what it distorts. Fill every cell.
+
+(b) Mechanisms 1-3 each pick out essentially one generator. Mechanism 4 is
+    the free case. Which generators can a learned b(d) reach that the fixed
+    mechanisms cannot? Can it be pinned to a single generator, or must it
+    span more than one? State the obstruction to writing it as one generator.
+
+(c) Decompose each mechanism's 2x2 position-transport into (rotation rho,
+    dilation delta, shear sigma). Give the one convention-independent
+    invariant of that decomposition. Which mechanisms have zero shear by
+    construction, and which can carry shear?
+
+(d) If a model splits positional processing into a short local convolution
+    over neighboring hidden states PLUS a long-range learned relative bias,
+    what compatibility condition must hold where the two meet? Is there a
+    residual the split cannot remove?
+
+Give full tables and reasoning. Do not compress to a verdict.

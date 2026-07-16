@@ -1,0 +1,32 @@
+{
+  "seq": 8192,
+  "tokenizer": "tokenizer.json (from thinkingmachines/Inkling)",
+  "bos": "none prepended \u2014 model config defines no bos_token; raw prefill",
+  "runner_contract": "consume {name}.ids.npy verbatim; never re-tokenize the .txt",
+  "texts": {
+    "01_prose_en": {
+      "ids_sha256": "900e6d0babb6824a8b46cd3ea17b7e4d03beffad182bd595bc30e627e3b5cb88",
+      "n_tokens": 8192
+    },
+    "02_code": {
+      "ids_sha256": "d867bb5d5f1de56c850dff56e5389d5edfdc38bfd46fc69517c7ed843481108d",
+      "n_tokens": 8192
+    },
+    "03_templated": {
+      "ids_sha256": "f5ef166f9ef541c23e362c4c8fa318064e5aa0467a38f01a9ffa57d00e90210b",
+      "n_tokens": 8192
+    },
+    "04_multilingual": {
+      "ids_sha256": "d6b9a54d6c2d9ae7b7ccd3896cd3ffb9ccb28a08d8166fbce354bc73ff785627",
+      "n_tokens": 8192
+    },
+    "05_needles": {
+      "ids_sha256": "c6c859c1833f69f51f896edbd0c5e772f8506c3a94d08477e912b2a403267fb8",
+      "n_tokens": 8192
+    },
+    "06_random": {
+      "ids_sha256": "4240840c3e7b4f27795626b992727f213b73c57ac1b84df640444104d276d23c",
+      "n_tokens": 8192
+    }
+  }
+}

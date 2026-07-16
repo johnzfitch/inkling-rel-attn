@@ -1,0 +1,478 @@
+{
+  "rows": [
+    {
+      "layer": 0,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 1,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 11,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 2,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 7,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 3,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 4,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 5,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 5,
+      "mode0_winner": "F3_log"
+    },
+    {
+      "layer": 6,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 1,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 7,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 7,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 8,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 37,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 9,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 18,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 10,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 11,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 12,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 13,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 6,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 14,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 25,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 15,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 54,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 16,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 32,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 17,
+      "in_c5_band": true,
+      "is_global": true,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F2_linear"
+    },
+    {
+      "layer": 18,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 19,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 20,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 56,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 21,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 22,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 45,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 23,
+      "in_c5_band": true,
+      "is_global": true,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 24,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 43,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 25,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 7,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 26,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 22,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 27,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F7_rope"
+    },
+    {
+      "layer": 28,
+      "in_c5_band": true,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F7_rope"
+    },
+    {
+      "layer": 29,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 16,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 30,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 19,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 31,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 5,
+      "mode0_winner": "F4_power"
+    },
+    {
+      "layer": 32,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 34,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 33,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 34,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 35,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 46,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 36,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 27,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 37,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 25,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 38,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 31,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 39,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 11,
+      "mode0_winner": "F7_rope"
+    },
+    {
+      "layer": 40,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 4,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 41,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 34,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 42,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 10,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 43,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 3,
+      "mode0_winner": "F3_log"
+    },
+    {
+      "layer": 44,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 1,
+      "mode0_winner": "F3_log"
+    },
+    {
+      "layer": 45,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 46,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 26,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 47,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 37,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 48,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 11,
+      "mode0_winner": "F4_power"
+    },
+    {
+      "layer": 49,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 9,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 50,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 51,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 23,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 52,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 53,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 44,
+      "mode0_winner": "F8_gaussian"
+    },
+    {
+      "layer": 54,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 10,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 55,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 56,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 57,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 2,
+      "mode0_winner": "F4_power"
+    },
+    {
+      "layer": 58,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 12,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 59,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 43,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 60,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 14,
+      "mode0_winner": "F3_log"
+    },
+    {
+      "layer": 61,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 22,
+      "mode0_winner": "F10_dsin"
+    },
+    {
+      "layer": 62,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 63,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 10,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 64,
+      "in_c5_band": false,
+      "is_global": false,
+      "f10_dsin_head_wins": 0,
+      "mode0_winner": "F9_exp2"
+    },
+    {
+      "layer": 65,
+      "in_c5_band": false,
+      "is_global": true,
+      "f10_dsin_head_wins": 16,
+      "mode0_winner": "F9_exp2"
+    }
+  ],
+  "mean_f10_in_c5_band": 21.0,
+  "mean_f10_outside_band": 9.658536585365853,
+  "enrichment_ratio": 2.1742424240173133,
+  "interpretation": "CORRECTED (see oscillation_audit.json): F10 wins are NOT oscillations -- fitted periods are 1.8k-490k tokens (<0.6 cycles in-window), i.e. F10 degenerates to exp-decay + free curvature. rho stays 0 everywhere, including the crossover. The real statement: (a) local layers in the L13-28 flip band pass through NON-MONOTONE (humped) kernel shapes that a fractional-cycle damped sinusoid fits (2.2x head-win enrichment); (b) independently, deep global layers (L35-L59) have hump/curvature-shaped kernels too. C5 and the battery remain two views of one depth-resolved object, but the crossover is a curvature change of the decay envelope, not a rotation.",
+  "scope_split": {
+    "local_in_band_mean": 21.0,
+    "local_outside_mean": 9.658536585365853,
+    "global_in_band_mean": 0.0,
+    "global_outside_mean": 27.0,
+    "note": "the band enrichment is a LOCAL-layer effect (locals 23.1 in-band vs ~8 outside); global layers show the OPPOSITE (in-band globals L17/L23 have 0 F10 wins; deep globals L35-L59 have 34-46). Two separate F10 clusters."
+  },
+  "_corrected_by": "claude review 2026-07-16: interpretation replaced after period audit refuted rho!=0 reading"
+}

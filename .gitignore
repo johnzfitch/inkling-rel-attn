@@ -1,0 +1,12 @@
+# local-only data (too large for GitHub / re-derivable from the checkpoint)
+nvfp4/
+dumps/
+weights/
+*.zip
+__pycache__/
+*.pyc
+
+# saved third-party web page (copyright)
+docs/Inkling*Thinking Machines Lab*.html
+
+.probe_*.txt

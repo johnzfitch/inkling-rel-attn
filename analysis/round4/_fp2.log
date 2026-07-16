@@ -1,0 +1,13 @@
+fingerprints ...
+   {
+  "layers_with_retnet_ladder": 0,
+  "layers_with_alibi_ladder_where_interpretable": 0,
+  "dominant_shape": "F9_exp2",
+  "null_model": "log-spacing regularity vs a log-uniform (scale-free) null; distinguishes an engineered ladder from a generic scale-free spread of learned rates.",
+  "interpretation": "retnet_ladder>0 => Inkling re-derived a RetNet retention ladder by SGD; 0 => exp-decay SHAPE without the named ladder."
+}
+C5 x battery cross-tab ...
+   F10_dsin head-wins: in C5 band=21.0 vs outside=9.7  (enrichment 2.2x)
+C4 corrected ...
+   median truncated_fraction (resolved only) = 0.6951000144707123 | unidentified layers: ['11', '17', '35', '53', '59', '65']  (was ~2.0 with the constant)
+done

@@ -1,0 +1,55 @@
+{
+  "official_source": "https://github.com/huggingface/transformers/blob/main/src/transformers/models/inkling/modular_inkling.py",
+  "seed": 0,
+  "random_unit_vectors_per_head": 5,
+  "q_len": 64,
+  "tolerance": 1e-05,
+  "layers": {
+    "0": {
+      "extent": 512,
+      "distance_min": -63,
+      "distance_max": 575,
+      "max_abs_diff": 0.0,
+      "passed": true
+    },
+    "5": {
+      "extent": 1024,
+      "distance_min": -63,
+      "distance_max": 1087,
+      "max_abs_diff": 0.0,
+      "passed": true
+    },
+    "33": {
+      "extent": 512,
+      "distance_min": -63,
+      "distance_max": 575,
+      "max_abs_diff": 0.0,
+      "passed": true
+    },
+    "65": {
+      "extent": 1024,
+      "distance_min": -63,
+      "distance_max": 1087,
+      "max_abs_diff": 0.0,
+      "passed": true
+    }
+  },
+  "tau": {
+    "query_position": 1000000,
+    "effective_n": 1000001,
+    "value": 1.205572601506202,
+    "official_formula_expected": 1.205572601506202,
+    "formula_passed": true,
+    "spec_approximation": 1.2058,
+    "spec_approximation_abs_diff": 0.00022739849379793675,
+    "spec_approximation_passed_at_1e-4": false,
+    "applies_to": [
+      "query",
+      "position_bias"
+    ]
+  },
+  "contradictions": [
+    "Spec says tau(10^6) is approximately 1.2058, but the official formula evaluates to 1.205572602 (rounds to 1.2056)."
+  ],
+  "passed": true
+}

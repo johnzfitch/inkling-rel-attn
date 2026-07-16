@@ -1,0 +1,91 @@
+{
+  "_desc": "Audit of the battery's F10_dsin / F7_rope wins and the P4 ladder test. Reproduce with scripts/round4_oscillation_audit.py (p4_clean2) and p4_clean.py.",
+  "f10_period_audit": {
+    "note": "F10 mode-0 winners refit; period = 2*pi/rho. All periods >> window: F10 wins as a flexible NON-oscillating hump/decay (Taylor regime of cos), not damped rotation.",
+    "per_layer": {
+      "L08": {
+        "r2": 0.979,
+        "period_tokens": 69177,
+        "cycles_in_window": 0.01
+      },
+      "L15": {
+        "r2": 0.962,
+        "period_tokens": 88669,
+        "cycles_in_window": 0.01
+      },
+      "L20": {
+        "r2": 0.961,
+        "period_tokens": 97561,
+        "cycles_in_window": 0.01
+      },
+      "L35": {
+        "r2": 0.952,
+        "period_tokens": 204112,
+        "cycles_in_window": 0.01
+      },
+      "L41": {
+        "r2": 0.98,
+        "period_tokens": 487182,
+        "cycles_in_window": 0.0
+      },
+      "L47": {
+        "r2": 0.983,
+        "period_tokens": 1782,
+        "cycles_in_window": 0.57
+      },
+      "L53": {
+        "r2": 0.954,
+        "period_tokens": 24806,
+        "cycles_in_window": 0.04
+      },
+      "L59": {
+        "r2": 0.971,
+        "period_tokens": 76467,
+        "cycles_in_window": 0.01
+      }
+    }
+  },
+  "f7_rope_audit": {
+    "note": "rope-winning layers: fastest component ~1.2-1.6 cycles/window, others <1. Long-period shape fitting, not token-scale rotation.",
+    "per_layer": {
+      "L27": {
+        "r2": 0.972,
+        "periods": [
+          395,
+          951,
+          2289
+        ]
+      },
+      "L28": {
+        "r2": 0.979,
+        "periods": [
+          437,
+          1175,
+          3154
+        ]
+      },
+      "L39": {
+        "r2": 0.967,
+        "periods": [
+          326,
+          805,
+          1985
+        ]
+      },
+      "L50": {
+        "r2": 0.981,
+        "periods": [
+          393,
+          1179,
+          3533
+        ]
+      }
+    }
+  },
+  "p3_correction": "'oscillation real in the minority' should be retracted: no F10/F7 win shows a genuine sub-window oscillation. rho=0 holds everywhere, including the flip band (its F10 wins are humped non-monotone decays). Matches the in-situ FFT null.",
+  "p4_v2": {
+    "method": "continuous per-head rate (OLS log-slope of smoothed |dominant profile|), decay heads only, log-spacing CV vs log-uniform order-statistics null (500 draws)",
+    "result": "0/61 testable layers regular (integer-quantization artifact in half-distance version retracted); median cross-head rate dynamic range 2.7x vs RetNet ladder ~128x",
+    "verdict": "P4 REJECTED, strengthened: heads cluster in a narrow rate band; no ladder of any kind."
+  }
+}

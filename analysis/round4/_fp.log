@@ -1,0 +1,10 @@
+fingerprints ...
+   {
+  "layers_with_alibi_ladder": 3,
+  "layers_with_retnet_ladder": 0,
+  "dominant_shape": "F9_exp2",
+  "interpretation": "if retnet_ladder count is high, Inkling re-derived a RetNet-style retention ladder by SGD; if ~0, it is F9-SHAPE without the named ladder."
+}
+C4 corrected ...
+   median truncated_fraction (constant removed) = 1.438 (was ~2.0 with the constant)
+done

@@ -1,0 +1,404 @@
+{
+  "0": {
+    "mean_offdiag_sim": 0.049383567598101405,
+    "within_class_sim": 0.049383567598101405,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 53.26041194239435
+  },
+  "1": {
+    "mean_offdiag_sim": 0.06458978619590948,
+    "within_class_sim": 0.06458978619590948,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 47.64461812167304
+  },
+  "2": {
+    "mean_offdiag_sim": 0.1092087497277784,
+    "within_class_sim": 0.1092087497277784,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 32.5560110405412
+  },
+  "3": {
+    "mean_offdiag_sim": 0.04736025693053971,
+    "within_class_sim": 0.04736025693053971,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 52.46503322057325
+  },
+  "4": {
+    "mean_offdiag_sim": 0.048456395497071626,
+    "within_class_sim": 0.048456395497071626,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 50.81217116177422
+  },
+  "5": {
+    "mean_offdiag_sim": 0.09388541688912526,
+    "within_class_sim": 0.09058348008148472,
+    "across_class_sim": 0.11314858043471636,
+    "eff_num_read_subspaces": 33.172729160175905
+  },
+  "6": {
+    "mean_offdiag_sim": 0.05116199504903754,
+    "within_class_sim": 0.04986693659880007,
+    "across_class_sim": 0.07092208043491889,
+    "eff_num_read_subspaces": 50.63373923558762
+  },
+  "7": {
+    "mean_offdiag_sim": 0.05144219242702959,
+    "within_class_sim": 0.05144219242702959,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 50.76824130411616
+  },
+  "8": {
+    "mean_offdiag_sim": 0.05359098562875592,
+    "within_class_sim": 0.054004388913437035,
+    "across_class_sim": 0.049450175678917296,
+    "eff_num_read_subspaces": 49.47787327795084
+  },
+  "9": {
+    "mean_offdiag_sim": 0.049797256395062765,
+    "within_class_sim": 0.0499448590946797,
+    "across_class_sim": 0.048704996417897446,
+    "eff_num_read_subspaces": 51.05925187905631
+  },
+  "10": {
+    "mean_offdiag_sim": 0.04415148534601377,
+    "within_class_sim": 0.04415148534601377,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 53.337047404829754
+  },
+  "11": {
+    "mean_offdiag_sim": 0.08675588221826945,
+    "within_class_sim": 0.08675588221826945,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 34.17439612804912
+  },
+  "12": {
+    "mean_offdiag_sim": 0.04490786035903656,
+    "within_class_sim": 0.04490499357948975,
+    "across_class_sim": 0.044996730524987455,
+    "eff_num_read_subspaces": 53.54791743606659
+  },
+  "13": {
+    "mean_offdiag_sim": 0.04791190414003462,
+    "within_class_sim": 0.04579193391717294,
+    "across_class_sim": 0.05370648941585656,
+    "eff_num_read_subspaces": 51.660793040178824
+  },
+  "14": {
+    "mean_offdiag_sim": 0.04192391279271789,
+    "within_class_sim": 0.041867366460706566,
+    "across_class_sim": 0.04367684908506889,
+    "eff_num_read_subspaces": 54.69146911183928
+  },
+  "15": {
+    "mean_offdiag_sim": 0.04616443322724774,
+    "within_class_sim": 0.04912186494110139,
+    "across_class_sim": 0.04324779367496447,
+    "eff_num_read_subspaces": 53.28282256742197
+  },
+  "16": {
+    "mean_offdiag_sim": 0.04437681625374049,
+    "within_class_sim": 0.04775495045275117,
+    "across_class_sim": 0.04107816756529478,
+    "eff_num_read_subspaces": 53.71622410786251
+  },
+  "17": {
+    "mean_offdiag_sim": 0.0750180682123986,
+    "within_class_sim": 0.0750180682123986,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 39.618444424321844
+  },
+  "18": {
+    "mean_offdiag_sim": 0.04148154612642155,
+    "within_class_sim": 0.0390102102927268,
+    "across_class_sim": 0.048236530738520536,
+    "eff_num_read_subspaces": 54.9660487648902
+  },
+  "19": {
+    "mean_offdiag_sim": 0.06133958416628755,
+    "within_class_sim": 0.0572385618513368,
+    "across_class_sim": 0.07394090727949985,
+    "eff_num_read_subspaces": 46.75993419194259
+  },
+  "20": {
+    "mean_offdiag_sim": 0.05605886995319798,
+    "within_class_sim": 0.056575985319356405,
+    "across_class_sim": 0.040028293602286824,
+    "eff_num_read_subspaces": 48.744914817730866
+  },
+  "21": {
+    "mean_offdiag_sim": 0.06211946973723123,
+    "within_class_sim": 0.06518452564566714,
+    "across_class_sim": 0.05912653279134675,
+    "eff_num_read_subspaces": 46.68153637067462
+  },
+  "22": {
+    "mean_offdiag_sim": 0.06120421879117318,
+    "within_class_sim": 0.06506087309257551,
+    "across_class_sim": 0.05740075972151433,
+    "eff_num_read_subspaces": 47.508646898440006
+  },
+  "23": {
+    "mean_offdiag_sim": 0.1383687851069096,
+    "within_class_sim": 0.1383687851069096,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 24.60973543480945
+  },
+  "24": {
+    "mean_offdiag_sim": 0.08279060790046637,
+    "within_class_sim": 0.08218942847729613,
+    "across_class_sim": 0.08401744916675496,
+    "eff_num_read_subspaces": 38.76599008158232
+  },
+  "25": {
+    "mean_offdiag_sim": 0.0811435412476948,
+    "within_class_sim": 0.08087887364133041,
+    "across_class_sim": 0.08934823704499101,
+    "eff_num_read_subspaces": 39.58601955216522
+  },
+  "26": {
+    "mean_offdiag_sim": 0.11635960919005493,
+    "within_class_sim": 0.11635960919005493,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 28.458205705438207
+  },
+  "27": {
+    "mean_offdiag_sim": 0.09839001408452908,
+    "within_class_sim": 0.09902694058825064,
+    "across_class_sim": 0.08867174839871304,
+    "eff_num_read_subspaces": 33.642777307448874
+  },
+  "28": {
+    "mean_offdiag_sim": 0.1294826963285376,
+    "within_class_sim": 0.12916368000055753,
+    "across_class_sim": 0.13435026804255623,
+    "eff_num_read_subspaces": 25.045390333258744
+  },
+  "29": {
+    "mean_offdiag_sim": 0.2812506540951925,
+    "within_class_sim": 0.2812506540951925,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 8.881867612581402
+  },
+  "30": {
+    "mean_offdiag_sim": 0.19805511650592383,
+    "within_class_sim": 0.1946456636657925,
+    "across_class_sim": 0.2085314352328729,
+    "eff_num_read_subspaces": 15.051376937328413
+  },
+  "31": {
+    "mean_offdiag_sim": 0.2040620633797805,
+    "within_class_sim": 0.2040620633797805,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 14.526188800944349
+  },
+  "32": {
+    "mean_offdiag_sim": 0.20533276348797944,
+    "within_class_sim": 0.21937241114277242,
+    "across_class_sim": 0.17401354948882586,
+    "eff_num_read_subspaces": 14.06219588216575
+  },
+  "33": {
+    "mean_offdiag_sim": 0.20797402008819127,
+    "within_class_sim": 0.20797402008819127,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 13.857715350206284
+  },
+  "34": {
+    "mean_offdiag_sim": 0.2190415347452342,
+    "within_class_sim": 0.2190415347452342,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 13.313447114814931
+  },
+  "35": {
+    "mean_offdiag_sim": 0.41056085532043307,
+    "within_class_sim": 0.41056085532043307,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 4.823627422855987
+  },
+  "36": {
+    "mean_offdiag_sim": 0.22123317310165258,
+    "within_class_sim": 0.22123317310165258,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 13.08659387917513
+  },
+  "37": {
+    "mean_offdiag_sim": 0.19502084869484876,
+    "within_class_sim": 0.19502084869484876,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 14.622061876067109
+  },
+  "38": {
+    "mean_offdiag_sim": 0.25240719949804424,
+    "within_class_sim": 0.25240719949804424,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 10.62674794903355
+  },
+  "39": {
+    "mean_offdiag_sim": 0.18140462215385578,
+    "within_class_sim": 0.18140462215385578,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 16.421535194702347
+  },
+  "40": {
+    "mean_offdiag_sim": 0.2851039662445334,
+    "within_class_sim": 0.2903804606750905,
+    "across_class_sim": 0.12153263889726192,
+    "eff_num_read_subspaces": 8.636448244411254
+  },
+  "41": {
+    "mean_offdiag_sim": 0.43769014271582285,
+    "within_class_sim": 0.43769014271582285,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 4.32763529949173
+  },
+  "42": {
+    "mean_offdiag_sim": 0.2850773950063047,
+    "within_class_sim": 0.3041144003982566,
+    "across_class_sim": 0.2518986141803313,
+    "eff_num_read_subspaces": 8.762476920878779
+  },
+  "43": {
+    "mean_offdiag_sim": 0.309460163144173,
+    "within_class_sim": 0.309460163144173,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 7.756660893035518
+  },
+  "44": {
+    "mean_offdiag_sim": 0.30719347911450773,
+    "within_class_sim": 0.30719347911450773,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 8.024671851797759
+  },
+  "45": {
+    "mean_offdiag_sim": 0.30527970231219476,
+    "within_class_sim": 0.3075414079098871,
+    "across_class_sim": 0.2351668287837316,
+    "eff_num_read_subspaces": 7.893918492104512
+  },
+  "46": {
+    "mean_offdiag_sim": 0.2692935877056452,
+    "within_class_sim": 0.2664770478038284,
+    "across_class_sim": 0.28070798625511334,
+    "eff_num_read_subspaces": 9.97493018935064
+  },
+  "47": {
+    "mean_offdiag_sim": 0.37402834624536185,
+    "within_class_sim": 0.3777045515731656,
+    "across_class_sim": 0.2600659810834461,
+    "eff_num_read_subspaces": 5.461710693836951
+  },
+  "48": {
+    "mean_offdiag_sim": 0.2784593799169959,
+    "within_class_sim": 0.2784593799169959,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 9.42814030070454
+  },
+  "49": {
+    "mean_offdiag_sim": 0.3252281531283174,
+    "within_class_sim": 0.3293126743973162,
+    "across_class_sim": 0.3181094160594908,
+    "eff_num_read_subspaces": 7.408885176920387
+  },
+  "50": {
+    "mean_offdiag_sim": 0.3009729117075617,
+    "within_class_sim": 0.3009729117075617,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 8.170356045957497
+  },
+  "51": {
+    "mean_offdiag_sim": 0.2657329820536284,
+    "within_class_sim": 0.27343800929089895,
+    "across_class_sim": 0.2387653867231815,
+    "eff_num_read_subspaces": 10.227872339999141
+  },
+  "52": {
+    "mean_offdiag_sim": 0.40472563206484274,
+    "within_class_sim": 0.40472563206484274,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 5.104295200160608
+  },
+  "53": {
+    "mean_offdiag_sim": 0.530220159007946,
+    "within_class_sim": 0.530220159007946,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 3.0675937695452347
+  },
+  "54": {
+    "mean_offdiag_sim": 0.3940396619191955,
+    "within_class_sim": 0.40144858420921525,
+    "across_class_sim": 0.3681084339041263,
+    "eff_num_read_subspaces": 5.478902028513604
+  },
+  "55": {
+    "mean_offdiag_sim": 0.38783825808278627,
+    "within_class_sim": 0.38783825808278627,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 5.508169697402773
+  },
+  "56": {
+    "mean_offdiag_sim": 0.4088388673798551,
+    "within_class_sim": 0.41168277941480147,
+    "across_class_sim": 0.32067759429651593,
+    "eff_num_read_subspaces": 5.1381962822293215
+  },
+  "57": {
+    "mean_offdiag_sim": 0.3651765555675541,
+    "within_class_sim": 0.3608051036744808,
+    "across_class_sim": 0.37144863871848527,
+    "eff_num_read_subspaces": 6.070910056593593
+  },
+  "58": {
+    "mean_offdiag_sim": 0.3784374398519359,
+    "within_class_sim": 0.3784374398519359,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 5.841997147243173
+  },
+  "59": {
+    "mean_offdiag_sim": 0.6021259543412025,
+    "within_class_sim": 0.6021259543412025,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 2.5421571438118944
+  },
+  "60": {
+    "mean_offdiag_sim": 0.31645623063724043,
+    "within_class_sim": 0.31645623063724043,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 7.601030899932205
+  },
+  "61": {
+    "mean_offdiag_sim": 0.3645244101210246,
+    "within_class_sim": 0.37145876784830595,
+    "across_class_sim": 0.25871953254024826,
+    "eff_num_read_subspaces": 6.047618514509311
+  },
+  "62": {
+    "mean_offdiag_sim": 0.402001609308793,
+    "within_class_sim": 0.404724840194686,
+    "across_class_sim": 0.3747246573205854,
+    "eff_num_read_subspaces": 5.169221512452695
+  },
+  "63": {
+    "mean_offdiag_sim": 0.298857006303493,
+    "within_class_sim": 0.298857006303493,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 8.798882042312243
+  },
+  "64": {
+    "mean_offdiag_sim": 0.3501878701194766,
+    "within_class_sim": 0.3501878701194766,
+    "across_class_sim": null,
+    "eff_num_read_subspaces": 6.625594326201756
+  },
+  "65": {
+    "mean_offdiag_sim": 0.34487038039572776,
+    "within_class_sim": 0.33970901431690015,
+    "across_class_sim": 0.36960934194597017,
+    "eff_num_read_subspaces": 7.135307171480785
+  },
+  "_rising_cross_layer": {
+    "n_rising_heads": 748,
+    "mean_abs_alignment": 0.02954256534576416,
+    "eff_num_directions": 295.208740234375,
+    "note": "eff_num_directions ~1 => one shared 'look far' direction reused; ~n => independent implementations"
+  }
+}

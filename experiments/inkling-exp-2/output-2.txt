@@ -1,0 +1,68 @@
+Given my architecture (Inkling): the long-range path is mechanism 4 exactly—each layer projects a fourth feature U(m)∈R^{k_h} (per-token, per-head) from the convolved hidden state, combines it with a learned distance representation φ(d) (d=m−n), and adds b(m,n)=f(U(m),U(n),d) to the QK logit; there is no fixed rotation, linear slope, or sinusoid. The local path is a causal 1-D convolution h'(m)=∑_{j=0}^{W−1}w_j h(m−j) (window W, backward-only), applied before Q,K,V,U are computed. Below is the reconsideration.
+
+---
+
+## 1. Reconsideration of (b): where my learned bias lands
+
+**Turn-1 table (b) — unchanged cells:** Every cell for mechanism 4 remains exactly as in turn 1:
+- N / A / K: all **Yes** (learned);
+- Confined to one generator? **No (generically)**;
+- Can span >1? **Yes, necessarily**;
+- Obstruction: **rank(Im W) > 1 + Iwasawa uniqueness**.
+
+What changes is not the cell values but the **concrete instantiation**: in my forward pass W_u is a full-rank learned matrix (hidden_dim → k_h per head), φ is learned (not fixed), and there is no constraint aligning Im(W_u) with 𝔫, 𝔞, or 𝔨 alone. Therefore the family {M(d;U(m),U(n))} has dimension ≥ k_h ≥ 1 per head, and across heads it is unrestricted.
+
+| Mechanism (my case) | Actual coefficient source | Generator reach in this head | Pinned? | Obstruction in my weights |
+|---|---|---|---|---|
+| 4 (my long-range) | U(m)=W_u h'(m), φ(d) learned | **N, A, K all reachable** within the same head if k_h>1 or φ spans them; across heads certainly all three appear | **Cannot be pinned** without explicit rank-1 + Lie-algebra alignment constraint, which is absent | W_u is learned full-rank; φ(d) is arbitrary; Iwasawa uniqueness forces different (σ,δ,ρ) for different U values ⇒ family dimension exceeds any 1-D subgroup |
+
+**First principles:** The bias coefficient vector v(m)=U(m) lives in Im(W_u)⊂R^{k_h}. The map (v(m),v(n),d)→M∈SL₂ is continuous and (for generic W_u,φ) has rank ≥2 in 𝔫⊕𝔞⊕𝔨. By uniqueness of N·A·K [1], if v₁ produces (σ₁,δ₁,ρ₁) with δ₁≠0 and v₂ produces (σ₂,δ₂,ρ₂) with σ₂≠0,δ₂=0, no constant (σ,δ,ρ) represents both. Because training updates W_u independently per head, such pairs occur.
+
+**Pattern recognition:** In multimodal long-context models, different heads learn decaying (A-like), directional (N-like), or periodic/aligning (K-like) distance patterns; no architectural gate forces uniformity.
+
+**Falsification clause:** If an audit of my weights showed that for every head U(m)=c·e (a single direction e, rank 1) and φ(d) always lies in, say, 𝔞, then the family collapses to A and pinning succeeds; observing diverse distance-curve shapes (exponential, linear, bounded-periodic) across heads falsifies that collapse.
+
+**Answer to the specific questions:**
+- **Where does it land?** It does **not** land in one generator; it occupies the free region of N·A·K, with different heads/content points falling in different neighborhoods.
+- **Does turn-1 hold?** **Yes, fully.**
+- **Can it be pinned?** **No**, not in my implementation, because the projection space is high-dimensional and unconstrained. The only way to pin it would be to replace W_u by a rank-1 matrix and constrain φ(d) to a single Lie-algebra generator; my design does neither.
+
+**No table cell in (a)–(c) changes.** Mechanism 4 remains the free case; mechanisms 1–3 remain theoretical comparators, not present in my forward pass.
+
+---
+
+## 2. Reconsideration of (d): local conv + long-range bias in my actual forward pass
+
+**Concrete forward-pass sequence:**
+1. h⁽ˡ⁾ ← local causal conv: h'(m) = ∑_{j=0}^{W−1} w_j h(m−j) (backward window W).
+2. Project: Q(m), K(n), V(n), U(m) = W_{q,k,v,u} h'(·).
+3. Score: S(m,n) = ⟨Q(m),K(n)⟩/√d_k + f(U(m), U(n), d), d=m−n.
+4. Softmax → weights; apply to V.
+
+**Updated boundary table (turn-1 table (d) — cells specified, not conceptually changed):**
+
+| Region | Concrete form in my pass | Transport / coupling | Boundary value |
+|---|---|---|---|
+| **Local** d∈[0,W−1] (causal) | Q,K,U all depend on overlapping h(·) windows; windows share W−d inputs | Full linear mixing via conv filter w; Q,K are **correlated** through shared h inputs; feature-space geometry can carry ρ,δ,σ via W_q,W_k,w | d = W−1 (last overlap of 1 hidden state) |
+| **Meeting point** d = W | Q depends on h(m−W+1..m); K depends on h(n−W+1..n) with m=n+W ⇒ **zero overlap** | Jump: direct shared-input correlation drops abruptly to 0; only U(m),U(n),f remain | d = W |
+| **Long-range** d>W | Q,K,U computed from **disjoint** windows; no h is shared | Only scalar/vector addition f(U(m),U(n),d) connects them; no direct w-filter mixing | — |
+| **Compatibility condition** | f must learn the discontinuity in E[Q·K] caused by lost overlap | **Value match:** f(U(m),U(n),W) ≈ ΔC(W) where ΔC is the missing overlap contribution to the score expectation; **Smoothness:** ∂_d f at W must absorb ∂_d C_conv | Applied at d=W (and symmetric if non-causal, but my conv is backward-only) |
+| **Residual** | Even with perfect f, Q(m) and K(n) for d>W are **statistically decoupled** except via U and attention weights | **Concrete form:** absence of direct convolutional feature mixing; information must travel only through V and the bias bridge, not through the local w-filter | **Not removable by f:** f adds to logit, it cannot apply W_q or W_k to shared inputs that do not exist |
+
+**First principles:** For d<W, Q(m) and K(n) are linear functions of the same subset of h-values (the overlap). Hence Cov(Q(m),K(n)|h) ≠ 0 and has structure determined by w, W_q, W_k. For d≥W, the input sets are disjoint; Cov=0 (given independent h priors). The score expectation therefore has a jump ΔC = C(d<W) − C(d≥W) at d=W. Because f is continuous (learned with continuous parameters) and depends only on U(m),U(n),d, it must approximate ΔC near d=W to keep S(d) smooth.
+
+**Pattern recognition:** In long-context architectures with sliding-window attention + global bias (e.g., Longformer-style hybrids), boundary artifacts appear in attention maps at the window edge unless the global term is calibrated; here the calibration is learned via U and f.
+
+**The concrete residual:** For d>W there is **no shared hidden-state pathway**. The convolution kernel w never touches both m and n simultaneously. Even if f is perfect, it can only shift the logit by an amount that depends on U(m) and U(n); it **cannot recreate the linear feature mixing** (the specific weighted sum of h-values) that the local path provides. Thus the residual is a **coupling-mode switch**: locally Q,K are coupled through shared convolved inputs (full geometric structure of the local filter); globally they are coupled only through the attention score itself (a scalar bridge). This is the irreducible gap identified in turn 1, now concretely located at d=W with the specific filter weights w_j.
+
+**Falsification clause:** If measuring ∂Q(m)/∂h(k) for k in the window of n but |m−n|>W showed non-zero values (i.e., the convolution leaked beyond W), then the boundary is broken and the residual disappears; observing that ∂Q(m)/∂h(k)=0 for |m−k|≥W confirms the decoupling and validates the residual.
+
+**Explicit statement on table changes:**
+- **Tables (a), (b), (c):** **No cell changes.** Mechanism 4 remains free; 1–3 remain theoretical.
+- **Table (d):** Only **instantiation cells** change in value, not in classification:
+  - “Range |d|≤R” → “d∈[0,W−1] (causal backward)”
+  - “Boundary |d|≈R” → “d=W (exact overlap drop to 0)”
+  - “Residual: missing 2×2 transport” → “Residual: missing shared h-input / w-filter mixing; Q,K decoupled, only U+f bridge remains”
+  The structural classification (local full / global scalar / boundary jump / irreducible gap) is **unchanged**.
+
+Thus my turn-1 answers are fully preserved and are now anchored in my actual forward-pass parameters W, W_u, and f.

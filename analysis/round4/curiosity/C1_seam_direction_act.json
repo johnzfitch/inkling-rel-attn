@@ -1,0 +1,355 @@
+{
+  "_desc": "b_h(d)=mean_q rvec.proj near d in [1008,1024); physical sign, no canonicalization.",
+  "5": {
+    "heads_positive_frac": 0.7578125,
+    "edge_bias_mean": 0.36878442683395923,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.46078975327673144,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.3775004265972953,
+        "heads_positive_frac": 0.765625
+      },
+      "02_code": {
+        "edge_bias_mean": 0.33102519382262385,
+        "heads_positive_frac": 0.765625
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.3935037652175676,
+        "heads_positive_frac": 0.765625
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.32601011526004964,
+        "heads_positive_frac": 0.75
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.3346735000559606,
+        "heads_positive_frac": 0.734375
+      },
+      "06_random": {
+        "edge_bias_mean": 0.44999356005025803,
+        "heads_positive_frac": 0.765625
+      }
+    }
+  },
+  "11": {
+    "heads_positive_frac": 0.3203125,
+    "edge_bias_mean": -0.09788342758703222,
+    "physical_seam_direction": "negative (rise)",
+    "tier2_meanbias_inband": -0.04748431145980324,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": -0.061165325650236586,
+        "heads_positive_frac": 0.421875
+      },
+      "02_code": {
+        "edge_bias_mean": -0.0864005723851522,
+        "heads_positive_frac": 0.3125
+      },
+      "03_templated": {
+        "edge_bias_mean": -0.14267656400036566,
+        "heads_positive_frac": 0.265625
+      },
+      "04_multilingual": {
+        "edge_bias_mean": -0.09262124976577694,
+        "heads_positive_frac": 0.34375
+      },
+      "05_needles": {
+        "edge_bias_mean": -0.1424342123012039,
+        "heads_positive_frac": 0.234375
+      },
+      "06_random": {
+        "edge_bias_mean": -0.062002641419457945,
+        "heads_positive_frac": 0.34375
+      }
+    }
+  },
+  "17": {
+    "heads_positive_frac": 0.4817708333333333,
+    "edge_bias_mean": 0.009031670190949975,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.06490703950516273,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.012334810166737573,
+        "heads_positive_frac": 0.453125
+      },
+      "02_code": {
+        "edge_bias_mean": 0.005911822015913888,
+        "heads_positive_frac": 0.484375
+      },
+      "03_templated": {
+        "edge_bias_mean": -0.016374178872592553,
+        "heads_positive_frac": 0.484375
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.004199940533402374,
+        "heads_positive_frac": 0.40625
+      },
+      "05_needles": {
+        "edge_bias_mean": -0.006638914316980931,
+        "heads_positive_frac": 0.515625
+      },
+      "06_random": {
+        "edge_bias_mean": 0.0547565416192195,
+        "heads_positive_frac": 0.546875
+      }
+    }
+  },
+  "23": {
+    "heads_positive_frac": 0.7057291666666666,
+    "edge_bias_mean": 0.16708147589925418,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.1951451923769174,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.27090370132931335,
+        "heads_positive_frac": 0.859375
+      },
+      "02_code": {
+        "edge_bias_mean": 0.21196573768189148,
+        "heads_positive_frac": 0.78125
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.05200819381123149,
+        "heads_positive_frac": 0.5625
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.30680101684512107,
+        "heads_positive_frac": 0.859375
+      },
+      "05_needles": {
+        "edge_bias_mean": -0.018777865438543626,
+        "heads_positive_frac": 0.46875
+      },
+      "06_random": {
+        "edge_bias_mean": 0.1795880711665115,
+        "heads_positive_frac": 0.703125
+      }
+    }
+  },
+  "29": {
+    "heads_positive_frac": 0.9140625,
+    "edge_bias_mean": 0.3092225448665602,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.269669969302442,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.45441217084724017,
+        "heads_positive_frac": 0.984375
+      },
+      "02_code": {
+        "edge_bias_mean": 0.2635602434144839,
+        "heads_positive_frac": 0.953125
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.19185262380565635,
+        "heads_positive_frac": 0.84375
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.474420585787465,
+        "heads_positive_frac": 0.984375
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.20778057729872929,
+        "heads_positive_frac": 0.8125
+      },
+      "06_random": {
+        "edge_bias_mean": 0.26330906804578635,
+        "heads_positive_frac": 0.90625
+      }
+    }
+  },
+  "35": {
+    "heads_positive_frac": 0.8958333333333334,
+    "edge_bias_mean": 0.37920107136780995,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.3905727323252661,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.5650860059478806,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 0.35915384700140185,
+        "heads_positive_frac": 0.984375
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.1853951599749275,
+        "heads_positive_frac": 0.796875
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.6122071189838909,
+        "heads_positive_frac": 0.984375
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.16710028014643774,
+        "heads_positive_frac": 0.65625
+      },
+      "06_random": {
+        "edge_bias_mean": 0.3862640161523211,
+        "heads_positive_frac": 0.953125
+      }
+    }
+  },
+  "41": {
+    "heads_positive_frac": 0.8802083333333334,
+    "edge_bias_mean": 0.3621321186113831,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.38210501380183326,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.5820098570329155,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 0.44640907149332487,
+        "heads_positive_frac": 1.0
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.06587298997135149,
+        "heads_positive_frac": 0.578125
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.5911330534734855,
+        "heads_positive_frac": 1.0
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.1138347743935691,
+        "heads_positive_frac": 0.75
+      },
+      "06_random": {
+        "edge_bias_mean": 0.37353296530365243,
+        "heads_positive_frac": 0.953125
+      }
+    }
+  },
+  "47": {
+    "heads_positive_frac": 0.9010416666666666,
+    "edge_bias_mean": 0.2653879675477207,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.31645896388361466,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.3318419849700622,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 0.2833250113744486,
+        "heads_positive_frac": 0.96875
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.16092823548875163,
+        "heads_positive_frac": 0.75
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.30189712270610136,
+        "heads_positive_frac": 0.984375
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.2174488043436106,
+        "heads_positive_frac": 0.796875
+      },
+      "06_random": {
+        "edge_bias_mean": 0.29688664640334994,
+        "heads_positive_frac": 0.90625
+      }
+    }
+  },
+  "53": {
+    "heads_positive_frac": 0.9270833333333334,
+    "edge_bias_mean": 0.2392118906293258,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.21228581733956098,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.39149516183998645,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 0.2720596918469058,
+        "heads_positive_frac": 1.0
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.10812126572709009,
+        "heads_positive_frac": 0.859375
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.37092126635606765,
+        "heads_positive_frac": 1.0
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.0793393441081664,
+        "heads_positive_frac": 0.734375
+      },
+      "06_random": {
+        "edge_bias_mean": 0.21333461389773833,
+        "heads_positive_frac": 0.96875
+      }
+    }
+  },
+  "59": {
+    "heads_positive_frac": 0.9453125,
+    "edge_bias_mean": 0.28081727113423416,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 0.46832832012060815,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 0.3737492838613817,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 0.2565650639251411,
+        "heads_positive_frac": 1.0
+      },
+      "03_templated": {
+        "edge_bias_mean": 0.07111467267185065,
+        "heads_positive_frac": 0.8125
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 0.3248681088131821,
+        "heads_positive_frac": 0.984375
+      },
+      "05_needles": {
+        "edge_bias_mean": 0.18646096753027513,
+        "heads_positive_frac": 0.875
+      },
+      "06_random": {
+        "edge_bias_mean": 0.4721455300035744,
+        "heads_positive_frac": 1.0
+      }
+    }
+  },
+  "65": {
+    "heads_positive_frac": 1.0,
+    "edge_bias_mean": 2.627541692199152,
+    "physical_seam_direction": "positive (drop)",
+    "tier2_meanbias_inband": 3.018791767384731,
+    "texts": {
+      "01_prose_en": {
+        "edge_bias_mean": 2.688044883492108,
+        "heads_positive_frac": 1.0
+      },
+      "02_code": {
+        "edge_bias_mean": 2.554460138958463,
+        "heads_positive_frac": 1.0
+      },
+      "03_templated": {
+        "edge_bias_mean": 2.505374608657634,
+        "heads_positive_frac": 1.0
+      },
+      "04_multilingual": {
+        "edge_bias_mean": 2.7024846048046656,
+        "heads_positive_frac": 1.0
+      },
+      "05_needles": {
+        "edge_bias_mean": 2.3468467123417716,
+        "heads_positive_frac": 1.0
+      },
+      "06_random": {
+        "edge_bias_mean": 2.968039204940272,
+        "heads_positive_frac": 1.0
+      }
+    }
+  }
+}

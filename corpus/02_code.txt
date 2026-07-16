@@ -1,0 +1,4715 @@
+# ==== __init__.py ====
+"""
+NumPy
+=====
+
+Provides
+  1. An array object of arbitrary homogeneous items
+  2. Fast mathematical operations over arrays
+  3. Linear Algebra, Fourier Transforms, Random Number Generation
+
+How to use the documentation
+----------------------------
+Documentation is available in two forms: docstrings provided
+with the code, and a loose standing reference guide, available from
+`the NumPy homepage <https://numpy.org>`_.
+
+We recommend exploring the docstrings using
+`IPython <https://ipython.org>`_, an advanced Python shell with
+TAB-completion and introspection capabilities.  See below for further
+instructions.
+
+The docstring examples assume that `numpy` has been imported as ``np``::
+
+  >>> import numpy as np
+
+Code snippets are indicated by three greater-than signs::
+
+  >>> x = 42
+  >>> x = x + 1
+
+Use the built-in ``help`` function to view a function's docstring::
+
+  >>> help(np.sort)
+  ... # doctest: +SKIP
+
+For some objects, ``np.info(obj)`` may provide additional help.  This is
+particularly true if you see the line "Help on ufunc object:" at the top
+of the help() page.  Ufuncs are implemented in C, not Python, for speed.
+The native Python help() does not know how to view their help, but our
+np.info() function does.
+
+Available subpackages
+---------------------
+lib
+    Basic functions used by several sub-packages.
+random
+    Core Random Tools
+linalg
+    Core Linear Algebra Tools
+fft
+    Core FFT routines
+polynomial
+    Polynomial tools
+testing
+    NumPy testing tools
+
+Utilities
+---------
+test
+    Run numpy unittests
+show_config
+    Show numpy build configuration
+__version__
+    NumPy version string
+
+Viewing documentation using IPython
+-----------------------------------
+
+Start IPython and import `numpy` usually under the alias ``np``: `import
+numpy as np`.  Then, directly past or use the ``%cpaste`` magic to paste
+examples into the shell.  To see which functions are available in `numpy`,
+type ``np.<TAB>`` (where ``<TAB>`` refers to the TAB key), or use
+``np.*cos*?<ENTER>`` (where ``<ENTER>`` refers to the ENTER key) to narrow
+down the list.  To view the docstring for a function, use
+``np.cos?<ENTER>`` (to view the docstring) and ``np.cos??<ENTER>`` (to view
+the source code).
+
+Copies vs. in-place operation
+-----------------------------
+Most of the functions in `numpy` return a copy of the array argument
+(e.g., `np.sort`).  In-place versions of these functions are often
+available as array methods, i.e. ``x = np.array([1,2,3]); x.sort()``.
+Exceptions to this rule are documented.
+
+"""
+
+
+# start delvewheel patch
+def _delvewheel_patch_1_11_2():
+    import os
+    if os.path.isdir(libs_dir := os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'numpy.libs'))):
+        os.add_dll_directory(libs_dir)
+
+
+_delvewheel_patch_1_11_2()
+del _delvewheel_patch_1_11_2
+# end delvewheel patch
+
+import os
+import sys
+import warnings
+
+# If a version with git hash was stored, use that instead
+from . import version
+from ._expired_attrs_2_0 import __expired_attributes__
+from ._globals import _CopyMode, _NoValue
+from .version import __version__
+
+# We first need to detect if we're being called as part of the numpy setup
+# procedure itself in a reliable manner.
+try:
+    __NUMPY_SETUP__  # noqa: B018
+except NameError:
+    __NUMPY_SETUP__ = False
+
+if __NUMPY_SETUP__:
+    sys.stderr.write('Running from numpy source directory.\n')
+else:
+    # Allow distributors to run custom init code before importing numpy._core
+    from . import _distributor_init
+
+    try:
+        from numpy.__config__ import show_config
+    except ImportError as e:
+        if isinstance(e, ModuleNotFoundError) and e.name == "numpy.__config__":
+            # The __config__ module itself was not found, so add this info:
+            msg = """Error importing numpy: you should not try to import numpy from
+            its source directory; please exit the numpy source tree, and relaunch
+            your python interpreter from there."""
+            raise ImportError(msg) from e
+        raise
+
+    from . import _core
+    from ._core import (
+        False_,
+        ScalarType,
+        True_,
+        abs,
+        absolute,
+        acos,
+        acosh,
+        add,
+        all,
+        allclose,
+        amax,
+        amin,
+        any,
+        arange,
+        arccos,
+        arccosh,
+        arcsin,
+        arcsinh,
+        arctan,
+        arctan2,
+        arctanh,
+        argmax,
+        argmin,
+        argpartition,
+        argsort,
+        argwhere,
+        around,
+        array,
+        array2string,
+        array_equal,
+        array_equiv,
+        array_repr,
+        array_str,
+        asanyarray,
+        asarray,
+        ascontiguousarray,
+        asfortranarray,
+        asin,
+        asinh,
+        astype,
+        atan,
+        atan2,
+        atanh,
+        atleast_1d,
+        atleast_2d,
+        atleast_3d,
+        base_repr,
+        binary_repr,
+        bitwise_and,
+        bitwise_count,
+        bitwise_invert,
+        bitwise_left_shift,
+        bitwise_not,
+        bitwise_or,
+        bitwise_right_shift,
+        bitwise_xor,
+        block,
+        bool,
+        bool_,
+        broadcast,
+        busday_count,
+        busday_offset,
+        busdaycalendar,
+        byte,
+        bytes_,
+        can_cast,
+        cbrt,
+        cdouble,
+        ceil,
+        character,
+        choose,
+        clip,
+        clongdouble,
+        complex64,
+        complex128,
+        complexfloating,
+        compress,
+        concat,
+        concatenate,
+        conj,
+        conjugate,
+        convolve,
+        copysign,
+        copyto,
+        correlate,
+        cos,
+        cosh,
+        count_nonzero,
+        cross,
+        csingle,
+        cumprod,
+        cumsum,
+        cumulative_prod,
+        cumulative_sum,
+        datetime64,
+        datetime_as_string,
+        datetime_data,
+        deg2rad,
+        degrees,
+        diagonal,
+        divide,
+        divmod,
+        dot,
+        double,
+        dtype,
+        e,
+        einsum,
+        einsum_path,
+        empty,
+        empty_like,
+        equal,
+        errstate,
+        euler_gamma,
+        exp,
+        exp2,
+        expm1,
+        fabs,
+        finfo,
+        flatiter,
+        flatnonzero,
+        flexible,
+        float16,
+        float32,
+        float64,
+        float_power,
+        floating,
+        floor,
+        floor_divide,
+        fmax,
+        fmin,
+        fmod,
+        format_float_positional,
+        format_float_scientific,
+        frexp,
+        from_dlpack,
+        frombuffer,
+        fromfile,
+        fromfunction,
+        fromiter,
+        frompyfunc,
+        fromstring,
+        full,
+        full_like,
+        gcd,
+        generic,
+        geomspace,
+        get_printoptions,
+        getbufsize,
+        geterr,
+        geterrcall,
+        greater,
+        greater_equal,
+        half,
+        heaviside,
+        hstack,
+        hypot,
+        identity,
+        iinfo,
+        indices,
+        inexact,
+        inf,
+        inner,
+        int8,
+        int16,
+        int32,
+        int64,
+        int_,
+        intc,
+        integer,
+        intp,
+        invert,
+        is_busday,
+        isclose,
+        isdtype,
+        isfinite,
+        isfortran,
+        isinf,
+        isnan,
+        isnat,
+        isscalar,
+        issubdtype,
+        lcm,
+        ldexp,
+        left_shift,
+        less,
+        less_equal,
+        lexsort,
+        linspace,
+        little_endian,
+        log,
+        log1p,
+        log2,
+        log10,
+        logaddexp,
+        logaddexp2,
+        logical_and,
+        logical_not,
+        logical_or,
+        logical_xor,
+        logspace,
+        long,
+        longdouble,
+        longlong,
+        matmul,
+        matrix_transpose,
+        matvec,
+        max,
+        maximum,
+        may_share_memory,
+        mean,
+        memmap,
+        min,
+        min_scalar_type,
+        minimum,
+        mod,
+        modf,
+        moveaxis,
+        multiply,
+        nan,
+        ndarray,
+        ndim,
+        nditer,
+        negative,
+        nested_iters,
+        newaxis,
+        nextafter,
+        nonzero,
+        not_equal,
+        number,
+        object_,
+        ones,
+        ones_like,
+        outer,
+        partition,
+        permute_dims,
+        pi,
+        positive,
+        pow,
+        power,
+        printoptions,
+        prod,
+        promote_types,
+        ptp,
+        put,
+        putmask,
+        rad2deg,
+        radians,
+        ravel,
+        recarray,
+        reciprocal,
+        record,
+        remainder,
+        repeat,
+        require,
+        reshape,
+        resize,
+        result_type,
+        right_shift,
+        rint,
+        roll,
+        rollaxis,
+        round,
+        sctypeDict,
+        searchsorted,
+        set_printoptions,
+        setbufsize,
+        seterr,
+        seterrcall,
+        shape,
+        shares_memory,
+        short,
+        sign,
+        signbit,
+        signedinteger,
+        sin,
+        single,
+        sinh,
+        size,
+        sort,
+        spacing,
+        sqrt,
+        square,
+        squeeze,
+        stack,
+        std,
+        str_,
+        subtract,
+        sum,
+        swapaxes,
+        take,
+        tan,
+        tanh,
+        tensordot,
+        timedelta64,
+        trace,
+        transpose,
+        true_divide,
+        trunc,
+        typecodes,
+        ubyte,
+        ufunc,
+        uint,
+        uint8,
+        uint16,
+        uint32,
+        uint64,
+        uintc,
+        uintp,
+        ulong,
+        ulonglong,
+        unsignedinteger,
+        unstack,
+        ushort,
+        var,
+        vdot,
+        vecdot,
+        vecmat,
+        void,
+        vstack,
+        where,
+        zeros,
+        zeros_like,
+    )
+
+    # NOTE: It's still under discussion whether these aliases
+    # should be removed.
+    for ta in ["float96", "float128", "complex192", "complex256"]:
+        try:
+            globals()[ta] = getattr(_core, ta)
+        except AttributeError:
+            pass
+    del ta
+
+    from . import lib, matrixlib as _mat
+    from .lib import scimath as emath
+    from .lib._arraypad_impl import pad
+    from .lib._arraysetops_impl import (
+        ediff1d,
+        intersect1d,
+        isin,
+        setdiff1d,
+        setxor1d,
+        union1d,
+        unique,
+        unique_all,
+        unique_counts,
+        unique_inverse,
+        unique_values,
+    )
+    from .lib._function_base_impl import (
+        angle,
+        append,
+        asarray_chkfinite,
+        average,
+        bartlett,
+        bincount,
+        blackman,
+        copy,
+        corrcoef,
+        cov,
+        delete,
+        diff,
+        digitize,
+        extract,
+        flip,
+        gradient,
+        hamming,
+        hanning,
+        i0,
+        insert,
+        interp,
+        iterable,
+        kaiser,
+        median,
+        meshgrid,
+        percentile,
+        piecewise,
+        place,
+        quantile,
+        rot90,
+        select,
+        sinc,
+        sort_complex,
+        trapezoid,
+        trim_zeros,
+        unwrap,
+        vectorize,
+    )
+    from .lib._histograms_impl import histogram, histogram_bin_edges, histogramdd
+    from .lib._index_tricks_impl import (
+        c_,
+        diag_indices,
+        diag_indices_from,
+        fill_diagonal,
+        index_exp,
+        ix_,
+        mgrid,
+        ndenumerate,
+        ndindex,
+        ogrid,
+        r_,
+        ravel_multi_index,
+        s_,
+        unravel_index,
+    )
+    from .lib._nanfunctions_impl import (
+        nanargmax,
+        nanargmin,
+        nancumprod,
+        nancumsum,
+        nanmax,
+        nanmean,
+        nanmedian,
+        nanmin,
+        nanpercentile,
+        nanprod,
+        nanquantile,
+        nanstd,
+        nansum,
+        nanvar,
+    )
+    from .lib._npyio_impl import (
+        fromregex,
+        genfromtxt,
+        load,
+        loadtxt,
+        packbits,
+        save,
+        savetxt,
+        savez,
+        savez_compressed,
+        unpackbits,
+    )
+    from .lib._polynomial_impl import (
+        poly,
+        poly1d,
+        polyadd,
+        polyder,
+        polydiv,
+        polyfit,
+        polyint,
+        polymul,
+        polysub,
+        polyval,
+        roots,
+    )
+    from .lib._shape_base_impl import (
+        apply_along_axis,
+        apply_over_axes,
+        array_split,
+        column_stack,
+        dsplit,
+        dstack,
+        expand_dims,
+        hsplit,
+        kron,
+        put_along_axis,
+        split,
+        take_along_axis,
+        tile,
+        vsplit,
+    )
+    from .lib._stride_tricks_impl import (
+        broadcast_arrays,
+        broadcast_shapes,
+        broadcast_to,
+    )
+    from .lib._twodim_base_impl import (
+        diag,
+        diagflat,
+        eye,
+        fliplr,
+        flipud,
+        histogram2d,
+        mask_indices,
+        tri,
+        tril,
+        tril_indices,
+        tril_indices_from,
+        triu,
+        triu_indices,
+        triu_indices_from,
+        vander,
+    )
+    from .lib._type_check_impl import (
+        common_type,
+        imag,
+        iscomplex,
+        iscomplexobj,
+        isreal,
+        isrealobj,
+        mintypecode,
+        nan_to_num,
+        real,
+        real_if_close,
+        typename,
+    )
+    from .lib._ufunclike_impl import fix, isneginf, isposinf
+    from .lib._utils_impl import get_include, info, show_runtime
+    from .matrixlib import asmatrix, bmat, matrix
+
+    # public submodules are imported lazily, therefore are accessible from
+    # __getattr__. Note that `array_api`
+    # (experimental label) is not added here, because `from numpy import *`
+    # must not raise any warnings - that's too disruptive.
+    __numpy_submodules__ = {
+        "linalg", "fft", "dtypes", "random", "polynomial", "ma",
+        "exceptions", "lib", "ctypeslib", "testing", "typing",
+        "f2py", "test", "rec", "char", "core", "strings",
+    }
+
+    # We build warning messages for former attributes
+    _msg = (
+        "module 'numpy' has no attribute '{n}'.\n"
+        "`np.{n}` was a deprecated alias for the builtin `{n}`. "
+        "To avoid this error in existing code, use `{n}` by itself. "
+        "Doing this will not modify any behavior and is safe. {extended_msg}\n"
+        "The aliases was originally deprecated in NumPy 1.20; for more "
+        "details and guidance see the original release note at:\n"
+        "    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations")
+
+    _specific_msg = (
+        "If you specifically wanted the numpy scalar type, use `np.{}` here.")
+
+    _int_extended_msg = (
+        "When replacing `np.{}`, you may wish to use e.g. `np.int64` "
+        "or `np.int32` to specify the precision. If you wish to review "
+        "your current use, check the release note link for "
+        "additional information.")
+
+    _type_info = [
+        ("object", ""),  # The NumPy scalar only exists by name.
+        ("float", _specific_msg.format("float64")),
+        ("complex", _specific_msg.format("complex128")),
+        ("str", _specific_msg.format("str_")),
+        ("int", _int_extended_msg.format("int"))]
+
+    __former_attrs__ = {
+         n: _msg.format(n=n, extended_msg=extended_msg)
+         for n, extended_msg in _type_info
+     }
+
+    # Some of these could be defined right away, but most were aliases to
+    # the Python objects and only removed in NumPy 1.24.  Defining them should
+    # probably wait for NumPy 1.26 or 2.0.
+    # When defined, these should possibly not be added to `__all__` to avoid
+    # import with `from numpy import *`.
+    __future_scalars__ = {"str", "bytes", "object"}
+
+    __array_api_version__ = "2025.12"
+
+    from ._array_api_info import __array_namespace_info__
+
+    __all__ = list(
+        __numpy_submodules__ |
+        set(_core.__all__) |
+        set(_mat.__all__) |
+        set(lib._histograms_impl.__all__) |
+        set(lib._nanfunctions_impl.__all__) |
+        set(lib._function_base_impl.__all__) |
+        set(lib._twodim_base_impl.__all__) |
+        set(lib._shape_base_impl.__all__) |
+        set(lib._type_check_impl.__all__) |
+        set(lib._arraysetops_impl.__all__) |
+        set(lib._ufunclike_impl.__all__) |
+        set(lib._arraypad_impl.__all__) |
+        set(lib._utils_impl.__all__) |
+        set(lib._stride_tricks_impl.__all__) |
+        set(lib._polynomial_impl.__all__) |
+        set(lib._npyio_impl.__all__) |
+        set(lib._index_tricks_impl.__all__) |
+        {"emath", "show_config", "__version__", "__array_namespace_info__"}
+    )
+
+    # Filter out Cython harmless warnings
+    warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+    warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+    warnings.filterwarnings("ignore", message="numpy.ndarray size changed")
+
+    def __getattr__(attr):
+        # Warn for expired attributes
+        import warnings
+
+        if attr == "linalg":
+            import numpy.linalg as linalg
+            return linalg
+        elif attr == "fft":
+            import numpy.fft as fft
+            return fft
+        elif attr == "dtypes":
+            import numpy.dtypes as dtypes
+            return dtypes
+        elif attr == "random":
+            import numpy.random as random
+            return random
+        elif attr == "polynomial":
+            import numpy.polynomial as polynomial
+            return polynomial
+        elif attr == "ma":
+            import numpy.ma as ma
+            return ma
+        elif attr == "ctypeslib":
+            import numpy.ctypeslib as ctypeslib
+            return ctypeslib
+        elif attr == "exceptions":
+            import numpy.exceptions as exceptions
+            return exceptions
+        elif attr == "testing":
+            import numpy.testing as testing
+            return testing
+        elif attr == "matlib":
+            import numpy.matlib as matlib
+            return matlib
+        elif attr == "f2py":
+            import numpy.f2py as f2py
+            return f2py
+        elif attr == "typing":
+            import numpy.typing as typing
+            return typing
+        elif attr == "rec":
+            import numpy.rec as rec
+            return rec
+        elif attr == "char":
+            import numpy.char as char
+            return char
+        elif attr == "core":
+            import numpy.core as core
+            return core
+        elif attr == "strings":
+            import numpy.strings as strings
+            return strings
+        if attr in __future_scalars__:
+            # And future warnings for those that will change, but also give
+            # the AttributeError
+            warnings.warn(
+                f"In the future `np.{attr}` will be defined as the "
+                "corresponding NumPy scalar.", FutureWarning, stacklevel=2)
+
+        if attr in __former_attrs__:
+            raise AttributeError(__former_attrs__[attr], name=None)
+
+        if attr in __expired_attributes__:
+            raise AttributeError(
+                f"`np.{attr}` was removed in the NumPy 2.0 release. "
+                f"{__expired_attributes__[attr]}",
+                name=None
+            )
+
+        raise AttributeError(f"module {__name__!r} has no attribute {attr!r}")
+
+    def __dir__():
+        public_symbols = (
+            globals().keys() | __numpy_submodules__
+        )
+        public_symbols -= {
+            "matrixlib", "matlib", "tests", "conftest", "version",
+            "array_api"
+        }
+        return list(public_symbols)
+
+    # Pytest testing
+    from numpy._pytesttester import PytestTester
+    test = PytestTester(__name__)
+    del PytestTester
+
+    def _sanity_check():
+        """
+        Quick sanity checks for common bugs caused by environment.
+        There are some cases e.g. with wrong BLAS ABI that cause wrong
+        results under specific runtime conditions that are not necessarily
+        achieved during test suite runs, and it is useful to catch those early.
+
+        See https://github.com/numpy/numpy/issues/8577 and other
+        similar bug reports.
+
+        """
+        try:
+            x = ones(2, dtype=float32)
+            if not abs(x.dot(x) - float32(2.0)) < 1e-5:
+                raise AssertionError
+        except AssertionError:
+            msg = ("The current Numpy installation ({!r}) fails to "
+                   "pass simple sanity checks. This can be caused for example "
+                   "by incorrect BLAS library being linked in, or by mixing "
+                   "package managers (pip, conda, apt, ...). Search closed "
+                   "numpy issues for similar problems.")
+            raise RuntimeError(msg.format(__file__)) from None
+
+    _sanity_check()
+    del _sanity_check
+
+    def _mac_os_check():
+        """
+        Quick Sanity check for Mac OS look for accelerate build bugs.
+        Testing numpy polyfit calls init_dgelsd(LAPACK)
+        """
+        try:
+            c = array([3., 2., 1.])
+            x = linspace(0, 2, 5)
+            y = polyval(c, x)
+            _ = polyfit(x, y, 2, cov=True)
+        except ValueError:
+            pass
+
+    if sys.platform == "darwin":
+        from . import exceptions
+        with warnings.catch_warnings(record=True) as w:
+            _mac_os_check()
+            # Throw runtime error, if the test failed
+            # Check for warning and report the error_message
+            if len(w) > 0:
+                for _wn in w:
+                    if _wn.category is exceptions.RankWarning:
+                        # Ignore other warnings, they may not be relevant (see gh-25433)
+                        error_message = (
+                            f"{_wn.category.__name__}: {_wn.message}"
+                        )
+                        msg = (
+                            "Polyfit sanity test emitted a warning, most likely due "
+                            "to using a buggy Accelerate backend."
+                            "\nIf you compiled yourself, more information is available at:"  # noqa: E501
+                            "\nhttps://numpy.org/devdocs/building/index.html"
+                            "\nOtherwise report this to the vendor "
+                            f"that provided NumPy.\n\n{error_message}\n")
+                        raise RuntimeError(msg)
+                del _wn
+            del w
+    del _mac_os_check
+
+    def blas_fpe_check():
+        if sys.platform != "darwin":
+            # We currently assume this is limited to MacOS as downstream NumPy
+            # import during dlopen caused a deadlock regression: gh-31284
+            return
+
+        # Check if BLAS adds spurious FPEs, seen on M4 arms with Accelerate.
+        # In this case we disable FPE reporting since the use of SME poisons
+        # it and Accelerate doesn't sanitize them.
+        with errstate(all='raise'):
+            x = ones((20, 20))
+            try:
+                x @ x
+            except FloatingPointError:
+                res = _core._multiarray_umath._blas_supports_fpe(False)
+                if res:  # res was not modified (hardcoded to True for now)
+                    warnings.warn(
+                        "Spurious warnings given by blas but suppression not "
+                        "set up on this platform. Please open a NumPy issue.",
+                        UserWarning, stacklevel=2)
+
+    blas_fpe_check()
+    del blas_fpe_check
+
+    def hugepage_setup():
+        """
+        We usually use madvise hugepages support, but on some old kernels it
+        is slow and thus better avoided. Specifically kernel version 4.6
+        had a bug fix which probably fixed this:
+        https://github.com/torvalds/linux/commit/7cf91a98e607c2f935dbcc177d70011e95b8faff
+        """
+        use_hugepage = os.environ.get("NUMPY_MADVISE_HUGEPAGE", None)
+        if sys.platform == "linux" and use_hugepage is None:
+            # If there is an issue with parsing the kernel version,
+            # set use_hugepage to 0. Usage of LooseVersion will handle
+            # the kernel version parsing better, but avoided since it
+            # will increase the import time.
+            # See: #16679 for related discussion.
+            try:
+                use_hugepage = 1
+                kernel_version = os.uname().release.split(".")[:2]
+                kernel_version = tuple(int(v) for v in kernel_version)
+                if kernel_version < (4, 6):
+                    use_hugepage = 0
+            except ValueError:
+                use_hugepage = 0
+        elif use_hugepage is None:
+            # This is not Linux, so it should not matter, just enable anyway
+            use_hugepage = 1
+        else:
+            use_hugepage = int(use_hugepage)
+        return use_hugepage
+
+    # Note that this will currently only make a difference on Linux
+    _core.multiarray._set_madvise_hugepage(hugepage_setup())
+    del hugepage_setup
+
+    # Give a warning if NumPy is reloaded or imported on a sub-interpreter
+    # We do this from python, since the C-module may not be reloaded and
+    # it is tidier organized.
+    _core.multiarray._multiarray_umath._reload_guard()
+
+    # TODO: Remove the environment variable entirely now that it is "weak"
+    if (os.environ.get("NPY_PROMOTION_STATE", "weak") != "weak"):
+        warnings.warn(
+            "NPY_PROMOTION_STATE was a temporary feature for NumPy 2.0 "
+            "transition and is ignored after NumPy 2.2.",
+            UserWarning, stacklevel=2)
+
+    # Tell PyInstaller where to find hook-numpy.py
+    def _pyinstaller_hooks_dir():
+        from pathlib import Path
+        return [str(Path(__file__).with_name("_pyinstaller").resolve())]
+
+
+# Remove symbols imported for internal use
+del os, sys, warnings
+
+
+# ==== auxfuncs.py ====
+"""
+Auxiliary functions for f2py2e.
+
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
+Permission to use, modify, and distribute this software is given under the
+terms of the NumPy (BSD style) LICENSE.
+
+NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
+"""
+import pprint
+import re
+import sys
+import types
+from functools import reduce
+
+from . import __version__, cfuncs
+from .cfuncs import errmess
+
+__all__ = [
+    'applyrules', 'debugcapi', 'dictappend', 'errmess', 'gentitle',
+    'getargs2', 'getcallprotoargument', 'getcallstatement',
+    'getfortranname', 'getpymethoddef', 'getrestdoc', 'getusercode',
+    'getusercode1', 'getdimension', 'hasbody', 'hascallstatement', 'hascommon',
+    'hasexternals', 'hasinitvalue', 'hasnote', 'hasresultnote',
+    'isallocatable', 'isarray', 'isarrayofstrings',
+    'ischaracter', 'ischaracterarray', 'ischaracter_or_characterarray',
+    'iscomplex', 'iscstyledirective',
+    'iscomplexarray', 'iscomplexfunction', 'iscomplexfunction_warn',
+    'isdouble', 'isdummyroutine', 'isexternal', 'isfunction',
+    'isfunction_wrap', 'isint1', 'isint1array', 'isinteger', 'isintent_aux',
+    'isintent_c', 'isintent_callback', 'isintent_copy', 'isintent_dict',
+    'isintent_hide', 'isintent_in', 'isintent_inout', 'isintent_inplace',
+    'isintent_nothide', 'isintent_out', 'isintent_overwrite', 'islogical',
+    'islogicalfunction', 'islong_complex', 'islong_double',
+    'islong_doublefunction', 'islong_long', 'islong_longfunction',
+    'ismodule', 'ismoduleroutine', 'isoptional', 'isprivate', 'isvariable',
+    'isrequired', 'isroutine', 'isscalar', 'issigned_long_longarray',
+    'isstring', 'isstringarray', 'isstring_or_stringarray', 'isstringfunction',
+    'issubroutine', 'get_f2py_modulename', 'issubroutine_wrap', 'isthreadsafe',
+    'isunsigned', 'isunsigned_char', 'isunsigned_chararray',
+    'isunsigned_long_long', 'isunsigned_long_longarray', 'isunsigned_short',
+    'isunsigned_shortarray', 'l_and', 'l_not', 'l_or', 'outmess', 'replace',
+    'show', 'stripcomma', 'throw_error', 'isattr_value', 'getuseblocks',
+    'process_f2cmap_dict', 'containscommon', 'containsderivedtypes'
+]
+
+
+f2py_version = __version__.version
+
+
+show = pprint.pprint
+
+options = {}
+debugoptions = []
+wrapfuncs = 1
+
+
+def outmess(t):
+    if options.get('verbose', 1):
+        sys.stdout.write(t)
+
+
+def debugcapi(var):
+    return 'capi' in debugoptions
+
+
+def _ischaracter(var):
+    return 'typespec' in var and var['typespec'] == 'character' and \
+           not isexternal(var)
+
+
+def _isstring(var):
+    return 'typespec' in var and var['typespec'] == 'character' and \
+           not isexternal(var)
+
+
+def ischaracter_or_characterarray(var):
+    return _ischaracter(var) and 'charselector' not in var
+
+
+def ischaracter(var):
+    return ischaracter_or_characterarray(var) and not isarray(var)
+
+
+def ischaracterarray(var):
+    return ischaracter_or_characterarray(var) and isarray(var)
+
+
+def isstring_or_stringarray(var):
+    return _ischaracter(var) and 'charselector' in var
+
+
+def isstring(var):
+    return isstring_or_stringarray(var) and not isarray(var)
+
+
+def isstringarray(var):
+    return isstring_or_stringarray(var) and isarray(var)
+
+
+def isarrayofstrings(var):  # obsolete?
+    # leaving out '*' for now so that `character*(*) a(m)` and `character
+    # a(m,*)` are treated differently. Luckily `character**` is illegal.
+    return isstringarray(var) and var['dimension'][-1] == '(*)'
+
+
+def isarray(var):
+    return 'dimension' in var and not isexternal(var)
+
+
+def isscalar(var):
+    return not (isarray(var) or isstring(var) or isexternal(var))
+
+
+def iscomplex(var):
+    return isscalar(var) and \
+           var.get('typespec') in ['complex', 'double complex']
+
+
+def islogical(var):
+    return isscalar(var) and var.get('typespec') == 'logical'
+
+
+def isinteger(var):
+    return isscalar(var) and var.get('typespec') == 'integer'
+
+
+def isreal(var):
+    return isscalar(var) and var.get('typespec') == 'real'
+
+
+def get_kind(var):
+    try:
+        return var['kindselector']['*']
+    except KeyError:
+        try:
+            return var['kindselector']['kind']
+        except KeyError:
+            pass
+
+
+def isint1(var):
+    return var.get('typespec') == 'integer' \
+        and get_kind(var) == '1' and not isarray(var)
+
+
+def islong_long(var):
+    if not isscalar(var):
+        return 0
+    if var.get('typespec') not in ['integer', 'logical']:
+        return 0
+    return get_kind(var) == '8'
+
+
+def isunsigned_char(var):
+    if not isscalar(var):
+        return 0
+    if var.get('typespec') != 'integer':
+        return 0
+    return get_kind(var) == '-1'
+
+
+def isunsigned_short(var):
+    if not isscalar(var):
+        return 0
+    if var.get('typespec') != 'integer':
+        return 0
+    return get_kind(var) == '-2'
+
+
+def isunsigned(var):
+    if not isscalar(var):
+        return 0
+    if var.get('typespec') != 'integer':
+        return 0
+    return get_kind(var) == '-4'
+
+
+def isunsigned_long_long(var):
+    if not isscalar(var):
+        return 0
+    if var.get('typespec') != 'integer':
+        return 0
+    return get_kind(var) == '-8'
+
+
+def isdouble(var):
+    if not isscalar(var):
+        return 0
+    if not var.get('typespec') == 'real':
+        return 0
+    return get_kind(var) == '8'
+
+
+def islong_double(var):
+    if not isscalar(var):
+        return 0
+    if not var.get('typespec') == 'real':
+        return 0
+    return get_kind(var) == '16'
+
+
+def islong_complex(var):
+    if not iscomplex(var):
+        return 0
+    return get_kind(var) == '32'
+
+
+def iscomplexarray(var):
+    return isarray(var) and \
+           var.get('typespec') in ['complex', 'double complex']
+
+
+def isint1array(var):
+    return isarray(var) and var.get('typespec') == 'integer' \
+        and get_kind(var) == '1'
+
+
+def isunsigned_chararray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '-1'
+
+
+def isunsigned_shortarray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '-2'
+
+
+def isunsignedarray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '-4'
+
+
+def isunsigned_long_longarray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '-8'
+
+
+def issigned_chararray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '1'
+
+
+def issigned_shortarray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '2'
+
+
+def issigned_array(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '4'
+
+
+def issigned_long_longarray(var):
+    return isarray(var) and var.get('typespec') in ['integer', 'logical']\
+        and get_kind(var) == '8'
+
+
+def isallocatable(var):
+    return 'attrspec' in var and 'allocatable' in var['attrspec']
+
+
+def ismutable(var):
+    return not ('dimension' not in var or isstring(var))
+
+
+def ismoduleroutine(rout):
+    return 'modulename' in rout
+
+
+def ismodule(rout):
+    return 'block' in rout and 'module' == rout['block']
+
+
+def isfunction(rout):
+    return 'block' in rout and 'function' == rout['block']
+
+
+def isfunction_wrap(rout):
+    if isintent_c(rout):
+        return 0
+    return wrapfuncs and isfunction(rout) and (not isexternal(rout))
+
+
+def issubroutine(rout):
+    return 'block' in rout and 'subroutine' == rout['block']
+
+
+def issubroutine_wrap(rout):
+    if isintent_c(rout):
+        return 0
+    return issubroutine(rout) and hasassumedshape(rout)
+
+def isattr_value(var):
+    return 'value' in var.get('attrspec', [])
+
+
+def hasassumedshape(rout):
+    if rout.get('hasassumedshape'):
+        return True
+    for a in rout['args']:
+        for d in rout['vars'].get(a, {}).get('dimension', []):
+            if d == ':':
+                rout['hasassumedshape'] = True
+                return True
+    return False
+
+
+def requiresf90wrapper(rout):
+    return ismoduleroutine(rout) or hasassumedshape(rout)
+
+
+def isroutine(rout):
+    return isfunction(rout) or issubroutine(rout)
+
+
+def islogicalfunction(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return islogical(rout['vars'][a])
+    return 0
+
+
+def islong_longfunction(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return islong_long(rout['vars'][a])
+    return 0
+
+
+def islong_doublefunction(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return islong_double(rout['vars'][a])
+    return 0
+
+
+def iscomplexfunction(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return iscomplex(rout['vars'][a])
+    return 0
+
+
+def iscomplexfunction_warn(rout):
+    if iscomplexfunction(rout):
+        outmess("""\
+    **************************************************************
+        Warning: code with a function returning complex value
+        may not work correctly with your Fortran compiler.
+        When using GNU gcc/g77 compilers, codes should work
+        correctly for callbacks with:
+        f2py -c -DF2PY_CB_RETURNCOMPLEX
+    **************************************************************\n""")
+        return 1
+    return 0
+
+
+def isstringfunction(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return isstring(rout['vars'][a])
+    return 0
+
+
+def hasexternals(rout):
+    return 'externals' in rout and rout['externals']
+
+
+def isthreadsafe(rout):
+    return 'f2pyenhancements' in rout and \
+           'threadsafe' in rout['f2pyenhancements']
+
+
+def hasvariables(rout):
+    return 'vars' in rout and rout['vars']
+
+
+def isoptional(var):
+    return ('attrspec' in var and 'optional' in var['attrspec'] and
+            'required' not in var['attrspec']) and isintent_nothide(var)
+
+
+def isexternal(var):
+    return 'attrspec' in var and 'external' in var['attrspec']
+
+
+def getdimension(var):
+    dimpattern = r"\((.*?)\)"
+    if 'attrspec' in var.keys():
+        if any('dimension' in s for s in var['attrspec']):
+            return next(re.findall(dimpattern, v) for v in var['attrspec'])
+
+
+def isrequired(var):
+    return not isoptional(var) and isintent_nothide(var)
+
+
+def iscstyledirective(f2py_line):
+    directives = {"callstatement", "callprotoargument", "pymethoddef"}
+    return any(directive in f2py_line.lower() for directive in directives)
+
+
+def isintent_in(var):
+    if 'intent' not in var:
+        return 1
+    if 'hide' in var['intent']:
+        return 0
+    if 'inplace' in var['intent']:
+        return 0
+    if 'in' in var['intent']:
+        return 1
+    if 'out' in var['intent']:
+        return 0
+    if 'inout' in var['intent']:
+        return 0
+    if 'outin' in var['intent']:
+        return 0
+    return 1
+
+
+def isintent_inout(var):
+    return ('intent' in var and ('inout' in var['intent'] or
+            'outin' in var['intent']) and 'in' not in var['intent'] and
+            'hide' not in var['intent'] and 'inplace' not in var['intent'])
+
+
+def isintent_out(var):
+    return 'out' in var.get('intent', [])
+
+
+def isintent_hide(var):
+    return ('intent' in var and ('hide' in var['intent'] or
+            ('out' in var['intent'] and 'in' not in var['intent'] and
+                (not l_or(isintent_inout, isintent_inplace)(var)))))
+
+
+def isintent_nothide(var):
+    return not isintent_hide(var)
+
+
+def isintent_c(var):
+    return 'c' in var.get('intent', [])
+
+
+def isintent_cache(var):
+    return 'cache' in var.get('intent', [])
+
+
+def isintent_copy(var):
+    return 'copy' in var.get('intent', [])
+
+
+def isintent_overwrite(var):
+    return 'overwrite' in var.get('intent', [])
+
+
+def isintent_callback(var):
+    return 'callback' in var.get('intent', [])
+
+
+def isintent_inplace(var):
+    return 'inplace' in var.get('intent', [])
+
+
+def isintent_aux(var):
+    return 'aux' in var.get('intent', [])
+
+
+def isintent_aligned4(var):
+    return 'aligned4' in var.get('intent', [])
+
+
+def isintent_aligned8(var):
+    return 'aligned8' in var.get('intent', [])
+
+
+def isintent_aligned16(var):
+    return 'aligned16' in var.get('intent', [])
+
+
+isintent_dict = {isintent_in: 'INTENT_IN', isintent_inout: 'INTENT_INOUT',
+                 isintent_out: 'INTENT_OUT', isintent_hide: 'INTENT_HIDE',
+                 isintent_cache: 'INTENT_CACHE',
+                 isintent_c: 'INTENT_C', isoptional: 'OPTIONAL',
+                 isintent_inplace: 'INTENT_INPLACE',
+                 isintent_aligned4: 'INTENT_ALIGNED4',
+                 isintent_aligned8: 'INTENT_ALIGNED8',
+                 isintent_aligned16: 'INTENT_ALIGNED16',
+                 }
+
+
+def isprivate(var):
+    return 'attrspec' in var and 'private' in var['attrspec']
+
+
+def isvariable(var):
+    # heuristic to find public/private declarations of filtered subroutines
+    if len(var) == 1 and 'attrspec' in var and \
+            var['attrspec'][0] in ('public', 'private'):
+        is_var = False
+    else:
+        is_var = True
+    return is_var
+
+def hasinitvalue(var):
+    return '=' in var
+
+
+def hasinitvalueasstring(var):
+    if not hasinitvalue(var):
+        return 0
+    return var['='][0] in ['"', "'"]
+
+
+def hasnote(var):
+    return 'note' in var
+
+
+def hasresultnote(rout):
+    if not isfunction(rout):
+        return 0
+    if 'result' in rout:
+        a = rout['result']
+    else:
+        a = rout['name']
+    if a in rout['vars']:
+        return hasnote(rout['vars'][a])
+    return 0
+
+
+def hascommon(rout):
+    return 'common' in rout
+
+
+def containscommon(rout):
+    if hascommon(rout):
+        return 1
+    if hasbody(rout):
+        for b in rout['body']:
+            if containscommon(b):
+                return 1
+    return 0
+
+
+def hasderivedtypes(rout):
+    return ('block' in rout) and rout['block'] == 'type'
+
+
+def containsderivedtypes(rout):
+    if hasderivedtypes(rout):
+        return 1
+    if hasbody(rout):
+        for b in rout['body']:
+            if hasderivedtypes(b):
+                return 1
+    return 0
+
+
+def containsmodule(block):
+    if ismodule(block):
+        return 1
+    if not hasbody(block):
+        return 0
+    for b in block['body']:
+        if containsmodule(b):
+            return 1
+    return 0
+
+
+def hasbody(rout):
+    return 'body' in rout
+
+
+def hascallstatement(rout):
+    return getcallstatement(rout) is not None
+
+
+def istrue(var):
+    return 1
+
+
+def isfalse(var):
+    return 0
+
+
+class F2PYError(Exception):
+    pass
+
+
+class throw_error:
+
+    def __init__(self, mess):
+        self.mess = mess
+
+    def __call__(self, var):
+        mess = f'\n\n  var = {var}\n  Message: {self.mess}\n'
+        raise F2PYError(mess)
+
+
+def l_and(*f):
+    l1, l2 = 'lambda v', []
+    for i in range(len(f)):
+        l1 = f'{l1},f{i}=f[{i}]'
+        l2.append(f'f{i}(v)')
+    return eval(f"{l1}:{' and '.join(l2)}")
+
+
+def l_or(*f):
+    l1, l2 = 'lambda v', []
+    for i in range(len(f)):
+        l1 = f'{l1},f{i}=f[{i}]'
+        l2.append(f'f{i}(v)')
+    return eval(f"{l1}:{' or '.join(l2)}")
+
+
+def l_not(f):
+    return eval('lambda v,f=f:not f(v)')
+
+
+def isdummyroutine(rout):
+    try:
+        return rout['f2pyenhancements']['fortranname'] == ''
+    except KeyError:
+        return 0
+
+
+def getfortranname(rout):
+    try:
+        name = rout['f2pyenhancements']['fortranname']
+        if name == '':
+            raise KeyError
+        if not name:
+            errmess(f"Failed to use fortranname from {rout['f2pyenhancements']}\n")
+            raise KeyError
+    except KeyError:
+        name = rout['name']
+    return name
+
+
+def getmultilineblock(rout, blockname, comment=1, counter=0):
+    try:
+        r = rout['f2pyenhancements'].get(blockname)
+    except KeyError:
+        return
+    if not r:
+        return
+    if counter > 0 and isinstance(r, str):
+        return
+    if isinstance(r, list):
+        if counter >= len(r):
+            return
+        r = r[counter]
+    if r[:3] == "'''":
+        if comment:
+            r = '\t/* start ' + blockname + \
+                ' multiline (' + repr(counter) + ') */\n' + r[3:]
+        else:
+            r = r[3:]
+        if r[-3:] == "'''":
+            if comment:
+                r = r[:-3] + '\n\t/* end multiline (' + repr(counter) + ')*/'
+            else:
+                r = r[:-3]
+        else:
+            errmess(f"{blockname} multiline block should end with `'''`: {repr(r)}\n")
+    return r
+
+
+def getcallstatement(rout):
+    return getmultilineblock(rout, 'callstatement')
+
+
+def getcallprotoargument(rout, cb_map={}):
+    r = getmultilineblock(rout, 'callprotoargument', comment=0)
+    if r:
+        return r
+    if hascallstatement(rout):
+        outmess(
+            'warning: callstatement is defined without callprotoargument\n')
+        return
+    from .capi_maps import getctype
+    arg_types, arg_types2 = [], []
+    if l_and(isstringfunction, l_not(isfunction_wrap))(rout):
+        arg_types.extend(['char*', 'size_t'])
+    for n in rout['args']:
+        var = rout['vars'][n]
+        if isintent_callback(var):
+            continue
+        if n in cb_map:
+            ctype = cb_map[n] + '_typedef'
+        else:
+            ctype = getctype(var)
+            if l_and(isintent_c, l_or(isscalar, iscomplex))(var):
+                pass
+            elif isstring(var):
+                pass
+            elif not isattr_value(var):
+                ctype = ctype + '*'
+            if (isstring(var)
+                 or isarrayofstrings(var)  # obsolete?
+                 or isstringarray(var)):
+                arg_types2.append('size_t')
+        arg_types.append(ctype)
+
+    proto_args = ','.join(arg_types + arg_types2)
+    if not proto_args:
+        proto_args = 'void'
+    return proto_args
+
+
+def getusercode(rout):
+    return getmultilineblock(rout, 'usercode')
+
+
+def getusercode1(rout):
+    return getmultilineblock(rout, 'usercode', counter=1)
+
+
+def getpymethoddef(rout):
+    return getmultilineblock(rout, 'pymethoddef')
+
+
+def getargs(rout):
+    sortargs, args = [], []
+    if 'args' in rout:
+        args = rout['args']
+        if 'sortvars' in rout:
+            for a in rout['sortvars']:
+                if a in args:
+                    sortargs.append(a)
+            for a in args:
+                if a not in sortargs:
+                    sortargs.append(a)
+        else:
+            sortargs = rout['args']
+    return args, sortargs
+
+
+def getargs2(rout):
+    sortargs, args = [], rout.get('args', [])
+    auxvars = [a for a in rout['vars'].keys() if isintent_aux(rout['vars'][a])
+               and a not in args]
+    args = auxvars + args
+    if 'sortvars' in rout:
+        for a in rout['sortvars']:
+            if a in args:
+                sortargs.append(a)
+        for a in args:
+            if a not in sortargs:
+                sortargs.append(a)
+    else:
+        sortargs = auxvars + rout['args']
+    return args, sortargs
+
+
+def getrestdoc(rout):
+    if 'f2pymultilines' not in rout:
+        return None
+    k = None
+    if rout['block'] == 'python module':
+        k = rout['block'], rout['name']
+    return rout['f2pymultilines'].get(k, None)
+
+
+def gentitle(name):
+    ln = (80 - len(name) - 6) // 2
+    return f"/*{ln * '*'} {name} {ln * '*'}*/"
+
+
+def flatlist(lst):
+    if isinstance(lst, list):
+        return reduce(lambda x, y, f=flatlist: x + f(y), lst, [])
+    return [lst]
+
+
+def stripcomma(s):
+    if s and s[-1] == ',':
+        return s[:-1]
+    return s
+
+
+def replace(str, d, defaultsep=''):
+    if isinstance(d, list):
+        return [replace(str, _m, defaultsep) for _m in d]
+    if isinstance(str, list):
+        return [replace(_m, d, defaultsep) for _m in str]
+    for k in 2 * list(d.keys()):
+        if k == 'separatorsfor':
+            continue
+        if 'separatorsfor' in d and k in d['separatorsfor']:
+            sep = d['separatorsfor'][k]
+        else:
+            sep = defaultsep
+        if isinstance(d[k], list):
+            str = str.replace(f'#{k}#', sep.join(flatlist(d[k])))
+        else:
+            str = str.replace(f'#{k}#', d[k])
+    return str
+
+
+def dictappend(rd, ar):
+    if isinstance(ar, list):
+        for a in ar:
+            rd = dictappend(rd, a)
+        return rd
+    for k in ar.keys():
+        if k[0] == '_':
+            continue
+        if k in rd:
+            if isinstance(rd[k], str):
+                rd[k] = [rd[k]]
+            if isinstance(rd[k], list):
+                if isinstance(ar[k], list):
+                    rd[k] = rd[k] + ar[k]
+                else:
+                    rd[k].append(ar[k])
+            elif isinstance(rd[k], dict):
+                if isinstance(ar[k], dict):
+                    if k == 'separatorsfor':
+                        for k1 in ar[k].keys():
+                            if k1 not in rd[k]:
+                                rd[k][k1] = ar[k][k1]
+                    else:
+                        rd[k] = dictappend(rd[k], ar[k])
+        else:
+            rd[k] = ar[k]
+    return rd
+
+
+def applyrules(rules, d, var={}):
+    ret = {}
+    if isinstance(rules, list):
+        for r in rules:
+            rr = applyrules(r, d, var)
+            ret = dictappend(ret, rr)
+            if '_break' in rr:
+                break
+        return ret
+    if '_check' in rules and (not rules['_check'](var)):
+        return ret
+    if 'need' in rules:
+        res = applyrules({'needs': rules['need']}, d, var)
+        if 'needs' in res:
+            cfuncs.append_needs(res['needs'])
+
+    for k in rules.keys():
+        if k == 'separatorsfor':
+            ret[k] = rules[k]
+            continue
+        if isinstance(rules[k], str):
+            ret[k] = replace(rules[k], d)
+        elif isinstance(rules[k], list):
+            ret[k] = []
+            for i in rules[k]:
+                ar = applyrules({k: i}, d, var)
+                if k in ar:
+                    ret[k].append(ar[k])
+        elif k[0] == '_':
+            continue
+        elif isinstance(rules[k], dict):
+            ret[k] = []
+            for k1 in rules[k].keys():
+                if isinstance(k1, types.FunctionType) and k1(var):
+                    if isinstance(rules[k][k1], list):
+                        for i in rules[k][k1]:
+                            if isinstance(i, dict):
+                                res = applyrules({'supertext': i}, d, var)
+                                i = res.get('supertext', '')
+                            ret[k].append(replace(i, d))
+                    else:
+                        i = rules[k][k1]
+                        if isinstance(i, dict):
+                            res = applyrules({'supertext': i}, d)
+                            i = res.get('supertext', '')
+                        ret[k].append(replace(i, d))
+        else:
+            errmess(f'applyrules: ignoring rule {repr(rules[k])}.\n')
+        if isinstance(ret[k], list):
+            if len(ret[k]) == 1:
+                ret[k] = ret[k][0]
+            if ret[k] == []:
+                del ret[k]
+    return ret
+
+
+_f2py_module_name_match = re.compile(r'\s*python\s*module\s*(?P<name>[\w_]+)',
+                                     re.I).match
+_f2py_user_module_name_match = re.compile(r'\s*python\s*module\s*(?P<name>[\w_]*?'
+                                          r'__user__[\w_]*)', re.I).match
+
+def get_f2py_modulename(source):
+    name = None
+    with open(source) as f:
+        for line in f:
+            m = _f2py_module_name_match(line)
+            if m:
+                if _f2py_user_module_name_match(line):  # skip *__user__* names
+                    continue
+                name = m.group('name')
+                break
+    return name
+
+def getuseblocks(pymod):
+    all_uses = []
+    for inner in pymod['body']:
+        for modblock in inner['body']:
+            if modblock.get('use'):
+                all_uses.extend([x for x in modblock.get("use").keys() if "__" not in x])
+    return all_uses
+
+def process_f2cmap_dict(f2cmap_all, new_map, c2py_map, verbose=False):
+    """
+    Update the Fortran-to-C type mapping dictionary with new mappings and
+    return a list of successfully mapped C types.
+
+    This function integrates a new mapping dictionary into an existing
+    Fortran-to-C type mapping dictionary. It ensures that all keys are in
+    lowercase and validates new entries against a given C-to-Python mapping
+    dictionary. Redefinitions and invalid entries are reported with a warning.
+
+    Parameters
+    ----------
+    f2cmap_all : dict
+        The existing Fortran-to-C type mapping dictionary that will be updated.
+        It should be a dictionary of dictionaries where the main keys represent
+        Fortran types and the nested dictionaries map Fortran type specifiers
+        to corresponding C types.
+
+    new_map : dict
+        A dictionary containing new type mappings to be added to `f2cmap_all`.
+        The structure should be similar to `f2cmap_all`, with keys representing
+        Fortran types and values being dictionaries of type specifiers and their
+        C type equivalents.
+
+    c2py_map : dict
+        A dictionary used for validating the C types in `new_map`. It maps C
+        types to corresponding Python types and is used to ensure that the C
+        types specified in `new_map` are valid.
+
+    verbose : boolean
+        A flag used to provide information about the types mapped
+
+    Returns
+    -------
+    tuple of (dict, list)
+        The updated Fortran-to-C type mapping dictionary and a list of
+        successfully mapped C types.
+    """
+    f2cmap_mapped = []
+
+    new_map_lower = {}
+    for k, d1 in new_map.items():
+        d1_lower = {k1.lower(): v1 for k1, v1 in d1.items()}
+        new_map_lower[k.lower()] = d1_lower
+
+    for k, d1 in new_map_lower.items():
+        if k not in f2cmap_all:
+            f2cmap_all[k] = {}
+
+        for k1, v1 in d1.items():
+            if v1 in c2py_map:
+                if k1 in f2cmap_all[k]:
+                    outmess(
+                        "\tWarning: redefinition of "
+                        f"{{'{k}':{{'{k1}':'{f2cmap_all[k][k1]}'->'{v1}'}}}}\n"
+                    )
+                f2cmap_all[k][k1] = v1
+                if verbose:
+                    outmess(f'\tMapping "{k}(kind={k1})" to "{v1}\"\n')
+                f2cmap_mapped.append(v1)
+            elif verbose:
+                c2py_map_keys = list(c2py_map.keys())
+                errmess(
+                    f"\tIgnoring map {{'{k}':{{'{k1}':'{v1}'}}}}: '{v1}' "
+                    f"must be in {c2py_map_keys}\n"
+                )
+
+    return f2cmap_all, f2cmap_mapped
+
+
+# ==== capi_maps.py ====
+"""
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
+Permission to use, modify, and distribute this software is given under the
+terms of the NumPy License.
+
+NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
+"""
+from . import __version__
+
+f2py_version = __version__.version
+
+import copy
+import os
+import re
+
+from . import cb_rules
+from ._isocbind import iso_c2py_map, iso_c_binding_map, isoc_c2pycode_map
+
+# The environment provided by auxfuncs.py is needed for some calls to eval.
+# As the needed functions cannot be determined by static inspection of the
+# code, it is safest to use import * pending a major refactoring of f2py.
+from .auxfuncs import *
+from .crackfortran import markoutercomma
+
+__all__ = [
+    'getctype', 'getstrlength', 'getarrdims', 'getpydocsign',
+    'getarrdocsign', 'getinit', 'sign2map', 'routsign2map', 'modsign2map',
+    'cb_sign2map', 'cb_routsign2map', 'common_sign2map', 'process_f2cmap_dict'
+]
+
+
+depargs = []
+lcb_map = {}
+lcb2_map = {}
+# forced casting: mainly caused by the fact that Python or Numeric
+#                 C/APIs do not support the corresponding C types.
+c2py_map = {'double': 'float',
+            'float': 'float',                          # forced casting
+            'long_double': 'float',                    # forced casting
+            'char': 'int',                             # forced casting
+            'signed_char': 'int',                      # forced casting
+            'unsigned_char': 'int',                    # forced casting
+            'short': 'int',                            # forced casting
+            'unsigned_short': 'int',                   # forced casting
+            'int': 'int',                              # forced casting
+            'long': 'int',
+            'long_long': 'long',
+            'unsigned': 'int',                         # forced casting
+            'complex_float': 'complex',                # forced casting
+            'complex_double': 'complex',
+            'complex_long_double': 'complex',          # forced casting
+            'string': 'string',
+            'character': 'bytes',
+            }
+
+c2capi_map = {'double': 'NPY_DOUBLE',
+                'float': 'NPY_FLOAT',
+                'long_double': 'NPY_LONGDOUBLE',
+                'char': 'NPY_BYTE',
+                'unsigned_char': 'NPY_UBYTE',
+                'signed_char': 'NPY_BYTE',
+                'short': 'NPY_SHORT',
+                'unsigned_short': 'NPY_USHORT',
+                'int': 'NPY_INT',
+                'unsigned': 'NPY_UINT',
+                'long': 'NPY_LONG',
+                'unsigned_long': 'NPY_ULONG',
+                'long_long': 'NPY_LONGLONG',
+                'unsigned_long_long': 'NPY_ULONGLONG',
+                'complex_float': 'NPY_CFLOAT',
+                'complex_double': 'NPY_CDOUBLE',
+                'complex_long_double': 'NPY_CLONGDOUBLE',
+                'string': 'NPY_STRING',
+                'character': 'NPY_STRING'}
+
+c2pycode_map = {'double': 'd',
+                'float': 'f',
+                'long_double': 'g',
+                'char': 'b',
+                'unsigned_char': 'B',
+                'signed_char': 'b',
+                'short': 'h',
+                'unsigned_short': 'H',
+                'int': 'i',
+                'unsigned': 'I',
+                'long': 'l',
+                'unsigned_long': 'L',
+                'long_long': 'q',
+                'unsigned_long_long': 'Q',
+                'complex_float': 'F',
+                'complex_double': 'D',
+                'complex_long_double': 'G',
+                'string': 'S',
+                'character': 'c'}
+
+# https://docs.python.org/3/c-api/arg.html#building-values
+c2buildvalue_map = {'double': 'd',
+                    'float': 'f',
+                    'char': 'b',
+                    'signed_char': 'b',
+                    'short': 'h',
+                    'int': 'i',
+                    'long': 'l',
+                    'long_long': 'L',
+                    'complex_float': 'N',
+                    'complex_double': 'N',
+                    'complex_long_double': 'N',
+                    'string': 'y',
+                    'character': 'c'}
+
+f2cmap_all = {'real': {'': 'float', '4': 'float', '8': 'double',
+                       '12': 'long_double', '16': 'long_double'},
+              'integer': {'': 'int', '1': 'signed_char', '2': 'short',
+                          '4': 'int', '8': 'long_long',
+                          '-1': 'unsigned_char', '-2': 'unsigned_short',
+                          '-4': 'unsigned', '-8': 'unsigned_long_long'},
+              'complex': {'': 'complex_float', '8': 'complex_float',
+                          '16': 'complex_double', '24': 'complex_long_double',
+                          '32': 'complex_long_double'},
+              'complexkind': {'': 'complex_float', '4': 'complex_float',
+                              '8': 'complex_double', '12': 'complex_long_double',
+                              '16': 'complex_long_double'},
+              'logical': {'': 'int', '1': 'char', '2': 'short', '4': 'int',
+                          '8': 'long_long'},
+              'double complex': {'': 'complex_double'},
+              'double precision': {'': 'double'},
+              'byte': {'': 'char'},
+              }
+
+# Add ISO_C handling
+c2pycode_map.update(isoc_c2pycode_map)
+c2py_map.update(iso_c2py_map)
+f2cmap_all, _ = process_f2cmap_dict(f2cmap_all, iso_c_binding_map, c2py_map)
+# End ISO_C handling
+f2cmap_default = copy.deepcopy(f2cmap_all)
+
+f2cmap_mapped = []
+
+def load_f2cmap_file(f2cmap_file):
+    global f2cmap_all, f2cmap_mapped
+
+    f2cmap_all = copy.deepcopy(f2cmap_default)
+
+    if f2cmap_file is None:
+        # Default value
+        f2cmap_file = '.f2py_f2cmap'
+        if not os.path.isfile(f2cmap_file):
+            return
+
+    # User defined additions to f2cmap_all.
+    # f2cmap_file must contain a dictionary of dictionaries, only. For
+    # example, {'real':{'low':'float'}} means that Fortran 'real(low)' is
+    # interpreted as C 'float'. This feature is useful for F90/95 users if
+    # they use PARAMETERS in type specifications.
+    try:
+        outmess(f'Reading f2cmap from {f2cmap_file!r} ...\n')
+        with open(f2cmap_file) as f:
+            d = eval(f.read().lower(), {}, {})
+        f2cmap_all, f2cmap_mapped = process_f2cmap_dict(f2cmap_all, d, c2py_map, True)
+        outmess('Successfully applied user defined f2cmap changes\n')
+    except Exception as msg:
+        errmess(f'Failed to apply user defined f2cmap changes: {msg}. Skipping.\n')
+
+
+cformat_map = {'double': '%g',
+               'float': '%g',
+               'long_double': '%Lg',
+               'char': '%d',
+               'signed_char': '%d',
+               'unsigned_char': '%hhu',
+               'short': '%hd',
+               'unsigned_short': '%hu',
+               'int': '%d',
+               'unsigned': '%u',
+               'long': '%ld',
+               'unsigned_long': '%lu',
+               'long_long': '%ld',
+               'complex_float': '(%g,%g)',
+               'complex_double': '(%g,%g)',
+               'complex_long_double': '(%Lg,%Lg)',
+               'string': '\\"%s\\"',
+               'character': "'%c'",
+               }
+
+# Auxiliary functions
+
+
+def getctype(var):
+    """
+    Determines C type
+    """
+    ctype = 'void'
+    if isfunction(var):
+        if 'result' in var:
+            a = var['result']
+        else:
+            a = var['name']
+        if a in var['vars']:
+            return getctype(var['vars'][a])
+        else:
+            errmess(f'getctype: function {a} has no return value?!\n')
+    elif issubroutine(var):
+        return ctype
+    elif ischaracter_or_characterarray(var):
+        return 'character'
+    elif isstring_or_stringarray(var):
+        return 'string'
+    elif 'typespec' in var and var['typespec'].lower() in f2cmap_all:
+        typespec = var['typespec'].lower()
+        f2cmap = f2cmap_all[typespec]
+        ctype = f2cmap['']  # default type
+        if 'kindselector' in var:
+            if '*' in var['kindselector']:
+                try:
+                    ctype = f2cmap[var['kindselector']['*']]
+                except KeyError:
+                    raw_typespec = var['typespec']
+                    star = var['kindselector']['*']
+                    errmess(f'getctype: "{raw_typespec} * {star}" not supported.\n')
+            elif 'kind' in var['kindselector']:
+                if typespec + 'kind' in f2cmap_all:
+                    f2cmap = f2cmap_all[typespec + 'kind']
+                try:
+                    ctype = f2cmap[var['kindselector']['kind']]
+                except KeyError:
+                    if typespec in f2cmap_all:
+                        f2cmap = f2cmap_all[typespec]
+                    try:
+                        ctype = f2cmap[str(var['kindselector']['kind'])]
+                    except KeyError:
+                        kind = var['kindselector']['kind']
+                        errmess(f'getctype: "{typespec}({kind=})" is mapped to C '
+                                f'"{ctype}" (to override define {{{typespec!r}: '
+                                f'{{{kind!r}: "<C typespec>"}}}} '
+                                f'in {os.getcwd()}/.f2py_f2cmap file).\n')
+    elif not isexternal(var):
+        errmess(f'getctype: No C-type found in "{var}", assuming void.\n')
+    return ctype
+
+
+def f2cexpr(expr):
+    """Rewrite Fortran expression as f2py supported C expression.
+
+    Due to the lack of a proper expression parser in f2py, this
+    function uses a heuristic approach that assumes that Fortran
+    arithmetic expressions are valid C arithmetic expressions when
+    mapping Fortran function calls to the corresponding C function/CPP
+    macros calls.
+
+    """
+    # TODO: support Fortran `len` function with optional kind parameter
+    expr = re.sub(r'\blen\b', 'f2py_slen', expr)
+    return expr
+
+
+def getstrlength(var):
+    if isstringfunction(var):
+        if 'result' in var:
+            a = var['result']
+        else:
+            a = var['name']
+        if a in var['vars']:
+            return getstrlength(var['vars'][a])
+        else:
+            errmess(f'getstrlength: function {a} has no return value?!\n')
+    if not isstring(var):
+        errmess(
+            f'getstrlength: expected a signature of a string but got: {repr(var)}\n')
+    len = '1'
+    if 'charselector' in var:
+        a = var['charselector']
+        if '*' in a:
+            len = a['*']
+        elif 'len' in a:
+            len = f2cexpr(a['len'])
+    if re.match(r'\(\s*(\*|:)\s*\)', len) or re.match(r'(\*|:)', len):
+        if isintent_hide(var):
+            errmess(f'getstrlength:intent(hide): expected a string with defined length '
+                    f'but got: {var!r}\n')
+        len = '-1'
+    return len
+
+
+def getarrdims(a, var, verbose=0):
+    ret = {}
+    if isstring(var) and not isarray(var):
+        ret['size'] = getstrlength(var)
+        ret['rank'] = '0'
+        ret['dims'] = ''
+    elif isscalar(var):
+        ret['size'] = '1'
+        ret['rank'] = '0'
+        ret['dims'] = ''
+    elif isarray(var):
+        dim = copy.copy(var['dimension'])
+        ret['size'] = '*'.join(dim)
+        try:
+            ret['size'] = repr(eval(ret['size']))
+        except Exception:
+            pass
+        ret['dims'] = ','.join(dim)
+        ret['rank'] = repr(len(dim))
+        ret['rank*[-1]'] = repr(len(dim) * [-1])[1:-1]
+        for i in range(len(dim)):  # solve dim for dependencies
+            v = []
+            if dim[i] in depargs:
+                v = [dim[i]]
+            else:
+                for va in depargs:
+                    if re.match(rf'.*?\b{va}\b.*', dim[i]):
+                        v.append(va)
+            for va in v:
+                if depargs.index(va) > depargs.index(a):
+                    dim[i] = '*'
+                    break
+        ret['setdims'], i = '', -1
+        for d in dim:
+            i = i + 1
+            if d not in ['*', ':', '(*)', '(:)']:
+                ret['setdims'] = f"{ret['setdims']}#varname#_Dims[{i}]={d},"
+        if ret['setdims']:
+            ret['setdims'] = ret['setdims'][:-1]
+        ret['cbsetdims'], i = '', -1
+        for d in var['dimension']:
+            i = i + 1
+            if d not in ['*', ':', '(*)', '(:)']:
+                ret['cbsetdims'] = f"{ret['cbsetdims']}#varname#_Dims[{i}]={d},"
+            elif isintent_in(var):
+                outmess('getarrdims:warning: assumed shape array, using 0 '
+                        f'instead of {d!r}\n')
+                ret['cbsetdims'] = f"{ret['cbsetdims']}#varname#_Dims[{i}]={0},"
+            elif verbose:
+                errmess(
+                    f'getarrdims: If in call-back function: array argument {repr(a)} must have bounded dimensions: got {repr(d)}\n')
+        if ret['cbsetdims']:
+            ret['cbsetdims'] = ret['cbsetdims'][:-1]
+#         if not isintent_c(var):
+#             var['dimension'].reverse()
+    return ret
+
+
+def getpydocsign(a, var):
+    global lcb_map
+    if isfunction(var):
+        if 'result' in var:
+            af = var['result']
+        else:
+            af = var['name']
+        if af in var['vars']:
+            return getpydocsign(af, var['vars'][af])
+        else:
+            errmess(f'getctype: function {af} has no return value?!\n')
+        return '', ''
+    sig, sigout = a, a
+    opt = ''
+    if isintent_in(var):
+        opt = 'input'
+    elif isintent_inout(var):
+        opt = 'in/output'
+    out_a = a
+    if isintent_out(var):
+        for k in var['intent']:
+            if k[:4] == 'out=':
+                out_a = k[4:]
+                break
+    init = ''
+    ctype = getctype(var)
+
+    if hasinitvalue(var):
+        init, showinit = getinit(a, var)
+        init = f', optional\\n    Default: {showinit}'
+    if isscalar(var):
+        if isintent_inout(var):
+            sig = (f"{a} : {opt} rank-0 array({c2py_map[ctype]},"
+                   f"'{c2pycode_map[ctype]}'){init}")
+        else:
+            sig = f'{a} : {opt} {c2py_map[ctype]}{init}'
+        sigout = f'{out_a} : {c2py_map[ctype]}'
+    elif isstring(var):
+        if isintent_inout(var):
+            sig = (f"{a} : {opt} rank-0 array(string(len={getstrlength(var)}),"
+                   f"'c'){init}")
+        else:
+            sig = f'{a} : {opt} string(len={getstrlength(var)}){init}'
+        sigout = f'{out_a} : string(len={getstrlength(var)})'
+    elif isarray(var):
+        dim = var['dimension']
+        rank = repr(len(dim))
+        dim_str = ','.join(dim)
+        sig = (f"{a} : {opt} rank-{rank} array('{c2pycode_map[ctype]}') with "
+               f"bounds ({dim_str}){init}")
+        if a == out_a:
+            sigout = (f"{a} : rank-{rank} array('{c2pycode_map[ctype]}') with "
+                      f"bounds ({dim_str})")
+        else:
+            sigout = (f"{out_a} : rank-{rank} array('{c2pycode_map[ctype]}') with "
+                      f"bounds ({dim_str}) and {a} storage")
+    elif isexternal(var):
+        ua = ''
+        if a in lcb_map and lcb_map[a] in lcb2_map and 'argname' in lcb2_map[lcb_map[a]]:
+            ua = lcb2_map[lcb_map[a]]['argname']
+            if not ua == a:
+                ua = f' => {ua}'
+            else:
+                ua = ''
+        sig = f'{a} : call-back function{ua}'
+        sigout = sig
+    else:
+        errmess(
+            f'getpydocsign: Could not resolve docsignature for "{a}".\n')
+    return sig, sigout
+
+
+def getarrdocsign(a, var):
+    ctype = getctype(var)
+    if isstring(var) and (not isarray(var)):
+        sig = f'{a} : rank-0 array(string(len={getstrlength(var)}),\'c\')'
+    elif isscalar(var):
+        sig = f'{a} : rank-0 array({c2py_map[ctype]},\'{c2pycode_map[ctype]}\')'
+    elif isarray(var):
+        dim = var['dimension']
+        rank = repr(len(dim))
+        dim_str = ','.join(dim)
+        sig = (f"{a} : rank-{rank} array('{c2pycode_map[ctype]}') with "
+               f"bounds ({dim_str})")
+    return sig
+
+
+def getinit(a, var):
+    if isstring(var):
+        init, showinit = '""', "''"
+    else:
+        init, showinit = '', ''
+    if hasinitvalue(var):
+        init = var['=']
+        showinit = init
+        if iscomplex(var) or iscomplexarray(var):
+            ret = {}
+
+            try:
+                v = var["="]
+                if ',' in v:
+                    ret['init.r'], ret['init.i'] = markoutercomma(
+                        v[1:-1]).split('@,@')
+                else:
+                    v = eval(v, {}, {})
+                    ret['init.r'], ret['init.i'] = str(v.real), str(v.imag)
+            except Exception:
+                raise ValueError(
+                    f'getinit: expected complex number `(r,i)\' but got `{init}\' as initial value of {a!r}.')
+            if isarray(var):
+                init = f"(capi_c.r={ret['init.r']},capi_c.i={ret['init.i']},capi_c)"
+        elif isstring(var):
+            if not init:
+                init, showinit = '""', "''"
+            if init[0] == "'":
+                escaped_init = init[1:-1].replace('"', '\\"')
+                init = f'"{escaped_init}"'
+            if init[0] == '"':
+                showinit = f"'{init[1:-1]}'"
+    return init, showinit
+
+
+def get_elsize(var):
+    if isstring(var) or isstringarray(var):
+        elsize = getstrlength(var)
+        # override with user-specified length when available:
+        elsize = var['charselector'].get('f2py_len', elsize)
+        return elsize
+    if ischaracter(var) or ischaracterarray(var):
+        return '1'
+    # for numerical types, PyArray_New* functions ignore specified
+    # elsize, so we just return 1 and let elsize be determined at
+    # runtime, see fortranobject.c
+    return '1'
+
+
+def sign2map(a, var):
+    """
+    varname,ctype,atype
+    init,init.r,init.i,pytype
+    vardebuginfo,vardebugshowvalue,varshowvalue
+    varrformat
+
+    intent
+    """
+    out_a = a
+    if isintent_out(var):
+        for k in var['intent']:
+            if k[:4] == 'out=':
+                out_a = k[4:]
+                break
+    ret = {'varname': a, 'outvarname': out_a, 'ctype': getctype(var)}
+    intent_flags = []
+    for f, s in isintent_dict.items():
+        if f(var):
+            intent_flags.append(f'F2PY_{s}')
+    if intent_flags:
+        # TODO: Evaluate intent_flags here.
+        ret['intent'] = '|'.join(intent_flags)
+    else:
+        ret['intent'] = 'F2PY_INTENT_IN'
+    if isarray(var):
+        ret['varrformat'] = 'N'
+    elif ret['ctype'] in c2buildvalue_map:
+        ret['varrformat'] = c2buildvalue_map[ret['ctype']]
+    else:
+        ret['varrformat'] = 'O'
+    ret['init'], ret['showinit'] = getinit(a, var)
+    if hasinitvalue(var) and iscomplex(var) and not isarray(var):
+        ret['init.r'], ret['init.i'] = markoutercomma(
+            ret['init'][1:-1]).split('@,@')
+    if isexternal(var):
+        ret['cbnamekey'] = a
+        if a in lcb_map:
+            ret['cbname'] = lcb_map[a]
+            ret['maxnofargs'] = lcb2_map[lcb_map[a]]['maxnofargs']
+            ret['nofoptargs'] = lcb2_map[lcb_map[a]]['nofoptargs']
+            ret['cbdocstr'] = lcb2_map[lcb_map[a]]['docstr']
+            ret['cblatexdocstr'] = lcb2_map[lcb_map[a]]['latexdocstr']
+        else:
+            ret['cbname'] = a
+            lcb_map_keys = list(lcb_map.keys())
+            errmess(f'sign2map: Confused: external {a} is not in '
+                    f'lcb_map{lcb_map_keys}.\n')
+    if isstring(var):
+        ret['length'] = getstrlength(var)
+    if isarray(var):
+        ret = dictappend(ret, getarrdims(a, var))
+        dim = copy.copy(var['dimension'])
+    if ret['ctype'] in c2capi_map:
+        ret['atype'] = c2capi_map[ret['ctype']]
+        ret['elsize'] = get_elsize(var)
+    # Debug info
+    if debugcapi(var):
+        il = [isintent_in, 'input', isintent_out, 'output',
+              isintent_inout, 'inoutput', isrequired, 'required',
+              isoptional, 'optional', isintent_hide, 'hidden',
+              iscomplex, 'complex scalar',
+              l_and(isscalar, l_not(iscomplex)), 'scalar',
+              isstring, 'string', isarray, 'array',
+              iscomplexarray, 'complex array', isstringarray, 'string array',
+              iscomplexfunction, 'complex function',
+              l_and(isfunction, l_not(iscomplexfunction)), 'function',
+              isexternal, 'callback',
+              isintent_callback, 'callback',
+              isintent_aux, 'auxiliary',
+              ]
+        rl = []
+        for i in range(0, len(il), 2):
+            if il[i](var):
+                rl.append(il[i + 1])
+        if isstring(var):
+            rl.append(f"slen({a})={ret['length']}")
+        if isarray(var):
+            ddim = ','.join(
+                map(lambda x, y: f'{x}|{y}', var['dimension'], dim))
+            rl.append(f'dims({ddim})')
+        rl_str = ','.join(rl)
+        if isexternal(var):
+            ret['vardebuginfo'] = f"debug-capi:{a}=>{ret['cbname']}:{rl_str}"
+        else:
+            ret['vardebuginfo'] = (f"debug-capi:{ret['ctype']} "
+                                   f"{a}={ret['showinit']}:{rl_str}")
+        if isscalar(var):
+            if ret['ctype'] in cformat_map:
+                ret['vardebugshowvalue'] = f"debug-capi:{a}={cformat_map[ret['ctype']]}"
+        if isstring(var):
+            ret['vardebugshowvalue'] = f'debug-capi:slen({a})=%d {a}=\\"%s\\"'
+        if isexternal(var):
+            ret['vardebugshowvalue'] = f'debug-capi:{a}=%p'
+    if ret['ctype'] in cformat_map:
+        ret['varshowvalue'] = f"#name#:{a}={cformat_map[ret['ctype']]}"
+        ret['showvalueformat'] = f"{cformat_map[ret['ctype']]}"
+    if isstring(var):
+        ret['varshowvalue'] = f'#name#:slen({a})=%d {a}=\\"%s\\"'
+    ret['pydocsign'], ret['pydocsignout'] = getpydocsign(a, var)
+    if hasnote(var):
+        ret['note'] = var['note']
+    return ret
+
+
+def routsign2map(rout):
+    """
+    name,NAME,begintitle,endtitle
+    rname,ctype,rformat
+    routdebugshowvalue
+    """
+    global lcb_map
+    name = rout['name']
+    fname = getfortranname(rout)
+    ret = {'name': name,
+           'texname': name.replace('_', '\\_'),
+           'name_lower': name.lower(),
+           'NAME': name.upper(),
+           'begintitle': gentitle(name),
+           'endtitle': gentitle(f'end of {name}'),
+           'fortranname': fname,
+           'FORTRANNAME': fname.upper(),
+           'callstatement': getcallstatement(rout) or '',
+           'usercode': getusercode(rout) or '',
+           'usercode1': getusercode1(rout) or '',
+           }
+    if '_' in fname:
+        ret['F_FUNC'] = 'F_FUNC_US'
+    else:
+        ret['F_FUNC'] = 'F_FUNC'
+    if '_' in name:
+        ret['F_WRAPPEDFUNC'] = 'F_WRAPPEDFUNC_US'
+    else:
+        ret['F_WRAPPEDFUNC'] = 'F_WRAPPEDFUNC'
+    lcb_map = {}
+    if 'use' in rout:
+        for u in rout['use'].keys():
+            if u in cb_rules.cb_map:
+                for un in cb_rules.cb_map[u]:
+                    ln = un[0]
+                    if 'map' in rout['use'][u]:
+                        for k in rout['use'][u]['map'].keys():
+                            if rout['use'][u]['map'][k] == un[0]:
+                                ln = k
+                                break
+                    lcb_map[ln] = un[1]
+    elif rout.get('externals'):
+        externals = rout['externals']
+        errmess(f"routsign2map: Confused: function {ret['name']} has externals "
+                f'{externals!r} but no "use" statement.\n')
+    ret['callprotoargument'] = getcallprotoargument(rout, lcb_map) or ''
+    if isfunction(rout):
+        if 'result' in rout:
+            a = rout['result']
+        else:
+            a = rout['name']
+        ret['rname'] = a
+        ret['pydocsign'], ret['pydocsignout'] = getpydocsign(a, rout)
+        ret['ctype'] = getctype(rout['vars'][a])
+        if hasresultnote(rout):
+            ret['resultnote'] = rout['vars'][a]['note']
+            rout['vars'][a]['note'] = ['See elsewhere.']
+        if ret['ctype'] in c2buildvalue_map:
+            ret['rformat'] = c2buildvalue_map[ret['ctype']]
+        else:
+            ret['rformat'] = 'O'
+            errmess(f"routsign2map: no c2buildvalue key for type {ret['ctype']!r}\n")
+        if debugcapi(rout):
+            if ret['ctype'] in cformat_map:
+                ret['routdebugshowvalue'] = ("debug-capi:"
+                                             f"{a}={cformat_map[ret['ctype']]}")
+            if isstringfunction(rout):
+                ret['routdebugshowvalue'] = f'debug-capi:slen({a})=%d {a}=\\"%s\\"'
+        if isstringfunction(rout):
+            ret['rlength'] = getstrlength(rout['vars'][a])
+            if ret['rlength'] == '-1':
+                errmess("routsign2map: expected explicit specification of the length "
+                        "of the string returned by the fortran function "
+                        f"{rout['name']!r}; taking 10.\n")
+                ret['rlength'] = '10'
+    if hasnote(rout):
+        ret['note'] = rout['note']
+        rout['note'] = ['See elsewhere.']
+    return ret
+
+
+def modsign2map(m):
+    """
+    modulename
+    """
+    if ismodule(m):
+        ret = {'f90modulename': m['name'],
+               'F90MODULENAME': m['name'].upper(),
+               'texf90modulename': m['name'].replace('_', '\\_')}
+    else:
+        ret = {'modulename': m['name'],
+               'MODULENAME': m['name'].upper(),
+               'texmodulename': m['name'].replace('_', '\\_')}
+    ret['restdoc'] = getrestdoc(m) or []
+    if hasnote(m):
+        ret['note'] = m['note']
+    ret['usercode'] = getusercode(m) or ''
+    ret['usercode1'] = getusercode1(m) or ''
+    if m['body']:
+        ret['interface_usercode'] = getusercode(m['body'][0]) or ''
+    else:
+        ret['interface_usercode'] = ''
+    ret['pymethoddef'] = getpymethoddef(m) or ''
+    if 'gil_used' in m:
+        ret['gil_used'] = m['gil_used']
+    if 'coutput' in m:
+        ret['coutput'] = m['coutput']
+    if 'f2py_wrapper_output' in m:
+        ret['f2py_wrapper_output'] = m['f2py_wrapper_output']
+    return ret
+
+
+def cb_sign2map(a, var, index=None):
+    ret = {'varname': a}
+    ret['varname_i'] = ret['varname']
+    ret['ctype'] = getctype(var)
+    if ret['ctype'] in c2capi_map:
+        ret['atype'] = c2capi_map[ret['ctype']]
+        ret['elsize'] = get_elsize(var)
+    if ret['ctype'] in cformat_map:
+        ret['showvalueformat'] = f"{cformat_map[ret['ctype']]}"
+    if isarray(var):
+        ret = dictappend(ret, getarrdims(a, var))
+    ret['pydocsign'], ret['pydocsignout'] = getpydocsign(a, var)
+    if hasnote(var):
+        ret['note'] = var['note']
+        var['note'] = ['See elsewhere.']
+    return ret
+
+
+def cb_routsign2map(rout, um):
+    """
+    name,begintitle,endtitle,argname
+    ctype,rctype,maxnofargs,nofoptargs,returncptr
+    """
+    ret = {'name': f"cb_{rout['name']}_in_{um}",
+           'returncptr': ''}
+    if isintent_callback(rout):
+        if '_' in rout['name']:
+            F_FUNC = 'F_FUNC_US'
+        else:
+            F_FUNC = 'F_FUNC'
+        ret['callbackname'] = f"{F_FUNC}({rout['name'].lower()},{rout['name'].upper()})"
+        ret['static'] = 'extern'
+    else:
+        ret['callbackname'] = ret['name']
+        ret['static'] = 'static'
+    ret['argname'] = rout['name']
+    ret['begintitle'] = gentitle(ret['name'])
+    ret['endtitle'] = gentitle(f"end of {ret['name']}")
+    ret['ctype'] = getctype(rout)
+    ret['rctype'] = 'void'
+    if ret['ctype'] == 'string':
+        ret['rctype'] = 'void'
+    else:
+        ret['rctype'] = ret['ctype']
+    if ret['rctype'] != 'void':
+        if iscomplexfunction(rout):
+            ret['returncptr'] = """
+#ifdef F2PY_CB_RETURNCOMPLEX
+return_value=
+#endif
+"""
+        else:
+            ret['returncptr'] = 'return_value='
+    if ret['ctype'] in cformat_map:
+        ret['showvalueformat'] = f"{cformat_map[ret['ctype']]}"
+    if isstringfunction(rout):
+        ret['strlength'] = getstrlength(rout)
+    if isfunction(rout):
+        if 'result' in rout:
+            a = rout['result']
+        else:
+            a = rout['name']
+        if hasnote(rout['vars'][a]):
+            ret['note'] = rout['vars'][a]['note']
+            rout['vars'][a]['note'] = ['See elsewhere.']
+        ret['rname'] = a
+        ret['pydocsign'], ret['pydocsignout'] = getpydocsign(a, rout)
+        if iscomplexfunction(rout):
+            ret['rctype'] = """
+#ifdef F2PY_CB_RETURNCOMPLEX
+#ctype#
+#else
+void
+#endif
+"""
+    elif hasnote(rout):
+        ret['note'] = rout['note']
+        rout['note'] = ['See elsewhere.']
+    nofargs = 0
+    nofoptargs = 0
+    if 'args' in rout and 'vars' in rout:
+        for a in rout['args']:
+            var = rout['vars'][a]
+            if l_or(isintent_in, isintent_inout)(var):
+                nofargs = nofargs + 1
+                if isoptional(var):
+                    nofoptargs = nofoptargs + 1
+    ret['maxnofargs'] = repr(nofargs)
+    ret['nofoptargs'] = repr(nofoptargs)
+    if hasnote(rout) and isfunction(rout) and 'result' in rout:
+        ret['routnote'] = rout['note']
+        rout['note'] = ['See elsewhere.']
+    return ret
+
+
+def common_sign2map(a, var):  # obsolete
+    ret = {'varname': a, 'ctype': getctype(var)}
+    if isstringarray(var):
+        ret['ctype'] = 'char'
+    if ret['ctype'] in c2capi_map:
+        ret['atype'] = c2capi_map[ret['ctype']]
+        ret['elsize'] = get_elsize(var)
+    if ret['ctype'] in cformat_map:
+        ret['showvalueformat'] = f"{cformat_map[ret['ctype']]}"
+    if isarray(var):
+        ret = dictappend(ret, getarrdims(a, var))
+    elif isstring(var):
+        ret['size'] = getstrlength(var)
+        ret['rank'] = '1'
+    ret['pydocsign'], ret['pydocsignout'] = getpydocsign(a, var)
+    if hasnote(var):
+        ret['note'] = var['note']
+        var['note'] = ['See elsewhere.']
+    # for strings this returns 0-rank but actually is 1-rank
+    ret['arrdocstr'] = getarrdocsign(a, var)
+    return ret
+
+
+# ==== cb_rules.py ====
+"""
+Build call-back mechanism for f2py2e.
+
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
+Permission to use, modify, and distribute this software is given under the
+terms of the NumPy License.
+
+NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
+"""
+from . import __version__, cfuncs
+from .auxfuncs import (
+    applyrules,
+    debugcapi,
+    dictappend,
+    errmess,
+    getargs,
+    hasnote,
+    isarray,
+    iscomplex,
+    iscomplexarray,
+    iscomplexfunction,
+    isfunction,
+    isintent_c,
+    isintent_hide,
+    isintent_in,
+    isintent_inout,
+    isintent_nothide,
+    isintent_out,
+    isoptional,
+    isrequired,
+    isscalar,
+    isstring,
+    isstringfunction,
+    issubroutine,
+    l_and,
+    l_not,
+    l_or,
+    outmess,
+    replace,
+    stripcomma,
+    throw_error,
+)
+
+f2py_version = __version__.version
+
+
+################## Rules for callback function ##############
+
+cb_routine_rules = {
+    'cbtypedefs': 'typedef #rctype#(*#name#_typedef)(#optargs_td##args_td##strarglens_td##noargs#);',
+    'body': """
+#begintitle#
+typedef struct {
+    PyObject *capi;
+    PyTupleObject *args_capi;
+    int nofargs;
+    jmp_buf jmpbuf;
+} #name#_t;
+
+#if defined(F2PY_THREAD_LOCAL_DECL) && !defined(F2PY_USE_PYTHON_TLS)
+
+static F2PY_THREAD_LOCAL_DECL #name#_t *_active_#name# = NULL;
+
+static #name#_t *swap_active_#name#(#name#_t *ptr) {
+    #name#_t *prev = _active_#name#;
+    _active_#name# = ptr;
+    return prev;
+}
+
+static #name#_t *get_active_#name#(void) {
+    return _active_#name#;
+}
+
+#else
+
+static #name#_t *swap_active_#name#(#name#_t *ptr) {
+    char *key = "__f2py_cb_#name#";
+    return (#name#_t *)F2PySwapThreadLocalCallbackPtr(key, ptr);
+}
+
+static #name#_t *get_active_#name#(void) {
+    char *key = "__f2py_cb_#name#";
+    return (#name#_t *)F2PyGetThreadLocalCallbackPtr(key);
+}
+
+#endif
+
+/*typedef #rctype#(*#name#_typedef)(#optargs_td##args_td##strarglens_td##noargs#);*/
+#static# #rctype# #callbackname# (#optargs##args##strarglens##noargs#) {
+    #name#_t cb_local = { NULL, NULL, 0 };
+    #name#_t *cb = NULL;
+    PyTupleObject *capi_arglist = NULL;
+    PyObject *capi_return = NULL;
+    PyObject *capi_tmp = NULL;
+    PyObject *capi_arglist_list = NULL;
+    int capi_j,capi_i = 0;
+    int capi_longjmp_ok = 1;
+#decl#
+#ifdef F2PY_REPORT_ATEXIT
+f2py_cb_start_clock();
+#endif
+    cb = get_active_#name#();
+    if (cb == NULL) {
+        capi_longjmp_ok = 0;
+        cb = &cb_local;
+    }
+    capi_arglist = cb->args_capi;
+    CFUNCSMESS(\"cb:Call-back function #name# (maxnofargs=#maxnofargs#(-#nofoptargs#))\\n\");
+    CFUNCSMESSPY(\"cb:#name#_capi=\",cb->capi);
+    if (cb->capi==NULL) {
+        capi_longjmp_ok = 0;
+        cb->capi = PyObject_GetAttrString(#modulename#_module,\"#argname#\");
+        CFUNCSMESSPY(\"cb:#name#_capi=\",cb->capi);
+    }
+    if (cb->capi==NULL) {
+        PyErr_SetString(#modulename#_error,\"cb: Callback #argname# not defined (as an argument or module #modulename# attribute).\\n\");
+        goto capi_fail;
+    }
+    if (F2PyCapsule_Check(cb->capi)) {
+    #name#_typedef #name#_cptr;
+    #name#_cptr = F2PyCapsule_AsVoidPtr(cb->capi);
+    #returncptr#(*#name#_cptr)(#optargs_nm##args_nm##strarglens_nm#);
+    #return#
+    }
+    if (capi_arglist==NULL) {
+        capi_longjmp_ok = 0;
+        capi_tmp = PyObject_GetAttrString(#modulename#_module,\"#argname#_extra_args\");
+        if (capi_tmp) {
+            capi_arglist = (PyTupleObject *)PySequence_Tuple(capi_tmp);
+            Py_DECREF(capi_tmp);
+            if (capi_arglist==NULL) {
+                PyErr_SetString(#modulename#_error,\"Failed to convert #modulename#.#argname#_extra_args to tuple.\\n\");
+                goto capi_fail;
+            }
+        } else {
+            PyErr_Clear();
+            capi_arglist = (PyTupleObject *)Py_BuildValue(\"()\");
+        }
+    }
+    if (capi_arglist == NULL) {
+        PyErr_SetString(#modulename#_error,\"Callback #argname# argument list is not set.\\n\");
+        goto capi_fail;
+    }
+#setdims#
+#define CAPI_ARGLIST_SETITEM(idx, value) PyTuple_SetItem((PyObject *)capi_arglist, idx, value)
+#pyobjfrom#
+#undef CAPI_ARGLIST_SETITEM
+CFUNCSMESSPY(\"cb:capi_arglist=\",capi_arglist);
+CFUNCSMESS(\"cb:Call-back calling Python function #argname#.\\n\");
+#ifdef F2PY_REPORT_ATEXIT
+f2py_cb_start_call_clock();
+#endif
+capi_return = PyObject_CallObject(cb->capi,(PyObject *)capi_arglist);
+#ifdef F2PY_REPORT_ATEXIT
+f2py_cb_stop_call_clock();
+#endif
+    CFUNCSMESSPY(\"cb:capi_return=\",capi_return);
+    if (capi_return == NULL) {
+        fprintf(stderr,\"capi_return is NULL\\n\");
+        goto capi_fail;
+    }
+    if (capi_return == Py_None) {
+        Py_DECREF(capi_return);
+        capi_return = Py_BuildValue(\"()\");
+    }
+    else if (!PyTuple_Check(capi_return)) {
+        capi_return = Py_BuildValue(\"(N)\",capi_return);
+    }
+    capi_j = PyTuple_Size(capi_return);
+    capi_i = 0;
+#frompyobj#
+    CFUNCSMESS(\"cb:#name#:successful\\n\");
+    Py_DECREF(capi_return);
+#ifdef F2PY_REPORT_ATEXIT
+f2py_cb_stop_clock();
+#endif
+    goto capi_return_pt;
+capi_fail:
+    fprintf(stderr,\"Call-back #name# failed.\\n\");
+    Py_XDECREF(capi_return);
+    Py_XDECREF(capi_arglist_list);
+    if (capi_longjmp_ok) {
+        longjmp(cb->jmpbuf,-1);
+    }
+capi_return_pt:
+    ;
+#return#
+}
+#endtitle#
+""",
+    'need': ['setjmp.h', 'CFUNCSMESS', 'F2PY_THREAD_LOCAL_DECL'],
+    'maxnofargs': '#maxnofargs#',
+    'nofoptargs': '#nofoptargs#',
+    'docstr': """\
+    def #argname#(#docsignature#): return #docreturn#\\n\\
+#docstrsigns#""",
+    'latexdocstr': """
+{{}\\verb@def #argname#(#latexdocsignature#): return #docreturn#@{}}
+#routnote#
+
+#latexdocstrsigns#""",
+    'docstrshort': 'def #argname#(#docsignature#): return #docreturn#'
+}
+cb_rout_rules = [
+    {  # Init
+        'separatorsfor': {'decl': '\n',
+                          'args': ',', 'optargs': '', 'pyobjfrom': '\n', 'freemem': '\n',
+                          'args_td': ',', 'optargs_td': '',
+                          'args_nm': ',', 'optargs_nm': '',
+                          'frompyobj': '\n', 'setdims': '\n',
+                          'docstrsigns': '\\n"\n"',
+                          'latexdocstrsigns': '\n',
+                          'latexdocstrreq': '\n', 'latexdocstropt': '\n',
+                          'latexdocstrout': '\n', 'latexdocstrcbs': '\n',
+                          },
+        'decl': '/*decl*/', 'pyobjfrom': '/*pyobjfrom*/', 'frompyobj': '/*frompyobj*/',
+        'args': [], 'optargs': '', 'return': '', 'strarglens': '', 'freemem': '/*freemem*/',
+        'args_td': [], 'optargs_td': '', 'strarglens_td': '',
+        'args_nm': [], 'optargs_nm': '', 'strarglens_nm': '',
+        'noargs': '',
+        'setdims': '/*setdims*/',
+        'docstrsigns': '', 'latexdocstrsigns': '',
+        'docstrreq': '    Required arguments:',
+        'docstropt': '    Optional arguments:',
+        'docstrout': '    Return objects:',
+        'docstrcbs': '    Call-back functions:',
+        'docreturn': '', 'docsign': '', 'docsignopt': '',
+        'latexdocstrreq': '\\noindent Required arguments:',
+        'latexdocstropt': '\\noindent Optional arguments:',
+        'latexdocstrout': '\\noindent Return objects:',
+        'latexdocstrcbs': '\\noindent Call-back functions:',
+        'routnote': {hasnote: '--- #note#', l_not(hasnote): ''},
+    }, {  # Function
+        'decl': '    #ctype# return_value = 0;',
+        'frompyobj': [
+            {debugcapi: '    CFUNCSMESS("cb:Getting return_value->");'},
+            '''\
+    if (capi_j>capi_i) {
+        GETSCALARFROMPYTUPLE(capi_return,capi_i++,&return_value,#ctype#,
+          "#ctype#_from_pyobj failed in converting return_value of"
+          " call-back function #name# to C #ctype#\\n");
+    } else {
+        fprintf(stderr,"Warning: call-back function #name# did not provide"
+                       " return value (index=%d, type=#ctype#)\\n",capi_i);
+    }''',
+            {debugcapi:
+             '    fprintf(stderr,"#showvalueformat#.\\n",return_value);'}
+        ],
+        'need': ['#ctype#_from_pyobj', {debugcapi: 'CFUNCSMESS'}, 'GETSCALARFROMPYTUPLE'],
+        'return': '    return return_value;',
+        '_check': l_and(isfunction, l_not(isstringfunction), l_not(iscomplexfunction))
+    },
+    {  # String function
+        'pyobjfrom': {debugcapi: '    fprintf(stderr,"debug-capi:cb:#name#:%d:\\n",return_value_len);'},
+        'args': '#ctype# return_value,int return_value_len',
+        'args_nm': 'return_value,&return_value_len',
+        'args_td': '#ctype# ,int',
+        'frompyobj': [
+            {debugcapi: '    CFUNCSMESS("cb:Getting return_value->\\"");'},
+            """\
+    if (capi_j>capi_i) {
+        GETSTRFROMPYTUPLE(capi_return,capi_i++,return_value,return_value_len);
+    } else {
+        fprintf(stderr,"Warning: call-back function #name# did not provide"
+                       " return value (index=%d, type=#ctype#)\\n",capi_i);
+    }""",
+            {debugcapi:
+             '    fprintf(stderr,"#showvalueformat#\\".\\n",return_value);'}
+        ],
+        'need': ['#ctype#_from_pyobj', {debugcapi: 'CFUNCSMESS'},
+                 'string.h', 'GETSTRFROMPYTUPLE'],
+        'return': 'return;',
+        '_check': isstringfunction
+    },
+    {  # Complex function
+        'optargs': """
+#ifndef F2PY_CB_RETURNCOMPLEX
+#ctype# *return_value
+#endif
+""",
+        'optargs_nm': """
+#ifndef F2PY_CB_RETURNCOMPLEX
+return_value
+#endif
+""",
+        'optargs_td': """
+#ifndef F2PY_CB_RETURNCOMPLEX
+#ctype# *
+#endif
+""",
+        'decl': """
+#ifdef F2PY_CB_RETURNCOMPLEX
+    #ctype# return_value = {0, 0};
+#endif
+""",
+        'frompyobj': [
+            {debugcapi: '    CFUNCSMESS("cb:Getting return_value->");'},
+            """\
+    if (capi_j>capi_i) {
+#ifdef F2PY_CB_RETURNCOMPLEX
+        GETSCALARFROMPYTUPLE(capi_return,capi_i++,&return_value,#ctype#,
+          \"#ctype#_from_pyobj failed in converting return_value of call-back\"
+          \" function #name# to C #ctype#\\n\");
+#else
+        GETSCALARFROMPYTUPLE(capi_return,capi_i++,return_value,#ctype#,
+          \"#ctype#_from_pyobj failed in converting return_value of call-back\"
+          \" function #name# to C #ctype#\\n\");
+#endif
+    } else {
+        fprintf(stderr,
+                \"Warning: call-back function #name# did not provide\"
+                \" return value (index=%d, type=#ctype#)\\n\",capi_i);
+    }""",
+            {debugcapi: """\
+#ifdef F2PY_CB_RETURNCOMPLEX
+    fprintf(stderr,\"#showvalueformat#.\\n\",(return_value).r,(return_value).i);
+#else
+    fprintf(stderr,\"#showvalueformat#.\\n\",(*return_value).r,(*return_value).i);
+#endif
+"""}
+        ],
+        'return': """
+#ifdef F2PY_CB_RETURNCOMPLEX
+    return return_value;
+#else
+    return;
+#endif
+""",
+        'need': ['#ctype#_from_pyobj', {debugcapi: 'CFUNCSMESS'},
+                 'string.h', 'GETSCALARFROMPYTUPLE', '#ctype#'],
+        '_check': iscomplexfunction
+    },
+    {'docstrout': '        #pydocsignout#',
+     'latexdocstrout': ['\\item[]{{}\\verb@#pydocsignout#@{}}',
+                        {hasnote: '--- #note#'}],
+     'docreturn': '#rname#,',
+     '_check': isfunction},
+    {'_check': issubroutine, 'return': 'return;'}
+]
+
+cb_arg_rules = [
+    {  # Doc
+        'docstropt': {l_and(isoptional, isintent_nothide): '        #pydocsign#'},
+        'docstrreq': {l_and(isrequired, isintent_nothide): '        #pydocsign#'},
+        'docstrout': {isintent_out: '        #pydocsignout#'},
+        'latexdocstropt': {l_and(isoptional, isintent_nothide): ['\\item[]{{}\\verb@#pydocsign#@{}}',
+                                                                 {hasnote: '--- #note#'}]},
+        'latexdocstrreq': {l_and(isrequired, isintent_nothide): ['\\item[]{{}\\verb@#pydocsign#@{}}',
+                                                                 {hasnote: '--- #note#'}]},
+        'latexdocstrout': {isintent_out: ['\\item[]{{}\\verb@#pydocsignout#@{}}',
+                                          {l_and(hasnote, isintent_hide): '--- #note#',
+                                           l_and(hasnote, isintent_nothide): '--- See above.'}]},
+        'docsign': {l_and(isrequired, isintent_nothide): '#varname#,'},
+        'docsignopt': {l_and(isoptional, isintent_nothide): '#varname#,'},
+        'depend': ''
+    },
+    {
+        'args': {
+            l_and(isscalar, isintent_c): '#ctype# #varname_i#',
+            l_and(isscalar, l_not(isintent_c)): '#ctype# *#varname_i#_cb_capi',
+            isarray: '#ctype# *#varname_i#',
+            isstring: '#ctype# #varname_i#'
+        },
+        'args_nm': {
+            l_and(isscalar, isintent_c): '#varname_i#',
+            l_and(isscalar, l_not(isintent_c)): '#varname_i#_cb_capi',
+            isarray: '#varname_i#',
+            isstring: '#varname_i#'
+        },
+        'args_td': {
+            l_and(isscalar, isintent_c): '#ctype#',
+            l_and(isscalar, l_not(isintent_c)): '#ctype# *',
+            isarray: '#ctype# *',
+            isstring: '#ctype#'
+        },
+        'need': {l_or(isscalar, isarray, isstring): '#ctype#'},
+        # untested with multiple args
+        'strarglens': {isstring: ',int #varname_i#_cb_len'},
+        'strarglens_td': {isstring: ',int'},  # untested with multiple args
+        # untested with multiple args
+        'strarglens_nm': {isstring: ',#varname_i#_cb_len'},
+    },
+    {  # Scalars
+        'decl': {l_not(isintent_c): '    #ctype# #varname_i#=(*#varname_i#_cb_capi);'},
+        'error': {l_and(isintent_c, isintent_out,
+                        throw_error('intent(c,out) is forbidden for callback scalar arguments')):
+                  ''},
+        'frompyobj': [{debugcapi: '    CFUNCSMESS("cb:Getting #varname#->");'},
+                      {isintent_out:
+                       '    if (capi_j>capi_i)\n        GETSCALARFROMPYTUPLE(capi_return,capi_i++,#varname_i#_cb_capi,#ctype#,"#ctype#_from_pyobj failed in converting argument #varname# of call-back function #name# to C #ctype#\\n");'},
+                      {l_and(debugcapi, l_and(l_not(iscomplex), isintent_c)):
+                          '    fprintf(stderr,"#showvalueformat#.\\n",#varname_i#);'},
+                      {l_and(debugcapi, l_and(l_not(iscomplex), l_not(isintent_c))):
+                          '    fprintf(stderr,"#showvalueformat#.\\n",*#varname_i#_cb_capi);'},
+                      {l_and(debugcapi, l_and(iscomplex, isintent_c)):
+                          '    fprintf(stderr,"#showvalueformat#.\\n",(#varname_i#).r,(#varname_i#).i);'},
+                      {l_and(debugcapi, l_and(iscomplex, l_not(isintent_c))):
+                          '    fprintf(stderr,"#showvalueformat#.\\n",(*#varname_i#_cb_capi).r,(*#varname_i#_cb_capi).i);'},
+                      ],
+        'need': [{isintent_out: ['#ctype#_from_pyobj', 'GETSCALARFROMPYTUPLE']},
+                 {debugcapi: 'CFUNCSMESS'}],
+        '_check': isscalar
+    }, {
+        'pyobjfrom': [{isintent_in: """\
+    if (cb->nofargs>capi_i)
+        if (CAPI_ARGLIST_SETITEM(capi_i++,pyobj_from_#ctype#1(#varname_i#)))
+            goto capi_fail;"""},
+                      {isintent_inout: """\
+    if (cb->nofargs>capi_i)
+        if (CAPI_ARGLIST_SETITEM(capi_i++,pyarr_from_p_#ctype#1(#varname_i#_cb_capi)))
+            goto capi_fail;"""}],
+        'need': [{isintent_in: 'pyobj_from_#ctype#1'},
+                 {isintent_inout: 'pyarr_from_p_#ctype#1'},
+                 {iscomplex: '#ctype#'}],
+        '_check': l_and(isscalar, isintent_nothide),
+        '_optional': ''
+    }, {  # String
+        'frompyobj': [{debugcapi: '    CFUNCSMESS("cb:Getting #varname#->\\"");'},
+                      """    if (capi_j>capi_i)
+        GETSTRFROMPYTUPLE(capi_return,capi_i++,#varname_i#,#varname_i#_cb_len);""",
+                      {debugcapi:
+                       '    fprintf(stderr,"#showvalueformat#\\":%d:.\\n",#varname_i#,#varname_i#_cb_len);'},
+                      ],
+        'need': ['#ctype#', 'GETSTRFROMPYTUPLE',
+                 {debugcapi: 'CFUNCSMESS'}, 'string.h'],
+        '_check': l_and(isstring, isintent_out)
+    }, {
+        'pyobjfrom': [
+            {debugcapi:
+             ('    fprintf(stderr,"debug-capi:cb:#varname#=#showvalueformat#:'
+              '%d:\\n",#varname_i#,#varname_i#_cb_len);')},
+            {isintent_in: """\
+    if (cb->nofargs>capi_i)
+        if (CAPI_ARGLIST_SETITEM(capi_i++,pyobj_from_#ctype#1size(#varname_i#,#varname_i#_cb_len)))
+            goto capi_fail;"""},
+                      {isintent_inout: """\
+    if (cb->nofargs>capi_i) {
+        int #varname_i#_cb_dims[] = {#varname_i#_cb_len};
+        if (CAPI_ARGLIST_SETITEM(capi_i++,pyarr_from_p_#ctype#1(#varname_i#,#varname_i#_cb_dims)))
+            goto capi_fail;
+    }"""}],
+        'need': [{isintent_in: 'pyobj_from_#ctype#1size'},
+                 {isintent_inout: 'pyarr_from_p_#ctype#1'}],
+        '_check': l_and(isstring, isintent_nothide),
+        '_optional': ''
+    },
+    # Array ...
+    {
+        'decl': '    npy_intp #varname_i#_Dims[#rank#] = {#rank*[-1]#};',
+        'setdims': '    #cbsetdims#;',
+        '_check': isarray,
+        '_depend': ''
+    },
+    {
+        'pyobjfrom': [{debugcapi: '    fprintf(stderr,"debug-capi:cb:#varname#\\n");'},
+                      {isintent_c: """\
+    if (cb->nofargs>capi_i) {
+        /* tmp_arr will be inserted to capi_arglist_list that will be
+           destroyed when leaving callback function wrapper together
+           with tmp_arr. */
+        PyArrayObject *tmp_arr = (PyArrayObject *)PyArray_New(&PyArray_Type,
+          #rank#,#varname_i#_Dims,#atype#,NULL,(char*)#varname_i#,#elsize#,
+          NPY_ARRAY_CARRAY,NULL);
+""",
+                       l_not(isintent_c): """\
+    if (cb->nofargs>capi_i) {
+        /* tmp_arr will be inserted to capi_arglist_list that will be
+           destroyed when leaving callback function wrapper together
+           with tmp_arr. */
+        PyArrayObject *tmp_arr = (PyArrayObject *)PyArray_New(&PyArray_Type,
+          #rank#,#varname_i#_Dims,#atype#,NULL,(char*)#varname_i#,#elsize#,
+          NPY_ARRAY_FARRAY,NULL);
+""",
+                       },
+                      """
+        if (tmp_arr==NULL)
+            goto capi_fail;
+        if (CAPI_ARGLIST_SETITEM(capi_i++,(PyObject *)tmp_arr))
+            goto capi_fail;
+}"""],
+        '_check': l_and(isarray, isintent_nothide, l_or(isintent_in, isintent_inout)),
+        '_optional': '',
+    }, {
+        'frompyobj': [{debugcapi: '    CFUNCSMESS("cb:Getting #varname#->");'},
+                      """    if (capi_j>capi_i) {
+        PyArrayObject *rv_cb_arr = NULL;
+        if ((capi_tmp = PyTuple_GetItem(capi_return,capi_i++))==NULL) goto capi_fail;
+        rv_cb_arr =  array_from_pyobj(#atype#,#varname_i#_Dims,#rank#,F2PY_INTENT_IN""",
+                      {isintent_c: '|F2PY_INTENT_C'},
+                      """,capi_tmp);
+        if (rv_cb_arr == NULL) {
+            fprintf(stderr,\"rv_cb_arr is NULL\\n\");
+            goto capi_fail;
+        }
+        MEMCOPY(#varname_i#,PyArray_DATA(rv_cb_arr),PyArray_NBYTES(rv_cb_arr));
+        if (capi_tmp != (PyObject *)rv_cb_arr) {
+            Py_DECREF(rv_cb_arr);
+        }
+    }""",
+                      {debugcapi: '    fprintf(stderr,"<-.\\n");'},
+                      ],
+        'need': ['MEMCOPY', {iscomplexarray: '#ctype#'}],
+        '_check': l_and(isarray, isintent_out)
+    }, {
+        'docreturn': '#varname#,',
+        '_check': isintent_out
+    }
+]
+
+################## Build call-back module #############
+cb_map = {}
+
+
+def buildcallbacks(m):
+    cb_map[m['name']] = []
+    for bi in m['body']:
+        if bi['block'] == 'interface':
+            for b in bi['body']:
+                if b:
+                    buildcallback(b, m['name'])
+                else:
+                    errmess(f"warning: empty body for {m['name']}\n")
+
+
+def buildcallback(rout, um):
+    from . import capi_maps
+
+    outmess(f"    Constructing call-back function \"cb_{rout['name']}_in_{um}\"\n")
+    args, depargs = getargs(rout)
+    capi_maps.depargs = depargs
+    var = rout['vars']
+    vrd = capi_maps.cb_routsign2map(rout, um)
+    rd = dictappend({}, vrd)
+    cb_map[um].append([rout['name'], rd['name']])
+    for r in cb_rout_rules:
+        if ('_check' in r and r['_check'](rout)) or ('_check' not in r):
+            ar = applyrules(r, vrd, rout)
+            rd = dictappend(rd, ar)
+    savevrd = {}
+    for i, a in enumerate(args):
+        vrd = capi_maps.cb_sign2map(a, var[a], index=i)
+        savevrd[a] = vrd
+        for r in cb_arg_rules:
+            if '_depend' in r:
+                continue
+            if '_optional' in r and isoptional(var[a]):
+                continue
+            if ('_check' in r and r['_check'](var[a])) or ('_check' not in r):
+                ar = applyrules(r, vrd, var[a])
+                rd = dictappend(rd, ar)
+                if '_break' in r:
+                    break
+    for a in args:
+        vrd = savevrd[a]
+        for r in cb_arg_rules:
+            if '_depend' in r:
+                continue
+            if ('_optional' not in r) or ('_optional' in r and isrequired(var[a])):
+                continue
+            if ('_check' in r and r['_check'](var[a])) or ('_check' not in r):
+                ar = applyrules(r, vrd, var[a])
+                rd = dictappend(rd, ar)
+                if '_break' in r:
+                    break
+    for a in depargs:
+        vrd = savevrd[a]
+        for r in cb_arg_rules:
+            if '_depend' not in r:
+                continue
+            if '_optional' in r:
+                continue
+            if ('_check' in r and r['_check'](var[a])) or ('_check' not in r):
+                ar = applyrules(r, vrd, var[a])
+                rd = dictappend(rd, ar)
+                if '_break' in r:
+                    break
+    if 'args' in rd and 'optargs' in rd:
+        if isinstance(rd['optargs'], list):
+            rd['optargs'] = rd['optargs'] + ["""
+#ifndef F2PY_CB_RETURNCOMPLEX
+,
+#endif
+"""]
+            rd['optargs_nm'] = rd['optargs_nm'] + ["""
+#ifndef F2PY_CB_RETURNCOMPLEX
+,
+#endif
+"""]
+            rd['optargs_td'] = rd['optargs_td'] + ["""
+#ifndef F2PY_CB_RETURNCOMPLEX
+,
+#endif
+"""]
+    if isinstance(rd['docreturn'], list):
+        rd['docreturn'] = stripcomma(
+            replace('#docreturn#', {'docreturn': rd['docreturn']}))
+    optargs = stripcomma(replace('#docsignopt#',
+                                 {'docsignopt': rd['docsignopt']}
+                                 ))
+    if optargs == '':
+        rd['docsignature'] = stripcomma(
+            replace('#docsign#', {'docsign': rd['docsign']}))
+    else:
+        rd['docsignature'] = replace('#docsign#[#docsignopt#]',
+                                     {'docsign': rd['docsign'],
+                                      'docsignopt': optargs,
+                                      })
+    rd['latexdocsignature'] = rd['docsignature'].replace('_', '\\_')
+    rd['latexdocsignature'] = rd['latexdocsignature'].replace(',', ', ')
+    rd['docstrsigns'] = []
+    rd['latexdocstrsigns'] = []
+    for k in ['docstrreq', 'docstropt', 'docstrout', 'docstrcbs']:
+        if k in rd and isinstance(rd[k], list):
+            rd['docstrsigns'] = rd['docstrsigns'] + rd[k]
+        k = 'latex' + k
+        if k in rd and isinstance(rd[k], list):
+            rd['latexdocstrsigns'] = rd['latexdocstrsigns'] + rd[k][0:1] +\
+                ['\\begin{description}'] + rd[k][1:] +\
+                ['\\end{description}']
+    if 'args' not in rd:
+        rd['args'] = ''
+        rd['args_td'] = ''
+        rd['args_nm'] = ''
+    if not (rd.get('args') or rd.get('optargs') or rd.get('strarglens')):
+        rd['noargs'] = 'void'
+
+    ar = applyrules(cb_routine_rules, rd)
+    cfuncs.callbacks[rd['name']] = ar['body']
+    if isinstance(ar['need'], str):
+        ar['need'] = [ar['need']]
+
+    if 'need' in rd:
+        for t in cfuncs.typedefs.keys():
+            if t in rd['need']:
+                ar['need'].append(t)
+
+    cfuncs.typedefs_generated[rd['name'] + '_typedef'] = ar['cbtypedefs']
+    ar['need'].append(rd['name'] + '_typedef')
+    cfuncs.needs[rd['name']] = ar['need']
+
+    capi_maps.lcb2_map[rd['name']] = {'maxnofargs': ar['maxnofargs'],
+                                      'nofoptargs': ar['nofoptargs'],
+                                      'docstr': ar['docstr'],
+                                      'latexdocstr': ar['latexdocstr'],
+                                      'argname': rd['argname']
+                                      }
+    outmess(f"      {ar['docstrshort']}\n")
+################## Build call-back function #############
+
+
+# ==== cfuncs.py ====
+"""
+C declarations, CPP macros, and C functions for f2py2e.
+Only required declarations/macros/functions will be used.
+
+Copyright 1999 -- 2011 Pearu Peterson all rights reserved.
+Copyright 2011 -- present NumPy Developers.
+Permission to use, modify, and distribute this software is given under the
+terms of the NumPy License.
+
+NO WARRANTY IS EXPRESSED OR IMPLIED.  USE AT YOUR OWN RISK.
+"""
+import copy
+import sys
+
+from . import __version__
+
+f2py_version = __version__.version
+
+
+def errmess(s: str) -> None:
+    """
+    Write an error message to stderr.
+
+    This indirection is needed because sys.stderr might not always be available (see #26862).
+    """
+    if sys.stderr is not None:
+        sys.stderr.write(s)
+
+##################### Definitions ##################
+
+
+outneeds = {'includes0': [], 'includes': [], 'typedefs': [], 'typedefs_generated': [],
+            'userincludes': [],
+            'cppmacros': [], 'cfuncs': [], 'callbacks': [], 'f90modhooks': [],
+            'commonhooks': []}
+needs = {}
+includes0 = {'includes0': '/*need_includes0*/'}
+includes = {'includes': '/*need_includes*/'}
+userincludes = {'userincludes': '/*need_userincludes*/'}
+typedefs = {'typedefs': '/*need_typedefs*/'}
+typedefs_generated = {'typedefs_generated': '/*need_typedefs_generated*/'}
+cppmacros = {'cppmacros': '/*need_cppmacros*/'}
+cfuncs = {'cfuncs': '/*need_cfuncs*/'}
+callbacks = {'callbacks': '/*need_callbacks*/'}
+f90modhooks = {'f90modhooks': '/*need_f90modhooks*/',
+               'initf90modhooksstatic': '/*initf90modhooksstatic*/',
+               'initf90modhooksdynamic': '/*initf90modhooksdynamic*/',
+               }
+commonhooks = {'commonhooks': '/*need_commonhooks*/',
+               'initcommonhooks': '/*need_initcommonhooks*/',
+               }
+
+############ Includes ###################
+
+includes0['math.h'] = '#include <math.h>'
+includes0['string.h'] = '#include <string.h>'
+includes0['setjmp.h'] = '#include <setjmp.h>'
+
+includes['arrayobject.h'] = '''#define PY_ARRAY_UNIQUE_SYMBOL PyArray_API
+#include "arrayobject.h"'''
+includes['npy_math.h'] = '#include "numpy/npy_math.h"'
+
+includes['arrayobject.h'] = '#include "fortranobject.h"'
+includes['stdarg.h'] = '#include <stdarg.h>'
+
+############# Type definitions ###############
+
+typedefs['unsigned_char'] = 'typedef unsigned char unsigned_char;'
+typedefs['unsigned_short'] = 'typedef unsigned short unsigned_short;'
+typedefs['unsigned_long'] = 'typedef unsigned long unsigned_long;'
+typedefs['signed_char'] = 'typedef signed char signed_char;'
+typedefs['long_long'] = """
+#if defined(NPY_OS_WIN32)
+typedef __int64 long_long;
+#else
+typedef long long long_long;
+typedef unsigned long long unsigned_long_long;
+#endif
+"""
+typedefs['unsigned_long_long'] = """
+#if defined(NPY_OS_WIN32)
+typedef __uint64 long_long;
+#else
+typedef unsigned long long unsigned_long_long;
+#endif
+"""
+typedefs['long_double'] = """
+#ifndef _LONG_DOUBLE
+typedef long double long_double;
+#endif
+"""
+typedefs['complex_long_double'] = 'typedef union { struct {long double r,i;}; npy_clongdouble _npy; } complex_long_double;'
+typedefs['complex_float'] = 'typedef union { struct {float r,i;}; npy_cfloat _npy; } complex_float;'
+typedefs['complex_double'] = 'typedef union { struct {double r,i;}; npy_cdouble _npy; } complex_double;'
+typedefs['string'] = """typedef char * string;"""
+typedefs['character'] = """typedef char character;"""
+
+
+############### CPP macros ####################
+cppmacros['CFUNCSMESS'] = """
+#ifdef DEBUGCFUNCS
+#define CFUNCSMESS(mess) fprintf(stderr,\"debug-capi:\"mess);
+#define CFUNCSMESSPY(mess,obj) CFUNCSMESS(mess) \\
+    PyObject_Print((PyObject *)obj,stderr,Py_PRINT_RAW);\\
+    fprintf(stderr,\"\\n\");
+#else
+#define CFUNCSMESS(mess)
+#define CFUNCSMESSPY(mess,obj)
+#endif
+"""
+cppmacros['F_FUNC'] = """
+#if defined(PREPEND_FORTRAN)
+#if defined(NO_APPEND_FORTRAN)
+#if defined(UPPERCASE_FORTRAN)
+#define F_FUNC(f,F) _##F
+#else
+#define F_FUNC(f,F) _##f
+#endif
+#else
+#if defined(UPPERCASE_FORTRAN)
+#define F_FUNC(f,F) _##F##_
+#else
+#define F_FUNC(f,F) _##f##_
+#endif
+#endif
+#else
+#if defined(NO_APPEND_FORTRAN)
+#if defined(UPPERCASE_FORTRAN)
+#define F_FUNC(f,F) F
+#else
+#define F_FUNC(f,F) f
+#endif
+#else
+#if defined(UPPERCASE_FORTRAN)
+#define F_FUNC(f,F) F##_
+#else
+#define F_FUNC(f,F) f##_
+#endif
+#endif
+#endif
+#if defined(UNDERSCORE_G77)
+#define F_FUNC_US(f,F) F_FUNC(f##_,F##_)
+#else
+#define F_FUNC_US(f,F) F_FUNC(f,F)
+#endif
+"""
+cppmacros['F_WRAPPEDFUNC'] = """
+#if defined(PREPEND_FORTRAN)
+#if defined(NO_APPEND_FORTRAN)
+#if defined(UPPERCASE_FORTRAN)
+#define F_WRAPPEDFUNC(f,F) _F2PYWRAP##F
+#else
+#define F_WRAPPEDFUNC(f,F) _f2pywrap##f
+#endif
+#else
+#if defined(UPPERCASE_FORTRAN)
+#define F_WRAPPEDFUNC(f,F) _F2PYWRAP##F##_
+#else
+#define F_WRAPPEDFUNC(f,F) _f2pywrap##f##_
+#endif
+#endif
+#else
+#if defined(NO_APPEND_FORTRAN)
+#if defined(UPPERCASE_FORTRAN)
+#define F_WRAPPEDFUNC(f,F) F2PYWRAP##F
+#else
+#define F_WRAPPEDFUNC(f,F) f2pywrap##f
+#endif
+#else
+#if defined(UPPERCASE_FORTRAN)
+#define F_WRAPPEDFUNC(f,F) F2PYWRAP##F##_
+#else
+#define F_WRAPPEDFUNC(f,F) f2pywrap##f##_
+#endif
+#endif
+#endif
+#if defined(UNDERSCORE_G77)
+#define F_WRAPPEDFUNC_US(f,F) F_WRAPPEDFUNC(f##_,F##_)
+#else
+#define F_WRAPPEDFUNC_US(f,F) F_WRAPPEDFUNC(f,F)
+#endif
+"""
+cppmacros['F_MODFUNC'] = """
+#if defined(F90MOD2CCONV1) /*E.g. Compaq Fortran */
+#if defined(NO_APPEND_FORTRAN)
+#define F_MODFUNCNAME(m,f) $ ## m ## $ ## f
+#else
+#define F_MODFUNCNAME(m,f) $ ## m ## $ ## f ## _
+#endif
+#endif
+
+#if defined(F90MOD2CCONV2) /*E.g. IBM XL Fortran, not tested though */
+#if defined(NO_APPEND_FORTRAN)
+#define F_MODFUNCNAME(m,f)  __ ## m ## _MOD_ ## f
+#else
+#define F_MODFUNCNAME(m,f)  __ ## m ## _MOD_ ## f ## _
+#endif
+#endif
+
+#if defined(F90MOD2CCONV3) /*E.g. MIPSPro Compilers */
+#if defined(NO_APPEND_FORTRAN)
+#define F_MODFUNCNAME(m,f)  f ## .in. ## m
+#else
+#define F_MODFUNCNAME(m,f)  f ## .in. ## m ## _
+#endif
+#endif
+/*
+#if defined(UPPERCASE_FORTRAN)
+#define F_MODFUNC(m,M,f,F) F_MODFUNCNAME(M,F)
+#else
+#define F_MODFUNC(m,M,f,F) F_MODFUNCNAME(m,f)
+#endif
+*/
+
+#define F_MODFUNC(m,f) (*(f2pymodstruct##m##.##f))
+"""
+cppmacros['SWAPUNSAFE'] = """
+#define SWAP(a,b) (size_t)(a) = ((size_t)(a) ^ (size_t)(b));\\
+ (size_t)(b) = ((size_t)(a) ^ (size_t)(b));\\
+ (size_t)(a) = ((size_t)(a) ^ (size_t)(b))
+"""
+cppmacros['SWAP'] = """
+#define SWAP(a,b,t) {\\
+    t *c;\\
+    c = a;\\
+    a = b;\\
+    b = c;}
+"""
+# cppmacros['ISCONTIGUOUS']='#define ISCONTIGUOUS(m) (PyArray_FLAGS(m) &
+# NPY_ARRAY_C_CONTIGUOUS)'
+cppmacros['PRINTPYOBJERR'] = """
+#define PRINTPYOBJERR(obj)\\
+    fprintf(stderr,\"#modulename#.error is related to \");\\
+    PyObject_Print((PyObject *)obj,stderr,Py_PRINT_RAW);\\
+    fprintf(stderr,\"\\n\");
+"""
+cppmacros['MINMAX'] = """
+#ifndef max
+#define max(a,b) ((a > b) ? (a) : (b))
+#endif
+#ifndef min
+#define min(a,b) ((a < b) ? (a) : (b))
+#endif
+#ifndef MAX
+#define MAX(a,b) ((a > b) ? (a) : (b))
+#endif
+#ifndef MIN
+#define MIN(a,b) ((a < b) ? (a) : (b))
+#endif
+"""
+cppmacros['len..'] = """
+/* See fortranobject.h for definitions. The macros here are provided for BC. */
+#define rank f2py_rank
+#define shape f2py_shape
+#define fshape f2py_shape
+#define len f2py_len
+#define flen f2py_flen
+#define slen f2py_slen
+#define size f2py_size
+"""
+cppmacros['pyobj_from_char1'] = r"""
+#define pyobj_from_char1(v) (PyLong_FromLong(v))
+"""
+cppmacros['pyobj_from_short1'] = r"""
+#define pyobj_from_short1(v) (PyLong_FromLong(v))
+"""
+needs['pyobj_from_int1'] = ['signed_char']
+cppmacros['pyobj_from_int1'] = r"""
+#define pyobj_from_int1(v) (PyLong_FromLong(v))
+"""
+cppmacros['pyobj_from_long1'] = r"""
+#define pyobj_from_long1(v) (PyLong_FromLong(v))
+"""
+needs['pyobj_from_long_long1'] = ['long_long']
+cppmacros['pyobj_from_long_long1'] = """
+#ifdef HAVE_LONG_LONG
+#define pyobj_from_long_long1(v) (PyLong_FromLongLong(v))
+#else
+#warning HAVE_LONG_LONG is not available. Redefining pyobj_from_long_long.
+#define pyobj_from_long_long1(v) (PyLong_FromLong(v))
+#endif
+"""
+needs['pyobj_from_long_double1'] = ['long_double']
+cppmacros['pyobj_from_long_double1'] = """
+#define pyobj_from_long_double1(v) (PyFloat_FromDouble(v))"""
+cppmacros['pyobj_from_double1'] = """
+#define pyobj_from_double1(v) (PyFloat_FromDouble(v))"""
+cppmacros['pyobj_from_float1'] = """
+#define pyobj_from_float1(v) (PyFloat_FromDouble(v))"""
+needs['pyobj_from_complex_long_double1'] = ['complex_long_double', 'npy_math.h']
+cppmacros['pyobj_from_complex_long_double1'] = """
+#define pyobj_from_complex_long_double1(v) (PyComplex_FromDoubles((double)npy_creall(v._npy),(double)npy_cimagl(v._npy)))"""
+needs['pyobj_from_complex_double1'] = ['complex_double', 'npy_math.h']
+cppmacros['pyobj_from_complex_double1'] = """
+#define pyobj_from_complex_double1(v) (PyComplex_FromDoubles(npy_creal(v._npy),npy_cimag(v._npy)))"""
+needs['pyobj_from_complex_float1'] = ['complex_float', 'npy_math.h']
+cppmacros['pyobj_from_complex_float1'] = """
+#define pyobj_from_complex_float1(v) (PyComplex_FromDoubles((double)npy_crealf(v._npy),(double)npy_cimagf(v._npy)))"""
+needs['pyobj_from_string1'] = ['string']
+cppmacros['pyobj_from_string1'] = """
+#define pyobj_from_string1(v) (PyUnicode_FromString((char *)v))"""
+needs['pyobj_from_string1size'] = ['string']
+cppmacros['pyobj_from_string1size'] = """
+#define pyobj_from_string1size(v,len) (PyUnicode_FromStringAndSize((char *)v, len))"""
+needs['TRYPYARRAYTEMPLATE'] = ['PRINTPYOBJERR']
+cppmacros['TRYPYARRAYTEMPLATE'] = """
+/* New SciPy */
+#define TRYPYARRAYTEMPLATECHAR case NPY_STRING: *(char *)(PyArray_DATA(arr))=*v; break;
+#define TRYPYARRAYTEMPLATELONG case NPY_LONG: *(long *)(PyArray_DATA(arr))=*v; break;
+#define TRYPYARRAYTEMPLATEOBJECT case NPY_OBJECT: PyArray_SETITEM(arr,PyArray_DATA(arr),pyobj_from_ ## ctype ## 1(*v)); break;
+
+#define TRYPYARRAYTEMPLATE(ctype,typecode) \\
+        PyArrayObject *arr = NULL;\\
+        if (!obj) return -2;\\
+        if (!PyArray_Check(obj)) return -1;\\
+        if (!(arr=(PyArrayObject *)obj)) {fprintf(stderr,\"TRYPYARRAYTEMPLATE:\");PRINTPYOBJERR(obj);return 0;}\\
+        if (PyArray_DESCR(arr)->type==typecode)  {*(ctype *)(PyArray_DATA(arr))=*v; return 1;}\\
+        switch (PyArray_TYPE(arr)) {\\
+                case NPY_DOUBLE: *(npy_double *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_INT: *(npy_int *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_LONG: *(npy_long *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_FLOAT: *(npy_float *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_CDOUBLE: *(npy_double *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_CFLOAT: *(npy_float *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_BOOL: *(npy_bool *)(PyArray_DATA(arr))=(*v!=0); break;\\
+                case NPY_UBYTE: *(npy_ubyte *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_BYTE: *(npy_byte *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_SHORT: *(npy_short *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_USHORT: *(npy_ushort *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_UINT: *(npy_uint *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_ULONG: *(npy_ulong *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_LONGLONG: *(npy_longlong *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_ULONGLONG: *(npy_ulonglong *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_LONGDOUBLE: *(npy_longdouble *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_CLONGDOUBLE: *(npy_longdouble *)(PyArray_DATA(arr))=*v; break;\\
+                case NPY_OBJECT: PyArray_SETITEM(arr, PyArray_DATA(arr), pyobj_from_ ## ctype ## 1(*v)); break;\\
+        default: return -2;\\
+        };\\
+        return 1
+"""
+
+needs['TRYCOMPLEXPYARRAYTEMPLATE'] = ['PRINTPYOBJERR', 'npy_math.h']
+cppmacros['TRYCOMPLEXPYARRAYTEMPLATE'] = """
+#define TRYCOMPLEXPYARRAYTEMPLATEOBJECT case NPY_OBJECT: PyArray_SETITEM(arr, PyArray_DATA(arr), pyobj_from_complex_ ## ctype ## 1((*v))); break;
+/* Helper to extract real/imag from complex value via cast to npy_cdouble */
+static inline double _f2py_creal_as_double(const void *p, int typenum) {
+    if (typenum == NPY_CFLOAT) return (double)npy_crealf(*(const npy_cfloat *)p);
+    if (typenum == NPY_CLONGDOUBLE) return (double)npy_creall(*(const npy_clongdouble *)p);
+    return npy_creal(*(const npy_cdouble *)p);
+}
+static inline double _f2py_cimag_as_double(const void *p, int typenum) {
+    if (typenum == NPY_CFLOAT) return (double)npy_cimagf(*(const npy_cfloat *)p);
+    if (typenum == NPY_CLONGDOUBLE) return (double)npy_cimagl(*(const npy_clongdouble *)p);
+    return npy_cimag(*(const npy_cdouble *)p);
+}
+#define TRYCOMPLEXPYARRAYTEMPLATE(ctype,typenum)\\
+        PyArrayObject *arr = NULL;\\
+        double _re, _im;\\
+        if (!obj) return -2;\\
+        if (!PyArray_Check(obj)) return -1;\\
+        if (!(arr=(PyArrayObject *)obj)) {fprintf(stderr,\"TRYCOMPLEXPYARRAYTEMPLATE:\");PRINTPYOBJERR(obj);return 0;}\\
+        _re = _f2py_creal_as_double(v, typenum);\\
+        _im = _f2py_cimag_as_double(v, typenum);\\
+        if (PyArray_TYPE(arr)==typenum) {\\
+            *(ctype *)(PyArray_DATA(arr))=(ctype)_re;\\
+            *(ctype *)(PyArray_DATA(arr)+sizeof(ctype))=(ctype)_im;\\
+            return 1;\\
+        }\\
+        switch (PyArray_TYPE(arr)) {\\
+                case NPY_CDOUBLE: npy_csetreal((npy_cdouble *)PyArray_DATA(arr), _re);\\
+                                  npy_csetimag((npy_cdouble *)PyArray_DATA(arr), _im);\\
+                                  break;\\
+                case NPY_CFLOAT: npy_csetrealf((npy_cfloat *)PyArray_DATA(arr), (float)_re);\\
+                                 npy_csetimagf((npy_cfloat *)PyArray_DATA(arr), (float)_im);\\
+                                 break;\\
+                case NPY_DOUBLE: *(npy_double *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_LONG: *(npy_long *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_FLOAT: *(npy_float *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_INT: *(npy_int *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_SHORT: *(npy_short *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_UBYTE: *(npy_ubyte *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_BYTE: *(npy_byte *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_BOOL: *(npy_bool *)(PyArray_DATA(arr))=(_re!=0 && _im!=0); break;\\
+                case NPY_USHORT: *(npy_ushort *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_UINT: *(npy_uint *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_ULONG: *(npy_ulong *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_LONGLONG: *(npy_longlong *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_ULONGLONG: *(npy_ulonglong *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_LONGDOUBLE: *(npy_longdouble *)(PyArray_DATA(arr))=_re; break;\\
+                case NPY_CLONGDOUBLE: npy_csetreall((npy_clongdouble *)PyArray_DATA(arr), (npy_longdouble)_re);\\
+                                      npy_csetimagl((npy_clongdouble *)PyArray_DATA(arr), (npy_longdouble)_im);\\
+                                      break;\\
+                case NPY_OBJECT: PyArray_SETITEM(arr, PyArray_DATA(arr), pyobj_from_complex_ ## ctype ## 1((*v))); break;\\
+                default: return -2;\\
+        };\\
+        return -1;
+"""
+# cppmacros['NUMFROMARROBJ']="""
+# define NUMFROMARROBJ(typenum,ctype) \\
+#     if (PyArray_Check(obj)) arr = (PyArrayObject *)obj;\\
+#     else arr = (PyArrayObject *)PyArray_ContiguousFromObject(obj,typenum,0,0);\\
+#     if (arr) {\\
+#         if (PyArray_TYPE(arr)==NPY_OBJECT) {\\
+#             if (!ctype ## _from_pyobj(v,(PyArray_DESCR(arr)->getitem)(PyArray_DATA(arr)),\"\"))\\
+#             goto capi_fail;\\
+#         } else {\\
+#             (PyArray_DESCR(arr)->cast[typenum])(PyArray_DATA(arr),1,(char*)v,1,1);\\
+#         }\\
+#         if ((PyObject *)arr != obj) { Py_DECREF(arr); }\\
+#         return 1;\\
+#     }
+# """
+# XXX: Note that CNUMFROMARROBJ is identical with NUMFROMARROBJ
+# cppmacros['CNUMFROMARROBJ']="""
+# define CNUMFROMARROBJ(typenum,ctype) \\
+#     if (PyArray_Check(obj)) arr = (PyArrayObject *)obj;\\
+#     else arr = (PyArrayObject *)PyArray_ContiguousFromObject(obj,typenum,0,0);\\
+#     if (arr) {\\
+#         if (PyArray_TYPE(arr)==NPY_OBJECT) {\\
+#             if (!ctype ## _from_pyobj(v,(PyArray_DESCR(arr)->getitem)(PyArray_DATA(arr)),\"\"))\\
+#             goto capi_fail;\\
+#         } else {\\
+#             (PyArray_DESCR(arr)->cast[typenum])((void *)(PyArray_DATA(arr)),1,(void *)(v),1,1);\\
+#         }\\
+#         if ((PyObject *)arr != obj) { Py_DECREF(arr); }\\
+#         return 1;\\
+#     }
+# """
+
+
+needs['GETSTRFROMPYTUPLE'] = ['STRINGCOPYN', 'PRINTPYOBJERR']
+cppmacros['GETSTRFROMPYTUPLE'] = """
+#define GETSTRFROMPYTUPLE(tuple,index,str,len) {\\
+        PyObject *rv_cb_str = PyTuple_GetItem((tuple),(index));\\
+        if (rv_cb_str == NULL)\\
+            goto capi_fail;\\
+        if (PyBytes_Check(rv_cb_str)) {\\
+            str[len-1]='\\0';\\
+            STRINGCOPYN((str),PyBytes_AS_STRING((PyBytesObject*)rv_cb_str),(len));\\
+        } else {\\
+            PRINTPYOBJERR(rv_cb_str);\\
+            PyErr_SetString(#modulename#_error,\"string object expected\");\\
+            goto capi_fail;\\
+        }\\
+    }
+"""
+cppmacros['GETSCALARFROMPYTUPLE'] = """
+#define GETSCALARFROMPYTUPLE(tuple,index,var,ctype,mess) {\\
+        if ((capi_tmp = PyTuple_GetItem((tuple),(index)))==NULL) goto capi_fail;\\
+        if (!(ctype ## _from_pyobj((var),capi_tmp,mess)))\\
+            goto capi_fail;\\
+    }
+"""
+
+cppmacros['FAILNULL'] = """\
+#define FAILNULL(p) do {                                            \\
+    if ((p) == NULL) {                                              \\
+        PyErr_SetString(PyExc_MemoryError, "NULL pointer found");   \\
+        goto capi_fail;                                             \\
+    }                                                               \\
+} while (0)
+"""
+needs['MEMCOPY'] = ['string.h', 'FAILNULL']
+cppmacros['MEMCOPY'] = """
+#define MEMCOPY(to,from,n)\\
+    do { FAILNULL(to); FAILNULL(from); (void)memcpy(to,from,n); } while (0)
+"""
+cppmacros['STRINGMALLOC'] = """
+#define STRINGMALLOC(str,len)\\
+    if ((str = (string)malloc(len+1)) == NULL) {\\
+        PyErr_SetString(PyExc_MemoryError, \"out of memory\");\\
+        goto capi_fail;\\
+    } else {\\
+        (str)[len] = '\\0';\\
+    }
+"""
+cppmacros['STRINGFREE'] = """
+#define STRINGFREE(str) do {if (!(str == NULL)) free(str);} while (0)
+"""
+needs['STRINGPADN'] = ['string.h']
+cppmacros['STRINGPADN'] = """
+/*
+STRINGPADN replaces null values with padding values from the right.
+
+`to` must have size of at least N bytes.
+
+If the `to[N-1]` has null value, then replace it and all the
+preceding, nulls with the given padding.
+
+STRINGPADN(to, N, PADDING, NULLVALUE) is an inverse operation.
+*/
+#define STRINGPADN(to, N, NULLVALUE, PADDING)                   \\
+    do {                                                        \\
+        int _m = (N);                                           \\
+        char *_to = (to);                                       \\
+        for (_m -= 1; _m >= 0 && _to[_m] == NULLVALUE; _m--) {  \\
+             _to[_m] = PADDING;                                 \\
+        }                                                       \\
+    } while (0)
+"""
+needs['STRINGCOPYN'] = ['string.h', 'FAILNULL']
+cppmacros['STRINGCOPYN'] = """
+/*
+STRINGCOPYN copies N bytes.
+
+`to` and `from` buffers must have sizes of at least N bytes.
+*/
+#define STRINGCOPYN(to,from,N)                                  \\
+    do {                                                        \\
+        int _m = (N);                                           \\
+        char *_to = (to);                                       \\
+        char *_from = (from);                                   \\
+        FAILNULL(_to); FAILNULL(_from);                         \\
+        (void)strncpy(_to, _from, _m);             \\
+    } while (0)
+"""
+needs['STRINGCOPY'] = ['string.h', 'FAILNULL']
+cppmacros['STRINGCOPY'] = """
+#define STRINGCOPY(to,from)\\
+    do { FAILNULL(to); FAILNULL(from); (void)strcpy(to,from); } while (0)
+"""
+cppmacros['CHECKGENERIC'] = """
+#define CHECKGENERIC(check,tcheck,name) \\
+    if (!(check)) {\\
+        PyErr_SetString(#modulename#_error,\"(\"tcheck\") failed for \"name);\\
+        /*goto capi_fail;*/\\
+    } else """
+cppmacros['CHECKARRAY'] = """
+#define CHECKARRAY(check,tcheck,name) \\
+    if (!(check)) {\\
+        PyErr_SetString(#modulename#_error,\"(\"tcheck\") failed for \"name);\\
+        /*goto capi_fail;*/\\
+    } else """
+cppmacros['CHECKSTRING'] = """
+#define CHECKSTRING(check,tcheck,name,show,var)\\
+    if (!(check)) {\\
+        char errstring[256];\\
+        snprintf(errstring, sizeof(errstring), \"%s: \"show, \"(\"tcheck\") failed for \"name, slen(var), var);\\
+        PyErr_SetString(#modulename#_error, errstring);\\
+        /*goto capi_fail;*/\\
+    } else """
+cppmacros['CHECKSCALAR'] = """
+#define CHECKSCALAR(check,tcheck,name,show,var)\\
+    if (!(check)) {\\
+        char errstring[256];\\
+        snprintf(errstring, sizeof(errstring), \"%s: \"show, \"(\"tcheck\") failed for \"name, var);\\
+        PyErr_SetString(#modulename#_error,errstring);\\
+        /*goto capi_fail;*/\\
+    } else """
+# cppmacros['CHECKDIMS']="""
+# define CHECKDIMS(dims,rank) \\
+#     for (int i=0;i<(rank);i++)\\
+#         if (dims[i]<0) {\\
+#             fprintf(stderr,\"Unspecified array argument requires a complete dimension specification.\\n\");\\
+#             goto capi_fail;\\
+#         }
+# """
+cppmacros[
+    'ARRSIZE'] = '#define ARRSIZE(dims,rank) (_PyArray_multiply_list(dims,rank))'
+cppmacros['OLDPYNUM'] = """
+#ifdef OLDPYNUM
+#error You need to install NumPy version 0.13 or higher. See https://scipy.org/install.html
+#endif
+"""
+
+# Defining the correct value to indicate thread-local storage in C without
+# running a compile-time check (which we have no control over in generated
+# code used outside of NumPy) is hard. Therefore we support overriding this
+# via an external define - the f2py-using package can then use the same
+# compile-time checks as we use for `NPY_TLS` when building NumPy (see
+# scipy#21860 for an example of that).
+#
+# __STDC_NO_THREADS__ should not be coupled to the availability of _Thread_local.
+# In case we get a bug report, guard it with __STDC_NO_THREADS__ after all.
+#
+# `thread_local` has become a keyword in C23, but don't try to use that yet
+# (too new, doing so while C23 support is preliminary will likely cause more
+#  problems than it solves).
+#
+# Note: do not try to use `threads.h`, its availability is very low
+# *and* threads.h isn't actually used where `F2PY_THREAD_LOCAL_DECL` is
+# in the generated code. See gh-27718 for more details.
+cppmacros["F2PY_THREAD_LOCAL_DECL"] = """
+#ifndef F2PY_THREAD_LOCAL_DECL
+#if defined(_MSC_VER)
+#define F2PY_THREAD_LOCAL_DECL __declspec(thread)
+#elif defined(NPY_OS_MINGW)
+#define F2PY_THREAD_LOCAL_DECL __thread
+#elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
+#define F2PY_THREAD_LOCAL_DECL _Thread_local
+#elif defined(__GNUC__) \\
+      && (__GNUC__ > 4 || (__GNUC__ == 4 && (__GNUC_MINOR__ >= 4)))
+#define F2PY_THREAD_LOCAL_DECL __thread
+#endif
+#endif
+"""
+################# C functions ###############
+
+cfuncs['calcarrindex'] = """
+static int calcarrindex(int *i,PyArrayObject *arr) {
+    int k,ii = i[0];
+    for (k=1; k < PyArray_NDIM(arr); k++)
+        ii += (ii*(PyArray_DIM(arr,k) - 1)+i[k]); /* assuming contiguous arr */
+    return ii;
+}"""
+cfuncs['calcarrindextr'] = """
+static int calcarrindextr(int *i,PyArrayObject *arr) {
+    int k,ii = i[PyArray_NDIM(arr)-1];
+    for (k=1; k < PyArray_NDIM(arr); k++)
+        ii += (ii*(PyArray_DIM(arr,PyArray_NDIM(arr)-k-1) - 1)+i[PyArray_NDIM(arr)-k-1]); /* assuming contiguous arr */
+    return ii;
+}"""
+cfuncs['forcomb'] = """
+struct ForcombCache { int nd;npy_intp *d;int *i,*i_tr,tr; };
+static int initforcomb(struct ForcombCache *cache, npy_intp *dims,int nd,int tr) {
+  int k;
+  if (dims==NULL) return 0;
+  if (nd<0) return 0;
+  cache->nd = nd;
+  cache->d = dims;
+  cache->tr = tr;
+
+  cache->i = (int *)malloc(sizeof(int)*nd);
+  if (cache->i==NULL) return 0;
+  cache->i_tr = (int *)malloc(sizeof(int)*nd);
+  if (cache->i_tr==NULL) {free(cache->i); return 0;};
+
+  for (k=1;k<nd;k++) {
+    cache->i[k] = cache->i_tr[nd-k-1] = 0;
+  }
+  cache->i[0] = cache->i_tr[nd-1] = -1;
+  return 1;
+}
+static int *nextforcomb(struct ForcombCache *cache) {
+  if (cache==NULL) return NULL;
+  int j,*i,*i_tr,k;
+  int nd=cache->nd;
+  if ((i=cache->i) == NULL) return NULL;
+  if ((i_tr=cache->i_tr) == NULL) return NULL;
+  if (cache->d == NULL) return NULL;
+  i[0]++;
+  if (i[0]==cache->d[0]) {
+    j=1;
+    while ((j<nd) && (i[j]==cache->d[j]-1)) j++;
+    if (j==nd) {
+      free(i);
+      free(i_tr);
+      return NULL;
+    }
+    for (k=0;k<j;k++) i[k] = i_tr[nd-k-1] = 0;
+    i[j]++;
+    i_tr[nd-j-1]++;
+  } else
+    i_tr[nd-1]++;
+  if (cache->tr) return i_tr;
+  return i;
+}"""
+needs['try_pyarr_from_string'] = ['STRINGCOPYN', 'PRINTPYOBJERR', 'string']
+cfuncs['try_pyarr_from_string'] = """
+/*
+  try_pyarr_from_string copies str[:len(obj)] to the data of an `ndarray`.
+
+  If obj is an `ndarray`, it is assumed to be contiguous.
+
+  If the specified len==-1, str must be null-terminated.
+*/
+static int try_pyarr_from_string(PyObject *obj,
+                                 const string str, const int len) {
+#ifdef DEBUGCFUNCS
+fprintf(stderr, "try_pyarr_from_string(str='%s', len=%d, obj=%p)\\n",
+        (char*)str,len, obj);
+#endif
+    if (!obj) return -2; /* Object missing */
+    if (obj == Py_None) return -1; /* None */
+    if (!PyArray_Check(obj)) goto capi_fail; /* not an ndarray */
+    if (PyArray_Check(obj)) {
+        PyArrayObject *arr = (PyArrayObject *)obj;
+        assert(ISCONTIGUOUS(arr));
+        string buf = PyArray_DATA(arr);
+        npy_intp n = len;
+        if (n == -1) {
+            /* Assuming null-terminated str. */
+            n = strlen(str);
+        }
+        if (n > PyArray_NBYTES(arr)) {
+            n = PyArray_NBYTES(arr);
+        }
+        STRINGCOPYN(buf, str, n);
+        return 1;
+    }
+capi_fail:
+    PRINTPYOBJERR(obj);
+    PyErr_SetString(#modulename#_error, \"try_pyarr_from_string failed\");
+    return 0;
+}
+"""
+needs['string_from_pyobj'] = ['string', 'STRINGMALLOC', 'STRINGCOPYN']
+cfuncs['string_from_pyobj'] = """
+/*
+  Create a new string buffer `str` of at most length `len` from a
+  Python string-like object `obj`.
+
+  The string buffer has given size (len) or the size of inistr when len==-1.
+
+  The string buffer is padded with blanks: in Fortran, trailing blanks
+  are insignificant contrary to C nulls.
+ */
+static int
+string_from_pyobj(string *str, int *len, const string inistr, PyObject *obj,
+                  const char *errmess)
+{
+    PyObject *tmp = NULL;
+    string buf = NULL;
+    npy_intp n = -1;
+#ifdef DEBUGCFUNCS
+fprintf(stderr,\"string_from_pyobj(str='%s',len=%d,inistr='%s',obj=%p)\\n\",
+               (char*)str, *len, (char *)inistr, obj);
+#endif
+    if (obj == Py_None) {
+        n = strlen(inistr);
+        buf = inistr;
+    }
+    else if (PyArray_Check(obj)) {
+        PyArrayObject *arr = (PyArrayObject *)obj;
+        if (!ISCONTIGUOUS(arr)) {
+            PyErr_SetString(PyExc_ValueError,
+                            \"array object is non-contiguous.\");
+            goto capi_fail;
+        }
+        n = PyArray_NBYTES(arr);
+        buf = PyArray_DATA(arr);
+        n = strnlen(buf, n);
+    }
+    else {
+        if (PyBytes_Check(obj)) {
+            tmp = obj;
+            Py_INCREF(tmp);
+        }
+        else if (PyUnicode_Check(obj)) {
+            tmp = PyUnicode_AsASCIIString(obj);
+        }
+        else {
+            PyObject *tmp2;
+            tmp2 = PyObject_Str(obj);
+            if (tmp2) {
+                tmp = PyUnicode_AsASCIIString(tmp2);
+                Py_DECREF(tmp2);
+            }
+            else {
+                tmp = NULL;
+            }
+        }
+        if (tmp == NULL) goto capi_fail;
+        n = PyBytes_GET_SIZE(tmp);
+        buf = PyBytes_AS_STRING(tmp);
+    }
+    if (*len == -1) {
+        /* TODO: change the type of `len` so that we can remove this */
+        if (n > NPY_MAX_INT) {
+            PyErr_SetString(PyExc_OverflowError,
+                            "object too large for a 32-bit int");
+            goto capi_fail;
+        }
+        *len = n;
+    }
+    else if (*len < n) {
+        /* discard the last (len-n) bytes of input buf */
+        n = *len;
+    }
+    if (n < 0 || *len < 0 || buf == NULL) {
+        goto capi_fail;
+    }
+    STRINGMALLOC(*str, *len);  // *str is allocated with size (*len + 1)
+    if (n < *len) {
+        /*
+          Pad fixed-width string with nulls. The caller will replace
+          nulls with blanks when the corresponding argument is not
+          intent(c).
+        */
+        memset(*str + n, '\\0', *len - n);
+    }
+    STRINGCOPYN(*str, buf, n);
+    Py_XDECREF(tmp);
+    return 1;
+capi_fail:
+    Py_XDECREF(tmp);
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = #modulename#_error;
+        }
+        PyErr_SetString(err, errmess);
+    }
+    return 0;
+}
+"""
+
+cfuncs['character_from_pyobj'] = """
+static int
+character_from_pyobj(character* v, PyObject *obj, const char *errmess) {
+    if (PyBytes_Check(obj)) {
+        /* empty bytes has trailing null, so dereferencing is always safe */
+        *v = PyBytes_AS_STRING(obj)[0];
+        return 1;
+    } else if (PyUnicode_Check(obj)) {
+        PyObject* tmp = PyUnicode_AsASCIIString(obj);
+        if (tmp != NULL) {
+            *v = PyBytes_AS_STRING(tmp)[0];
+            Py_DECREF(tmp);
+            return 1;
+        }
+    } else if (PyArray_Check(obj)) {
+        PyArrayObject* arr = (PyArrayObject*)obj;
+        if (F2PY_ARRAY_IS_CHARACTER_COMPATIBLE(arr)) {
+            *v = PyArray_BYTES(arr)[0];
+            return 1;
+        } else if (F2PY_IS_UNICODE_ARRAY(arr)) {
+            // TODO: update when numpy will support 1-byte and
+            // 2-byte unicode dtypes
+            PyObject* tmp = PyUnicode_FromKindAndData(
+                              PyUnicode_4BYTE_KIND,
+                              PyArray_BYTES(arr),
+                              (PyArray_NBYTES(arr)>0?1:0));
+            if (tmp != NULL) {
+                if (character_from_pyobj(v, tmp, errmess)) {
+                    Py_DECREF(tmp);
+                    return 1;
+                }
+                Py_DECREF(tmp);
+            }
+        }
+    } else if (PySequence_Check(obj)) {
+        PyObject* tmp = PySequence_GetItem(obj,0);
+        if (tmp != NULL) {
+            if (character_from_pyobj(v, tmp, errmess)) {
+                Py_DECREF(tmp);
+                return 1;
+            }
+            Py_DECREF(tmp);
+        }
+    }
+    {
+        /* TODO: This error (and most other) error handling needs cleaning. */
+        char mess[F2PY_MESSAGE_BUFFER_SIZE];
+        strcpy(mess, errmess);
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = PyExc_TypeError;
+            Py_INCREF(err);
+        }
+        else {
+            Py_INCREF(err);
+            PyErr_Clear();
+        }
+        size_t len = strlen(mess);
+        snprintf(mess + len, F2PY_MESSAGE_BUFFER_SIZE - len,
+                " -- expected str|bytes|sequence-of-str-or-bytes, got ");
+        f2py_describe(obj, mess + strlen(mess));
+        PyErr_SetString(err, mess);
+        Py_DECREF(err);
+    }
+    return 0;
+}
+"""
+
+# TODO: These should be dynamically generated, too many mapped to int things,
+# see note in _isocbind.py
+needs['char_from_pyobj'] = ['int_from_pyobj']
+cfuncs['char_from_pyobj'] = """
+static int
+char_from_pyobj(char* v, PyObject *obj, const char *errmess) {
+    int i = 0;
+    if (int_from_pyobj(&i, obj, errmess)) {
+        *v = (char)i;
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+needs['signed_char_from_pyobj'] = ['int_from_pyobj', 'signed_char']
+cfuncs['signed_char_from_pyobj'] = """
+static int
+signed_char_from_pyobj(signed_char* v, PyObject *obj, const char *errmess) {
+    int i = 0;
+    if (int_from_pyobj(&i, obj, errmess)) {
+        *v = (signed_char)i;
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+needs['short_from_pyobj'] = ['int_from_pyobj']
+cfuncs['short_from_pyobj'] = """
+static int
+short_from_pyobj(short* v, PyObject *obj, const char *errmess) {
+    int i = 0;
+    if (int_from_pyobj(&i, obj, errmess)) {
+        *v = (short)i;
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+cfuncs['int_from_pyobj'] = """
+static int
+int_from_pyobj(int* v, PyObject *obj, const char *errmess)
+{
+    PyObject* tmp = NULL;
+
+    if (PyLong_Check(obj)) {
+        *v = Npy__PyLong_AsInt(obj);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    tmp = PyNumber_Long(obj);
+    if (tmp) {
+        *v = Npy__PyLong_AsInt(tmp);
+        Py_DECREF(tmp);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    if (PyComplex_Check(obj)) {
+        PyErr_Clear();
+        tmp = PyObject_GetAttrString(obj,\"real\");
+    }
+    else if (PyBytes_Check(obj) || PyUnicode_Check(obj)) {
+        /*pass*/;
+    }
+    else if (PySequence_Check(obj)) {
+        PyErr_Clear();
+        tmp = PySequence_GetItem(obj, 0);
+    }
+
+    if (tmp) {
+        if (int_from_pyobj(v, tmp, errmess)) {
+            Py_DECREF(tmp);
+            return 1;
+        }
+        Py_DECREF(tmp);
+    }
+
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = #modulename#_error;
+        }
+        PyErr_SetString(err, errmess);
+    }
+    return 0;
+}
+"""
+
+
+cfuncs['long_from_pyobj'] = """
+static int
+long_from_pyobj(long* v, PyObject *obj, const char *errmess) {
+    PyObject* tmp = NULL;
+
+    if (PyLong_Check(obj)) {
+        *v = PyLong_AsLong(obj);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    tmp = PyNumber_Long(obj);
+    if (tmp) {
+        *v = PyLong_AsLong(tmp);
+        Py_DECREF(tmp);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    if (PyComplex_Check(obj)) {
+        PyErr_Clear();
+        tmp = PyObject_GetAttrString(obj,\"real\");
+    }
+    else if (PyBytes_Check(obj) || PyUnicode_Check(obj)) {
+        /*pass*/;
+    }
+    else if (PySequence_Check(obj)) {
+        PyErr_Clear();
+        tmp = PySequence_GetItem(obj, 0);
+    }
+
+    if (tmp) {
+        if (long_from_pyobj(v, tmp, errmess)) {
+            Py_DECREF(tmp);
+            return 1;
+        }
+        Py_DECREF(tmp);
+    }
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = #modulename#_error;
+        }
+        PyErr_SetString(err, errmess);
+    }
+    return 0;
+}
+"""
+
+
+needs['long_long_from_pyobj'] = ['long_long']
+cfuncs['long_long_from_pyobj'] = """
+static int
+long_long_from_pyobj(long_long* v, PyObject *obj, const char *errmess)
+{
+    PyObject* tmp = NULL;
+
+    if (PyLong_Check(obj)) {
+        *v = PyLong_AsLongLong(obj);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    tmp = PyNumber_Long(obj);
+    if (tmp) {
+        *v = PyLong_AsLongLong(tmp);
+        Py_DECREF(tmp);
+        return !(*v == -1 && PyErr_Occurred());
+    }
+
+    if (PyComplex_Check(obj)) {
+        PyErr_Clear();
+        tmp = PyObject_GetAttrString(obj,\"real\");
+    }
+    else if (PyBytes_Check(obj) || PyUnicode_Check(obj)) {
+        /*pass*/;
+    }
+    else if (PySequence_Check(obj)) {
+        PyErr_Clear();
+        tmp = PySequence_GetItem(obj, 0);
+    }
+
+    if (tmp) {
+        if (long_long_from_pyobj(v, tmp, errmess)) {
+            Py_DECREF(tmp);
+            return 1;
+        }
+        Py_DECREF(tmp);
+    }
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = #modulename#_error;
+        }
+        PyErr_SetString(err,errmess);
+    }
+    return 0;
+}
+"""
+
+
+needs['long_double_from_pyobj'] = ['double_from_pyobj', 'long_double']
+cfuncs['long_double_from_pyobj'] = """
+static int
+long_double_from_pyobj(long_double* v, PyObject *obj, const char *errmess)
+{
+    double d=0;
+    if (PyArray_CheckScalar(obj)){
+        if PyArray_IsScalar(obj, LongDouble) {
+            PyArray_ScalarAsCtype(obj, v);
+            return 1;
+        }
+        else if (PyArray_Check(obj)) {
+            PyArrayObject *arr = (PyArrayObject *)obj;
+            if (PyArray_TYPE(arr) == NPY_LONGDOUBLE) {
+                (*v) = *((npy_longdouble *)PyArray_DATA(arr));
+                return 1;
+            }
+        }
+    }
+    if (double_from_pyobj(&d, obj, errmess)) {
+        *v = (long_double)d;
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+cfuncs['double_from_pyobj'] = """
+static int
+double_from_pyobj(double* v, PyObject *obj, const char *errmess)
+{
+    PyObject* tmp = NULL;
+    if (PyFloat_Check(obj)) {
+        *v = PyFloat_AsDouble(obj);
+        return !(*v == -1.0 && PyErr_Occurred());
+    }
+
+    tmp = PyNumber_Float(obj);
+    if (tmp) {
+        *v = PyFloat_AsDouble(tmp);
+        Py_DECREF(tmp);
+        return !(*v == -1.0 && PyErr_Occurred());
+    }
+
+    if (PyComplex_Check(obj)) {
+        PyErr_Clear();
+        tmp = PyObject_GetAttrString(obj,\"real\");
+    }
+    else if (PyBytes_Check(obj) || PyUnicode_Check(obj)) {
+        /*pass*/;
+    }
+    else if (PySequence_Check(obj)) {
+        PyErr_Clear();
+        tmp = PySequence_GetItem(obj, 0);
+    }
+
+    if (tmp) {
+        if (double_from_pyobj(v,tmp,errmess)) {Py_DECREF(tmp); return 1;}
+        Py_DECREF(tmp);
+    }
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err==NULL) err = #modulename#_error;
+        PyErr_SetString(err,errmess);
+    }
+    return 0;
+}
+"""
+
+
+needs['float_from_pyobj'] = ['double_from_pyobj']
+cfuncs['float_from_pyobj'] = """
+static int
+float_from_pyobj(float* v, PyObject *obj, const char *errmess)
+{
+    double d=0.0;
+    if (double_from_pyobj(&d,obj,errmess)) {
+        *v = (float)d;
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+needs['complex_long_double_from_pyobj'] = ['complex_long_double', 'long_double',
+                                           'complex_double_from_pyobj', 'npy_math.h']
+cfuncs['complex_long_double_from_pyobj'] = """
+static int
+complex_long_double_from_pyobj(complex_long_double* v, PyObject *obj, const char *errmess)
+{
+    complex_double cd = {.r=0, .i=0};
+    if (PyArray_CheckScalar(obj)){
+        if PyArray_IsScalar(obj, CLongDouble) {
+            PyArray_ScalarAsCtype(obj, v);
+            return 1;
+        }
+        else if (PyArray_Check(obj)) {
+            PyArrayObject *arr = (PyArrayObject *)obj;
+            if (PyArray_TYPE(arr)==NPY_CLONGDOUBLE) {
+                npy_clongdouble tmp = *(npy_clongdouble *)PyArray_DATA(arr);
+                npy_csetreall(&v->_npy, npy_creall(tmp));
+                npy_csetimagl(&v->_npy, npy_cimagl(tmp));
+                return 1;
+            }
+        }
+    }
+    if (complex_double_from_pyobj(&cd,obj,errmess)) {
+        npy_csetreall(&v->_npy, (long_double)npy_creal(cd._npy));
+        npy_csetimagl(&v->_npy, (long_double)npy_cimag(cd._npy));
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+needs['complex_double_from_pyobj'] = ['complex_double', 'npy_math.h']
+cfuncs['complex_double_from_pyobj'] = """
+static int
+complex_double_from_pyobj(complex_double* v, PyObject *obj, const char *errmess) {
+    Py_complex c;
+    if (PyComplex_Check(obj)) {
+        c = PyComplex_AsCComplex(obj);
+        npy_csetreal(&v->_npy, c.real);
+        npy_csetimag(&v->_npy, c.imag);
+        return 1;
+    }
+    if (PyArray_IsScalar(obj, ComplexFloating)) {
+        if (PyArray_IsScalar(obj, CFloat)) {
+            npy_cfloat tmp;
+            PyArray_ScalarAsCtype(obj, &tmp);
+            npy_csetreal(&v->_npy, (double)npy_crealf(tmp));
+            npy_csetimag(&v->_npy, (double)npy_cimagf(tmp));
+        }
+        else if (PyArray_IsScalar(obj, CLongDouble)) {
+            npy_clongdouble tmp;
+            PyArray_ScalarAsCtype(obj, &tmp);
+            npy_csetreal(&v->_npy, (double)npy_creall(tmp));
+            npy_csetimag(&v->_npy, (double)npy_cimagl(tmp));
+        }
+        else { /* if (PyArray_IsScalar(obj, CDouble)) */
+            PyArray_ScalarAsCtype(obj, v);
+        }
+        return 1;
+    }
+    if (PyArray_CheckScalar(obj)) { /* 0-dim array or still array scalar */
+        PyArrayObject *arr;
+        if (PyArray_Check(obj)) {
+            arr = (PyArrayObject *)PyArray_Cast((PyArrayObject *)obj, NPY_CDOUBLE);
+        }
+        else {
+            arr = (PyArrayObject *)PyArray_FromScalar(obj, PyArray_DescrFromType(NPY_CDOUBLE));
+        }
+        if (arr == NULL) {
+            return 0;
+        }
+        npy_cdouble tmp = *(npy_cdouble *)PyArray_DATA(arr);
+        npy_csetreal(&v->_npy, npy_creal(tmp));
+        npy_csetimag(&v->_npy, npy_cimag(tmp));
+        Py_DECREF(arr);
+        return 1;
+    }
+    /* Python does not provide PyNumber_Complex function :-( */
+    npy_csetimag(&v->_npy, 0.0);
+    if (PyFloat_Check(obj)) {
+        npy_csetreal(&v->_npy, PyFloat_AsDouble(obj));
+        return !(npy_creal(v->_npy) == -1.0 && PyErr_Occurred());
+    }
+    if (PyLong_Check(obj)) {
+        npy_csetreal(&v->_npy, PyLong_AsDouble(obj));
+        return !(npy_creal(v->_npy) == -1.0 && PyErr_Occurred());
+    }
+    if (PySequence_Check(obj) && !(PyBytes_Check(obj) || PyUnicode_Check(obj))) {
+        PyObject *tmp = PySequence_GetItem(obj,0);
+        if (tmp) {
+            if (complex_double_from_pyobj(v,tmp,errmess)) {
+                Py_DECREF(tmp);
+                return 1;
+            }
+            Py_DECREF(tmp);
+        }
+    }
+    {
+        PyObject* err = PyErr_Occurred();
+        if (err==NULL)
+            err = PyExc_TypeError;
+        PyErr_SetString(err,errmess);
+    }
+    return 0;
+}
+"""
+
+
+needs['complex_float_from_pyobj'] = [
+    'complex_float', 'complex_double_from_pyobj']
+cfuncs['complex_float_from_pyobj'] = """
+static int
+complex_float_from_pyobj(complex_float* v,PyObject *obj,const char *errmess)
+{
+    complex_double cd = {.r=0, .i=0};
+    if (complex_double_from_pyobj(&cd,obj,errmess)) {
+        npy_csetrealf(&v->_npy, (float)npy_creal(cd._npy));
+        npy_csetimagf(&v->_npy, (float)npy_cimag(cd._npy));
+        return 1;
+    }
+    return 0;
+}
+"""
+
+
+cfuncs['try_pyarr_from_character'] = """
+static int try_pyarr_from_character(PyObject* obj, character* v) {
+    PyArrayObject *arr = (PyArrayObject*)obj;
+    if (!obj) return -2;
+    if (PyArray_Check(obj)) {
+        if (F2PY_ARRAY_IS_CHARACTER_COMPATIBLE(arr))  {
+            *(character *)(PyArray_DATA(arr)) = *v;
+            return 1;
+        }
+    }
+    {
+        char mess[F2PY_MESSAGE_BUFFER_SIZE];
+        PyObject* err = PyErr_Occurred();
+        if (err == NULL) {
+            err = PyExc_ValueError;
+            strcpy(mess, "try_pyarr_from_character failed"
+                         " -- expected bytes array-scalar|array, got ");
+            f2py_describe(obj, mess + strlen(mess));
+            PyErr_SetString(err, mess);
+        }
+    }
+    return 0;
+}
+"""
+
+needs['try_pyarr_from_char'] = ['pyobj_from_char1', 'TRYPYARRAYTEMPLATE']
+cfuncs[
+    'try_pyarr_from_char'] = 'static int try_pyarr_from_char(PyObject* obj,char* v) {\n    TRYPYARRAYTEMPLATE(char,\'c\');\n}\n'
+needs['try_pyarr_from_signed_char'] = ['TRYPYARRAYTEMPL

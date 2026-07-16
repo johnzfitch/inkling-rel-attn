@@ -1,0 +1,70 @@
+Below are complete tables for (a)–(d), followed by the clause-level reasoning, first-principles vs. pattern-labeling, and one-sentence falsifiers for every classification.
+
+---
+
+### (a) Generator membership, preservation, distortion
+
+| Mech. | Through N? | Through A? | Through K? | What it preserves | What it distorts | Derivation / Pattern | Falsifier (1 clause) |
+|---|---|---|---|---|---|---|---|
+| **1. Rotate q,k by θ·pos** | **No** | **No** | **Yes**: d-transport is R(d)∈SO(2), θd linear | ‖q‖,‖k‖; det=1; bilinear form qᵀRk up to rotation; removes abs-pos dependence | Relative phase/angle between q and k; introduces d-periodic oscillation in similarity | **FP**: R(m)R(n)⁻¹=R(d)∈K by orthogonality of 2-blocks | If ‖q(m)‖≠‖q(n)‖ or score depends on m+n separately |
+| **2. Penalty −γ|d| on logit** | **No** | **Yes**: in weight-space w→a(d)w, a=e^(−γ|d|/2), so d-transport is diag(a,a⁻¹)∈A | **No** | Base similarity q·k (before scaling); monotonic order of |d|; det=1 in (w,w⁻¹) rep. | Attention weights compressed/exp. with |d|; hyperbolic metric on distance; breaks translation invariance in unnormalized weights | **FP**: exp(score−γ|d|)=e^(−γ|d|)exp(score) ⇒ orbit of A | If decay is polynomial (e.g. |d|⁻²) not exponential |
+| **3. Add sinusoid p(i)** | **Yes**: v=p(m)−p(n)=t(d)·[unit vector rotated by abs frame]; matrix [[1,t(d)],[0,1]] with t∝sin(ωd/2) | **No** (anisotropic A absent); **Note**: isotropic scale |λ(d)|=|2Csin(ωd/2)| lies outside SL₂ | **No** in intrinsic d-transport; **Yes** in abs-orientation factor R(nω+dω/2) that sets the shear plane (factored into frame) | Unit norm per (sin,cos) block; periodicity; spectral ratio ωⱼ₊₁/ωⱼ = r (constant) | Feature space sheared by v(d); abs-pos leakage via x(m)·p(n); amplitude |v|∝|sin(ωd/2)| | **FP**: p(i)=R(iω)p(0) ⇒ v∈Im(N) in homogeneous coords | If p(m)−p(n)∝d (linear) instead of sinusoidal |
+| **4. Learned b(d;vₘ,vₙ)** | **Yes** (learned σ) | **Yes** (learned δ) | **Yes** (learned ρ) | None fixed; preservation is data-dependent | All symmetries can break; per-pair generator choice; arbitrary d-dependence; can apply N·A·K simultaneously | **FP**: coefficient map (vₘ,vₙ)↦(α,β,γ)∈sl₂ has rank>1 | If b(d) is constant across all (m,n,vₘ,vₙ) pairs |
+
+*Uncertainty marked*: For mechanism 3 the isotropic factor |λ(d)| is not inside the anisotropic A=diag(a,a⁻¹); it is factored as an overall scale outside the Iwasawa coset. The K-factor appears only in the absolute-orientation frame, not in the d-only transport.
+
+---
+
+### (b) What mechanism 4 reaches; pinning; obstruction
+
+| Generator | Fixed reach (1–3) | Reachable by 4? | Can 4 be pinned to this alone? | Obstruction clause (why not one generator) |
+|---|---|---|---|---|
+| **N** (shear) | Mech 3 only | Yes | **No** | The shear parameter is t(vₘ,vₙ,d)∉R constant; for same d, different pairs give different t, so image is not a 1-parameter subgroup |
+| **A** (dilation) | Mech 2 only | Yes | **No** | Scale factor a(vₘ,vₙ,d) varies with content; orbit is union of many A-subgroups |
+| **K** (rotation) | Mech 1 only | Yes | **No** | Angle θ(vₘ,vₙ,d) is data-dependent; R(d) is not a homomorphism from (m,n) into SO(2) |
+| **N·A·K** (full) | **No** fixed mechanism reaches the product | **Yes** | **Must span >1** | b(d;vₘ,vₙ)=exp(αN+βA+γK) with (α,β,γ)∈R³(vₘ,vₙ,d); rank>1 ⇒ violates M(m,n)M(n,p)=M(m,p) for any single generator |
+
+**Answer to “Can it be pinned...?”**: No. The projection that produces the per-token feature forces the Lie-algebra coefficient vector (α,β,γ) to depend on vₘ and vₙ. Therefore the map d↦M(m,n) is not contained in any one-parameter subgroup of SL₂(R). The explicit obstruction is the **failure of the homomorphism property**: M(m,n;vₘ,vₙ,vₙ,vₚ) ≠ M(m,p;vₘ,vₚ) because the intermediate vₙ modifies β,γ.
+
+---
+
+### (c) Iwasawa decompositions (ρ,δ,σ); invariant; shear presence
+
+Convention: M = N·A·K = σ·δ·ρ, with ρ∈SO(2), δ=diag(a,a⁻¹), σ=[[1,t],[0,1]]. For mechanism 3 the isotropic scale s(d)=|2Csin(ωd/2)| is factored outside; the SL₂-part is decomposed.
+
+| Mech. | ρ(d) (rotation) | δ(d) (anisotropic dilation) | σ(d) (shear) | Convention-independent invariant of decomposition | Shear by construction? |
+|---|---|---|---|---|---|
+| **1** | [[cosθd,−sinθd]; [sinθd, cosθd]] | I (a=1) | I (t=0) | **Tr(ρ)=2 cos θd** (det=1 is fixed) | **No** (σ=I) |
+| **2** | I | diag(a,a⁻¹), a=e^(−γ|d|/2) | I (t=0) | **Tr(δ)=a+a⁻¹=2 cosh(γ|d|/2)** (det=1) | **No** (σ=I) |
+| **3** | I in d-transport; R(φ) with φ=nω+dω/2+π/2 in abs frame (factored) | I (a=1) anisotropic; isotropic s(d) outside | [[1,t(d)]; [0,1]], **t(d)=C sin(ωd/2)** | **det(M_full)=s(d)²=4C²sin²(ωd/2)**; Tr of SL₂-part is 2 (depends on abs frame φ, so only det is free of n) | **Yes** (σ≠I) |
+| **4** | ρ(d;vₘ,vₙ) learned ∈SO(2) | δ(d;vₘ,vₙ) learned, diag(a,a⁻¹) | σ(d;vₘ,vₙ) learned, [[1,t];[0,1]] | **None**: Tr and det depend on (vₘ,vₙ,d) jointly | **Yes** (can be learned nonzero) |
+
+*Derivation vs pattern*:
+- Mech 1: **FP** (orthogonal group law R(m)R(n)⁻¹=R(d)).
+- Mech 2: **FP** (exponential orbit of diag generator h=[[1,0],[0,−1]]).
+- Mech 3: **FP** (translation vector v∈Im([[1,t],[0,1]])) combined with **pattern** recognition of sinusoidal PE.
+- Mech 4: **FP** (affine combination of generators with coefficient functions of v).
+
+---
+
+### (d) Local convolution + long-range learned bias: boundary condition and residual
+
+| Aspect | Local conv. (|d|≤L) | Long-range bias b(d;vₘ,vₙ) | Compatibility at |d|=L | Residual that split cannot remove? |
+|---|---|---|---|---|
+| **Generator form** | Fixed: σ_loc, δ_loc=I, ρ_loc=I (pure local shear; or fixed mix) | Free: σ(d;v), δ(d;v), ρ(d;v) learned | Must match pointwise: **σ_loc = σ(L;v,v’) ∀v,v’**; same for δ,ρ | **Yes** |
+| **Content dep.** | Linear in hidden states h(i) inside window | Nonlinear in projected features vₘ,vₙ | Forces v-projection to collapse to constant at d=±L | **Yes** |
+| **Functional form** | Polynomial / fixed-exp in d with constant coeffs | Arbitrary learned curve f(d,vₘ,vₙ) | b(d)|_{|d|=L} = C_conv(d)|_{|d|=L} | **Yes** |
+| **Indirect paths** | Captures |d|>L via intermediate hops | Direct only for |d|>L | No direct constraint on multi-hop contribution | **Yes** |
+
+**The compatibility condition** (where the two meet at |d|=L):
+The total position-transport must be continuous in its Iwasawa factors:
+$$(\rho_{\text{loc}},\delta_{\text{loc}},\sigma_{\text{loc}}) \;=\; (\rho(L;v,v'),\,\delta(L;v,v'),\,\sigma(L;v,v')) \quad\forall\,v,v'.$$
+Because the left side is independent of v,v’ while the right side is not (mechanism 4 is content-dependent), the only solution is that the learned projection collapses to a constant vector at |d|=L: v(m)≈v(n) for |m−n|=L. This is a **hard constraint** on the learned feature extractor.
+
+**Is there a residual the split cannot remove? Yes—two irremovable ones:**
+
+1. **The seam / derivative kink**: Even if pointwise equality holds at |d|=L, the derivatives ∂σ/∂d, ∂δ/∂d, ∂ρ/∂d are constant (zero) on the local side and learned/nonzero on the global side. Thus ∂S/∂d has a jump discontinuity at |d|=L that no parameter tuning can smooth without destroying the content-dependence of b.
+
+2. **The representation-gap / indirect-hop residual**: For |d|>L the convolution provides no direct link, but information can flow through a chain of local steps (h→h±1→…). This indirect contribution is linear, shift-invariant, and shared across heads. The direct bias b(d) is nonlinear, per-head, and distance-only. There is no functional form of b that can reproduce the exact multi-hop linear filter for all |d|>L and all hidden-state configurations, so the split always leaves an **unassigned indirect component** that belongs neither to the local kernel nor to the global bias.
+
+*Falsification for (d)*: If one measured the attention gradient ∂S/∂d across |d|=L and found it smooth (no jump) while v-projections remain non-constant at the boundary, then the claimed residual does not exist.

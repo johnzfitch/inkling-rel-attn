@@ -1,0 +1,98 @@
+{
+  "_label": "F9 fit, decaying kernel ONLY (constant dropped); slow-rate bound 1/(2*extent). Extrapolation, not data.",
+  "_correction": "pinned-rate fits reported 'unidentified' -- the window cannot resolve a decay length > extent from a constant.",
+  "5": {
+    "status": "unidentified",
+    "reason": "F9 misfit (r2=0.46); not the winning family here",
+    "fit_r2": 0.4633663586203055,
+    "slow_rate": 0.0004882812500000198
+  },
+  "11": {
+    "status": "unidentified",
+    "reason": "extrapolated tail dominated by a slow component pinned at 1/(2*extent) (decay length > window)",
+    "fit_r2": 0.8680814752787349,
+    "slow_rate": 0.0005078214668636667,
+    "slow_tail_share": 0.9999333775058381
+  },
+  "17": {
+    "status": "unidentified",
+    "reason": "F9 misfit (r2=0.70); not the winning family here",
+    "fit_r2": 0.7040546672852293,
+    "slow_rate": 0.0004882812551410686
+  },
+  "23": {
+    "status": "resolved",
+    "fit_r2": 0.8995049570249622,
+    "truncated_fraction": 0.6951022770881508,
+    "slow_rate": 0.0008445853412606904,
+    "fast_rate": 0.018074386313106233,
+    "slow_rate_pinned": false,
+    "slow_tail_share": 0.9999999996942971
+  },
+  "29": {
+    "status": "resolved",
+    "fit_r2": 0.9748432933604628,
+    "truncated_fraction": 0.08522472936236686,
+    "slow_rate": 0.0025834726506111247,
+    "fast_rate": 0.014334247285976397,
+    "slow_rate_pinned": false,
+    "slow_tail_share": 0.9999994934797631
+  },
+  "35": {
+    "status": "unidentified",
+    "reason": "extrapolated tail dominated by a slow component pinned at 1/(2*extent) (decay length > window)",
+    "fit_r2": 0.952433783501085,
+    "slow_rate": 0.00048828125000409,
+    "slow_tail_share": 0.9992038335798856
+  },
+  "41": {
+    "status": "resolved",
+    "fit_r2": 0.9818619387603454,
+    "truncated_fraction": 0.704301866001709,
+    "slow_rate": 0.0008586186296672335,
+    "fast_rate": 0.009433927538132747,
+    "slow_rate_pinned": false,
+    "slow_tail_share": 0.9999945567597552
+  },
+  "47": {
+    "status": "resolved",
+    "fit_r2": 0.9722718473216393,
+    "truncated_fraction": 1.4384316208132955,
+    "slow_rate": 0.0008463337209193185,
+    "fast_rate": 0.0008740074713638274,
+    "slow_rate_pinned": false,
+    "slow_tail_share": 0.5194168374401192
+  },
+  "53": {
+    "status": "unidentified",
+    "reason": "extrapolated tail dominated by a slow component pinned at 1/(2*extent) (decay length > window)",
+    "fit_r2": 0.9522230846480104,
+    "slow_rate": 0.0004882812500000001,
+    "slow_tail_share": 0.5011001384202592
+  },
+  "59": {
+    "status": "unidentified",
+    "reason": "extrapolated tail dominated by a slow component pinned at 1/(2*extent) (decay length > window)",
+    "fit_r2": 0.9704313715170513,
+    "slow_rate": 0.0004882812500000001,
+    "slow_tail_share": 0.5021176406639658
+  },
+  "65": {
+    "status": "unidentified",
+    "reason": "extrapolated tail dominated by a slow component pinned at 1/(2*extent) (decay length > window)",
+    "fit_r2": 0.9019201455525309,
+    "slow_rate": 0.0004882812500000001,
+    "slow_tail_share": 0.9999893375606976
+  },
+  "_median_truncated_fraction_resolved": 0.6997020715449298,
+  "_n_resolved": 4,
+  "_unidentified_layers": [
+    "5",
+    "11",
+    "17",
+    "35",
+    "53",
+    "59",
+    "65"
+  ]
+}

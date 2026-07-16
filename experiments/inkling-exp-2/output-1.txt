@@ -1,0 +1,112 @@
+**Answer — full tables, no compressed verdict**
+
+References used: Iwasawa SL₂(R) factorization [1]; RoPE rotation [2]; ALiBi linear bias [3]; sinusoidal PE [4]; content-dependent learned relative bias [5].
+
+---
+
+### (a) Which generator each mechanism uses, what it preserves, what it distorts
+
+| Mech. | Through N (σ) | Through A (δ) | Through K (ρ) | Quantity preserved | Quantity distorted |
+|---|---|---|---|---|---|
+| **1. Rotate q,k** by abs. pos. | **No** σ≡0 | **No** δ≡0 | **Yes** ρ(d)=θd, θ∝freq | ||q||,||k||; det M=1; ⟨q,k⟩ at d=0; area in feature plane | Relative orientation (q,k); score becomes R(d)-periodic in d; translation invariance broken rotationally |
+| **2. Fixed penalty –c|d|** on logit | **No** σ≡0 | **Yes** δ(d)=c|d| (a=e^{±δ}) | **No** ρ≡0 | Content term q·k unchanged; det M=1; rank-order of pairs at fixed d; hyperbolic area | Absolute weight magnitudes across d; kernel gets factor e^{–c|d|}; monotone distance decay |
+| **3. Sinusoid p(m)** added | **Yes** σ(d;m,n) sinusoid, bounded | **No** δ≡0 | **No** in linear part ρ≡0 (*parameterization* of p uses R in freq. space, but transport matrix is I) | Content axis orthogonal to shear; det M=1; linear part is identity | Embedding norms; absolute-pos. dependence (m+n term); cross-terms q·p, p·p; translation invariance broken by shear |
+| **4. Learned b(d;·)** | **Yes** (learned σ) | **Yes** (learned δ) | **Yes** (learned ρ) | **None fixed** — all invariants depend on v(x) | All adaptively: content–distance mixing is unrestricted; no universal preserved quantity |
+
+**Mechanism 1 — First principles:** q(m)=R(m)q, k(n)=R(n)k with R∈SO(2). Relative map is R(d)=R(m)R(n)⁻¹∈K. Orthogonality ⇒ ||q(m)||=||q||. Det R=1 ⇒ det M=1.  
+**Pattern recognition:** This is RoPE [2]; periodic d-dependence, not monotone, matches circular symmetry.  
+**Falsification clause:** If ||q(m)||≠||q|| for some m, then R is not orthogonal and K is contaminated by A or N; observation of norm change falsifies pure-K.
+
+**Mechanism 2 — First principles:** Score s=q·k–c|d| ⇒ exp(s) gets factor e^{–c|d|}. Write scaling of a 2-vector (u,v) with u·v=const by a,a⁻¹ ⇒ M∈A with log a∝|d|. q,k untouched ⇒ linear part I, so ρ=σ=0.  
+**Pattern recognition:** Matches ALiBi [3]; linear-in-logit ⇒ exponential-in-weight, the signature of hyperbolic scaling.  
+**Falsification clause:** If the distance factor were polynomial |d|⁻ᵏ rather than exponential, A would be replaced by a non-group scaling; observing polynomial decay falsifies pure-A.
+
+**Mechanism 3 — First principles:** x→x+p(m) is affine. In homogeneous coords (x,1) the linear part is block-I; in any invariant 2-plane spanned by (sin·, cos·) it is N(t)=[[1,t],[0,1]] with t=Δp∝sin(dθ/2)cos((m+n)θ/2). Hence σ≠0, a=1, ρ=0 in the transport matrix.  
+**Pattern recognition:** Sinusoidal PE [4] is bounded and periodic like rotation, but because it is *added* not multiplied, the geometric effect is translational (shear).  
+**Falsification clause:** If p(m)–p(n) depended only on d and not on (m+n)/2, the shear would be translation-invariant and the mechanism would reduce to a group representation of ℤ; the observed (m+n) dependence confirms absolute-position shear and falsifies pure-group form.
+
+**Mechanism 4 — First principles:** b(d;x)=v(x)ᵀφ(d) with v(x)=W·feat(x). The coefficient space is Im(W)⊂Rᵏ. By Iwasawa uniqueness [1], if dim Im(W)≥2 then different v yield matrices with different (t,a,θ). Thus N,A,K are all reachable.  
+**Pattern recognition:** Content-gated biases [5] adaptively learn decay, shift, or rotation patterns per head.  
+**Falsification clause:** If all heads produced matrices with identical non-trivial factor (e.g. all in K), then rank(W) would have to be 1 with image in so(2); observing diverse decay/periodic curves across heads falsifies single-generator confinement.
+
+---
+
+### (b) What mechanism 4 can reach that 1–3 cannot; pinning; obstruction
+
+| Mechanism | Confined to one generator? | Generators actually reachable | Can span >1 without constraint? | Obstruction to writing as one generator |
+|---|---|---|---|---|
+| **1** | Yes | K only | No | R(d)∈SO(2) ⇒ tr∈[–2,2], det=1, σ=δ=0 fixed |
+| **2** | Yes | A only | No | Scalar f(|d|) ⇒ single parameter a(d) with log a linear in |d| |
+| **3** | Yes (linear part) | N only | No | Affine map has linear part I ⇒ only free parameter is t(d) |
+| **4** | Only if W is rank-1 and aligned | **N, A, K** all | **Yes, generically** | **Dimensional/rank obstruction + Iwasawa uniqueness:** v(x) lives in dim(Im W)≥2; mapping v→(t,a,θ) is linear/nonlinear with rank>1. Two different v₁,v₂ can produce M₁∈N\ {I}, M₂∈A\ {I}. By uniqueness of N·A·K [1] there is no single (t,a,θ) representing both, so the family cannot lie in N∪A∪K. |
+
+**First principles:** The Lie algebras are 𝔫=span{[[0,1],[0,0]]}, 𝔞=span{[[1,0],[0,–1]]}, 𝔨=span{[[0,–1],[1,0]]}. A learned projection W: R^{D_h}→R³ (or to coefficient spaces) with generic rank r produces r-dimensional subspace of 𝔫⊕𝔞⊕𝔨. If r>1 the image is not contained in any one 𝔤.  
+**Pattern recognition:** In practice multi-head biases learn some heads with exponential decay (A), others with directional shift (N), others with periodic modulation (K).  
+**Falsification clause:** If constraining W to output a single scalar per head (rank 1) and aligning it with, say, 𝔞 makes all b(d) lie in A with no N or K components, then the obstruction is removed; observing that such a constrained model still learns diverse geometric patterns falsifies the “must span >1” claim.
+
+**The explicit obstruction:** Write the family M(d,v)=N(σ(d,v))A(e^{δ(d,v)})K(ρ(d,v)). Iwasawa uniqueness says (σ,δ,ρ) are uniquely determined by M. If v₁,v₂∈Im(W) give (σ₁,δ₁,ρ₁) and (σ₂,δ₂,ρ₂) with, e.g., δ₁≠0,δ₂=0 but σ₂≠0, then no constant choice (σ,δ,ρ) works for both v’s. Hence a single-generator formula b(d)=f(d)·c (with c constant) cannot reproduce the full family unless Im(W) is 1-dimensional and lies in one 𝔤. Without that constraint, **mechanism 4 must span at least two generators** (in fact all three are available).
+
+---
+
+### (c) 2×2 position-transport decomposition (ρ,δ,σ), invariant, shear status
+
+We adopt the convention M = N(σ)·A(e^{δ})·K(ρ) with  
+N(σ)=[[1,σ],[0,1]], A=[[e^{δ},0],[0,e^{–δ}]], K(ρ)=[[cosρ,–sinρ],[sinρ,cosρ]].  
+The **convention-independent invariant** is the trace: tr M = (e^{δ}+e^{–δ})cosρ + σe^{–δ}sinρ. For det=1, tr determines the conjugacy class: |tr|<2 ⇒ K (elliptic), |tr|>2 ⇒ A (hyperbolic), |tr|=2 ⇒ N (parabolic) [1].
+
+| Mech. | Rotation ρ | Dilation δ | Shear σ | Invariant tr(M(d)) | Shear status |
+|---|---|---|---|---|---|
+| **1** | ρ=θd (θ∝1/10000^{2i/d_k}); K=[[cosρ,–sinρ],[sinρ,cosρ]] | **0** | **0** | **2 cos(θd)** (|tr|≤2, =2 only at d=0) | **Zero by construction** (σ≡0) |
+| **2** | **0** | δ=c|d|/2 (or –c|d|/2 by coord. choice); A=[[e^{δ},0],[0,e^{–δ}]] | **0** | **2 cosh(c|d|/2)** (|tr|≥2, =2 only at d=0) | **Zero by construction** (σ≡0) |
+| **3** | **0** (linear part) | **0** | σ(d;m,n)≈α sin(dθ/2)cos((m+n)θ/2); N=[[1,σ],[0,1]] | **2** (exact, all d) | **Non-zero by construction** (pure shear) |
+| **4** | ρ(d,v) learned | δ(d,v) learned | σ(d,v) learned | **(e^{δ}+e^{–δ})cosρ + σe^{–δ}sinρ** (family, parameter-dependent) | **Can carry σ≠0** (and ρ,δ) |
+
+**Mechanism 1 — decomposition:** M(d)=K(θd). Direct computation: det=1, tr=2cosθd.  
+**First principles:** R(φ)R(φ)⁻¹=I, product of rotations is rotation; no scaling or shear possible in SO(2).  
+**Pattern recognition:** Block-diagonal over dimension pairs [2].  
+**Falsification:** If tr M(d) were constant 2 for d≠0, then ρ≡0 and K is absent; observation of oscillating scores with d falsifies that.
+
+**Mechanism 2 — decomposition:** M(d)=A(δ(d)) with δ proportional to |d|. tr = e^{δ}+e^{–δ}=2coshδ.  
+**First principles:** Multiplicative factor e^{–c|d|} on the kernel corresponds to opposite scaling of conjugate coordinates; log-scale is linear in |d|.  
+**Pattern recognition:** Head-specific slopes in ALiBi [3] correspond to different c values ⇒ different δ scales.  
+**Falsification:** If tr M(d) oscillated (|tr|<2 for some d≠0), then ρ≠0 and pure-A fails.
+
+**Mechanism 3 — decomposition:** M(d)=N(σ(d)). tr=1+1=2 exactly.  
+**First principles:** Translation vector Δp lies in a 1-dimensional orbit of the shear group; the linear part is I, so a=1 and ρ=0.  
+**Pattern recognition:** Sinusoid frequencies scale geometrically, but the *transport* is linear (addition) ⇒ parabolic class.  
+**Falsification:** If tr M(d) ever deviated from 2 (e.g. >2 for large d), then either δ or ρ is present; bounded |σ| prevents that, confirming pure-N.
+
+**Mechanism 4 — decomposition:** Full N·A·K with all three parameters free functions of (d,v). The invariant is the family of traces given above.  
+**First principles:** With v in a high-dim space, the exponential map from 𝔫⊕𝔞⊕𝔨 to SL₂ is surjective onto open sets; hence all three can be activated.  
+**Pattern recognition:** Multi-head learned biases show head-dependent decay, periodicity, and directional shifts.  
+**Falsification:** If for all v,d we observed |tr|<2 (pure rotation family), then Im(W)⊂𝔨 and A,N are unreachable; observing exponential decay in some head falsifies pure-K.
+
+**Shear summary:** 1 and 2 have σ=0 **by construction** (orthogonal or diagonal). 3 has σ≠0 **by construction** (pure shear). 4 **can carry shear** (σ(d,v) learned) together with non-zero ρ,δ.
+
+---
+
+### (d) Short local convolution + long-range learned bias: boundary condition and irreducible residual
+
+| Region | Operator form | Position-transport (2×2) | Behavior at boundary | Residual / gap |
+|---|---|---|---|---|
+| **Local** \|d\|≤R | h'(m)=Σ_{j=m-R}^{m+R}w_{j-m}h(j) | Full SL₂: ρ_loc,δ_loc,σ_loc all can be ≠0 (from W_q,W_k,w) | Continuous, smooth up to order R | — |
+| **Long-range** \|d\|>R | b(d;x_m,x_n)=v(x_m)ᵀφ(d)v(x_n) or scalar v·φ(d) | Only the coefficient vector v carries content; the d-dependence is scalar/vector addition ⇒ **no direct ρ,δ,σ on q,k** | Must match local value and derivatives at \|d\|=R | **Structural: missing linear feature-space transformation** |
+| **Boundary** \|d\|=R | Overlap is exactly 1 term: C_conv(R) | Jump from full 2×2 to scalar if unmatched | **Compatibility:** b(R)=C_conv(R) and ∇ʲb(R)=∇ʲC_conv(R) for j=1,…,L | **Cannot remove geometric gap** |
+
+**Compatibility condition — First principles:** The convolution kernel K_loc(d) is zero for |d|>R. Thus the score contribution C(d) is non-zero only inside the window. At d=R⁻ there is one overlapping term; at d=R⁺ there is none. To avoid a discontinuity in the total score S(d)=C(d)+b(d) (with b applied for |d|>R, or added everywhere), we require
+
+b(R) = C_conv(R)  
+∂_d b|_{R} = ∂_d C_conv|_{R}  
+… up to the smoothness order of the learned bias (typically L=1 or 2).
+
+If b is applied for *all* d, then we also require b(d)≈0 for |d|<R to avoid double-counting; the matching point is then d=±R where b “takes over” exactly the value that C drops.
+
+**Pattern recognition:** Models like Longformer/BigBird [5] use sliding windows plus global/random attention; boundary artifacts in attention heatmaps are visible at the window edge unless the global bias is calibrated.
+
+**The residual the split cannot remove — First principles:** The local convolution applies linear maps W_q,W_k to convolved states h'(·). These maps can have arbitrary rotation, dilation, and shear in feature space (e.g., if W_q,W_k are not isotropic). The result is that for |d|≤R the interaction q_m·k_n carries a full 2×2 transport M_loc(d) with ρ_loc,δ_loc,σ_loc. For |d|>R, q_m and k_n are *not* convolved together; only the scalar (or bilinear-in-v) term b(d) is added. Even if v(x) is learned and high-dimensional, b(d) adds to the **logit**, it does not apply a linear transformation to q_m or k_n. Therefore the long-range path **cannot reproduce ρ_loc,δ_loc,σ_loc** in feature space. The split can match values and derivatives at |d|=R, but it cannot restore the missing geometric structure for |d|>R.
+
+**What this means:** There is an **irreducible structural residual** — a “geometric gap” at long range. The model behaves with full SL₂ transport locally and with pure scalar (N/A/K-coefficient-only-via-v) transport globally. No choice of v(x) can turn a scalar logit addition into a feature-space rotation or shear of q and k, because v(x) is the same for all pairs (m,n) with given content and only weights the coefficient of d; it cannot depend on the specific pair’s feature orientation in the same way W_conv does.
+
+**Falsification clause:** If a model with only local convolution + learned b(d) exhibited identical feature-space rotation/shear patterns for |d|>R as for |d|≤R (e.g., if measuring the Jacobian ∂q_m/∂h_n showed non-identity linear parts beyond R), then the residual would be absent; observing that ∂q_m/∂h_n=0 (or purely rank-1 via v) for |d|>R confirms the gap.
+
+**Summary of residual:** The split removes the *value* discontinuity at |d|=R via the matching conditions above, but it **cannot remove the dimensional reduction** of the position-transport from a full 3-parameter SL₂ family (local) to a coefficient-weighted family that never acts linearly on q,k (global). That residual is inherent to separating linear feature-mixing (convolution) from scalar score-mixing (bias).

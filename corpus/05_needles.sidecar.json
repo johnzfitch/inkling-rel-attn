@@ -1,0 +1,221 @@
+{
+  "seq": 8192,
+  "entities": [
+    {
+      "codeword": "TALLYSLYS-32",
+      "token_positions": [
+        312,
+        1294
+      ],
+      "distance": 982,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "GACMUNFEN-55",
+      "token_positions": [
+        418,
+        1504
+      ],
+      "distance": 1086,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "TALGACBEX-31",
+      "token_positions": [
+        489,
+        1481
+      ],
+      "distance": 992,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "LYSMUNVEK-87",
+      "token_positions": [
+        663,
+        1810
+      ],
+      "distance": 1147,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "ZORMUNMUN-60",
+      "token_positions": [
+        1090,
+        2077
+      ],
+      "distance": 987,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "GACBEXGAC-23",
+      "token_positions": [
+        1112,
+        2175
+      ],
+      "distance": 1063,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "LYSZORFEN-77",
+      "token_positions": [
+        1149,
+        2100
+      ],
+      "distance": 951,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "MUNGACGAC-94",
+      "token_positions": [
+        1206,
+        2294
+      ],
+      "distance": 1088,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "TALVEKDOV-45",
+      "token_positions": [
+        1314,
+        2272
+      ],
+      "distance": 958,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "QIRMUNLYS-67",
+      "token_positions": [
+        1416,
+        2521
+      ],
+      "distance": 1105,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "DOVGACMUN-62",
+      "token_positions": [
+        1438,
+        2434
+      ],
+      "distance": 996,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "MUNBEXLYS-34",
+      "token_positions": [
+        1578,
+        2715
+      ],
+      "distance": 1137,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "LYSGACGAC-48",
+      "token_positions": [
+        1601,
+        2596
+      ],
+      "distance": 995,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "ZORQIRZOR-71",
+      "token_positions": [
+        1656,
+        2756
+      ],
+      "distance": 1100,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "MUNGACVEK-53",
+      "token_positions": [
+        1679,
+        2619
+      ],
+      "distance": 940,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "QIRMUNVEK-78",
+      "token_positions": [
+        1715,
+        2780
+      ],
+      "distance": 1065,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "GACFENQIR-11",
+      "token_positions": [
+        1785,
+        2691
+      ],
+      "distance": 906,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "MUNTALTAL-36",
+      "token_positions": [
+        1866,
+        3019
+      ],
+      "distance": 1153,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "TALQIRVEK-56",
+      "token_positions": [
+        1919,
+        2904
+      ],
+      "distance": 985,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "QIRTALFEN-95",
+      "token_positions": [
+        1976,
+        3120
+      ],
+      "distance": 1144,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "FENMUNMUN-91",
+      "token_positions": [
+        2016,
+        2995
+      ],
+      "distance": 979,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "VEKMUNGAC-60",
+      "token_positions": [
+        2053,
+        3143
+      ],
+      "distance": 1090,
+      "side_of_seam": "above"
+    },
+    {
+      "codeword": "FENMUNGAC-48",
+      "token_positions": [
+        2248,
+        3166
+      ],
+      "distance": 918,
+      "side_of_seam": "below"
+    },
+    {
+      "codeword": "ZORQIRVEK-62",
+      "token_positions": [
+        2315,
+        3400
+      ],
+      "distance": 1085,
+      "side_of_seam": "above"
+    }
+  ]
+}

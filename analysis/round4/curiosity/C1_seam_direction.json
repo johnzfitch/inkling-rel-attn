@@ -1,0 +1,62 @@
+{
+  "_caveat": "sign is under D0 canonicalization (U[:8].sum()>=0); physical sign requires activations. Authoritative answer: Tier-2 mass_with seam + captured r-vectors. This is the registered blind prediction.",
+  "layers": {
+    "5": {
+      "edge_mean": 2.042895793914795,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "11": {
+      "edge_mean": 1.260239839553833,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "17": {
+      "edge_mean": 1.129273533821106,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "23": {
+      "edge_mean": 0.9332541823387146,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "29": {
+      "edge_mean": 0.36430561542510986,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "35": {
+      "edge_mean": 0.22076316177845,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "41": {
+      "edge_mean": 0.1313129961490631,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "47": {
+      "edge_mean": 0.08852240443229675,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "53": {
+      "edge_mean": 0.076714888215065,
+      "heads_positive_frac": 0.984375,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "59": {
+      "edge_mean": 0.07625633478164673,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    },
+    "65": {
+      "edge_mean": 0.370988130569458,
+      "heads_positive_frac": 1.0,
+      "predicted_seam_direction": "positive (drop)"
+    }
+  },
+  "predicted_seam_direction": "positive (drop)",
+  "confidence": "LOW (registered); convention-dependent, see caveat"
+}
