@@ -10,3 +10,6 @@ __pycache__/
 docs/Inkling*Thinking Machines Lab*.html
 
 .probe_*.txt
+
+# private corpus v2 (never commit — ids reconstruct private text)
+corpus_v2/
