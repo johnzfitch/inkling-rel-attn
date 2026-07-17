@@ -57,6 +57,9 @@ What we found, in plain terms:
 
 ## Layout
 
+- `QUESTIONS.md` — **the question ledger**: every registered question with its
+  current status (open / answered / provisional / forecast) and the gate on it.
+  Start here to see what is actually answered vs pending.
 - `ROUND{2,3,4}_SPEC.md`, `TIER2_SPEC.md` — pre-registered experiment specs
 - `scripts/` — extraction (range requests), Round 3 dumps, Tier-2 streaming runner,
   Round 4 battery/fingerprints/curiosity, audits
