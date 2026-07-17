@@ -1,0 +1,38 @@
+{
+  "bracket_reference_agreement": false,
+  "capture_gate": true,
+  "cpu_gate": false,
+  "created_at_utc": "2026-07-17T07:30:05.2930262Z",
+  "failure": {
+    "argmax_agreement": 0.9895833333333334,
+    "argmax_mismatches": 16,
+    "backend": "cpu",
+    "first_failed_layer": 0,
+    "max_abs_delta": 0.0054964423179626465,
+    "max_kl": 0.0000750385131618134,
+    "max_row_sum_error": 2.6402994990348816e-7,
+    "reason": "Registered CPU/FP32 production characterization failed max-absolute-delta, per-head argmax, and KL thresholds on the first sentinel layer.",
+    "rows_tested": 24
+  },
+  "freeze_commit": "6a23aac",
+  "kind": "round5_lf5_confirmation",
+  "methodology_passed": false,
+  "plan_commit": "d4e2579",
+  "registration_commit": "34278b4",
+  "replay_gate": true,
+  "row_dump_gate": false,
+  "schema_version": 1,
+  "semantic_rows_generated": false,
+  "source_hashes": {
+    "capture_validation": "f831a5fb8028aaa408d780221c1e9dc4a991ff6d2be5ee73345adc85a9f48efc",
+    "cpu_backend_diagnostic": "a94a3ca994ab86c5e40262fcfbc9b1b098e2e5ed15ec2bf6e3598493592e87d4",
+    "cpu_parity": "4600b6609f901d33bcd2a1e807e8a159c28da9f6838b8f160a6df7e1aee727ea",
+    "replay_parity": "56cd0513742786d18f9afe4cd98a3497896c0bd7188a9494d46942ba0cd0099a"
+  },
+  "thresholds_unchanged": {
+    "argmax_agreement": 1.0,
+    "max_abs_delta": 0.001,
+    "max_kl": 0.000001,
+    "max_row_sum_error": 0.001
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "backend": "cpu",
+  "completed_at_utc": "2026-07-17T07:20:02.185277+00:00",
+  "created_at_utc": "2026-07-17T07:20:01.355978+00:00",
+  "input_manifest_sha256": "125acd25ab3f94e5620a0185030e32468c13d2e55e5a5979bca904d3577820ea",
+  "kind": "round5_lf5_parity",
+  "layers": [
+    0,
+    5,
+    11,
+    23,
+    41,
+    65
+  ],
+  "passed": false,
+  "plan_commit": "d4e2579",
+  "registration_commit": "34278b4",
+  "results": [
+    {
+      "argmax_agreement": 0.9895833333333334,
+      "argmax_mismatches": 16,
+      "backend": "cpu",
+      "checks": {
+        "argmax_agreement": false,
+        "max_abs_delta": false,
+        "max_kl": false,
+        "max_row_sum_error": true
+      },
+      "elapsed_seconds": 0.629,
+      "elements": 12582912,
+      "heads": 64,
+      "layer": 0,
+      "max_abs_delta": 0.0054964423179626465,
+      "max_kl": 7.50385131618134e-05,
+      "max_row_sum_delta_vs_capture": 0.0002664364333213598,
+      "max_row_sum_error": 2.6402994990348816e-07,
+      "p99_abs_delta": 9.132549166679382e-06,
+      "p99_kl": 5.2927003428557585e-05,
+      "passed": false,
+      "queries": 24,
+      "thresholds": {
+        "argmax_agreement": 1.0,
+        "max_abs_delta": 0.001,
+        "max_kl": 1e-06,
+        "max_row_sum_error": 0.001
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "ab6e7c4291e6920b2c726e32207d4164b8f82f5a5b145083ddf7416121376e29"
+}

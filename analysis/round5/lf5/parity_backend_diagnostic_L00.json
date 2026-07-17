@@ -1,0 +1,154 @@
+{
+  "checks": {
+    "cpu_boundary_emulation_fp16_stored": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "cpu_boundary_emulation_pre_storage": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "cpu_fp16_stored": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "cpu_fp32_pre_storage": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "cpu_native_bf16_fp16_stored_diagnostic": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "cpu_native_bf16_pre_storage_diagnostic": {
+      "argmax_agreement": false,
+      "max_abs_delta": false,
+      "max_kl": false,
+      "max_row_sum_error": true
+    },
+    "exact_replay_fp16_stored_control": {
+      "argmax_agreement": true,
+      "max_abs_delta": true,
+      "max_kl": true,
+      "max_row_sum_error": true
+    },
+    "exact_replay_pre_storage_control": {
+      "argmax_agreement": true,
+      "max_abs_delta": true,
+      "max_kl": true,
+      "max_row_sum_error": true
+    }
+  },
+  "created_at_utc": "2026-07-17T07:26:05.589932+00:00",
+  "diagnostic_only": true,
+  "elapsed_seconds": 4.42,
+  "heads": 64,
+  "input_manifest_sha256": "125acd25ab3f94e5620a0185030e32468c13d2e55e5a5979bca904d3577820ea",
+  "kind": "round5_lf5_cpu_boundary_diagnostic",
+  "layer": 0,
+  "needle_rows_sha256": "d4a0877e68dddd96fb08efd2e4e6b37d9929385914510f3e050ce89726f0b783",
+  "operator_backend": "CPU/FP32 with explicit original BF16 output boundaries",
+  "queries": 24,
+  "schema_version": 1,
+  "source_sha256": "51fbac5ad090830991f7f7410302a367827621d17813751fee46ad774c70f751",
+  "thresholds_unchanged": {
+    "argmax_agreement": 1.0,
+    "max_abs_delta": 0.001,
+    "max_kl": 1e-06,
+    "max_row_sum_error": 0.001
+  },
+  "variants": {
+    "cpu_boundary_emulation_fp16_stored": {
+      "argmax_agreement": 0.99609375,
+      "argmax_mismatches": 6,
+      "max_abs_delta": 0.00152587890625,
+      "max_kl": 6.931688561144644e-05,
+      "max_row_sum_error": 0.00020205974578857422,
+      "p99_abs_delta": 5.7220458984375e-06,
+      "p99_kl": 3.124163749012621e-05
+    },
+    "cpu_boundary_emulation_pre_storage": {
+      "argmax_agreement": 0.99609375,
+      "argmax_mismatches": 6,
+      "max_abs_delta": 0.001525677740573883,
+      "max_kl": 6.924429934459069e-05,
+      "max_row_sum_error": 2.3809843696653843e-07,
+      "p99_abs_delta": 6.0927122831344604e-06,
+      "p99_kl": 3.126369430484654e-05
+    },
+    "cpu_fp16_stored": {
+      "argmax_agreement": 0.990234375,
+      "argmax_mismatches": 15,
+      "max_abs_delta": 0.00537109375,
+      "max_kl": 7.514668228941285e-05,
+      "max_row_sum_error": 0.00025767087936401367,
+      "p99_abs_delta": 9.5367431640625e-06,
+      "p99_kl": 5.102858838794842e-05
+    },
+    "cpu_fp32_pre_storage": {
+      "argmax_agreement": 0.9895833333333334,
+      "argmax_mismatches": 16,
+      "max_abs_delta": 0.0054964423179626465,
+      "max_kl": 7.50385131618134e-05,
+      "max_row_sum_error": 2.6402994990348816e-07,
+      "p99_abs_delta": 9.132549166679382e-06,
+      "p99_kl": 5.2927003428557585e-05
+    },
+    "cpu_native_bf16_fp16_stored_diagnostic": {
+      "argmax_agreement": 0.99609375,
+      "argmax_mismatches": 6,
+      "max_abs_delta": 0.00152587890625,
+      "max_kl": 6.931688561144644e-05,
+      "max_row_sum_error": 0.00020205974578857422,
+      "p99_abs_delta": 5.7220458984375e-06,
+      "p99_kl": 3.124163749012621e-05
+    },
+    "cpu_native_bf16_pre_storage_diagnostic": {
+      "argmax_agreement": 0.99609375,
+      "argmax_mismatches": 6,
+      "max_abs_delta": 0.001525677740573883,
+      "max_kl": 6.924429934459069e-05,
+      "max_row_sum_error": 2.3809843696653843e-07,
+      "p99_abs_delta": 6.092298463045154e-06,
+      "p99_kl": 3.126369430484654e-05
+    },
+    "exact_replay_fp16_stored_control": {
+      "argmax_agreement": 1.0,
+      "argmax_mismatches": 0,
+      "max_abs_delta": 0.0,
+      "max_kl": 0.0,
+      "max_row_sum_error": 0.0002664923667907715,
+      "p99_abs_delta": 0.0,
+      "p99_kl": 0.0
+    },
+    "exact_replay_pre_storage_control": {
+      "argmax_agreement": 1.0,
+      "argmax_mismatches": 0,
+      "max_abs_delta": 0.0002409815788269043,
+      "max_kl": 4.618475713797209e-08,
+      "max_row_sum_error": 1.9117078409180976e-07,
+      "p99_abs_delta": 5.150213837623596e-07,
+      "p99_kl": 3.062705615787295e-08
+    }
+  },
+  "would_pass_registered_thresholds": {
+    "cpu_boundary_emulation_fp16_stored": false,
+    "cpu_boundary_emulation_pre_storage": false,
+    "cpu_fp16_stored": false,
+    "cpu_fp32_pre_storage": false,
+    "cpu_native_bf16_fp16_stored_diagnostic": false,
+    "cpu_native_bf16_pre_storage_diagnostic": false,
+    "exact_replay_fp16_stored_control": true,
+    "exact_replay_pre_storage_control": true
+  }
+}
