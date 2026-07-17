@@ -1,11 +1,13 @@
 """LF5 offline pair-level attention instrument.
 
-Two frozen numerical modes are provided:
+Two numerical modes are provided:
 
 * ``replay``: CUDA/BF16, full Q projection and original 512-query chunk shapes;
   this mode must reproduce captured FP16 needle rows bit for bit.
-* ``cpu``: CPU/FP32 production path; this mode is characterized against every
-  captured needle row using the thresholds in ROUND5_CAPTURE_AMENDMENT.md.
+* ``cpu``: CPU/FP32 convenience path.  Its registered production gate failed
+  at L0 and it is not a verified backend.  Amendment A5 promotes ``replay`` to
+  production and requires the CPU failure characterization whenever CPU is
+  used.
 
 The module never executes V/O projections, the MLP, or downstream layers.
 """
@@ -46,6 +48,20 @@ QCHUNK = 512
 HEAD_DIM = 128
 N_HEADS = 64
 RMS_EPS = 1e-6
+AMENDMENT_A5_COMMIT = "7bf608d9971997a655a4f9cd46e3bc921ffb74b8"
+CPU_FAILURE_NOTICE = (
+    "A5 NOTICE: CPU/FP32 is an unverified convenience backend. Its registered "
+    "L0 gate failed (max|delta p|=0.00549644>0.001; argmax=98.9583%<100%; "
+    "KL=7.50385e-5>1e-6). Production LF5 uses CUDA/BF16 replay."
+)
+_CPU_NOTICE_EMITTED = False
+
+
+def emit_cpu_failure_notice() -> None:
+    global _CPU_NOTICE_EMITTED
+    if not _CPU_NOTICE_EMITTED:
+        print(CPU_FAILURE_NOTICE, file=sys.stderr, flush=True)
+        _CPU_NOTICE_EMITTED = True
 
 
 def sha256_file(path: Path) -> str:
@@ -134,6 +150,8 @@ class OfflineAttention:
             raise ValueError(backend)
         if backend == "replay" and not torch.cuda.is_available():
             raise RuntimeError("CUDA is required for replay parity")
+        if backend == "cpu":
+            emit_cpu_failure_notice()
 
         self.layer = layer
         self.backend = backend
@@ -427,7 +445,7 @@ def offline_row(
     q: int,
     *,
     compact: bool = False,
-    backend: Backend = "cpu",
+    backend: Backend = "replay",
     input_root: Path = DEFAULT_INPUTS,
     capture_root: Path = DEFAULT_CAPTURE,
 ) -> OfflineRow:
@@ -630,7 +648,7 @@ def parse_args() -> argparse.Namespace:
     parity.add_argument("--stop-on-fail", action="store_true")
 
     row = sub.add_parser("row")
-    row.add_argument("--backend", choices=["cpu", "replay"], default="cpu")
+    row.add_argument("--backend", choices=["cpu", "replay"], default="replay")
     row.add_argument("--layer", type=int, required=True)
     row.add_argument("--text", required=True)
     row.add_argument("--q", type=int, required=True)

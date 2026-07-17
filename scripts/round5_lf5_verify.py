@@ -1,9 +1,11 @@
 """Independent LF5 verification and confirmation manifest.
 
 This file deliberately does not import round5_offline_attention or
-round5_lf5_analyze. It recomputes six frozen sentinel rows directly with NumPy
-from BF16-bit inputs and raw checkpoint tensors, then independently repeats the
-registered bracket statistic from the ragged FP16 row dump.
+round5_lf5_analyze. Under Amendment A5 it recomputes six frozen sentinel rows
+with a direct CUDA/BF16 implementation from BF16-bit inputs and raw checkpoint
+tensors, then independently repeats the registered bracket statistic from the
+ragged FP16 row dump. The failed CPU/FP32 gate remains a required negative
+provenance record, not a production criterion.
 """
 
 from __future__ import annotations
@@ -19,6 +21,8 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+import torch
+import torch.nn.functional as F
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT = SCRIPT_DIR.parent
@@ -34,12 +38,14 @@ ROW_DUMP = ROOT / "dumps" / "round5" / "lf5"
 LOCI = ROOT / "analysis" / "round5" / "loci.json"
 CAPTURE_VALIDATION = ROOT / "analysis" / "round5" / "capture_validation.json"
 REPLAY_REPORT = ROOT / "analysis" / "round5" / "lf5" / "parity_replay.json"
-CPU_REPORT = ROOT / "analysis" / "round5" / "lf5" / "parity_cpu.json"
+CPU_REPORT = ROOT / "analysis" / "round5" / "lf5" / "parity_cpu_sentinels.json"
+AMENDMENT_A5 = ROOT / "ROUND5_AMENDMENT_A5.md"
 BRACKET_REPORT = ROOT / "analysis" / "round5" / "lf5" / "brackets.json"
 VERIFY_REPORT = ROOT / "analysis" / "round5" / "lf5" / "verification.json"
 CONFIRMATION = ROOT / "analysis" / "round5" / "lf5" / "confirmation.json"
 REGISTRATION_COMMIT = "34278b4"
 PLAN_COMMIT = "d4e2579"
+AMENDMENT_A5_COMMIT = "7bf608d9971997a655a4f9cd46e3bc921ffb74b8"
 SENTINEL_LAYERS = [0, 5, 11, 23, 41, 65]
 GLOBAL_LAYERS = [5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65]
 FP16_MIN_POSITIVE = float(np.nextafter(np.float16(0), np.float16(1)))
@@ -146,6 +152,103 @@ def sentinel_row(layer: int, q: int, reader: ShardReader) -> np.ndarray:
     return softmax_numpy(content + bias, valid)
 
 
+def bf16_bits_to_cuda(path: Path) -> torch.Tensor:
+    words = np.load(path, mmap_mode="r")
+    if words.dtype != np.uint16 or words.ndim != 2:
+        raise TypeError((words.dtype, words.shape))
+    tensor = torch.from_numpy(np.array(words, dtype=np.uint16, copy=True)).view(torch.bfloat16)
+    return tensor.to("cuda")
+
+
+def rms_norm_cuda(values: torch.Tensor, weight: torch.Tensor) -> torch.Tensor:
+    input_dtype = values.dtype
+    work = values.float()
+    variance = work.pow(2).mean(-1, keepdim=True)
+    normalized = (work * torch.rsqrt(variance + 1e-6)).to(input_dtype)
+    return weight * normalized
+
+
+@torch.no_grad()
+def gpu_sentinel_row(layer: int, q: int, reader: ShardReader) -> np.ndarray:
+    """Independent A5 replay path with original full projections/qchunk shape."""
+
+    if not torch.cuda.is_available():
+        raise RuntimeError("A5 independent LF5 verification requires CUDA")
+    is_global = layer in GLOBAL_LAYERS
+    n_kv = 8 if is_global else 16
+    groups = 64 // n_kv
+    extent = 1024 if is_global else 512
+    prefix = f"model.llm.layers.{layer}.attn."
+
+    hidden = bf16_bits_to_cuda(
+        INPUTS / "normalized" / f"attn_in_L{layer:02d}_05_needles.npy"
+    )
+    hidden3 = hidden.unsqueeze(0)
+    wk = reader.get(prefix + "wk_dv.weight", "cuda").to(torch.bfloat16)
+    key_projected = F.linear(hidden3, wk)
+    del wk
+    conv_weight = reader.get(prefix + "k_sconv.weight", "cuda").float()
+    work = key_projected.float()
+    convolved = F.conv1d(
+        work.transpose(1, 2),
+        conv_weight,
+        padding=conv_weight.shape[-1] - 1,
+        groups=work.shape[-1],
+    )[:, :, : work.shape[1]].transpose(1, 2)
+    key_projected = (convolved + work).to(torch.bfloat16)
+    del conv_weight, work, convolved
+    seq = hidden.shape[0]
+    key_states = key_projected.view(1, seq, n_kv, 128)
+    k_norm = reader.get(prefix + "k_norm.weight", "cuda").to(torch.bfloat16)
+    key_states = rms_norm_cuda(key_states, k_norm).transpose(1, 2).contiguous()
+    del key_projected, k_norm
+
+    wq = reader.get(prefix + "wq_du.weight", "cuda").to(torch.bfloat16)
+    query_states = F.linear(hidden3, wq).view(1, seq, 64, 128)
+    del hidden, hidden3, wq
+    q_norm = reader.get(prefix + "q_norm.weight", "cuda").to(torch.bfloat16)
+    query_states = rms_norm_cuda(query_states, q_norm).transpose(1, 2).contiguous()
+    del q_norm
+
+    rvec_np = np.load(OLD_CAPTURE / f"rvec_L{layer:02d}_05_needles.npy", mmap_mode="r")
+    rvec = torch.from_numpy(np.array(rvec_np, copy=True)).to("cuda").to(torch.bfloat16)
+    projection = reader.get(prefix + "rel_logits_proj.proj", "cuda").to(torch.bfloat16)
+    relative_logits = (rvec.unsqueeze(0) @ projection).transpose(1, 2).contiguous()
+    del rvec, projection
+    if is_global:
+        positions = torch.arange(seq, device="cuda")
+        tau = 1.0 + 0.1 * torch.log(((positions + 1).float() / 128000.0).clamp(min=1.0))
+        tau = tau.view(1, 1, -1, 1)
+        query_states = (query_states.float() * tau).to(torch.bfloat16)
+        relative_logits = (relative_logits.float() * tau).to(torch.bfloat16)
+
+    start = (q // 512) * 512
+    end = min(start + 512, seq)
+    key_states = key_states.repeat_interleave(groups, dim=1)
+    content = torch.matmul(
+        query_states[:, :, start:end], key_states.transpose(2, 3)
+    ) * (1.0 / 128)
+    key_positions = torch.arange(seq, device="cuda")
+    query_positions = torch.arange(start, end, device="cuda")
+    distance = query_positions[:, None] - key_positions[None, :]
+    valid = distance >= 0
+    if not is_global:
+        valid &= distance < 512
+    in_extent = (distance >= 0) & (distance < extent)
+    gather = distance.clamp(0, extent - 1).unsqueeze(0).expand(64, -1, -1)
+    bias = torch.gather(relative_logits[0, :, start:end], 2, gather).masked_fill(
+        ~in_extent.unsqueeze(0), 0.0
+    )
+    logits = (content[0].float() + bias.float()).masked_fill(
+        ~valid.unsqueeze(0), torch.finfo(torch.float32).min
+    )
+    row = torch.softmax(logits, dim=-1)[:, q - start]
+    output = row.float().cpu().numpy()
+    del key_states, query_states, relative_logits, content, bias, logits, row
+    torch.cuda.empty_cache()
+    return output
+
+
 def safe_kl(original: np.ndarray, offline: np.ndarray) -> np.ndarray:
     p = original.astype(np.float64)
     q = offline.astype(np.float64)
@@ -166,13 +269,19 @@ def verify_sentinels() -> tuple[list[dict[str, Any]], bool]:
     for layer in SENTINEL_LAYERS:
         with np.load(OLD_CAPTURE / f"needlerows_L{layer:02d}.npz") as capture:
             q = int(capture["qpos"][0])
-            original = capture["rows"][0].astype(np.float32)
-        offline = sentinel_row(layer, q, reader)
+            original16 = capture["rows"][0].astype(np.float16)
+        original = original16.astype(np.float32)
+        offline = gpu_sentinel_row(layer, q, reader)
         delta = np.abs(offline - original)
         row_sum_error = np.abs(offline.sum(axis=-1, dtype=np.float64) - 1.0)
         argmax = np.argmax(offline, axis=-1) == np.argmax(original, axis=-1)
         kl = safe_kl(original, offline)
+        offline16 = offline.astype(np.float16)
+        mismatch = offline16.view(np.uint16) != original16.view(np.uint16)
         checks = {
+            "fp16_bitwise_equal": not bool(np.any(mismatch)),
+        }
+        cpu_tier_diagnostics = {
             "max_abs_delta": float(np.max(delta)) <= 1e-3,
             "max_row_sum_error": float(np.max(row_sum_error)) <= 1e-3,
             "argmax_agreement": bool(np.all(argmax)),
@@ -185,7 +294,10 @@ def verify_sentinels() -> tuple[list[dict[str, Any]], bool]:
             "max_row_sum_error": float(np.max(row_sum_error)),
             "argmax_agreement": float(np.mean(argmax)),
             "max_kl": float(np.max(kl)),
+            "mismatch_words": int(np.count_nonzero(mismatch)),
+            "backend": "independent_cuda_bf16_replay",
             "checks": checks,
+            "cpu_tier_threshold_diagnostics_not_a5_gate": cpu_tier_diagnostics,
             "passed": all(checks.values()),
         }
         results.append(item)
@@ -309,6 +421,8 @@ def main() -> None:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "registration_commit": REGISTRATION_COMMIT,
         "plan_commit": PLAN_COMMIT,
+        "amendment_a5_commit": AMENDMENT_A5_COMMIT,
+        "production_backend": "replay",
         "source_sha256": sha256_file(Path(__file__)),
         "sentinel_layers": SENTINEL_LAYERS,
         "sentinel_results": sentinel_results,
@@ -324,13 +438,28 @@ def main() -> None:
     cpu = json.loads(CPU_REPORT.read_text(encoding="utf-8"))
     dump = json.loads((ROW_DUMP / "manifest.json").read_text(encoding="utf-8"))
     bracket = json.loads(BRACKET_REPORT.read_text(encoding="utf-8"))
+    amendment_text = AMENDMENT_A5.read_text(encoding="utf-8")
+    cpu_results = cpu.get("results", [])
     gates = {
         "capture_gate": bool(capture_validation.get("passed") and not capture_validation.get("fast_mode")),
         "replay_gate": bool(replay.get("passed") and len(replay.get("results", [])) == 66),
-        "cpu_gate": bool(cpu.get("passed") and len(cpu.get("results", [])) == 66),
-        "row_dump_gate": bool(dump.get("complete") and len(dump.get("groups", {})) == 396),
+        "a5_amendment_gate": bool(
+            "the production LF5 instrument is the **GPU replay backend**" in amendment_text
+            and "No threshold is relaxed" in amendment_text
+        ),
+        "registered_cpu_failure_preserved_gate": bool(
+            cpu.get("passed") is False
+            and cpu_results
+            and cpu_results[0].get("layer") == 0
+            and cpu_results[0].get("passed") is False
+        ),
+        "row_dump_gate": bool(
+            dump.get("complete")
+            and dump.get("production_backend") == "replay"
+            and len(dump.get("groups", {})) == 396
+        ),
         "bracket_reference_agreement": bracket_passed,
-        "scalar_reference_gate": sentinel_passed,
+        "independent_replay_reference_gate": sentinel_passed,
     }
     confirmation = {
         "schema_version": 1,
@@ -338,6 +467,9 @@ def main() -> None:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "registration_commit": REGISTRATION_COMMIT,
         "plan_commit": PLAN_COMMIT,
+        "amendment_a5_commit": AMENDMENT_A5_COMMIT,
+        "production_backend": "replay",
+        "registered_cpu_gate_passed": False,
         **gates,
         "methodology_passed": all(gates.values()),
         "prediction_passed": bool(bracket.get("prediction_passed")),
@@ -345,6 +477,7 @@ def main() -> None:
             "capture_validation": sha256_file(CAPTURE_VALIDATION),
             "replay": sha256_file(REPLAY_REPORT),
             "cpu": sha256_file(CPU_REPORT),
+            "amendment_a5": sha256_file(AMENDMENT_A5),
             "row_dump_manifest": sha256_file(ROW_DUMP / "manifest.json"),
             "bracket": sha256_file(BRACKET_REPORT),
             "verification": sha256_file(args.verify_report),

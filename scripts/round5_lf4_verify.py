@@ -19,6 +19,7 @@ WEIGHTS = ROOT / "weights"
 DUMP = ROOT / "dumps" / "round5" / "lf4"
 CONTROLS = ROOT / "analysis" / "round5" / "lf4_verifier_controls.json"
 MAIN_REPORT = ROOT / "analysis" / "round5" / "lf4" / "zoom_lens.json"
+INPUT_VALIDATION = ROOT / "analysis" / "round5" / "lf4" / "input_validation.json"
 LF5_CONFIRMATION = ROOT / "analysis" / "round5" / "lf5" / "confirmation.json"
 VERIFY_REPORT = ROOT / "analysis" / "round5" / "lf4" / "verification.json"
 CONFIRMATION = ROOT / "analysis" / "round5" / "lf4" / "confirmation.json"
@@ -192,8 +193,21 @@ def main() -> None:
     atomic_json(args.verify_report, verification)
 
     lf5 = json.loads(LF5_CONFIRMATION.read_text(encoding="utf-8"))
+    input_validation = json.loads(INPUT_VALIDATION.read_text(encoding="utf-8"))
     gates = {
-        "lf5_methodology_gate": bool(lf5.get("methodology_passed")),
+        "lf5_methodology_gate": bool(
+            lf5.get("methodology_passed")
+            and lf5.get("production_backend") == "replay"
+            and lf5.get("registered_cpu_gate_passed") is False
+            and lf5.get("registered_cpu_failure_preserved_gate")
+        ),
+        "input_validation_gate": bool(
+            input_validation.get("passed")
+            and not input_validation.get("errors")
+            and len(input_validation.get("records", {})) == 462
+            and input_validation.get("lf5_confirmation_sha256")
+            == sha256_file(LF5_CONFIRMATION)
+        ),
         "position_matched_control_gate": all(
             "p_holm" in item and "prediction_passed" in item for item in main_report["primary"]
         ),
@@ -206,6 +220,8 @@ def main() -> None:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "registration_commit": REGISTRATION_COMMIT,
         "plan_commit": PLAN_COMMIT,
+        "lf5_production_backend": "replay",
+        "registered_cpu_gate_passed": False,
         **gates,
         "methodology_passed": all(gates.values()),
         "all_three_primary_predictions_passed": bool(
@@ -213,6 +229,7 @@ def main() -> None:
         ),
         "source_hashes": {
             "lf5_confirmation": sha256_file(LF5_CONFIRMATION),
+            "input_validation": sha256_file(INPUT_VALIDATION),
             "controls": sha256_file(CONTROLS),
             "main_report": sha256_file(MAIN_REPORT),
             "verification": sha256_file(args.verify_report),

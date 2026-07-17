@@ -1,7 +1,9 @@
 """LF4 zoom-lens aperture dump and frozen class tests.
 
 Outcome-bearing commands refuse to run until LF5's confirmation manifest says
-its capture, replay, CPU characterization, and independent checks have passed.
+its capture, A5 replay production path, preserved CPU failure, row dump, and
+independent checks have passed. LF4 itself retains the preregistered float64
+raw-r-vector aperture computation; it does not recompute attention rows.
 """
 
 from __future__ import annotations
@@ -25,6 +27,7 @@ LOCI = ROOT / "analysis" / "round5" / "loci.json"
 LF5_CONFIRMATION = ROOT / "analysis" / "round5" / "lf5" / "confirmation.json"
 DEFAULT_DUMP = ROOT / "dumps" / "round5" / "lf4"
 DEFAULT_REPORT = ROOT / "analysis" / "round5" / "lf4" / "zoom_lens.json"
+DEFAULT_INPUT_VALIDATION = ROOT / "analysis" / "round5" / "lf4" / "input_validation.json"
 REGISTRATION_COMMIT = "34278b4"
 PLAN_COMMIT = "d4e2579"
 TEXTS = [
@@ -68,13 +71,92 @@ def require_lf5(path: Path) -> dict[str, Any]:
     required = [
         "capture_gate",
         "replay_gate",
-        "cpu_gate",
+        "a5_amendment_gate",
+        "registered_cpu_failure_preserved_gate",
         "row_dump_gate",
         "bracket_reference_agreement",
+        "independent_replay_reference_gate",
     ]
     missing = [name for name in required if not report.get(name)]
-    if missing or not report.get("methodology_passed"):
+    if (
+        missing
+        or not report.get("methodology_passed")
+        or report.get("production_backend") != "replay"
+        or report.get("registered_cpu_gate_passed") is not False
+    ):
         raise RuntimeError(f"LF5 is not confirmed; missing/failed={missing}")
+    return report
+
+
+def validate_inputs_command(args: argparse.Namespace) -> None:
+    lf5 = require_lf5(args.lf5_confirmation)
+    records: dict[str, dict[str, Any]] = {}
+    errors: list[str] = []
+    for layer in range(66):
+        extent = 1024 if layer in GLOBAL_LAYERS else 512
+        projection_path = WEIGHTS / f"layer{layer:02d}_rel_logits_proj.npy"
+        projection = np.load(projection_path, mmap_mode="r")
+        if projection.shape != (16, extent):
+            errors.append(f"L{layer:02d} projection shape={projection.shape}")
+        if projection.dtype != np.float32:
+            errors.append(f"L{layer:02d} projection dtype={projection.dtype}")
+        if not np.isfinite(projection).all():
+            errors.append(f"L{layer:02d} projection non-finite")
+        records[f"L{layer:02d}_projection"] = {
+            "path": projection_path.relative_to(ROOT).as_posix(),
+            "shape": list(projection.shape),
+            "dtype": str(projection.dtype),
+            "bytes": projection_path.stat().st_size,
+            "sha256": sha256_file(projection_path),
+        }
+        for text in TEXTS:
+            rvec_path = CAPTURE / f"rvec_L{layer:02d}_{text}.npy"
+            rvec = np.load(rvec_path, mmap_mode="r")
+            if rvec.shape != (8192, 64, 16):
+                errors.append(f"L{layer:02d} {text} rvec shape={rvec.shape}")
+            if rvec.dtype != np.float16:
+                errors.append(f"L{layer:02d} {text} rvec dtype={rvec.dtype}")
+            if not np.isfinite(rvec).all():
+                errors.append(f"L{layer:02d} {text} rvec non-finite")
+            records[f"L{layer:02d}_{text}_rvec"] = {
+                "path": rvec_path.relative_to(ROOT).as_posix(),
+                "shape": list(rvec.shape),
+                "dtype": str(rvec.dtype),
+                "bytes": rvec_path.stat().st_size,
+                "sha256": sha256_file(rvec_path),
+            }
+        print(f"validated LF4 inputs L{layer:02d}", flush=True)
+    report = {
+        "schema_version": 1,
+        "kind": "round5_lf4_input_validation",
+        "created_at_utc": datetime.now(timezone.utc).isoformat(),
+        "registration_commit": REGISTRATION_COMMIT,
+        "plan_commit": PLAN_COMMIT,
+        "lf5_confirmation_sha256": sha256_file(args.lf5_confirmation),
+        "lf5_production_backend": lf5["production_backend"],
+        "source_sha256": sha256_file(Path(__file__)),
+        "expected_files": 462,
+        "records": records,
+        "errors": errors,
+        "passed": not errors and len(records) == 462,
+    }
+    atomic_json(args.report, report)
+    print(f"wrote {args.report}; passed={report['passed']}")
+    if not report["passed"]:
+        raise SystemExit(1)
+
+
+def require_input_validation(path: Path, lf5_confirmation: Path) -> dict[str, Any]:
+    report = json.loads(path.read_text(encoding="utf-8"))
+    if (
+        report.get("kind") != "round5_lf4_input_validation"
+        or not report.get("passed")
+        or report.get("errors")
+        or report.get("expected_files") != 462
+        or len(report.get("records", {})) != 462
+        or report.get("lf5_confirmation_sha256") != sha256_file(lf5_confirmation)
+    ):
+        raise RuntimeError("LF4 input validation is missing, failed, or stale")
     return report
 
 
@@ -153,6 +235,9 @@ def aperture_blocked(
 
 def compute_command(args: argparse.Namespace) -> None:
     lf5 = require_lf5(args.lf5_confirmation)
+    input_validation = require_input_validation(
+        args.input_validation, args.lf5_confirmation
+    )
     loci_sha = sha256_file(args.loci)
     layers = list(range(66)) if args.layers == "all" else [int(x) for x in args.layers.split(",")]
     args.out.mkdir(parents=True, exist_ok=True)
@@ -172,7 +257,11 @@ def compute_command(args: argparse.Namespace) -> None:
             "source_sha256": sha256_file(Path(__file__)),
             "loci_sha256": loci_sha,
             "lf5_confirmation_sha256": sha256_file(args.lf5_confirmation),
+            "input_validation_sha256": sha256_file(args.input_validation),
+            "input_validation_passed": bool(input_validation["passed"]),
             "lf5_methodology_passed": bool(lf5["methodology_passed"]),
+            "lf5_production_backend": lf5["production_backend"],
+            "registered_cpu_gate_passed": False,
             "layers": layers,
             "texts": TEXTS,
             "files": {},
@@ -399,6 +488,9 @@ def contrast(
 
 def analyze_command(args: argparse.Namespace) -> None:
     lf5 = require_lf5(args.lf5_confirmation)
+    input_validation = require_input_validation(
+        args.input_validation, args.lf5_confirmation
+    )
     manifest = json.loads((args.dump / "manifest.json").read_text(encoding="utf-8"))
     if not manifest.get("complete") or len(manifest.get("files", {})) != 396:
         raise RuntimeError("LF4 aperture dump is incomplete")
@@ -503,7 +595,11 @@ def analyze_command(args: argparse.Namespace) -> None:
         "loci_sha256": sha256_file(args.loci),
         "dump_manifest_sha256": sha256_file(args.dump / "manifest.json"),
         "lf5_confirmation_sha256": sha256_file(args.lf5_confirmation),
+        "input_validation_sha256": sha256_file(args.input_validation),
+        "input_validation_passed": bool(input_validation["passed"]),
         "lf5_methodology_passed": bool(lf5["methodology_passed"]),
+        "lf5_production_backend": lf5["production_backend"],
+        "registered_cpu_gate_passed": False,
         "metric": "sum_h,sum_d>128 |b| / sum_h,sum_all_d |b|",
         "primary_depth_layers": MID_GLOBALS,
         "primary_position_bin": 256,
@@ -542,17 +638,23 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--self-test", action="store_true")
     sub = parser.add_subparsers(dest="command")
 
+    validate = sub.add_parser("validate-inputs")
+    validate.add_argument("--lf5-confirmation", type=Path, default=LF5_CONFIRMATION)
+    validate.add_argument("--report", type=Path, default=DEFAULT_INPUT_VALIDATION)
+
     compute = sub.add_parser("compute")
     compute.add_argument("--layers", default="all")
     compute.add_argument("--block-tokens", type=int, default=32)
     compute.add_argument("--loci", type=Path, default=LOCI)
     compute.add_argument("--lf5-confirmation", type=Path, default=LF5_CONFIRMATION)
+    compute.add_argument("--input-validation", type=Path, default=DEFAULT_INPUT_VALIDATION)
     compute.add_argument("--out", type=Path, default=DEFAULT_DUMP)
 
     analyze = sub.add_parser("analyze")
     analyze.add_argument("--permutations", type=int, default=10000)
     analyze.add_argument("--loci", type=Path, default=LOCI)
     analyze.add_argument("--lf5-confirmation", type=Path, default=LF5_CONFIRMATION)
+    analyze.add_argument("--input-validation", type=Path, default=DEFAULT_INPUT_VALIDATION)
     analyze.add_argument("--dump", type=Path, default=DEFAULT_DUMP)
     analyze.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     return parser.parse_args()
@@ -562,6 +664,8 @@ def main() -> None:
     args = parse_args()
     if args.self_test:
         self_test()
+    elif args.command == "validate-inputs":
+        validate_inputs_command(args)
     elif args.command == "compute":
         compute_command(args)
     elif args.command == "analyze":
