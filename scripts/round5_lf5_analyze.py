@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -57,6 +58,16 @@ def atomic_json(path: Path, payload: dict[str, Any]) -> None:
         json.dump(payload, f, indent=2, sort_keys=True)
         f.write("\n")
     os.replace(tmp, path)
+
+
+def seal_memmap(array: np.memmap, source: Path, destination: Path) -> None:
+    """Flush and explicitly close a NumPy memmap before Windows atomic rename."""
+
+    array.flush()
+    mmap_handle = getattr(array, "_mmap", None)
+    if mmap_handle is not None:
+        mmap_handle.close()
+    os.replace(source, destination)
 
 
 def parity_report(path: Path, backend: str) -> dict[str, Any]:
@@ -198,10 +209,10 @@ def dump_group(
             flush=True,
         )
 
-    for component, array in list(arrays.items()):
-        array.flush()
-        del arrays[component]
-        os.replace(temp_paths[component], tmp / f"{component}.npy")
+    for component in list(arrays):
+        array = arrays.pop(component)
+        seal_memmap(array, temp_paths[component], tmp / f"{component}.npy")
+        del array
     np.savez(
         tmp / "index.npz",
         qpos=np.asarray(qpos, dtype=np.int32),
@@ -247,6 +258,14 @@ def dump_command(args: argparse.Namespace) -> None:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         if manifest.get("loci_sha256") != sha256_file(args.loci):
             raise RuntimeError("existing LF5 dump uses different loci")
+        if manifest.get("source_sha256") != sha256_file(Path(__file__)):
+            raise RuntimeError("existing LF5 dump uses different analyzer source")
+        if manifest.get("offline_source_sha256") != sha256_file(
+            ROOT / "scripts" / "round5_offline_attention.py"
+        ):
+            raise RuntimeError("existing LF5 dump uses different offline source")
+        if manifest.get("production_backend") != "replay" or manifest.get("layers") != layers:
+            raise RuntimeError("existing LF5 dump uses different A5 production configuration")
     else:
         manifest = {
             "schema_version": 1,
@@ -477,6 +496,18 @@ def self_test() -> None:
     controls = candidate_controls(120, 20, "(", openers)
     if 20 in controls:
         raise AssertionError("matched opener leaked into controls")
+    with tempfile.TemporaryDirectory(prefix="round5_lf5_memmap_") as directory:
+        root = Path(directory)
+        source = root / "source.npy"
+        destination = root / "destination.npy"
+        array = np.lib.format.open_memmap(source, mode="w+", dtype=np.float16, shape=(7, 3))
+        array[:] = 2.5
+        seal_memmap(array, source, destination)
+        del array
+        if not destination.exists() or not np.array_equal(
+            np.load(destination), np.full((7, 3), 2.5, dtype=np.float16)
+        ):
+            raise AssertionError("Windows memmap seal self-test failed")
     print("self-test passed")
 
 

@@ -1,0 +1,21 @@
+{
+  "attempts": [
+    {
+      "analyzer_source_sha256": "bf0e367e0f0639a66b2adc84b5c58b52f7319f859873f067a981ddc3e77bc40c",
+      "code_commit": "603bdeb",
+      "error": "WinError 32 while atomically renaming an open NumPy memmap on Windows",
+      "first_group": "L00_01_prose_en",
+      "group_manifest_written": false,
+      "offline_source_sha256": "64a9ba17c1ee8242dc3a73d3b0963bc442b126750cff219bfc70b192fad0c787",
+      "partial_bytes": 104592527,
+      "preserved_raw_path": "dumps/round5/_failed_lf5_gpu_603bdeb_win32_memmap",
+      "production_backend": "replay",
+      "rows_computed_before_seal_failure": 331,
+      "semantic_analysis_run": false,
+      "started_at_utc": "2026-07-17T07:49:21.533530+00:00",
+      "status": "failed_before_first_group_seal"
+    }
+  ],
+  "kind": "round5_lf5_production_attempt_log",
+  "schema_version": 1
+}
