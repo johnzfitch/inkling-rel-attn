@@ -320,6 +320,6 @@ def measuring_attention(module, query, key, value, attention_mask, scaling,
                 if s <= qp < e:
                     _ACTIVE["needle_rows"][int(qp)] = w_with[:, qp - s, :].detach().to("cpu", torch.float16)
         out[:, :, s:e] = torch.matmul(w_with.to(query.dtype).unsqueeze(0), vx)
-        del content, b, cf, bf, w_with
+        del content, b, cf, w_with
     # library expects (attn_output[b,q,h,d], attn_weights)
     return out.transpose(1, 2).contiguous(), None

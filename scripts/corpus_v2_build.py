@@ -180,16 +180,17 @@ def assemble(name, parts, meta, unit_label):
     for p in parts:
         bounds.append((pos, pos + len(p)))
         pos += len(p)
-    labels, starts = [], []
+    labels = []
     ui = 0
     for t, (a, b) in enumerate(offsets):
         while ui + 1 < len(bounds) and a >= bounds[ui][1]:
             ui += 1
         labels.append(ui)
-        if a <= bounds[ui][0] < b or (t == 0):
-            starts.append(t)
-        elif t > 0 and offsets[t - 1][1] <= bounds[ui][0] < a + 1 and labels[t - 1] != ui:
-            starts.append(t)
+    # A7: a BPE token can straddle a character boundary between concatenated
+    # units. Unit starts are therefore defined by the authoritative per-token
+    # label transition, not by whether a token's character span contains the
+    # raw join. This preserves all IDs/text and returns one start per used unit.
+    starts = [0] + [t for t in range(1, len(labels)) if labels[t] != labels[t - 1]]
     np.save(os.path.join(OUT, f"{name}.ids.npy"), ids)
     with open(os.path.join(OUT, f"{name}.txt"), "w", encoding="utf-8") as f:
         f.write(text[: offsets[-1][1]])
