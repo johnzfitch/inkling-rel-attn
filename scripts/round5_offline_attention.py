@@ -347,8 +347,10 @@ class OfflineAttention:
             content32 = content.float()
             bias32 = bias.float()
             invalid = ~causal
+            # A6 dtype boundary: stock adds content+bias in the native (BF16) dtype,
+            # then softmaxes in FP32. The add must precede the upcast.
             with_bias = torch.softmax(
-                (content32 + bias32).masked_fill(invalid.unsqueeze(0), neg), dim=-1
+                (content + bias).float().masked_fill(invalid.unsqueeze(0), neg), dim=-1
             )
             without_bias = torch.softmax(
                 content32.masked_fill(invalid.unsqueeze(0), neg), dim=-1
@@ -400,8 +402,11 @@ class OfflineAttention:
             )
             content_row = content[index].float()
             bias_row = bias.float()
+            # A6 dtype boundary: add in native dtype before upcast (no-op when the CPU
+            # path already runs FP32; exact when tensors are BF16). Keeps parity with
+            # the corrected GPU/stock arithmetic.
             with_bias = torch.softmax(
-                (content_row + bias_row).masked_fill(~causal.unsqueeze(0), neg), dim=-1
+                (content[index] + bias).float().masked_fill(~causal.unsqueeze(0), neg), dim=-1
             )
             without_bias = torch.softmax(
                 content_row.masked_fill(~causal.unsqueeze(0), neg), dim=-1

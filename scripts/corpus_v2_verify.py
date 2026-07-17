@@ -484,17 +484,24 @@ def confirm_command(_args: argparse.Namespace) -> None:
         and independent_class_control
         and main.get("all_true_null_controls_passed") is True
     )
+    # A6 fix: decision booleans are DERIVED from the verifier's own recomputed
+    # effects and Holm-adjusted p-values (was: compared against the main report's
+    # own boolean fields, which could only detect inconsistency, not error).
+    names = list(directions)
+    ind_bool = {}
+    for index, name in enumerate(names):
+        effect = primary[index]["effect"]
+        holm = primary_adjusted[index]
+        sign_ok = effect > 0 if directions[name] == "positive" else effect < 0
+        ind_bool[name] = bool(sign_ok and holm < 0.05)
+    independent_p3 = ind_bool["message_starts"]
+    independent_p4 = bool(ind_bool["pronouns"] and ind_bool["function_words"])
     prediction_agreement = bool(
         main["prediction_summary"]["P-v2-1"] == novelty["prediction_passed"]
         and main["prediction_summary"]["P-v2-2"]
         == all(item["passed"] for item in p2_primary.values())
-        and main["prediction_summary"]["P-v2-3"]
-        == main_primary["message_starts"]["prediction_passed"]
-        and main["prediction_summary"]["P-v2-4"]
-        == bool(
-            main_primary["pronouns"]["prediction_passed"]
-            and main_primary["function_words"]["prediction_passed"]
-        )
+        and main["prediction_summary"]["P-v2-3"] == independent_p3
+        and main["prediction_summary"]["P-v2-4"] == independent_p4
     )
 
     gates = {

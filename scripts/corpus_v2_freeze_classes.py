@@ -161,10 +161,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--force", action="store_true",
+                        help="allow overwriting an existing freeze (A6: default refuses)")
     args = parser.parse_args()
     manifest = build_manifest()
     print(json.dumps(manifest["counts"], indent=2, sort_keys=True))
     if not args.check:
+        if args.out.exists() and not args.force:
+            raise SystemExit(f"REFUSING to overwrite existing freeze {args.out} "
+                             "(a frozen manifest is immutable; pass --force only "
+                             "with a public amendment)")
         atomic_json(args.out, manifest)
         print(f"wrote private class freeze: {args.out}")
 

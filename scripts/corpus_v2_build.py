@@ -70,6 +70,56 @@ def build_slack():
     return parts, meta
 
 
+def build_slack_v21():
+    """A6/v2.1 recipe: top 8 DM channels by human chars, up to 1,024 tokens each,
+    concatenated in rank order (channel blocks); continue down the ranking if a
+    channel underfills. Eight conversations instead of one; v2.0 arm untouched."""
+    chans = []
+    for f in glob.glob(os.path.join(SLACK, "D*.json")):
+        try:
+            d = json.load(open(f, encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(d, list):
+            continue
+        msgs = [m for m in d if isinstance(m, dict) and "user" in m and "bot_id" not in m
+                and not m.get("subtype") and m.get("text")]
+        chars = sum(len(m["text"]) for m in msgs)
+        if chars:
+            chans.append((chars, os.path.basename(f)[:-5], msgs))
+    chans.sort(key=lambda t: (-t[0], t[1]))
+    parts, meta = [], []
+    total = 0
+    target = SEQ + 64          # small surplus: BPE joins at channel boundaries
+    for _, cid, msgs in chans:
+        if total >= target:
+            break
+        msgs = sorted(msgs, key=lambda m: float(m["ts"]))
+        pseud, order = {}, iter("ABCDEFGHJKLMNPQRSTUVWXYZ")
+        for m in msgs:
+            if m["user"] not in pseud:
+                pseud[m["user"]] = next(order, "Z")
+        chan_budget = min(1024, target - total)
+        used = 0
+        for m in msgs:
+            txt = slack_clean(m["text"], pseud).strip()
+            if not txt:
+                continue
+            piece = f"{pseud[m['user']]}: {txt}\n"
+            piece, n = truncate_to_tokens(piece, chan_budget - used)
+            if n == 0:
+                break
+            parts.append(piece)
+            meta.append((cid, pseud[m["user"]]))
+            used += n
+            if used >= chan_budget:
+                break
+        total += used
+        print(f"  {cid}: {used} tokens")
+    assert total >= SEQ + 32, f"only {total} tokens gathered"
+    return parts, meta
+
+
 def truncate_to_tokens(text, budget):
     """Cut text at the character offset of its budget-th token (exact per-stream)."""
     enc = TOK.encode(text)
@@ -158,7 +208,20 @@ def sha(p):
 
 
 def main():
+    import sys
     os.makedirs(OUT, exist_ok=True)
+    if "v21" in sys.argv[1:]:
+        print("building 07b_slack_multi (v2.1) ...")
+        assemble("07b_slack_multi", *build_slack_v21(), "message")
+        manifest = json.load(open(os.path.join(OUT, "manifest.json")))
+        p = os.path.join(OUT, "07b_slack_multi.ids.npy")
+        manifest["texts"]["07b_slack_multi"] = dict(
+            ids_sha256=sha(p),
+            sidecar_sha256=sha(os.path.join(OUT, "07b_slack_multi.sidecar.json")),
+            recipe="v2.1 per ROUND5_AMENDMENT_A6.md")
+        json.dump(manifest, open(os.path.join(OUT, "manifest.json"), "w"), indent=2)
+        print("manifest updated")
+        return
     print("building 07_slack_human ...")
     assemble("07_slack_human", *build_slack(), "message")
     print("building 08_math_llm ...")

@@ -306,11 +306,12 @@ def measuring_attention(module, query, key, value, attention_mask, scaling,
             b = torch.zeros_like(content)
         m = ~causal
         cf = content.float()
-        bf = b.float()
-        w_with = torch.softmax((cf + bf).masked_fill(m, neg), -1)
+        # A6 dtype boundary: stock eager adds content+bias in BF16 (rounding included),
+        # then softmaxes in FP32 -- replicate exactly (was: separate upcasts, FP32 add).
+        w_with = torch.softmax((content + b).float().masked_fill(m, neg), -1)
         if meter is not None:
             w_without = torch.softmax(cf.masked_fill(m, neg), -1)
-            meter.add_chunk(w_with, w_without, bf, cf, s, sliding, window)
+            meter.add_chunk(w_with, w_without, b.float(), cf, s, sliding, window)
             del w_without
         # needle capture: full per-head attention row for recall query positions
         nq = _ACTIVE["needle_qpos"]
