@@ -1,0 +1,331 @@
+{
+  "amendment_a5_commit": "7bf608d9971997a655a4f9cd46e3bc921ffb74b8",
+  "control_rule": "same opener type; +/-max(8, round(0.1*d)); then same floor(log2(d)) bin; require >=8",
+  "created_at_utc": "2026-07-17T08:07:55.762953+00:00",
+  "decision_rule": "at least 3/11 global layers positive with Holm one-sided p<0.05",
+  "dump_manifest_sha256": "27221e523fb6cd2ec8816af19e84015f7937a5278a983c17b32fef94ca258706",
+  "kind": "round5_lf5_bracket_matching",
+  "loci_sha256": "0bb6152bf0eee87fd7985431af3cbcc7997bd1ef121de9a207b1df9246e19a8b",
+  "plan_commit": "d4e2579",
+  "positive_significant_layers": 0,
+  "prediction_passed": false,
+  "production_backend": "replay",
+  "registered_cpu_gate_passed": false,
+  "registration_commit": "34278b4",
+  "results": [
+    {
+      "eligible_pairs": 1,
+      "layer": 5,
+      "null_quantiles": {
+        "q025": -1.2622051511660413,
+        "q50": -0.03174173361245636,
+        "q975": 1.0312999538080865
+      },
+      "observed_median_log_ratio": 0.7196356489160269,
+      "observed_ratio": 2.0536848120248425,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.18598140185981402,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.00016053812578320503,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 0.7196356489160269,
+          "matched": 999,
+          "matched_attention": 0.0003296947106719017,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 10274036505533270925
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 11,
+      "null_quantiles": {
+        "q025": -1.647464270833611,
+        "q50": -0.5136490091320933,
+        "q975": 2.069601637320151
+      },
+      "observed_median_log_ratio": 1.7146791980292297,
+      "observed_ratio": 5.554893205805136,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.2743725627437256,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 7.999083027243614e-05,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 1.7146791980292297,
+          "matched": 999,
+          "matched_attention": 0.0004443405196070671,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 5327816795653922604
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 17,
+      "null_quantiles": {
+        "q025": -1.5424039788920378,
+        "q50": -0.38955668190572545,
+        "q975": 3.2567031682484027
+      },
+      "observed_median_log_ratio": 0.8850059997278379,
+      "observed_ratio": 2.4229989287760643,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.36106389361063895,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 9.346054866909981e-05,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 0.8850059997278379,
+          "matched": 999,
+          "matched_attention": 0.00022645480930805206,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 6463482559993291675
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 23,
+      "null_quantiles": {
+        "q025": -1.1757787583152197,
+        "q50": -0.15492588449216527,
+        "q975": 3.632955722503864
+      },
+      "observed_median_log_ratio": 2.639687445063413,
+      "observed_ratio": 14.008824396176365,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.272972702729727,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.00011218851432204247,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 2.639687445063413,
+          "matched": 999,
+          "matched_attention": 0.0015716291964054108,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 11667613973735977165
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 29,
+      "null_quantiles": {
+        "q025": -2.668146922591176,
+        "q50": -0.0402421894007432,
+        "q975": 3.689767026671009
+      },
+      "observed_median_log_ratio": 3.689767026671009,
+      "observed_ratio": 40.035518662646275,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.09359064093590641,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.00043688854202628136,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 3.689767026671009,
+          "matched": 999,
+          "matched_attention": 0.017491059377789497,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 8171469422047027795
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 35,
+      "null_quantiles": {
+        "q025": -3.127553150856608,
+        "q50": 0.3770571452515279,
+        "q975": 3.56686700198338
+      },
+      "observed_median_log_ratio": 3.56686700198338,
+      "observed_ratio": 35.405493863528164,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.0902909709029097,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.0007500774227082729,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 3.56686700198338,
+          "matched": 999,
+          "matched_attention": 0.026556861586868763,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 15316491150041266758
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 41,
+      "null_quantiles": {
+        "q025": -1.6942164096441559,
+        "q50": -0.5846116793211138,
+        "q975": 4.598382941429314
+      },
+      "observed_median_log_ratio": 4.598382941429314,
+      "observed_ratio": 99.32357367628953,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.09199080091990801,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.00010550906881690025,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 4.598382941429314,
+          "matched": 999,
+          "matched_attention": 0.010479537770152092,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 9893325179197069558
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 47,
+      "null_quantiles": {
+        "q025": -1.6169319511981275,
+        "q50": -0.13706807184645164,
+        "q975": 4.894917194462387
+      },
+      "observed_median_log_ratio": 4.894917194462387,
+      "observed_ratio": 133.6089425961505,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.09209079092090791,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 5.52590936422348e-05,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 4.894917194462387,
+          "matched": 999,
+          "matched_attention": 0.0073831090703606606,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 5384598314475993850
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 53,
+      "null_quantiles": {
+        "q025": -2.2811173633699386,
+        "q50": -0.038495196525669684,
+        "q975": 3.9824640283947117
+      },
+      "observed_median_log_ratio": 3.9824640283947117,
+      "observed_ratio": 53.649064315570435,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.09499050094990501,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 7.54217617213726e-05,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 3.9824640283947117,
+          "matched": 999,
+          "matched_attention": 0.004046306945383549,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 205801188027092656
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 59,
+      "null_quantiles": {
+        "q025": -1.6806011625417536,
+        "q50": -0.15911543072589396,
+        "q975": 3.8348074938923444
+      },
+      "observed_median_log_ratio": 3.8348074938923444,
+      "observed_ratio": 46.284516758109845,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.08209179082091791,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 6.399396806955338e-05,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 3.8348074938923444,
+          "matched": 999,
+          "matched_attention": 0.002961929887533188,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 14634125698834886633
+    },
+    {
+      "eligible_pairs": 1,
+      "layer": 65,
+      "null_quantiles": {
+        "q025": -1.3804455400109994,
+        "q50": 0.06849291472892638,
+        "q975": 0.9288503467233706
+      },
+      "observed_median_log_ratio": 0.9288503467233706,
+      "observed_ratio": 2.5315970451292356,
+      "p_holm": 0.9030096990300971,
+      "p_one_sided": 0.0892910708929107,
+      "pairs": [
+        {
+          "bracket": ")",
+          "control_median_attention": 0.0001132134348154068,
+          "controls": 10,
+          "distance": 1246,
+          "log_ratio": 0.9288503467233706,
+          "matched": 999,
+          "matched_attention": 0.00028661079704761505,
+          "q": 2245
+        }
+      ],
+      "permutations": 10000,
+      "positive_and_significant": false,
+      "seed": 15364302277714166270
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "6e4d14dce7a8197e05b3c5793fa6c06a4ce38ed65285a3c68d28cc760f9778f7",
+  "zero_probability_convention": {
+    "epsilon": 5.960464477539063e-08,
+    "kind": "left-censor at smallest positive FP16 subnormal"
+  }
+}

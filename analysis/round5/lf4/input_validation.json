@@ -1,0 +1,5031 @@
+{
+  "created_at_utc": "2026-07-17T08:08:49.885347+00:00",
+  "errors": [],
+  "expected_files": 462,
+  "kind": "round5_lf4_input_validation",
+  "lf5_confirmation_sha256": "8aa576801e5adede018818b2ddfade3b60067d8b3bc3735d9625abb8ba40de90",
+  "lf5_production_backend": "replay",
+  "passed": true,
+  "plan_commit": "d4e2579",
+  "records": {
+    "L00_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_01_prose_en.npy",
+      "sha256": "5b7bf22a0121f5e3afca1c73ecd625a7bf3a83d49786828cd45faf03956af348",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_02_code.npy",
+      "sha256": "393acaeda6d2373f7ec8895e62f145be79e3532be3cd10610dd9a99592774914",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_03_templated.npy",
+      "sha256": "d986e78b72f616ee24c0c40c9f093f55b8f671137a328c20b00ceb482ff71aea",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_04_multilingual.npy",
+      "sha256": "320d2718a4cca82350f658ea1eb27170a73f09f257a5168d4dbc7bd3a27c8f39",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_05_needles.npy",
+      "sha256": "91a3a6d6771e5d321de3616f572689619528bd9fa1f7a62001233bc607e6f371",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L00_06_random.npy",
+      "sha256": "d2bad21fe073b551868d0459c68a7ae6a7edd3105b9e54aaa1b644e520b37381",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L00_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer00_rel_logits_proj.npy",
+      "sha256": "ef2fd3802ec28929fa3bbefaf930a1cce9706e0dc4c737b9f876f0f732d90a76",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L01_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_01_prose_en.npy",
+      "sha256": "7ec25c68e8a682bedea6cfeccfc56352a56e0f200621470463a57f6458fd5b23",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_02_code.npy",
+      "sha256": "2efc83feb5d73ed602603363830942ae271c2025db27633baa289533ddfa835c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_03_templated.npy",
+      "sha256": "6446a5452a8a869ecf2dfecb67998ffeb43c66b4a284332e8f1f95758dcf9449",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_04_multilingual.npy",
+      "sha256": "a6bf97cebc671e3b940550a8ef0584b8eb3418a7c5ded9c8dac2b46a50281176",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_05_needles.npy",
+      "sha256": "900f065fbffb3d7270d29a288631d66148e81f73dc830aa9bc24e16cb21a161d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L01_06_random.npy",
+      "sha256": "adf94a2c196b13c711bdda7115fed195ee04de2d483fb8d91a73b9ef153ad096",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L01_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer01_rel_logits_proj.npy",
+      "sha256": "17bf8258df7f82c1381b5d6ac90751d34d17bc4dc03ab87957fdf0eea79ba955",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L02_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_01_prose_en.npy",
+      "sha256": "67829b1b4c74016d0e2d1b0dedc37592c88227143f68ae7bdc4c709b635fa793",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_02_code.npy",
+      "sha256": "ab04ce938b47abf90637e9bf2652fa0656733a3fdbe3efcfbbf93cd823e01afe",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_03_templated.npy",
+      "sha256": "a5d916b9c49cb917ba7a71557db8aef58e9af4d9ef02a51ee9791193a2d20f7f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_04_multilingual.npy",
+      "sha256": "694052a66f42915ba010f44b6f2f252b19bb71c864a84d3a124036f5d047bfa0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_05_needles.npy",
+      "sha256": "340d1c388c66789765026bd6b1ccf3be4a917d6becf0dc6aa0ac0462f4bba269",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L02_06_random.npy",
+      "sha256": "e0e04e355d28f912542f089b3a768f30b06c7ae9153306b82ede6cc249cb1514",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L02_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer02_rel_logits_proj.npy",
+      "sha256": "5bbad02731d0ae4576d91e9d8c0206e5b62d4edddcd0b52409ee0a11564bf54f",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L03_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_01_prose_en.npy",
+      "sha256": "3284f6989e7e232ae29496a40925e5c71642a75ee3f72edf5e60eb6d671dbb03",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_02_code.npy",
+      "sha256": "00d8700f40f76dd453313ec57ebc06570e15bdeb564f89a86763faa00442021b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_03_templated.npy",
+      "sha256": "d8626e06aeadb43f97fc8d94018bdacf5f6ef6201327b387fbf3dcd4aadcdb5e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_04_multilingual.npy",
+      "sha256": "928d264a94e899254fc05212d5fb8509864eec79b4e45d4204b6c14488a8e14a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_05_needles.npy",
+      "sha256": "e4dd82ab3a82f633decd34b7e2fa9f98cda292bd46d875c37026a44b484ef519",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L03_06_random.npy",
+      "sha256": "9c16ba5708298b5da01caa043be19f4901ba3c7856524fa7f907a8cd7dea36b5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L03_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer03_rel_logits_proj.npy",
+      "sha256": "d7a850045c0ab18f7b47dd8884fe220f28921ce04accbd822805db5e80529f2f",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L04_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_01_prose_en.npy",
+      "sha256": "3cded3f1b7e012cfc84dfb4f4de3b393a5d84b5267ec6046b2a4ea96537283e1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_02_code.npy",
+      "sha256": "cf3f1b01cf782f07fa74dd58b1dfb9d38b9f9a3516af2749c1792c5ef4fd91f5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_03_templated.npy",
+      "sha256": "51685c494af9cea88cfbb662bc0423702cccef1ec43351212b5913066d367396",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_04_multilingual.npy",
+      "sha256": "df9aaa2453c05bfc44b14fc407ae07445079034651601f439560f41af3307556",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_05_needles.npy",
+      "sha256": "ca376db8295468b66ecc4bb8615b9ea525f064f3356a661f57bc1e927a178610",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L04_06_random.npy",
+      "sha256": "7fd8111636e0473a4ec2861210a6f0ec9c13fb00878e5820afa4f5ecbd44d3b1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L04_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer04_rel_logits_proj.npy",
+      "sha256": "ac2d02247902c8b18cf7e7458f7d2ef78893bb4579a431f2d9c6d62a89e684a5",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L05_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_01_prose_en.npy",
+      "sha256": "c5ccd01089c8f1d77a97f6730d07d60ba3bfb715164c74939b93556d672bfe60",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_02_code.npy",
+      "sha256": "dac55a1db538c09ae69842d8c2eca068c0c6f6461244d826f29bf803d0cf394d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_03_templated.npy",
+      "sha256": "635effa7473499109fbfe6ea717e0ee54972a580ac560ebe21e72c97e90c6376",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_04_multilingual.npy",
+      "sha256": "f28c3bf0f79d95617cb3ad15864052216522ac9c84d24baf0ad568fa5ff6698b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_05_needles.npy",
+      "sha256": "6c802395abc164c038f8c4fa6778719fc06fe2543fbd60a0ad5bcb4ba827d51f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L05_06_random.npy",
+      "sha256": "75dbfd965843979dc4708d3442b2d946dc5980191e16d18fffe58348e4ff5a70",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L05_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer05_rel_logits_proj.npy",
+      "sha256": "3cf78cc29c0bdc5b97026f193ff539fd5a913a0dbda9add4baf11054d03ff131",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L06_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_01_prose_en.npy",
+      "sha256": "07ebe02c5f743584723556edcd58e12b3cc45c20bf4371d336225accd4b65fd2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_02_code.npy",
+      "sha256": "917c475451b36acb9a0fa8cac2211fa97c6f502dc54ef249cec132cf923b5f6c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_03_templated.npy",
+      "sha256": "bf64c2e9cc3e878aea162ed773b4a36abd8cf6f2b9b945d5b9cee488eb5be7b8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_04_multilingual.npy",
+      "sha256": "f85e9c6d4005411791edb19e36e2605ca9b597c433ef334d44fc99c6c31c2b3d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_05_needles.npy",
+      "sha256": "eb7c2a1c11b1ca7fc998f3bcb158642deb5da1103ff0456e48e301642e5bb8db",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L06_06_random.npy",
+      "sha256": "8611c8b552dcb1cd869a4d3c4af84bf33c690e70ee6d9b45ae3aaffd8e946d95",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L06_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer06_rel_logits_proj.npy",
+      "sha256": "e126b456e19d82138ca474ab69f0167ce2b289d2bc723ce90a35e6923c94eec2",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L07_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_01_prose_en.npy",
+      "sha256": "df0d937398c56e4ffaae95c348bbd585b84f2b66b8269f8178796337645141fc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_02_code.npy",
+      "sha256": "78a5a9b3bdfb8e0a7c1d27a2fca4ac62bc6e758a367300617b17860a0557d0bb",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_03_templated.npy",
+      "sha256": "ee6166c214f6cfbc0011b1f22a22d51c04bdf5c7e0152e123bd8b2fc6008e902",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_04_multilingual.npy",
+      "sha256": "bd743c4aead4334d135d7bc802547ed24a5fb84200a76e076d2252beb0ac23ad",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_05_needles.npy",
+      "sha256": "6a7b4bdf65a395621eccd6da23f6c57e67deb10b8f853bb56361ce0e53f52e6e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L07_06_random.npy",
+      "sha256": "0e4df64208bb7fea49e3b2d8914920f04d0aa96c31326d6f9874601610cee53f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L07_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer07_rel_logits_proj.npy",
+      "sha256": "cc3be2e4b6b65a953e0b2567908f4effe45b757240213d10e60b5d4a11a1dc95",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L08_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_01_prose_en.npy",
+      "sha256": "495dd1e52396e471d19b7ea06428d9a47a88d48a148c22c2d9bfa5afabf93e09",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_02_code.npy",
+      "sha256": "ceff0a90c45732141a721ea998eb2e08b4e8521810d2f1b818c8ec127f54c44c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_03_templated.npy",
+      "sha256": "2a6789fed87872af0ab4fe8cc8fea78f6f6879c193a41abc07cd36ff489a2947",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_04_multilingual.npy",
+      "sha256": "6ad5dbcaea3520d54ce7eb21710ed65ecbe81f04b845f919b1878b8ef78f836e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_05_needles.npy",
+      "sha256": "53129d3d4db69e11b33689243dbfccba26deda675bc28955648021a453a0d22f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L08_06_random.npy",
+      "sha256": "15acec98b643acb588667d2f4cb4131e8e04c6e479adf0ae0f23e8b4127d33e0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L08_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer08_rel_logits_proj.npy",
+      "sha256": "e9882c83426ba6c84da0b26c1c381e5776d32e01133b22bccbcda8bcd834c7de",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L09_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_01_prose_en.npy",
+      "sha256": "33dd68f7f70f573c5d70f0d950ce19a8b4d003ba56ddf9e087b0deeb80144c74",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_02_code.npy",
+      "sha256": "386b4929690109e81f3f06209339e58346fae32fa96b2c19bc6ca355ec92b6bd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_03_templated.npy",
+      "sha256": "ac5e56c52384538c94dd8b2516394e74028e24ba721caac684952a9c02d8e6b7",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_04_multilingual.npy",
+      "sha256": "e42abd544db63bc7b23389a9c778364654c475e9175d84949eb9c000fbe41de3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_05_needles.npy",
+      "sha256": "de685754fd86e212728df5ad6fb500823a2d4caaff0c7c9e7b1a65ca54698323",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L09_06_random.npy",
+      "sha256": "b87bcb97186f80d772132159e1dc6ed96c6a81f6a01bf8f0c3fbdac439aaec72",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L09_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer09_rel_logits_proj.npy",
+      "sha256": "6f7d3b10e4ebd09124efe4f68bc32636549ba1a11d8e9f1d76f2a5cdee00df33",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L10_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_01_prose_en.npy",
+      "sha256": "edea9143c1334400441eb2642e12356e24a23e7f9c7a7ed9f3dcb3c8e33793b8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_02_code.npy",
+      "sha256": "58305495e87893a3db7febb959397500ff2e602599f2d0c47e72f2d9d6167ceb",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_03_templated.npy",
+      "sha256": "6a50ccf244dfa1acfced30bd5ee2fe1ae91bd2a77cc7408f53fa161764ad2bcd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_04_multilingual.npy",
+      "sha256": "6901b538c17f3466a25e3611eb2faf97cbf921a4011585b1fbf8c1e0c1582c22",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_05_needles.npy",
+      "sha256": "f1cf023de3a5aa38d9abcc33a965e1f160a78b93a07c87f48c068e223dca89a8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L10_06_random.npy",
+      "sha256": "6a72654b9d6b38faa560893c85d28d4d1078a498137b10a63e59d3f8181240ee",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L10_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer10_rel_logits_proj.npy",
+      "sha256": "d136629630ef33b69b5d17ee62d78bd3797502602021463528f32e3d5613c7fe",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L11_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_01_prose_en.npy",
+      "sha256": "ee1a1b2dd53f6fb8016b05942f4e872dbea710a7eae41574b2b1ef87613f119d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_02_code.npy",
+      "sha256": "05decd5ccbea37d45abe0c0c24cf22eb30cc31dcaf956711c67a284b69e7ecad",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_03_templated.npy",
+      "sha256": "e9294b99d02090a0c8cc728e8ac037eac71c0dd7f367f12fb9ba07edc5ee6f4d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_04_multilingual.npy",
+      "sha256": "61ddd5f0f2fd9e575bb617927bdf1b273ec98a11b5727a5d0ca7995576bc492e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_05_needles.npy",
+      "sha256": "6e71c014d4fdd429f2e7a8ad964204847d9e4a5143f5d6e5e537065ee9db0b73",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L11_06_random.npy",
+      "sha256": "0a8ab680517bc3f7d6ef99deb66cdd2fd9c1de2faf3b55cf9b36ba37b8721b8c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L11_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer11_rel_logits_proj.npy",
+      "sha256": "e348a34f1a56fc9777509e95dad5a97cdf159b322cdfe40c254c01f70ff51f70",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L12_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_01_prose_en.npy",
+      "sha256": "cbd25b2068d11b9dc13c4cb5eb2e87de672bfb84da8271d465c88714cf2432af",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_02_code.npy",
+      "sha256": "80a6afe84f03cffec501d8b1ed3dc81d092d45c90694f3acf6a8701afa892163",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_03_templated.npy",
+      "sha256": "231c9981f7cb14d7226b076966e0786c7f32cff7a65440d0fd93641fe59e9ba3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_04_multilingual.npy",
+      "sha256": "25cffd7290a8be1811fb2dc5e4f7df3aa7b5fa85ddc81520ec76fb7b000a19d0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_05_needles.npy",
+      "sha256": "7b2c6291d8f860534ad343afaee089974cdb4bf3c19f46b515cb4dd3b0095f3e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L12_06_random.npy",
+      "sha256": "91ef798c6646adb8a0e0b1900a8ae4d355b747e1ff482e7d5fd4562ab2c71af3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L12_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer12_rel_logits_proj.npy",
+      "sha256": "854a149e8f0c0c675ad1a0dc6c210f11ef022553e630c819b44e7cb4cf0da3bd",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L13_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_01_prose_en.npy",
+      "sha256": "8dcd1719ee364978b8700ebbb7378f4bfcb903b9a1f045bf2708dbca44a22494",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_02_code.npy",
+      "sha256": "f83549dd03eac6a9ce0bb10de4fbb1e82e1d030e4454acbe229903a90c41a0fc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_03_templated.npy",
+      "sha256": "9535040a2be4149d639415dfad113d3049ac1c994a0482aca5acac2d8a78c016",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_04_multilingual.npy",
+      "sha256": "5db0d9ac69ae61af556a8568249c58d9f99e54a5b0f824e1a64b5723b6933aa8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_05_needles.npy",
+      "sha256": "4db940788a2f12f451835e1e90046f8ecf59b3e2df729bb5597c61a4f55222c4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L13_06_random.npy",
+      "sha256": "510e982d8555ed89a1785a0c6c984f4b4e41172bfae8864620d5be0879ebea2a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L13_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer13_rel_logits_proj.npy",
+      "sha256": "45b325458d5eca0516d5bd8428d8978b03016a82a6ba1925b54e752b9bea9ad1",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L14_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_01_prose_en.npy",
+      "sha256": "a27cc760e1d7fea623ad6f950275964534e0db8afe8336535f1dbfdd1c703c24",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_02_code.npy",
+      "sha256": "9205425af17b02ee6b28230e1c759778ed90ecceb9915f73fe3f68beaab8a8df",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_03_templated.npy",
+      "sha256": "abf60ba2afb0d65c945c1b472199237fb319e8b472167e59e2ead1467f4525f2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_04_multilingual.npy",
+      "sha256": "ba3c94cf8ba06a768311bc960e67d98e083e75ce655080b1727264fc568858e4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_05_needles.npy",
+      "sha256": "ae4ccc8a9ce7d44b781289589a4b945e10664d3cd4b5feeb59b3041d3b3eb55a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L14_06_random.npy",
+      "sha256": "7975061da37fbab3eb60f278ec39eab57b47caea21e1d86ea3dca5cc2a5f9ce8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L14_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer14_rel_logits_proj.npy",
+      "sha256": "d0434253fb0d72e02429a0afd0a8610ab52bc3e4596c8a5479f51e284e2b6229",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L15_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_01_prose_en.npy",
+      "sha256": "f443c88317b8c4a17391ae831fbecce36a5624ceeb233941051c0bc90cb7b652",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_02_code.npy",
+      "sha256": "c549d2363ac673fb80bc277b56a1743745b1b2db857c7d2b83dbb5111b544009",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_03_templated.npy",
+      "sha256": "e6bb9f2a63fc69ba06313b01728404285ff876426e37cc0448c92a063a28c325",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_04_multilingual.npy",
+      "sha256": "4620d89faf007ded78b7f5dedd5bd74718321c4675c1dc429e482ac12faa35ea",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_05_needles.npy",
+      "sha256": "4cebbd69c662d4cc1278d4995875d3891ebd946df8201f232927a953eccd2651",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L15_06_random.npy",
+      "sha256": "69dcf4ec59f89fce78d5034f49645e7b96f59f006b69da5756209fdb746d960e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L15_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer15_rel_logits_proj.npy",
+      "sha256": "0f8e42f1b0edf1abfb36237c8309e19b0c1f8b8fddea671e686cebe9abfe2057",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L16_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_01_prose_en.npy",
+      "sha256": "268341151d088269370e8b2cc552b073c51b7b9555a8db210a811ba99bc33425",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_02_code.npy",
+      "sha256": "577cb1eaa90841133df469fdc14dea724cc96dc06886b1f012b0b58a1926340c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_03_templated.npy",
+      "sha256": "7dd73d752441291b8db9327c55cf04656bb407079a6e2034e3530b8a268b2949",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_04_multilingual.npy",
+      "sha256": "6445341d2c399277adb157afff037c6104c0f195fac3771647d8fccae713967b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_05_needles.npy",
+      "sha256": "23f669eae3d3b035c933af1008f8c9a5378eef33e1033be9a2d1f7d43e82cb30",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L16_06_random.npy",
+      "sha256": "a8b6bd9e763ebc119595d4ddf3cf31f8239b847efc2d4bd2310ca59a9fb1d569",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L16_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer16_rel_logits_proj.npy",
+      "sha256": "3e99d35179cb2136a16c9eee416ef547a295f60c7d94755af25a4e87326fd089",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L17_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_01_prose_en.npy",
+      "sha256": "06a000c54a883535f0e5f67e3f3173629cc508e3347069293aff08c18ab1291d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_02_code.npy",
+      "sha256": "d85cbb587511dec89b1ed48c53e3d27c7e0735a6df72d8083c4cc0523afc4d0f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_03_templated.npy",
+      "sha256": "4bfee63dab12d97bf04844f254475a6e6197e876d134ac0bcdd484a07ccfe54d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_04_multilingual.npy",
+      "sha256": "c09dc4be0f2150f6caf1d4a34626fbc242a3b7bf49d69b256fbdbb95c1068432",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_05_needles.npy",
+      "sha256": "b2f09b74e526bb970bdff7d74da10579a084fc2427209a43e722ba801971a129",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L17_06_random.npy",
+      "sha256": "24cc1f95536fa68996c7d1abf5814e3e7c87fc9bb0c2e82b796784276acff2a2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L17_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer17_rel_logits_proj.npy",
+      "sha256": "f6da3a978e8e44f72119b3a25c360c9beb7104eae4a9096e0b16333074a93d7f",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L18_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_01_prose_en.npy",
+      "sha256": "d8b5b304e01b3041a6dd72d067af039bd0d4c7d48806b340963956d4bf40699d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_02_code.npy",
+      "sha256": "c30356cd280261b0c8505025f41633b5f4228e4bd6bd45a45999e9888fc9a559",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_03_templated.npy",
+      "sha256": "ec2e775a59f97faf92e0a2859232ef22b174dca3f7c864e3d61f54fa55018ea0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_04_multilingual.npy",
+      "sha256": "79a89e1b6c5eb71fa34f286245f4aff7332d2fa4a54334d6509764855fe8ac46",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_05_needles.npy",
+      "sha256": "c4bfe6218a81cc005dccfbf7e1d53256b280dd7f8b46b95e4e240da64207b8b8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L18_06_random.npy",
+      "sha256": "ad4dd42f6538cd10e1b9112bb82a16d5b9408dc1485177b859486a287be85ba5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L18_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer18_rel_logits_proj.npy",
+      "sha256": "b6ddf280a941e976a19cf1ffcd9137c39df876f1c667d3252ace747c2d94699d",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L19_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_01_prose_en.npy",
+      "sha256": "08ebc18a24b1ffd1ec0a709fd6abc8da3d8d16111cd0b0076615c76aafeaee36",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_02_code.npy",
+      "sha256": "eb345255c6b25bfd3a500659e148f8b97fbbd21b0e4a765d26099a12dadce8a4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_03_templated.npy",
+      "sha256": "5f7c6b527f022469ee60681f3dd2633d98aa258368b74bad9e81c1a17a2877bf",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_04_multilingual.npy",
+      "sha256": "f3917ad859e1ef71aad5b2af25806fb2af3d7d2f014b481926d121657e35b807",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_05_needles.npy",
+      "sha256": "267ba6b31ee39d3ad7ada408e392f209873f2e84238bafd7881473aa53a635bc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L19_06_random.npy",
+      "sha256": "4b9c08da22bccc727411a0fe775e66051349ee1cea1e6e84f0eaa5ebfb0c276f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L19_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer19_rel_logits_proj.npy",
+      "sha256": "ae3516773650a8fe018f8b1e605c507c471c90907c1a64cc9e7c677e44667d51",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L20_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_01_prose_en.npy",
+      "sha256": "edf3dc7b852127850e5b64c718b7f3405a3eeeb9dfac2e66e2abcd8fee4975ef",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_02_code.npy",
+      "sha256": "e7003e60d747d20a9f2485928d446d2dc251bd9f233be6c1de35eb4d86fec3ec",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_03_templated.npy",
+      "sha256": "a0797381cc51f395898391d533d32fb5b6ddd1c2920788bb1e8384713e227837",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_04_multilingual.npy",
+      "sha256": "ba64248efa70dffbc0083bed1040de67a555d1d482c53f39c63c14bda3ad0211",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_05_needles.npy",
+      "sha256": "65242e2ed575a0adc9fdf33a6ad37c45547bf4ddcb823cf3305e33643592eb91",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L20_06_random.npy",
+      "sha256": "8f7eccd4e8a2f28de497bd6811026759b2f78f5ed07200fc4b7d72cd01055943",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L20_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer20_rel_logits_proj.npy",
+      "sha256": "0028fadcf96dd212944c26635728d663ee6192de8913bf03d75687e27a815bce",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L21_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_01_prose_en.npy",
+      "sha256": "cc6b860f05244d0f9b9dc476c2df2e9bcd414f190d1641ef9de7b6d041d8d92d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_02_code.npy",
+      "sha256": "891fc4fa81737cabe742bc565453fb9ce2f64fa862195a3c1d9a3607c006e472",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_03_templated.npy",
+      "sha256": "ac212099c68bf03e37453624f676cf25d71caf3ef884f5f99d911442686e2ca3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_04_multilingual.npy",
+      "sha256": "76226e4cb478b27ffb8cfd7e29a2cde29dd4a745df1cbc2cad8b5391fe3cd27d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_05_needles.npy",
+      "sha256": "fc1e42d54eca9fdf9734374e3e2643e3c6ee08a876d44368b01684ae307127fc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L21_06_random.npy",
+      "sha256": "1bb3bffb662515ac665aab2615cfe09639e81b554d6577bceaeb9e07267883e7",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L21_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer21_rel_logits_proj.npy",
+      "sha256": "0ff159365cf49c9ca163babb822136aca8c66e68b1adcf6730c0082048509c96",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L22_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_01_prose_en.npy",
+      "sha256": "234f876a5baef600c2ff0a5ad02a6d2cfae5eadd2ac1f0edd468930a8d92598e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_02_code.npy",
+      "sha256": "aa2bf26451a934965c21247b916fb9140e45525d45a69dbe2b1ab425929e5ba5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_03_templated.npy",
+      "sha256": "cbce844fdf2244212574d1dd13073e1461735b2c2e116181e0c3ac9a58ccee0e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_04_multilingual.npy",
+      "sha256": "786eb0890c98039600faaf59ccd5e358a1c925586ecb185eceeb57b8cbf7f5a4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_05_needles.npy",
+      "sha256": "d499f7b864ef670d0f0e2067bf53e3fd8cfa1a6db2dee8611893cf3e19db663f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L22_06_random.npy",
+      "sha256": "40ee496988a9c74fa154a933e63eb3f2c14bff0ac19fd1c1fecb1b52273f0d67",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L22_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer22_rel_logits_proj.npy",
+      "sha256": "2726dcd0bbf7dc330b12802be2a3c9d6454158e20e2d06128833ae7dd0cb2a96",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L23_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_01_prose_en.npy",
+      "sha256": "e9d9dc25fd54ab6515ad976e1ed222392b5fffcfcf1840b573f26d0bbb5f3255",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_02_code.npy",
+      "sha256": "44957d27c28facf43913f0fdb8bd0541e7f327d94ee2bec84f921f002c15057a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_03_templated.npy",
+      "sha256": "e545bced376b9cbb06dd2d4c78eba052abf1c0df155b3785223fcf9bf83ef255",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_04_multilingual.npy",
+      "sha256": "9616d7e33d8c78b0ab0d300a0ff00741fa99614861cc0a02892443b113009f72",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_05_needles.npy",
+      "sha256": "d0dc99a193f150f96fdbbc2ba000636649ae9b38e7914168f2aa624d290540bb",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L23_06_random.npy",
+      "sha256": "76379c9f2c48a7a13a8fafd43382f97f913a09e51bff793a8f4321482daf2013",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L23_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer23_rel_logits_proj.npy",
+      "sha256": "1a209077c2f63b0809acd114b8e0364aac7e5ff9f7d8639b015c20758c39e57e",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L24_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_01_prose_en.npy",
+      "sha256": "9c383fdc02998e5f8d1e86081ec4135cfa7049dfe581b82f8a3c90d2f2b832d2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_02_code.npy",
+      "sha256": "4ccc5ab6c572b9fff6da43b944539bf288d6923e8a8c95461ba1a14518d990b4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_03_templated.npy",
+      "sha256": "ae771b3b4f5c5fcb543a94b8b65e9553a5b639c51a140d7d79ce1eb533c382eb",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_04_multilingual.npy",
+      "sha256": "42c71bce0c1d6affe70cd0d6c4b9869a6f038c8b9c672f48894ca0dc12cce729",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_05_needles.npy",
+      "sha256": "61a23e0035f547f2c23f4335a02cbdf95643185e4491549c4f7e7286f80fddda",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L24_06_random.npy",
+      "sha256": "8c72daeb3affb35167c47389910eb96d42b5308df6d2390161d1e3636449e2f8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L24_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer24_rel_logits_proj.npy",
+      "sha256": "d6ce56f712a6b928a6b6c77fdf49a5c1c5c0220c0fa8f149f32d098797d3d9e5",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L25_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_01_prose_en.npy",
+      "sha256": "a4ad32a7feb9439340498a8008ae1de97e602bd4b6365fd14b21f1041ad7a414",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_02_code.npy",
+      "sha256": "40d620ef959656585f1795d54d790d7c35e181010bf73edea2d9a957496810cc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_03_templated.npy",
+      "sha256": "87b2c8620ba78b72222f1308f0a843072db7253f87f96909db10e3c984eec3c6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_04_multilingual.npy",
+      "sha256": "487087f6cd88998a790767fb58bfd8fb8bf9e63753fc4ce8acb1b587348c55a2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_05_needles.npy",
+      "sha256": "a7ce629479a233cecd51983191f411e60c3d30fdb04d5ec12ad3af6260bf5d2b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L25_06_random.npy",
+      "sha256": "fa5187d5e979305ede8f5ee5048955574e37afcbb5cac8d504c7e9f4eba98b1b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L25_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer25_rel_logits_proj.npy",
+      "sha256": "a5b963cb4102b1fe99457bda9530a4cddd280c39a588a23af2c0e514abb9f407",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L26_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_01_prose_en.npy",
+      "sha256": "76ebede414f04b716a85b1a2f4315ff558b8f2224f349281e26d7f2b78b3cbf5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_02_code.npy",
+      "sha256": "afafcc8e899bba3cbe8dcc80bd8747c846095612b417ce736ced1f2b69e7b32e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_03_templated.npy",
+      "sha256": "2864a1d809608cea966b3c992edbf0f3e0aacac46c1fdb9e462cc43266aa288b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_04_multilingual.npy",
+      "sha256": "9c92605fcfa6a9de64fc606af6f381957cbc24f7436e75fd20c1e8d856ae5288",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_05_needles.npy",
+      "sha256": "f730a1adedb63072bf40a43449aa0104ec19450babca2e2e20f794c991e59c3b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L26_06_random.npy",
+      "sha256": "ec1718f3e211cc140c009895c59096f1a7cfc8e4ca7de36b732af72dd998f44d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L26_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer26_rel_logits_proj.npy",
+      "sha256": "88da88bc6869af1fa3170bc3161b233ba4a92ac3a9a1cd12c69595d40921aecc",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L27_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_01_prose_en.npy",
+      "sha256": "9c219cbfc6588e85f1b4ac13525811b41d51379b01fc25ac62773bd846e00a32",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_02_code.npy",
+      "sha256": "f7ad426c052fcaf07ef39635e03174235345be282d0cff5b80fc2b9d94bb7f40",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_03_templated.npy",
+      "sha256": "fa1aff52395e6ce51b6f84abb4038268cbbeddc2b9c7e59905fd749a349ccd1a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_04_multilingual.npy",
+      "sha256": "aa16603cb4c2b86d62c7869c6c67010eefb02dc00941f3bdf7e9c84d92431403",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_05_needles.npy",
+      "sha256": "d74a02242b9e5ba8e8d81a9fb5b4088c08f8f0175fd34aab505c680c04641043",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L27_06_random.npy",
+      "sha256": "f64a5d8a845874a6d018a2635fd8920fb099a0fbf9bf60da7d38a07a148b0146",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L27_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer27_rel_logits_proj.npy",
+      "sha256": "6206e175ead3865ef05cfc39b763feed954847373f9f2ba9377f32a8693f9d47",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L28_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_01_prose_en.npy",
+      "sha256": "5fff6191625a9b524f6e8baf5a7b1eae854d14a4542d299d006de9fcdf9afa95",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_02_code.npy",
+      "sha256": "3e72934b858a48028bcccd8a60766f31634f5f7026657f0b7321094bf4894b13",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_03_templated.npy",
+      "sha256": "97d545b72bed896d17a2224085b418c2b79e5bb6c0b92f4f1b538d3cc5b89d7f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_04_multilingual.npy",
+      "sha256": "b4d5c36f11b19e1560696ba88b30a980d97db0e1500059aea43e1ed5c8b3b31a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_05_needles.npy",
+      "sha256": "6b1463554e21da9f5be47bbdd91f62a83feb6d79d2cd4a4b6ab0bab5be769caf",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L28_06_random.npy",
+      "sha256": "581c3446262b920847f15dc9588ab30184fc1d29269a6d3bc9913cf0a2e90e8e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L28_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer28_rel_logits_proj.npy",
+      "sha256": "cee7331f21e16ffdbcf9a61d262206f933919306e3aac2e60d25c0c4e5d7a75b",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L29_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_01_prose_en.npy",
+      "sha256": "7c9e734aa5fe5049a6eac70203ae7aa40ca2c9ef50d2c3c0a963bca752473522",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_02_code.npy",
+      "sha256": "a41ed42393de335aa761dff8ad40ff20394a423de59501e8103ed28bfe926e92",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_03_templated.npy",
+      "sha256": "ee620eb49230b9862f9b2d797793b0d10f5abad217e585b07101e7b771e63854",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_04_multilingual.npy",
+      "sha256": "871aa2b6f93e3203b36520dd50e64cb8aa6b963d028197799829e8d9b02465c9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_05_needles.npy",
+      "sha256": "99d7a79e297d8679ca9f9cfc9f29e15c18c14f5a738d7381e904a9bb67ebfde0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L29_06_random.npy",
+      "sha256": "56440d228c8f505c0b2c0d9a55896eb059b01cf6089511bebfe3d9274210ac27",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L29_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer29_rel_logits_proj.npy",
+      "sha256": "e0f5c3a7dd90e73f94ea830ba9f3d95da13d502e806680674c706bf7202c7221",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L30_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_01_prose_en.npy",
+      "sha256": "5eb6879c45fa5bf8ad7d011dc6a61408b0335e6d67959ad88eedc5cae9720a51",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_02_code.npy",
+      "sha256": "e97681a1c10680d5d9859553be5e647efcd31320324ac76b9c6ad88bec28b8ec",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_03_templated.npy",
+      "sha256": "a740840327b1a17671568e92693ba571f8c29d5749b194b251180cc098812670",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_04_multilingual.npy",
+      "sha256": "6ef9779a54ca4c66e80d362e3511c9f859b42ba292b95d5aa700c37e1e48ec19",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_05_needles.npy",
+      "sha256": "41f7b34bb9c517e778f6cb3627bc29e05a90f2e37725000839dd98e04ab1e972",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L30_06_random.npy",
+      "sha256": "bb9aa30c381841f9aa4015c76b76a5ea4bca2e403864797eb91a99c4c94f9786",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L30_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer30_rel_logits_proj.npy",
+      "sha256": "c617a26d3da81f89f294394e4f5cae0cfc3d11b812389db59060e67c1e9de07b",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L31_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_01_prose_en.npy",
+      "sha256": "73b2ae456df9e1840b6bf68c1652172fd036306ad3c091a2be0713a40399583c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_02_code.npy",
+      "sha256": "11af9145f519260e713d450251e78c5a4bd95b40cce5d0632d00d399ac0947f4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_03_templated.npy",
+      "sha256": "e8a18113bdfdf3f8ff2505b59e3cf0f029867d1d1bfeb347288a1f10bad0742a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_04_multilingual.npy",
+      "sha256": "b225d5d7cbc6db0d565b2a8575358b0ebb37b0ba40b610cd24999eab61bf2ebd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_05_needles.npy",
+      "sha256": "0b7b2ae0603ae3aca0253601260a928b6a6fbb58110f11d766914f0d437a2101",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L31_06_random.npy",
+      "sha256": "b9c25dd7107443126e9cd7216bdc51639c3b3ed44b5367993b9983f4a7ce3b53",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L31_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer31_rel_logits_proj.npy",
+      "sha256": "0ade0ccef61097244c3cb0c0ce62dae44bbddb181f14d4c1e6efe00519ca65b7",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L32_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_01_prose_en.npy",
+      "sha256": "272ca87bc80ac966f519ddc8e10f7ed73d8e4cc05b0dbc39adf51851240ad338",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_02_code.npy",
+      "sha256": "65d9f6cd6aaced72bc5e3b1960794532ec2d099c356c54adda52985d121aa4ab",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_03_templated.npy",
+      "sha256": "d63eab314deda5cb004d628272388142bf36489dcff807ee92dde61b4345b407",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_04_multilingual.npy",
+      "sha256": "70612b774a68f2fee568aecccc094ef60476bcdbb7cfb305d768d743d1d8c07e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_05_needles.npy",
+      "sha256": "49efd4c4aea53558b5f41c5b1ae974a9fed0e75fc3edf6e0dd12c25f78c5878c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L32_06_random.npy",
+      "sha256": "3942c5d5097fd67ecd1fa506f1c4f2f947b28e4cd2af46d586a5403e9fd4c999",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L32_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer32_rel_logits_proj.npy",
+      "sha256": "085f25fdda5279693ab8e892232015e4f1b825674abbbc944e08f868a1db9080",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L33_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_01_prose_en.npy",
+      "sha256": "5157da54e24862f5cd6c05bdcc90718a22697f2a6ba979d45a8d34e484011502",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_02_code.npy",
+      "sha256": "f9010db7175d22499cba74a435ae962fb7b263d86ef31d12731558010ae15127",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_03_templated.npy",
+      "sha256": "d2fb6e41746d9c301ad9e149e06b405ca1a2200d91726840ea5b40c65d9b0384",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_04_multilingual.npy",
+      "sha256": "03084f345ca98a2b25fa48517db0283015b4e6853155cb1b5687526a8033cd0b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_05_needles.npy",
+      "sha256": "b97285b1b0a634a490b392c6a4a737eaaf3e792f30253cb615b19d6f427aebae",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L33_06_random.npy",
+      "sha256": "7c7bd2814cbc18be9f1ddfd1459fec60c5a9a1cbd03573cb253ad3a7355df5f1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L33_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer33_rel_logits_proj.npy",
+      "sha256": "e16847e16b3db45544b8c5ef185495671c8191783b8c7476a32dd91a5fe00312",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L34_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_01_prose_en.npy",
+      "sha256": "943f08d90adcccc769ea6b2cc752331ec025e90b3c900981a1a8e86e61ec723f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_02_code.npy",
+      "sha256": "2bee232b5ba7a57c61275668695fe697448937abe2c9676c628d0354ede6930e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_03_templated.npy",
+      "sha256": "470efe266a67b3858468ecf65f676abe464e916b1680b891ae9934b4b730255f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_04_multilingual.npy",
+      "sha256": "9ddaceb2c0ba2ac7dbe921579bdd5dd6815aa84dc382ce24ec296bec5bc26cb6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_05_needles.npy",
+      "sha256": "dc8530c521dc2d210726717a966178d7d23eab7b0f7e2d8adfbd11cc171ad21a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L34_06_random.npy",
+      "sha256": "3ee994a323721aa6cba9a806b455c457eb38d31d411aee8666c99fa197436c64",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L34_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer34_rel_logits_proj.npy",
+      "sha256": "532cbd62310a134277588667a2ac055337cc930e4a586dcf6fdd7b5f4e6ca2c7",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L35_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_01_prose_en.npy",
+      "sha256": "3ccf2127996a9c6ec76f97ba15788382fce41d0903bddcbd54b134b556b1fe7e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_02_code.npy",
+      "sha256": "d6edb199c08a968f30175a28e8b1fec5e11a289de1f9c2d6d93604039ec9bb8b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_03_templated.npy",
+      "sha256": "a85d375580b549dfe0355c1cb050210b1e4fe362a6f428a7a0f8140a55caf5b2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_04_multilingual.npy",
+      "sha256": "a157015eba0cf604e90a37039778ea135ddfff1dc8e789b01013933e6c7c0147",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_05_needles.npy",
+      "sha256": "c5fe6ed3a1dbd7f8da7acbf04877597530dfd65178911b7c36b77cbc038c14df",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L35_06_random.npy",
+      "sha256": "f3719dc3d16d371de48d5f0f8ba8127a7dc87c80dd5b36ca2692d6510e7e0de1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L35_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer35_rel_logits_proj.npy",
+      "sha256": "74b5771c72207eecb9a1e1f04f5096c9371528b0ddd89a5774b51bb627d4fc92",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L36_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_01_prose_en.npy",
+      "sha256": "88059ac6e7d7c0ea098152e5a3968315a51ab0eff0bbc3a3927c01a0cc980d10",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_02_code.npy",
+      "sha256": "e120629deaed157e120254e17abeb29be1c685a223ace89c3643d9e4df7d5305",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_03_templated.npy",
+      "sha256": "08049d0585e3c966513c17e1e7216b87e3b4cd69efb98552a87a8c89e4bddd58",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_04_multilingual.npy",
+      "sha256": "e9b311403a0849b2e616389a30b38190940b62a330a4c77d0eb1b1d54f0036b0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_05_needles.npy",
+      "sha256": "7c31366512bbee3a3b3dba2affedc3c6468e72a5a714765152f96a0a3fd35d74",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L36_06_random.npy",
+      "sha256": "069f70e1f2d5fc514685a16e37c13f039c076146dc509b3a0c02d270aeaac5de",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L36_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer36_rel_logits_proj.npy",
+      "sha256": "a01cfbde3e2f1b41d47d6a00494ca4940226face24a1c0513664e1d84a303b67",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L37_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_01_prose_en.npy",
+      "sha256": "19b0b57ef397d9596da8a707011c4bb95afe9f09cb1b97188b58f097c49dd646",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_02_code.npy",
+      "sha256": "8a208b9066f25e7dda187a51dc9024614e00994899e26b771bf8146256a5b31f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_03_templated.npy",
+      "sha256": "c353125fba037c7325c74610798b34c1414723ea13e7c726f220f9a7472141d9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_04_multilingual.npy",
+      "sha256": "097fdea7f32c5b926e461aecb4ca978c7cb6f922a99d668220ede52015250be8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_05_needles.npy",
+      "sha256": "b649a89868113e34a827156ee26ea8b63618f900a120513d5dd7e5e16a3db55f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L37_06_random.npy",
+      "sha256": "e60566bb578d8c4e2b158a7c3f0682a044706923c7975317db6153d67e2a31e8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L37_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer37_rel_logits_proj.npy",
+      "sha256": "1d29f452d330dc9645c57eb843dc147678bea79ae72abe6198028c708ac78ca2",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L38_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_01_prose_en.npy",
+      "sha256": "a5e4b97fd95bea44075fb0f9d97c14205ecfb7930fc79bd848885acf6710deb5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_02_code.npy",
+      "sha256": "c3d679544a4787a4a4d902e467ecd0192c218715bc5dc660a772d23bbbbb3593",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_03_templated.npy",
+      "sha256": "5fabcec5ff2ad0fa280f672a3e8e5c5b35cb405ed2ee4a41c9abc64a07edd8ac",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_04_multilingual.npy",
+      "sha256": "b2dd070d2f7e59d1b3b629fa0e3e4896e8c42f138e744e4daa8f6ec5e16b79e9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_05_needles.npy",
+      "sha256": "013fde03232b451698a5975476fd9953b757a6cb1b1fe3da7fe80dcf0c0becd4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L38_06_random.npy",
+      "sha256": "a640958384696f3b34112b651288151b32cb6a9a8fe1089e192a6306c69b57d8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L38_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer38_rel_logits_proj.npy",
+      "sha256": "fd9caa541cf5833e13141777cbe319661e4cd9bc4a448a87f016570869d8d797",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L39_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_01_prose_en.npy",
+      "sha256": "7161a9bba2a7b7efd36946515ee9688a9d4726c0982d755116749bb0b1b91111",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_02_code.npy",
+      "sha256": "d01085438d269510d1280fa5d48c14e017b79adecad323896b4a1c3b800ea945",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_03_templated.npy",
+      "sha256": "5cac56967cd9d21b8859a88ff4736d7108af1be8c481d3514634079b8a165356",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_04_multilingual.npy",
+      "sha256": "42db6439b514360b58bad04afb901e2195aab6052318719489d0e41e47694a3f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_05_needles.npy",
+      "sha256": "82e5eca7f834a2bf345d24576e60165634967705591f0aa4e90435f6a9d5e775",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L39_06_random.npy",
+      "sha256": "8d9ba75fa0700570606e8786568055ba09ef7c5603cca0a676204aa9f25027cd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L39_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer39_rel_logits_proj.npy",
+      "sha256": "4a57fd02ecef96e035db8054f024591e9c187039832a15300fd546c39686417c",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L40_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_01_prose_en.npy",
+      "sha256": "ce6633f1551da4a07fa202e2285e971385c4794014a12a5018b413f677467c4f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_02_code.npy",
+      "sha256": "63fcc5bd8b3b92eb3c140c1b60bd5d86872556b3925e651ef2a7116f98ffdd46",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_03_templated.npy",
+      "sha256": "7cbaca0a121cdbe428aa09d07be0430327daf8b92c5cc509ea59fcac881f1b1b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_04_multilingual.npy",
+      "sha256": "14d1f726e3a52aa2893753f4ea2096ef17a0628abda98e72cbf9207d3cc61454",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_05_needles.npy",
+      "sha256": "689231fe4267028d459b0a52800401e1208a474c48a3a8325d3bfa9b88a69b55",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L40_06_random.npy",
+      "sha256": "b4e2a0b496ca382e2d70406600fd53d59cb28c097104abe48fb09b26f96ef3ef",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L40_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer40_rel_logits_proj.npy",
+      "sha256": "c4c818634803f55bddbc30def191b37a6114d894d0db5a272376866579363e7b",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L41_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_01_prose_en.npy",
+      "sha256": "e5b1396d426a1479abe1675b642db3d34728e6c3f194b072ead5db680019d24d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_02_code.npy",
+      "sha256": "db6c98a760a0d328a5aba0e69d5f4a4ec35dbe7307bb7cd985db2030eef41922",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_03_templated.npy",
+      "sha256": "0d6829a230ea204ba8d06924ecc094752e6ca1ea49914d29148463c34a896b14",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_04_multilingual.npy",
+      "sha256": "28e2b3a73e4207e745dab53a0622002ae054adc8a2c75db91ab5e019169a90ba",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_05_needles.npy",
+      "sha256": "3aa3bc03e6c8b36a46109ce4a37d9e6bea8c55756c5336c100ee768b704b5d8e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L41_06_random.npy",
+      "sha256": "39612857c8b3815f110b4d751a11a3a29367fee6868d32f2fabd53f1f2ae0694",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L41_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer41_rel_logits_proj.npy",
+      "sha256": "cd185eefdc2c8c41238e6de02a7b1ee5cd16cc5fe2d3e3d11bb5ebc6373f7a7b",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L42_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_01_prose_en.npy",
+      "sha256": "3bf5dc657f64d76276bc7e9328d1cc59ea79afbce121c61d5efba085a0509e5c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_02_code.npy",
+      "sha256": "3bc465bbc82e4d4b38fbb06e68f2e40b1c2ad03d49835fc3a3814552a98131ad",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_03_templated.npy",
+      "sha256": "08400550e444faffc1bc819bf3df5221a20e9a97d4a8ce0e2d04e3c903bbd003",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_04_multilingual.npy",
+      "sha256": "f8d7ef6c616594367855923b5d2d0b503d09a64e638cbbe1108a0e40f8a17a95",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_05_needles.npy",
+      "sha256": "c7dabf47a311ba7d127641b5404891283c95c200cb09824a962255d0bf751157",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L42_06_random.npy",
+      "sha256": "82efdfdf4392525cbba64a0ec2194715720888b4c53080b0c46006edd696fad6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L42_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer42_rel_logits_proj.npy",
+      "sha256": "d099c63c3088a72ce51e13158f513e2f89fb6a3494d20c9cff9771ad7cc0d87f",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L43_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_01_prose_en.npy",
+      "sha256": "a64b859dbda123fcb401cddec34a823f7ae9fef432f9d721b12fff0f532bc3d1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_02_code.npy",
+      "sha256": "0aa5c918b7228638596d55f3e236c378650e51979dd7faa5ee9bef2f5a62ad61",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_03_templated.npy",
+      "sha256": "2028ca79a9e0063986b0fe00c0bdf6c6857019440dc3a190f0c9abe52fadd1a8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_04_multilingual.npy",
+      "sha256": "1b21f7228b3139fd786de07057de90cc6d85b1799e1ba9b0dff20e674eb088e9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_05_needles.npy",
+      "sha256": "1fb4be555c182ba2ceda6ffae5400eb59628f23d818a3ff725dc2ad8843f8e29",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L43_06_random.npy",
+      "sha256": "df8e6e7e7df57191f153b7b5b51ad0556808d63d0caab5960fb2b7afac11f968",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L43_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer43_rel_logits_proj.npy",
+      "sha256": "2dc63993e521f040020f739c70e91241aab36aab142223ba226d3c6fa1b1a259",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L44_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_01_prose_en.npy",
+      "sha256": "de06757e0c26cdd46d490de89e66d213f2f4ef68709b90408a34aaf983461023",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_02_code.npy",
+      "sha256": "0a3a96bc7349238a6725b50611d38014d4527f1a46071e5bef2080c9c0397355",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_03_templated.npy",
+      "sha256": "0560df25b8c7e62a84c55617c87c3253967a4bbd600bfa7988812fad09b1f473",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_04_multilingual.npy",
+      "sha256": "2e51a159f4a87b59d0c9aad762625491566d692c7696882034add37201012639",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_05_needles.npy",
+      "sha256": "98c386d5c0dfad21b59eb78dda37b08d8fddc198ad5c3ee65e1305aac63e098f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L44_06_random.npy",
+      "sha256": "a724e5572023ac1444bc906d9271a1b4f79cc381fea8e8ed6b92fde6ac704df9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L44_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer44_rel_logits_proj.npy",
+      "sha256": "51b2bdc675fb7237e403ad1cf63609e1959763a2568d166c5cbf57480f1c900a",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L45_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_01_prose_en.npy",
+      "sha256": "9f5d31d909e13e0125d71c14a7e2d9291ffee336f9a2284c81b77ff7c1609636",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_02_code.npy",
+      "sha256": "428318abf124de6aa890afeb4424e13cceae609655e2953c6bcab8e52a4db855",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_03_templated.npy",
+      "sha256": "05d86cb1c7b9d143dd2f0f9f828aeb46248d4ded41118d2beb7e6b701df95cc9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_04_multilingual.npy",
+      "sha256": "f30e31bbdbe4035507754e6c07cc37078bda5fb63fc2f218c2ad7b39b1ef5615",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_05_needles.npy",
+      "sha256": "7965ff905c0e642436acd6504638d74c7ae229cfc28eb4241b023be08ec0e145",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L45_06_random.npy",
+      "sha256": "be1ffc69ad65ff4959bb04bf751917e7b5948d361dab93dfd2245a607a50b8bf",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L45_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer45_rel_logits_proj.npy",
+      "sha256": "f605ee1b96d3cb503eba42a27fb9f8048556bb7373b0e7d61ad39b2a67ded46f",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L46_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_01_prose_en.npy",
+      "sha256": "5fa5eaa385d1afd8baaecedc7a2d579f12065ed9c884252662ccab2056d4be56",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_02_code.npy",
+      "sha256": "997b20c61ed8208ceaa2423f768775fae2a7cecc8bae6fb7a310832972afe997",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_03_templated.npy",
+      "sha256": "e99cc347d0ae52f39e976645abbc9635790c99c302a1a3ecceaa520bbae39e1e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_04_multilingual.npy",
+      "sha256": "ec27e5f3aea862cc1732d59ecdbb89a9036949b4439664ad2c814d644a3755b8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_05_needles.npy",
+      "sha256": "9ed1f6d24c8873791c07e160f3a22353647a712a292d283a806f90fb628d652c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L46_06_random.npy",
+      "sha256": "6d606f5640beca55b39bd857f12d5f2ccc0a583646bb2807e7fe39e70f48055a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L46_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer46_rel_logits_proj.npy",
+      "sha256": "bb3afad035f57e0b3d46db3cbe20675ab10d3062a09e6092310c33ed2abed112",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L47_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_01_prose_en.npy",
+      "sha256": "0958e145388898850ed92827718ea8ed287867128bc854e3bc3edb924387fc2d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_02_code.npy",
+      "sha256": "c8dbc0cd4cb76cfaca8f52740dad5a3ec7bab3a9d163817e65388fde346c2c19",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_03_templated.npy",
+      "sha256": "e8a49396191539ade1cf940de623ece66d314346dc9ce2053932199e1c84a7a6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_04_multilingual.npy",
+      "sha256": "dbaabefd266d01cd3865d6586adcf3837b19a115fd5f50601ac6be053eefd9b1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_05_needles.npy",
+      "sha256": "8c363275ffbe481bcc490abc554513d50526c735a28c4cadf965809b83299fba",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L47_06_random.npy",
+      "sha256": "daffeb38edbb3ad860e7ec1706a0755eee94b8ee6657b03ee747ff8740d07699",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L47_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer47_rel_logits_proj.npy",
+      "sha256": "983c7074ca57f5aade6b21945962d768c03b69066a474f3a12c4aa8d1a46bccd",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L48_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_01_prose_en.npy",
+      "sha256": "c667423e43c33173bcdb01d44a87c57113bdbc33f83db0d9a34704ea485d3574",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_02_code.npy",
+      "sha256": "541069a0319a25759622ebf55573e08686eb9fb3130460bc8f3dd3f58b9d5ccb",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_03_templated.npy",
+      "sha256": "2e132d1291f3d0fb2f6c91a13a340e3f29ba821e3e64453087481c21c10b083c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_04_multilingual.npy",
+      "sha256": "36be7b6592e3194d97df048cb571632d54203a9044b8166e73f1d60cf6b7e5d5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_05_needles.npy",
+      "sha256": "6ef75bac579bc16778be8f1a5b5ed7c00ea484dd6dd49d7e192cc060d819b62e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L48_06_random.npy",
+      "sha256": "868cb1a4bee1b650913d32b1f24f8a3a8492a54e7bce4d2fdcc0aa7412aee884",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L48_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer48_rel_logits_proj.npy",
+      "sha256": "e9b182700616b01c06f63786df6046e87939f57ecf45e50b612a0b41f13ddadb",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L49_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_01_prose_en.npy",
+      "sha256": "1b93b517394739bfbabb1379eb04ad5759f2f31732c5c3fdf04e0060b2772815",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_02_code.npy",
+      "sha256": "580be4d4893fd0a24142e07c4b59f7247988b919a090617b66451635edae48e5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_03_templated.npy",
+      "sha256": "f986ff18ca9e37b97ca2af89de927d9f972e6f45712e6cf6a4b9c0e866c41fa2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_04_multilingual.npy",
+      "sha256": "3a35fcce18d1e4818a042f52633df630a1816cca603c02d165b9d68c1058fefa",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_05_needles.npy",
+      "sha256": "92231ca86ab1c9e67aad4809b087c301fd22f791aa66537853bf1537aaba9d84",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L49_06_random.npy",
+      "sha256": "b3c6d4173342be49c01abc5fb8a4049c1774e320b03dfbbd27abe16508d05a1a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L49_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer49_rel_logits_proj.npy",
+      "sha256": "34f6784500ce587ff49ffb613a7e23ddc90f36bb7f8b0c207117f6be94658a8c",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L50_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_01_prose_en.npy",
+      "sha256": "9a66b4c7774069b4f6e63292a929a266de9b7306c2da0dfb92574f56393f0022",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_02_code.npy",
+      "sha256": "dd8c175a2bccc779cbebc9941f54eb66c68fa0482b2daf4e56d84528306f21f4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_03_templated.npy",
+      "sha256": "ca1e3bd934c532596a6b2ec04c24c3950c9585d079c53f756a85c2630af65cce",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_04_multilingual.npy",
+      "sha256": "6cd30317d577b5a3f5df9c52e6b3c8d92997d1bb2f2deecd8245d4655de588ff",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_05_needles.npy",
+      "sha256": "89eb1fbe117b0374c103bf5c015a8d7085415091be9b2c35cfd75f9c99e373af",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L50_06_random.npy",
+      "sha256": "f12fdaa70c314e7e0902b55e74f265c5dfa86b3541de00a41cba49a284cc9a2f",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L50_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer50_rel_logits_proj.npy",
+      "sha256": "e8d2ec9b66b70fecec76597cf224e9dc096f7a6a20d1457b84af0b1e52f851ea",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L51_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_01_prose_en.npy",
+      "sha256": "b164884112734c303e49f1734f61264c774b29b533834b0c40f10dc5c9556085",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_02_code.npy",
+      "sha256": "a96463ff70307f85aa9d42a8c194c2fb4187c9abd5dc92156ffddeb0a5771c5e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_03_templated.npy",
+      "sha256": "e20303d726b377602fddcd67c5d0732c236345e06cf4a33f07c4cae994e5bd21",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_04_multilingual.npy",
+      "sha256": "8503af5be8ba915e970845786f32b1b893ce1c6ae6a16b706345599d72f80aba",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_05_needles.npy",
+      "sha256": "6b871a6ab20a32a8125c339e331b4c35feda21d7b339eddad3434aeddcba8696",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L51_06_random.npy",
+      "sha256": "659e0224fe30180c7553f629e0add179f896e9abdf510f1b371124d5397ca256",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L51_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer51_rel_logits_proj.npy",
+      "sha256": "10ae5da14a7d8fbe34c210752b4ca88c0d679c9fddedc5400830c85a83b6cf8f",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L52_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_01_prose_en.npy",
+      "sha256": "71201a15ad65112addea634ab6594390d464ba2a44550957e1c5ccc98a2e0c05",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_02_code.npy",
+      "sha256": "9440891cbd7e74dbf21acf2354171de743f161c0317cf4e9c6c752cb97890bec",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_03_templated.npy",
+      "sha256": "76cfe0b607dbb683a1277488fa8da8d67859ae91ab80ad6bf83f1322f4a32ed0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_04_multilingual.npy",
+      "sha256": "e6fa269de247ae9048200ea9c9f4734bea8f68d1923d82e450ead85f50e6dcf0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_05_needles.npy",
+      "sha256": "cce0ad275a85c35e892de1e501eb2ab74e7b89bb9bbfefd90b978aa0fdfd8d36",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L52_06_random.npy",
+      "sha256": "14d66225d64a1d351fb001659faf4d1b0ca0d8d86ae9e0b6cd93838e76f42e74",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L52_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer52_rel_logits_proj.npy",
+      "sha256": "97a48e93ffe2688a9588f5c8d9c1d6394c1b7760a40129fb2cb46e033abc1a81",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L53_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_01_prose_en.npy",
+      "sha256": "487b9aceaa5f4cb22fbf70fe54099eac60e51e076d3526b46f8ec1b8a002b1d4",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_02_code.npy",
+      "sha256": "f794184193db458f5f6c45546611a64e2d059e703fd9564b8f1dc72eba8a464c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_03_templated.npy",
+      "sha256": "b9b058cab52bdbb44a18b7ddc8dedf8fa2e5712f105595bdadfa5f470bd5f152",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_04_multilingual.npy",
+      "sha256": "e43a3dc2c55f2f1c95f527c7935de4e24b011e95351b36a27c76a3d0312eefc0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_05_needles.npy",
+      "sha256": "9ca9c679a7bbb26c27e2a3a6733c893eaec6351048e33dc18b60d1d8a68c9519",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L53_06_random.npy",
+      "sha256": "f111e9662efa18fa0df977386371d30b325fffab4b317afaa120a32be6608938",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L53_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer53_rel_logits_proj.npy",
+      "sha256": "e58f857eb2ddb64b060366e96128f40e891d639480d93f3437b83631726ffdf3",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L54_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_01_prose_en.npy",
+      "sha256": "69e3742d6bea83227e89ff791720c5171178425e8467778e70d0b2c82c6f9761",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_02_code.npy",
+      "sha256": "ab05aaf912821fc77de145879ea8ef44c2f43d9d8cd8e5c73fec23b9c1f0b77d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_03_templated.npy",
+      "sha256": "2927fe1dc0e09d9154c110891a5a6c598b4b91f81247d0f76f119f36a4ec6d44",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_04_multilingual.npy",
+      "sha256": "a757e0b8130151d80f59550f686d0afb520a081a73b2329de902203ca6f0baed",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_05_needles.npy",
+      "sha256": "aed4b04328edab2d0c8fa9392e1aaa036aa39db25b9725b8ec3fdb223ce7f85b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L54_06_random.npy",
+      "sha256": "274fceb61a67d6b8839d39b0a5d126cb7b56a107628b30a408eaeae84be2ae64",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L54_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer54_rel_logits_proj.npy",
+      "sha256": "9b3f292b3e6daa6f03077d285d48a721bd58562d4ef04cbb9d82d3274a892a5d",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L55_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_01_prose_en.npy",
+      "sha256": "6fab3b4a6a5caaa728f122611188309acd44a5edb9928a7f5a4d88a949b80bc8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_02_code.npy",
+      "sha256": "516f26ba3b1a4dfc4c44581c30ff9722c715a0c91727693d488f5f979c24a207",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_03_templated.npy",
+      "sha256": "7b8197d54ec06591e2cb6e86dc07ec69dfa55d37ba3e197670f75f73340ac2af",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_04_multilingual.npy",
+      "sha256": "e6b23840ef707d7cbcfbeea4a7512febca5fe1bc2a1b0959757cd6018544609a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_05_needles.npy",
+      "sha256": "f469a325dd5cf19a90048d3ed6c7abe804ca4e79bb2a029f7e0eccc8f9c4e8dd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L55_06_random.npy",
+      "sha256": "ca577e2e70cc8d4a126a8e949e86f2814c8dd8dc3ca9ea04057e09637f02ff6b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L55_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer55_rel_logits_proj.npy",
+      "sha256": "c85e8a658841148f8cef3382efbb045cd074cdec5233712f63a1212b1d6e564a",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L56_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_01_prose_en.npy",
+      "sha256": "d05e1de60686aefc0f2effa6176f3b52e5fafc5ebe69a46d07baa64363a0f4b3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_02_code.npy",
+      "sha256": "9632291195a4ae0e90689156383a441c9b34a1657224dcc676dfa685dcab3f93",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_03_templated.npy",
+      "sha256": "629407aa5c39037b989ce5e128f82ea5f29a91a38419efe126e082ffa2eccd08",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_04_multilingual.npy",
+      "sha256": "b4d707097861af5ee2d5549b5de1654d68724b016b2bf116f105b366843351d3",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_05_needles.npy",
+      "sha256": "902161336112bbb251efa72ee4f484e3869a84c27a81f7c1af3e0b86f85aa383",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L56_06_random.npy",
+      "sha256": "f64c021396ea8abe67e3131e56d36e5b5260a6ca42d7fefe51ea53f6cf31336b",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L56_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer56_rel_logits_proj.npy",
+      "sha256": "5ff245d3d70700682eff502730903e3ccf2a864f67fc1505cabc655937a07ab4",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L57_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_01_prose_en.npy",
+      "sha256": "a31006f3ba345d77d22595f6a0c798e6cdb714da7e362cd50eb6ba8d667850d2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_02_code.npy",
+      "sha256": "049e21e39130f3d856bf3f53622521ed6f8b36e5d61927ec23e315f282378ef8",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_03_templated.npy",
+      "sha256": "ad97db874a2ee85f2122fc4007c0987bd7e68ae7065da2e3bd2964ce2149473a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_04_multilingual.npy",
+      "sha256": "6fd31e71099e41f9fb52feb8c30f924366f5fa7ed9d56ae8f3b1e91e8cf65a94",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_05_needles.npy",
+      "sha256": "f8ee84f7cd473f1c4b879abcc80151386fd1813977cf633f8f4610db34f8083a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L57_06_random.npy",
+      "sha256": "c3249ddad8e9745da1a106572ae93c080ba5867ae15232be6f178574bc69ce87",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L57_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer57_rel_logits_proj.npy",
+      "sha256": "1c258832dbd1b40d909d69dbaf744d3b2f3bb862ea444b5983f9bc9ffbd2bab7",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L58_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_01_prose_en.npy",
+      "sha256": "5097dbd7f73701ca70a61731e03d4fb5c3c29819163fbcd6abd0464102c2fdb6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_02_code.npy",
+      "sha256": "d14fa5974a708ace046b39808c92033922cadc1050b4427ac464938af51b2ac1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_03_templated.npy",
+      "sha256": "d7a11be75453f07d6b61e62f95e4fd4cfbe1c1d0e175338a3a67dbac81925647",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_04_multilingual.npy",
+      "sha256": "9a881079b0875fb03955bfa3be67db24d38aba618bb0ff0c12408a0a96b7dadd",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_05_needles.npy",
+      "sha256": "e63a54bee820c8d55a2cf7028f779c5ef07bcdf9e0bc26006d9b2e55a116cfef",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L58_06_random.npy",
+      "sha256": "2e66df86161340c8087fd1cabadcc39bced110c11392fbf6e7f184f35520aacc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L58_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer58_rel_logits_proj.npy",
+      "sha256": "b966e78c20357f18951dafbf56265c143a40d2a41a57ce758eb1fc0e0d8fb3fc",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L59_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_01_prose_en.npy",
+      "sha256": "bda4ebae505fe6712530cec6c66c437ff9125039af2c731b578d408ac660fb48",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_02_code.npy",
+      "sha256": "cf5aa22ca5bba8e00c6ab96aebc42710de075fee0174f1d67312c4be921edab5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_03_templated.npy",
+      "sha256": "12c43710ac77639da7d723fb01cb9f687ac484a74f013597a59a50103bff4a2d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_04_multilingual.npy",
+      "sha256": "6ecea10306e060286bc58502e07b392494e9e45a13e0e95b62eedbf01aaaa0e1",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_05_needles.npy",
+      "sha256": "7c99ecad9b925c3caf695d59e47fdcee8d1e29bb39d069a5e9b6d76cae14455c",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L59_06_random.npy",
+      "sha256": "b0bf8129d90d14f58abcad3ab90ece251ccbfb66baf69a6117d9cedc9f47a4f7",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L59_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer59_rel_logits_proj.npy",
+      "sha256": "ae9b9f4fbd9dc9331621db1947efe896f70f2fe0b6675c8a37d3679c103d4d43",
+      "shape": [
+        16,
+        1024
+      ]
+    },
+    "L60_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_01_prose_en.npy",
+      "sha256": "e03832fff7dc6432fb8c757ea3513e197b1af0b559dfd2c0500d8fab4f7c5bef",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_02_code.npy",
+      "sha256": "60456f2d3c1b8216d50d1472c62dfe479ef17d75ae5c2140241022323847da46",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_03_templated.npy",
+      "sha256": "2f3604f782498532d2b454046e6046eda9e4191fb73a4a6bae0d7246ffc0631e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_04_multilingual.npy",
+      "sha256": "bc65283500d2d9d706a0ffd803e5c6871a1fc304bf3924c90772d664e3b3eca2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_05_needles.npy",
+      "sha256": "6708c275bdc81e0a0a166d1677005ba87bdc3f8a8eb339afd8591672026ef7e2",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L60_06_random.npy",
+      "sha256": "f1a20915daacbad60e02bb2f3373e754c1c266e3be0b3c40d54cdb387b3d82d9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L60_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer60_rel_logits_proj.npy",
+      "sha256": "3e9189c3a812ca05bd122308483b6c28db1d2fd06f7bad7b56a694659aacc0b8",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L61_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_01_prose_en.npy",
+      "sha256": "0f66ed0f6d5a94b291445b16229f96a5b0d614faf10ca2782438f781400ef06a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_02_code.npy",
+      "sha256": "83ddfc3647ffb29c5af7f5ab582f71e12c9d1cef92ada930a040ce790d9570d5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_03_templated.npy",
+      "sha256": "a17b809b35502b77f35dae6739c2f2c12259e2c8d2cfcccb1eb1f8bdf44f67bc",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_04_multilingual.npy",
+      "sha256": "9beaa62493686b51a9d23093793005fa2d66fbb3d76ede70c3b3c2475be8b96d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_05_needles.npy",
+      "sha256": "3828ae9915b217acc62009468e9a6133564759074ad3fb44d3c7e33c790f0371",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L61_06_random.npy",
+      "sha256": "021046e1ae487eb0047c594540b9f6b333e22c1b6b29ff062b1b889dcc7adfca",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L61_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer61_rel_logits_proj.npy",
+      "sha256": "40fe3b2b4c62abed6f28ae252f17f848fbefad6eeeb003d9f09bd61148871722",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L62_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_01_prose_en.npy",
+      "sha256": "af06f20a90a9cd7be7d32599d3a0816a97b6c0ae342c0552f04c9bdcfecb04ad",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_02_code.npy",
+      "sha256": "e6c4b96f01cb16f70daba626395c64cd07782ea2d57df5624d9480e9e3d41ef9",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_03_templated.npy",
+      "sha256": "a25b5ea308c59964ac81d9867e6cf9408f02fb40a99e4457705133144ac85ad0",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_04_multilingual.npy",
+      "sha256": "d4173d2fb4747cd077c62f4f2880f046b72d5efbf4106bba4b8bb80cbb56d6a6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_05_needles.npy",
+      "sha256": "ade8f0ba9543b7668ff7e33b07488e74b68a49136af97726e3f6195693a6fa98",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L62_06_random.npy",
+      "sha256": "78f2a25719860cacd7ac10cf27df688416f244e8dee1d902b4835a19b2ac3890",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L62_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer62_rel_logits_proj.npy",
+      "sha256": "1e22eb5083ef7381213c161f427c1c9b747c1afe5f506791f6b1a4785997e566",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L63_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_01_prose_en.npy",
+      "sha256": "ca479b8b6decdbd3581e90099ad437fbddfad43052765453caa79a1b66c0895e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_02_code.npy",
+      "sha256": "0ccd65bc0fbf5246256c7ca40d7e839483c6d41c3abd683187666a070446c66a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_03_templated.npy",
+      "sha256": "0ca912a4d9e60e50fd98e856168e31436ba04ac52a3d3a74764921296990574d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_04_multilingual.npy",
+      "sha256": "79bc73ab2db9b5404aa291cbe0ea3a14bb3764a6e645c9c0f316bb1566c67c9d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_05_needles.npy",
+      "sha256": "22b86d31728eebae4c225012f6ca73aae03e10856336b0acb346507a70818e15",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L63_06_random.npy",
+      "sha256": "5dfce7bf7dbe1c41fcbf1f4909a6687fbbee3dc60b1ca5bc09eccc6efaf44566",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L63_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer63_rel_logits_proj.npy",
+      "sha256": "1902c6bdf65b80a2646ab10287d50632bbdc32cdc6cee85a3d0a126f20e9d1f4",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L64_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_01_prose_en.npy",
+      "sha256": "9f3922087b75ff37ee2872d386e080651596f29552ec84ff6bd4b55696e18112",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_02_code.npy",
+      "sha256": "3315a13c3aa06ea79efb68f4e6696c12286fd7701af8bcbeb368fe2b50650a9a",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_03_templated.npy",
+      "sha256": "30465fb3c0ac46c13d92a8519fec045da3f70a34a25dd6d4cd88c61df1463f15",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_04_multilingual.npy",
+      "sha256": "e8c37d31b12fedacee4f407a37fa80a4756fdb69f562f74b18ebac2d33d9b281",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_05_needles.npy",
+      "sha256": "6ada6b51e6961dc5ffa4e2d2a7510e7a11c13c06b059571d3b606fedce0e0da5",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L64_06_random.npy",
+      "sha256": "9a99745eee43d6defa280f22f95020a7bf1fd3780981673091b4a1ce3bf45079",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L64_projection": {
+      "bytes": 32896,
+      "dtype": "float32",
+      "path": "weights/layer64_rel_logits_proj.npy",
+      "sha256": "c9e17b1392300855652f16189ccdb047ea23b6f8e1c31824bca1743393ac37c0",
+      "shape": [
+        16,
+        512
+      ]
+    },
+    "L65_01_prose_en_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_01_prose_en.npy",
+      "sha256": "cbed3657e2c13e56f61161428aa73a49480e9ccf2ab68cb92b6361eb0a294cad",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_02_code_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_02_code.npy",
+      "sha256": "401a0f40f8af402b35bfc8cef90c8015d264c9b8d08446f08b05d3110663c80e",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_03_templated_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_03_templated.npy",
+      "sha256": "061f9921407964a18913ae34c80921b1dfb90bf588a9220ce6c16ea950a40ea6",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_04_multilingual_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_04_multilingual.npy",
+      "sha256": "2ff75f38b40708807f33e5bce9d50359da54ecc21ce52780ba8b9f1e151f4a14",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_05_needles_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_05_needles.npy",
+      "sha256": "72c4bb70c260011658394f02fc87673ff720dfdfd9401c08a11a3fb896fd400d",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_06_random_rvec": {
+      "bytes": 16777344,
+      "dtype": "float16",
+      "path": "dumps/tier2/capture/rvec_L65_06_random.npy",
+      "sha256": "5477fa3123b9d2eb8b07fb8dbb4c2bb61fa7f4f116b49a9f93b7c0857b88efc7",
+      "shape": [
+        8192,
+        64,
+        16
+      ]
+    },
+    "L65_projection": {
+      "bytes": 65664,
+      "dtype": "float32",
+      "path": "weights/layer65_rel_logits_proj.npy",
+      "sha256": "0126cea40f2e1dd5ec935395c2492ec8eafd3bc576b4b4d8e5eab2fcb8494568",
+      "shape": [
+        16,
+        1024
+      ]
+    }
+  },
+  "registration_commit": "34278b4",
+  "schema_version": 1,
+  "source_sha256": "4d3d07cb4efda237fdf3633a14936bb28c2792310870d4ad45a553ed4d452c18"
+}
