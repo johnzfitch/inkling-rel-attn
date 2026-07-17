@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import os
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
@@ -36,6 +37,7 @@ DEPTH_READOUTS = REPORT_DIR / "depth_readouts.json"
 VERIFICATION = REPORT_DIR / "verification.json"
 CLASSES_V20 = CORPUS_V2 / "classes.json"
 CLASSES_DEPTH = CORPUS_V2 / "depth_classes.json"
+WEIGHTS = ROOT / "weights"
 
 TEXTS = ["07_slack_human", "08_math_llm", "07b_slack_multi", "01_prose_en"]
 TEXT_ROOT = {
@@ -98,7 +100,11 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         errors.append("wrong capture kind")
     if manifest.get("complete") is not True or manifest.get("production_capture") is not True:
         errors.append("capture is not a complete production output")
-    if manifest.get("artifact_count") != 268 or len(manifest.get("artifacts", [])) != 268:
+    expected_artifact_count = len(TEXTS) * (len(LAYERS) + 1)
+    if (
+        manifest.get("artifact_count") != expected_artifact_count
+        or len(manifest.get("artifacts", [])) != expected_artifact_count
+    ):
         errors.append("wrong artifact count")
     if manifest.get("texts") != TEXTS or manifest.get("layers") != LAYERS or manifest.get("seq") != SEQ:
         errors.append("wrong registered texts/layers/sequence")
@@ -404,6 +410,43 @@ def compare(errors: list[str], label: str, actual: Any, expected: Any, tolerance
         errors.append(f"{label}: {actual!r} != {expected!r}")
 
 
+def verify_aperture_spots(errors: list[str], manifest: dict[str, Any]) -> None:
+    """Independently recompute selected tokens for every aperture artifact."""
+    probe_positions = np.asarray([0, 1, 128, 129, 255, 256, 1024, 4096, 8191])
+    for key, record in sorted(manifest.get("files", {}).items()):
+        layer = int(key[1:3])
+        text = key.split("_", 1)[1]
+        aperture_path = APERTURE / record["path"]
+        rvec_path = CAPTURE / "rvec" / f"rvec_L{layer:02d}_{text}.npy"
+        projection_path = WEIGHTS / f"layer{layer:02d}_rel_logits_proj.npy"
+        if sha256_file(rvec_path) != record.get("rvec_sha256"):
+            errors.append(f"aperture input r-vector hash mismatch: {key}")
+            continue
+        if sha256_file(projection_path) != record.get("projection_sha256"):
+            errors.append(f"aperture projection hash mismatch: {key}")
+            continue
+        rvec = np.load(rvec_path, mmap_mode="r", allow_pickle=False)
+        projection = np.load(projection_path, allow_pickle=False)
+        coefficients = np.asarray(rvec[probe_positions], dtype=np.float64)
+        curves = coefficients.reshape(-1, 16) @ np.asarray(projection, dtype=np.float64)
+        absolute = np.abs(curves).reshape(len(probe_positions), 64, 1024)
+        expected_denominator = absolute.sum(axis=(1, 2), dtype=np.float64)
+        expected_numerator = absolute[:, :, 129:].sum(axis=(1, 2), dtype=np.float64)
+        expected_aperture = expected_numerator / expected_denominator
+        with np.load(aperture_path, allow_pickle=False) as data:
+            stored_aperture = data["aperture_full"][probe_positions]
+            stored_numerator = data["full_numerator"][probe_positions]
+            stored_denominator = data["full_denominator"][probe_positions]
+        for field, stored, expected in (
+            ("aperture", stored_aperture, expected_aperture),
+            ("numerator", stored_numerator, expected_numerator),
+            ("denominator", stored_denominator, expected_denominator),
+        ):
+            delta = float(np.max(np.abs(np.asarray(stored) - expected)))
+            if delta > 1e-12:
+                errors.append(f"independent aperture {field} mismatch {key}: {delta}")
+
+
 def confirm_command(_args: argparse.Namespace) -> None:
     if VERIFICATION.exists():
         raise FileExistsError(f"refusing to overwrite verification: {VERIFICATION}")
@@ -418,6 +461,7 @@ def confirm_command(_args: argparse.Namespace) -> None:
         for record in aperture_manifest["files"].values():
             if sha256_file(APERTURE / record["path"]) != record["sha256"]:
                 errors.append(f"aperture hash mismatch: {record['path']}")
+        verify_aperture_spots(errors, aperture_manifest)
 
     novelty = json.loads(NOVELTY.read_text(encoding="utf-8"))
     means = {text: float(np.mean(load_nll(text), dtype=np.float64)) for text in TEXTS}
@@ -611,12 +655,180 @@ def confirm_command(_args: argparse.Namespace) -> None:
         raise SystemExit(1)
 
 
+def fixture_capture_validator_self_test() -> None:
+    """Exercise the real validation producer on a complete tiny fixture."""
+    global ROOT, CORPUS_V2, CORPUS_V1, NVFP4, CAPTURE, CAPTURE_VALIDATION
+    global TEXTS, TEXT_ROOT, LAYERS, SEQ
+    names = (
+        "ROOT", "CORPUS_V2", "CORPUS_V1", "NVFP4", "CAPTURE",
+        "CAPTURE_VALIDATION", "TEXTS", "TEXT_ROOT", "LAYERS", "SEQ",
+    )
+    prior = {name: globals()[name] for name in names}
+    try:
+        with tempfile.TemporaryDirectory(prefix="inkling-validator-") as temporary:
+            root = Path(temporary)
+            ROOT = root
+            CORPUS_V2 = root / "corpus_v2"
+            CORPUS_V1 = root / "corpus"
+            NVFP4 = root / "nvfp4"
+            CAPTURE = root / "capture"
+            CAPTURE_VALIDATION = root / "reports" / "capture_validation.json"
+            TEXTS = ["toy_private", "toy_public"]
+            TEXT_ROOT = {"toy_private": CORPUS_V2, "toy_public": CORPUS_V1}
+            LAYERS = [0, 1]
+            SEQ = 8
+            for directory in (CORPUS_V2, CORPUS_V1, NVFP4, CAPTURE / "rvec", CAPTURE / "nll", root / "scripts"):
+                directory.mkdir(parents=True, exist_ok=True)
+
+            spec_fields = {
+                "spec_sha256": "CORPUS_V2_SPEC.md",
+                "amendment_a1_sha256": "CORPUS_V2_AMENDMENT_A1.md",
+                "amendment_a6_sha256": "ROUND5_AMENDMENT_A6.md",
+                "amendment_a7_execution_sha256": "ROUND5_AMENDMENT_A7_EXECUTION.md",
+                "depth_prereg_sha256": "ROUND5_DEPTH_RESOLVED_PREREG.md",
+                "execution_plan_sha256": "CORPUS_V2_EXECUTION_PLAN.md",
+            }
+            for filename in spec_fields.values():
+                (root / filename).write_text(filename + "\n", encoding="utf-8")
+            (CORPUS_V1 / "tokenizer.json").write_text("{}\n", encoding="utf-8")
+            (NVFP4 / "config.json").write_text("{}\n", encoding="utf-8")
+
+            shards = [f"model-{index:05d}-of-00033.safetensors" for index in range(1, 34)]
+            weight_map = {f"model.llm.fixture.{index}": name for index, name in enumerate(shards)}
+            weight_map["model.mtp.fixture"] = "mtp.safetensors"
+            (NVFP4 / "model.safetensors.index.json").write_text(
+                json.dumps({"weight_map": weight_map}), encoding="utf-8"
+            )
+            shard_records = {}
+            for index, name in enumerate(shards):
+                path = NVFP4 / name
+                path.write_bytes(bytes([index]))
+                shard_records[name] = {"bytes": 1, "sha256": sha256_file(path)}
+
+            ids_by_text = {
+                "toy_private": np.arange(SEQ, dtype=np.int32),
+                "toy_public": np.arange(SEQ, dtype=np.int32)[::-1].copy(),
+            }
+            for text, ids in ids_by_text.items():
+                np.save(TEXT_ROOT[text] / f"{text}.ids.npy", ids, allow_pickle=False)
+            (CORPUS_V2 / "manifest.json").write_text(
+                json.dumps({"seq": SEQ, "texts": {"toy_private": {}}}), encoding="utf-8"
+            )
+            (CORPUS_V1 / "manifest.json").write_text(
+                json.dumps({"seq": SEQ, "texts": {"toy_public": {}}}), encoding="utf-8"
+            )
+            source_hashes = {}
+            for name in ("corpus_v2_capture.py", "tier2_run.py", "tier2_stream.py", "tier2_nvfp4.py"):
+                path = root / "scripts" / name
+                path.write_text(name + "\n", encoding="utf-8")
+                source_hashes[name] = sha256_file(path)
+
+            artifacts = []
+            rng = np.random.default_rng(7)
+            for layer in LAYERS:
+                for text in TEXTS:
+                    path = CAPTURE / "rvec" / f"rvec_L{layer:02d}_{text}.npy"
+                    np.save(path, rng.normal(size=(SEQ, 64, 16)).astype(np.float16), allow_pickle=False)
+                    artifacts.append({
+                        "path": path.relative_to(CAPTURE).as_posix(),
+                        "bytes": path.stat().st_size,
+                        "sha256": sha256_file(path),
+                        "text": text,
+                    })
+            for text in TEXTS:
+                path = CAPTURE / "nll" / f"nll_{text}.npz"
+                np.savez(
+                    path,
+                    target_position=np.arange(1, SEQ, dtype=np.int32),
+                    target_id=ids_by_text[text][1:],
+                    nll=np.linspace(1.0, 2.0, SEQ - 1, dtype=np.float32),
+                )
+                artifacts.append({
+                    "path": path.relative_to(CAPTURE).as_posix(),
+                    "bytes": path.stat().st_size,
+                    "sha256": sha256_file(path),
+                    "text": text,
+                })
+
+            manifest = {
+                "kind": "corpus_v2_a6_corrected_capture",
+                "complete": True,
+                "production_capture": True,
+                "artifact_count": len(artifacts),
+                "artifacts": artifacts,
+                "texts": TEXTS,
+                "layers": LAYERS,
+                "seq": SEQ,
+                "amendment_a6_commit": A6_COMMIT,
+                "attention_dtype_boundary": "BF16 content+bias add, then FP32 softmax",
+                "stock_attention_parity": {
+                    "passed": True,
+                    "cases": {
+                        "global": {"bitwise_equal": True, "max_output_delta": 0.0},
+                        "sliding": {"bitwise_equal": True, "max_output_delta": 0.0},
+                    },
+                },
+                "source_sha256": source_hashes,
+                "packages": {
+                    "numpy": package_record(np),
+                    "tokenizers": package_record(tokenizers),
+                    "torch": package_record(torch),
+                    "transformers": package_record(transformers),
+                },
+                "modeling_inkling_sha256": sha256_file(
+                    Path(transformers.models.inkling.modeling_inkling.__file__).resolve()
+                ),
+                "input_manifest_sha256": {
+                    "corpus_v2": sha256_file(CORPUS_V2 / "manifest.json"),
+                    "corpus": sha256_file(CORPUS_V1 / "manifest.json"),
+                },
+                "input_ids_sha256": {
+                    text: sha256_file(TEXT_ROOT[text] / f"{text}.ids.npy") for text in TEXTS
+                },
+                "checkpoint_shards": shard_records,
+                "checkpoint_index_nontrunk_files": ["mtp.safetensors"],
+                "git_head": "fixture",
+            }
+            for field, filename in spec_fields.items():
+                manifest[field] = sha256_file(root / filename)
+            manifest["tokenizer_sha256"] = sha256_file(CORPUS_V1 / "tokenizer.json")
+            manifest["checkpoint_index_sha256"] = sha256_file(
+                NVFP4 / "model.safetensors.index.json"
+            )
+            manifest["config_sha256"] = sha256_file(NVFP4 / "config.json")
+            manifest_path = CAPTURE / "manifest.json"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            validate_capture_command(argparse.Namespace(rehash_shards=True))
+            passed = json.loads(CAPTURE_VALIDATION.read_text(encoding="utf-8"))
+            if passed.get("passed") is not True:
+                raise AssertionError("valid fixture did not pass")
+
+            CAPTURE_VALIDATION = root / "reports" / "capture_validation_bad.json"
+            manifest["stock_attention_parity"]["cases"]["global"]["bitwise_equal"] = False
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            try:
+                validate_capture_command(argparse.Namespace(rehash_shards=False))
+            except SystemExit as exc:
+                if exc.code != 1:
+                    raise
+            else:
+                raise AssertionError("invalid fixture unexpectedly passed")
+            failed = json.loads(CAPTURE_VALIDATION.read_text(encoding="utf-8"))
+            if failed.get("passed") is not False or "stock attention parity did not pass" not in failed.get("errors", []):
+                raise AssertionError("invalid fixture was not diagnosed")
+    finally:
+        for name, value in prior.items():
+            globals()[name] = value
+
+
 def self_test() -> None:
     ranks = midrank(np.array([3.0, 1.0, 1.0, 4.0, 2.0]), 5)
     if not np.array_equal(ranks, np.array([0.7, 0.2, 0.2, 0.9, 0.5])):
         raise AssertionError("midrank self-test failed")
     if not np.allclose(holm([0.01, 0.04, 0.03]), [0.03, 0.06, 0.06]):
         raise AssertionError("Holm self-test failed")
+    fixture_capture_validator_self_test()
     print("corrected verifier self-test passed")
 
 
