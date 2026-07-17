@@ -1,0 +1,15 @@
+{
+  "dump_manifest_sha256": "27221e523fb6cd2ec8816af19e84015f7937a5278a983c17b32fef94ca258706",
+  "errors": [],
+  "files_hashed": 2376,
+  "groups_checked": 396,
+  "kind": "round5_lf5_row_dump_independent_validation",
+  "max_fp16_row_sum_error": 0.0004202723503112793,
+  "passed": true,
+  "production_backend": "replay",
+  "rows_checked": 63162,
+  "schema_version": 1,
+  "source_sha256": "522a3429e25ba1b5ee6a5f7be7c90b5e90d8aa871d0167390d6206577363cdb9",
+  "validated_at_utc": "2026-07-17T08:05:16.738969+00:00",
+  "values_checked": 24236544640
+}

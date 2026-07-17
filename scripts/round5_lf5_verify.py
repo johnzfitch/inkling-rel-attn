@@ -41,6 +41,7 @@ REPLAY_REPORT = ROOT / "analysis" / "round5" / "lf5" / "parity_replay.json"
 CPU_REPORT = ROOT / "analysis" / "round5" / "lf5" / "parity_cpu_sentinels.json"
 AMENDMENT_A5 = ROOT / "ROUND5_AMENDMENT_A5.md"
 BRACKET_REPORT = ROOT / "analysis" / "round5" / "lf5" / "brackets.json"
+ROW_DUMP_VALIDATION = ROOT / "analysis" / "round5" / "lf5" / "row_dump_validation.json"
 VERIFY_REPORT = ROOT / "analysis" / "round5" / "lf5" / "verification.json"
 CONFIRMATION = ROOT / "analysis" / "round5" / "lf5" / "confirmation.json"
 REGISTRATION_COMMIT = "34278b4"
@@ -437,6 +438,7 @@ def main() -> None:
     replay = json.loads(REPLAY_REPORT.read_text(encoding="utf-8"))
     cpu = json.loads(CPU_REPORT.read_text(encoding="utf-8"))
     dump = json.loads((ROW_DUMP / "manifest.json").read_text(encoding="utf-8"))
+    dump_validation = json.loads(ROW_DUMP_VALIDATION.read_text(encoding="utf-8"))
     bracket = json.loads(BRACKET_REPORT.read_text(encoding="utf-8"))
     amendment_text = AMENDMENT_A5.read_text(encoding="utf-8")
     cpu_results = cpu.get("results", [])
@@ -457,6 +459,14 @@ def main() -> None:
             dump.get("complete")
             and dump.get("production_backend") == "replay"
             and len(dump.get("groups", {})) == 396
+        ),
+        "independent_row_dump_validation_gate": bool(
+            dump_validation.get("passed") is True
+            and dump_validation.get("errors") == []
+            and dump_validation.get("production_backend") == "replay"
+            and dump_validation.get("groups_checked") == 396
+            and dump_validation.get("dump_manifest_sha256")
+            == sha256_file(ROW_DUMP / "manifest.json")
         ),
         "bracket_reference_agreement": bracket_passed,
         "independent_replay_reference_gate": sentinel_passed,
@@ -479,6 +489,7 @@ def main() -> None:
             "cpu": sha256_file(CPU_REPORT),
             "amendment_a5": sha256_file(AMENDMENT_A5),
             "row_dump_manifest": sha256_file(ROW_DUMP / "manifest.json"),
+            "row_dump_validation": sha256_file(ROW_DUMP_VALIDATION),
             "bracket": sha256_file(BRACKET_REPORT),
             "verification": sha256_file(args.verify_report),
         },
