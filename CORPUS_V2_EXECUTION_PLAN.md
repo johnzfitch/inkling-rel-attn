@@ -144,7 +144,7 @@ The independent verifier must not import the main aperture/readout code. It:
   separately structured token-block calculation;
 - independently rebuilds the private class positions and requires exact
   equality with the pre-capture freeze;
-- recomputes NLL means, all 32 primary/crossed Spearman correlations, all six
+- recomputes NLL means, all 64 primary/crossed Spearman correlations, all six
   class/control permutation tests, Holm corrections, and decision fields; and
 - compares numerical effects and p-values to the main reports.
 
