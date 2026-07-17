@@ -21,6 +21,7 @@ SLACK = r"D:\windows\slack-archive\slack-archive\data"
 CONV = r"C:\Users\johnz\Projects\big-math-bigger-models\conversations"
 OUT = r"R:\inkling\corpus_v2"
 SEQ = 8192
+PROVIDER_BUDGETS = {"claude": 2730, "chatgpt": 2730, "gemini": 2732}
 TOK = Tokenizer.from_file(r"R:\inkling\corpus\tokenizer.json")
 
 
@@ -78,8 +79,7 @@ def truncate_to_tokens(text, budget):
 
 
 def build_mathllm():
-    per = SEQ // 3                          # exact thirds; gemini (last) absorbs
-    budgets = {"claude": per, "chatgpt": per, "gemini": per + (SEQ - 3 * per) + 512}
+    assert sum(PROVIDER_BUDGETS.values()) == SEQ
     parts, meta = [], []                    # meta: (provider, file, turn_idx) per turn
     for prov in ["claude", "chatgpt", "gemini"]:
         toks = 0
@@ -99,7 +99,7 @@ def build_mathllm():
                 if len(txt) < 40:
                     continue
                 piece = txt + "\n\n"
-                remaining = budgets[prov] - toks
+                remaining = PROVIDER_BUDGETS[prov] - toks
                 piece, used = truncate_to_tokens(piece, remaining)
                 if used == 0:
                     done = True
@@ -107,12 +107,15 @@ def build_mathllm():
                 parts.append(piece)
                 meta.append((prov, os.path.basename(f), i))
                 toks += used
-                if toks >= budgets[prov]:
+                if toks >= PROVIDER_BUDGETS[prov]:
                     done = True
                     break
             if done:
                 break
-        print(f"  {prov}: {toks} tokens (budget {budgets[prov]})")
+        assert toks == PROVIDER_BUDGETS[prov], (
+            f"{prov}: built {toks} tokens, expected {PROVIDER_BUDGETS[prov]}"
+        )
+        print(f"  {prov}: {toks} tokens (budget {PROVIDER_BUDGETS[prov]})")
     return parts, meta
 
 

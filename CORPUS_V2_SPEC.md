@@ -22,8 +22,9 @@ message-start token positions.
 
 **08_math_llm** — assistant-authored technical prose from the user's math
 conversations; provider-diverse by construction.
-Frozen recipe: providers claude → chatgpt → gemini in equal thirds (2,731 /
-2,731 / 2,730 tokens); files lexicographic per provider, skipping duplicate
+Frozen recipe: providers claude → chatgpt → gemini in near-equal thirds (2,730 /
+2,730 / 2,732 tokens; corrected pre-measurement by `CORPUS_V2_AMENDMENT_A1.md`);
+files lexicographic per provider, skipping duplicate
 exports (filenames containing `(`); parse `messages` (or `clean.messages`),
 keep `role == "assistant"` turns in order; U+FFFD → `'`; concatenate turns with
 blank-line separators. Sidecar: per-token provider + turn index.
