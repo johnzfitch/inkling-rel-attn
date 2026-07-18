@@ -30,7 +30,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Inputs | Next action |
 |---|---|---|---|
-| LF11 | Which of our own tools false-positives on the certified null? | curation | freeze the null-benchmark bundle + certification statement |
 | R5-A | The Atlas: one navigable end-to-end map | existing dumps | build atlas.json + poster; mark in-situ cells provisional |
 
 ## OPEN — gated
@@ -105,6 +104,12 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
+- **LF11 (2026-07-17): prediction PASSED — fourth tool caught, first caught
+  prospectively.** The damped-sinusoid BIC race, run naively, "detects
+  oscillation" in 8/11 globals (ΔBIC up to 584); all are fractional-cycle
+  phantoms (0.004–0.54 cycles in window); the cycle-audit rule kills all 8.
+  Bundle frozen: 148 hashed channels + absent/present certifications +
+  calibration rules. `analysis/round5/lf11/RESULTS.md`.
 - **R4-W (2026-07-17): oversampled but not band-limited.** Mode-0 f90 median
   0.0195 cycles/token (~4% of Nyquist), yet 2×/4× decimation costs 7.3/9.1%
   RMS — a real broadband residue rides the smooth kernel. L5/L17 mode-0 are
