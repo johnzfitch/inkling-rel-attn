@@ -52,16 +52,18 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — scope RESOLVED: widen; execution READY**
+- **D1 — scope RESOLVED: widen; execution PAUSED for D4 extension**
   (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`; production handoff:
   `analysis/round5/widened_capture/README.md`). The widened runner, A8
   Git-blob/parity/shard/package gate, paired builder/freeze, independent
   validator, normalized replay inputs, and all 66 × 24 LF5 needle rows are
-  implemented. The GPU pass has **not** been fired.
-- **D4 — hidden-state capture scope.** R5-C's registered clauses and the
-  channel-lifecycle prereg need corrected hidden states, which D1 does NOT
-  cover (it registers rvec + meters only). Decide: extend a pass or accept
-  the provisional round5 capture with disclosure.
+  implemented. The GPU pass has **not** been fired; its first production
+  preflight was stopped without an output when D4 was authorized.
+- **D4 — scope RESOLVED: full-depth lossless states**
+  (`registrations/ROUND5_CAPTURE_SCOPE_D4.md`). Capture BF16 embedding state
+  plus all 66 layer outputs for all eight arms; six v1 texts are confirmatory,
+  paired arms descriptive only. Execution awaits the registered runner and
+  independent-validator extension.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
 
