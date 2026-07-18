@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CORPUS_V2 = ROOT / "corpus_v2"
 CAPTURE = ROOT / "dumps" / "round5" / "corpus_v2_corrected_capture"
 CAPTURE_VALIDATION = (
-    ROOT / "analysis" / "round5" / "corpus_v2_corrected" / "capture_validation.json"
+    ROOT / "analysis" / "round5" / "corpus_v2_corrected" / "capture_validation_v2.json"
 )
 CLASSES_V20 = CORPUS_V2 / "classes.json"
 CLASSES_DEPTH = CORPUS_V2 / "depth_classes.json"
@@ -90,6 +90,7 @@ def require_capture_validation() -> tuple[dict[str, Any], dict[str, Any]]:
     if (
         validation.get("kind") != "corpus_v2_a6_capture_independent_validation"
         or validation.get("passed") is not True
+        or validation.get("capture_git_tree_verified") is not True
         or validation.get("errors") != []
         or validation.get("capture_manifest_sha256") != sha256_file(manifest_path)
         or manifest.get("kind") != "corpus_v2_a6_corrected_capture"
@@ -182,6 +183,9 @@ def novelty_command(_args: argparse.Namespace) -> None:
         "amendment_a7_execution_sha256": sha256_file(
             ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
+        ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
         "capture_manifest_sha256": sha256_file(CAPTURE / "manifest.json"),
@@ -226,6 +230,9 @@ def compute_command(args: argparse.Namespace) -> None:
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
             ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+        ),
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
@@ -448,6 +455,9 @@ def v20_readout(
         "amendment_a7_execution_sha256": sha256_file(
             ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
+        ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
         "capture_validation_sha256": sha256_file(CAPTURE_VALIDATION),
@@ -585,6 +595,9 @@ def depth_readout(depth_classes: dict[str, Any]) -> dict[str, Any]:
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
             ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+        ),
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
         "depth_prereg_sha256": sha256_file(

@@ -1,0 +1,15 @@
+{
+  "artifact_count": 268,
+  "capture_git_head": "7dc44605ca2760a46927b77e6878b4cf7fd5b1ee",
+  "capture_manifest_sha256": "312a057a389fd2c0c47c2d2ef9dd6d5abfdb111a432aad8b19e68cd6a641d84e",
+  "checkpoint_shards_recorded": 33,
+  "checkpoint_shards_rehashed": true,
+  "created_at_utc": "2026-07-18T00:05:00.181517+00:00",
+  "errors": [
+    "stale capture source: corpus_v2_capture.py"
+  ],
+  "kind": "corpus_v2_a6_capture_independent_validation",
+  "passed": false,
+  "schema_version": 1,
+  "source_sha256": "33836dcdfd2f34fbf5e70296780a80c24de056f0fdc24fd61fde08e939aa46c8"
+}

@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,7 +31,8 @@ NVFP4 = ROOT / "nvfp4"
 CAPTURE = ROOT / "dumps" / "round5" / "corpus_v2_corrected_capture"
 APERTURE = ROOT / "dumps" / "round5" / "corpus_v2_corrected_aperture"
 REPORT_DIR = ROOT / "analysis" / "round5" / "corpus_v2_corrected"
-CAPTURE_VALIDATION = REPORT_DIR / "capture_validation.json"
+FAILED_CAPTURE_VALIDATION = REPORT_DIR / "capture_validation.json"
+CAPTURE_VALIDATION = REPORT_DIR / "capture_validation_v2.json"
 NOVELTY = REPORT_DIR / "novelty.json"
 READOUTS = REPORT_DIR / "readouts.json"
 DEPTH_READOUTS = REPORT_DIR / "depth_readouts.json"
@@ -84,6 +86,21 @@ def package_record(module: Any) -> dict[str, str]:
     return {"version": str(module.__version__), "module_path": str(Path(module.__file__).resolve())}
 
 
+def git_blob_sha256(commit: str, relative_path: str) -> str:
+    data = subprocess.check_output(
+        ["git", "show", f"{commit}:{relative_path}"],
+        cwd=ROOT,
+        stderr=subprocess.STDOUT,
+    )
+    return hashlib.sha256(data).hexdigest()
+
+
+def git_output(*arguments: str) -> str:
+    return subprocess.check_output(
+        ["git", *arguments], cwd=ROOT, text=True, stderr=subprocess.STDOUT
+    ).strip()
+
+
 def safe_artifact(relative: str) -> Path:
     candidate = (CAPTURE / relative).resolve()
     candidate.relative_to(CAPTURE.resolve())
@@ -119,7 +136,7 @@ def validate_capture_command(args: argparse.Namespace) -> None:
     ) or set(parity.get("cases", {})) != {"global", "sliding"}:
         errors.append("stock attention parity did not pass")
 
-    expected_specs = {
+    current_specs = {
         "spec_sha256": ROOT / "registrations" / "CORPUS_V2_SPEC.md",
         "amendment_a1_sha256": ROOT / "registrations" / "CORPUS_V2_AMENDMENT_A1.md",
         "amendment_a6_sha256": ROOT / "registrations" / "ROUND5_AMENDMENT_A6.md",
@@ -130,14 +147,42 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         "checkpoint_index_sha256": NVFP4 / "model.safetensors.index.json",
         "config_sha256": NVFP4 / "config.json",
     }
-    for field, path in expected_specs.items():
+    for field, path in current_specs.items():
         if manifest.get(field) != sha256_file(path):
             errors.append(f"stale provenance field: {field}")
 
+    capture_head = str(manifest.get("git_head", ""))
+    captured_spec_paths = {
+        "spec_sha256": "CORPUS_V2_SPEC.md",
+        "amendment_a1_sha256": "CORPUS_V2_AMENDMENT_A1.md",
+        "amendment_a6_sha256": "ROUND5_AMENDMENT_A6.md",
+        "amendment_a7_execution_sha256": "ROUND5_AMENDMENT_A7_EXECUTION.md",
+        "depth_prereg_sha256": "ROUND5_DEPTH_RESOLVED_PREREG.md",
+        "execution_plan_sha256": "CORPUS_V2_EXECUTION_PLAN.md",
+    }
+    capture_git_tree_verified = True
+    try:
+        for field, relative_path in captured_spec_paths.items():
+            if manifest.get(field) != git_blob_sha256(capture_head, relative_path):
+                errors.append(f"capture Git-tree provenance mismatch: {field}")
+                capture_git_tree_verified = False
+    except Exception as exc:
+        errors.append(f"capture Git commit/spec lookup failed: {exc}")
+        capture_git_tree_verified = False
+
     source_hashes = manifest.get("source_sha256", {})
+    current_source_drift: list[str] = []
     for name in ("corpus_v2_capture.py", "tier2_run.py", "tier2_stream.py", "tier2_nvfp4.py"):
+        relative_path = f"scripts/{name}"
+        try:
+            if source_hashes.get(name) != git_blob_sha256(capture_head, relative_path):
+                errors.append(f"capture source does not match recorded Git commit: {name}")
+                capture_git_tree_verified = False
+        except Exception as exc:
+            errors.append(f"capture source Git lookup failed ({name}): {exc}")
+            capture_git_tree_verified = False
         if source_hashes.get(name) != sha256_file(ROOT / "scripts" / name):
-            errors.append(f"stale capture source: {name}")
+            current_source_drift.append(name)
 
     packages = {
         "numpy": package_record(np),
@@ -247,6 +292,26 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         "source_sha256": sha256_file(Path(__file__)),
         "capture_manifest_sha256": sha256_file(manifest_path),
         "capture_git_head": manifest.get("git_head"),
+        "capture_git_tree_verified": capture_git_tree_verified,
+        "source_authentication": "exact Git blobs at capture_git_head",
+        "validation_checkout_head": git_output("rev-parse", "HEAD"),
+        "current_source_drift_from_capture": current_source_drift,
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
+        ),
+        "amendment_a8_validation_commit": git_output(
+            "log",
+            "-1",
+            "--follow",
+            "--format=%H",
+            "--",
+            "registrations/ROUND5_AMENDMENT_A8_VALIDATION.md",
+        ),
+        "supersedes_failed_validation_sha256": (
+            sha256_file(FAILED_CAPTURE_VALIDATION)
+            if FAILED_CAPTURE_VALIDATION.exists()
+            else None
+        ),
         "artifact_count": len(records),
         "checkpoint_shards_recorded": len(shard_records),
         "checkpoint_shards_rehashed": bool(args.rehash_shards),
@@ -452,7 +517,12 @@ def confirm_command(_args: argparse.Namespace) -> None:
         raise FileExistsError(f"refusing to overwrite verification: {VERIFICATION}")
     errors: list[str] = []
     validation = json.loads(CAPTURE_VALIDATION.read_text(encoding="utf-8"))
-    if validation.get("passed") is not True or validation.get("capture_manifest_sha256") != sha256_file(CAPTURE / "manifest.json"):
+    if (
+        validation.get("passed") is not True
+        or validation.get("capture_git_tree_verified") is not True
+        or validation.get("capture_manifest_sha256")
+        != sha256_file(CAPTURE / "manifest.json")
+    ):
         errors.append("capture validation gate failed or is stale")
     aperture_manifest = json.loads((APERTURE / "manifest.json").read_text(encoding="utf-8"))
     if aperture_manifest.get("complete") is not True or len(aperture_manifest.get("files", {})) != 32:
@@ -638,6 +708,9 @@ def confirm_command(_args: argparse.Namespace) -> None:
         "kind": "corpus_v2_a6_independent_readout_verification",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_sha256": sha256_file(Path(__file__)),
+        "amendment_a8_validation_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md"
+        ),
         "capture_validation_sha256": sha256_file(CAPTURE_VALIDATION),
         "novelty_sha256": sha256_file(NOVELTY),
         "readouts_sha256": sha256_file(READOUTS),
@@ -658,10 +731,12 @@ def confirm_command(_args: argparse.Namespace) -> None:
 def fixture_capture_validator_self_test() -> None:
     """Exercise the real validation producer on a complete tiny fixture."""
     global ROOT, CORPUS_V2, CORPUS_V1, NVFP4, CAPTURE, CAPTURE_VALIDATION
-    global TEXTS, TEXT_ROOT, LAYERS, SEQ
+    global FAILED_CAPTURE_VALIDATION, TEXTS, TEXT_ROOT, LAYERS, SEQ
+    global git_blob_sha256, git_output
     names = (
         "ROOT", "CORPUS_V2", "CORPUS_V1", "NVFP4", "CAPTURE",
-        "CAPTURE_VALIDATION", "TEXTS", "TEXT_ROOT", "LAYERS", "SEQ",
+        "CAPTURE_VALIDATION", "FAILED_CAPTURE_VALIDATION", "TEXTS",
+        "TEXT_ROOT", "LAYERS", "SEQ", "git_blob_sha256", "git_output",
     )
     prior = {name: globals()[name] for name in names}
     try:
@@ -673,6 +748,7 @@ def fixture_capture_validator_self_test() -> None:
             NVFP4 = root / "nvfp4"
             CAPTURE = root / "capture"
             CAPTURE_VALIDATION = root / "reports" / "capture_validation.json"
+            FAILED_CAPTURE_VALIDATION = root / "reports" / "capture_validation_attempt1.json"
             TEXTS = ["toy_private", "toy_public"]
             TEXT_ROOT = {"toy_private": CORPUS_V2, "toy_public": CORPUS_V1}
             LAYERS = [0, 1]
@@ -690,7 +766,11 @@ def fixture_capture_validator_self_test() -> None:
             }
             (root / "registrations").mkdir(parents=True, exist_ok=True)
             for filename in spec_fields.values():
+                (root / filename).write_text(filename + "\n", encoding="utf-8")
                 (root / "registrations" / filename).write_text(filename + "\n", encoding="utf-8")
+            (root / "registrations" / "ROUND5_AMENDMENT_A8_VALIDATION.md").write_text(
+                "fixture A8\n", encoding="utf-8"
+            )
             (CORPUS_V1 / "tokenizer.json").write_text("{}\n", encoding="utf-8")
             (NVFP4 / "config.json").write_text("{}\n", encoding="utf-8")
 
@@ -799,6 +879,9 @@ def fixture_capture_validator_self_test() -> None:
             manifest["config_sha256"] = sha256_file(NVFP4 / "config.json")
             manifest_path = CAPTURE / "manifest.json"
             manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            git_blob_sha256 = lambda _commit, relative: sha256_file(root / relative)
+            git_output = lambda *arguments: "fixture"
 
             validate_capture_command(argparse.Namespace(rehash_shards=True))
             passed = json.loads(CAPTURE_VALIDATION.read_text(encoding="utf-8"))
