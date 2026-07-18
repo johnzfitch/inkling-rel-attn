@@ -28,7 +28,9 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## OPEN — runnable now (no dependence on the corrected recapture)
 
-*(empty — the runnable queue is cleared)*
+| Row | Question | Registration | Next action |
+|---|---|---|---|
+| CK1b | Is the clock ONE shared direction — does the random-fit `G_L` flatten the kernel-gain drift on texts it never saw? | `ROUND5_R5D_CLOCK_TRANSFER_PREREG.md` (repairs CK1's circular real-arm clause) | compute the four frozen cells from the sealed clock dumps |
 
 ## OPEN — gated
 
@@ -71,18 +73,7 @@ re-derivation from raw dumps) is not yet satisfied.
 - **R4-W / R4-N:** as reported; same confirmation gap.
 - **LF11:** bundle frozen; the naive-tool demonstration is itself the
   specimen — an independent rerun of the demo would complete the loop.
-- **R5-D: mixed causal verdicts; all 72 arms sealed and hash-revalidated.**
-  The registered bias-off depth pattern failed and inverted toward mid-depth
-  load (L29 +0.1208 NLL; early layers and L65 near zero); carrier equivalence
-  failed at 14/16 layers. Near-field dominance passed by 81.1x on the frozen
-  pooled ratio, and wall healing was nearly free at 8k (absolute delta NLL
-  9.78e-5). Clock CK1/CK3 passed while CK2 failed (rho +0.0542, bootstrap
-  lower -0.1579): freezing removes the realized gain schedule, but not with
-  the predicted log-extremes cost. Descriptively, removing rising-band heads
-  costs +0.0199 NLL (95% block interval [+0.0149,+0.0255]); the L11
-  negative-seam head arm is null. GPU preflight, full registered readouts, and
-  provenance are in `analysis/round5/r5d/`; certification awaits an
-  independent raw-dump re-derivation.
+- *(R5-D promoted to the certified section below on 2026-07-19.)*
 - **R5-A (Atlas): BUILT** (`analysis/round5/atlas.json` + poster, commit
   2792639; corrected refresh in this result batch). Descriptive glue with no
   claims of its own, so the promotion rule does not apply. All 66 layers now
@@ -189,6 +180,36 @@ is on record in the batch RESULTS.
   the flip-band discontinuity failed both metrics (PR max at L64, rotation
   max at L1); globals-rotate-more passed (+0.0235, exact sign-flip p = 1/64,
   positive in all six texts, driven by templated/needles).
+
+## ANSWERED — certified (R5-D causal campaign, 2026-07-19)
+
+All 72 arms sealed before any verdict; first analyst `ee936b6`; second
+analyst re-derived every pooled cost, bootstrap, and verdict from the sealed
+dumps with no producer imports — zero discrepancies
+(`analysis/round5/r5d/verification.json`).
+
+- **Bias-off depth: FAILED, inverted to mid-depth.** Causal load concentrates
+  at L29 (+0.1208 NLL; L23/L35 ≈ +0.019); the early band and L65 are causally
+  FREE at 8k (|ΔNLL| ≤ 0.002; the wall's giant bias costs −0.001 to remove).
+  Early-band bias is redundant: all-five-layers-off costs +0.0199, ~4× the
+  sum of single-layer removals.
+- **Carrier equivalence: FAILED at 14/16 layers** (only L1/L4 equivalent) —
+  removing the communal scalar carrier from the r-path does NOT reproduce
+  bias removal; the r-channel's positional function is not the carrier alone
+  (consistent with LF3's clock-is-not-the-carrier).
+- **Near dominates far: PASSED ×81.1** (near-off mean +0.00845 vs far-off
+  +0.000104). Virtually all causal value of the learned kernel is d<4; the
+  far field is causally almost free at 8k.
+- **Wall incidental at 8k: PASSED** (|ΔNLL| 9.78e-5 with real mass beyond
+  d=1024 confirmed in the healed meters). LF10's 1M forecast is untouched.
+- **Clock: kernel-real, behaviorally null at 8k.** CK1 passed as registered
+  but its real-arm clause was structurally trivial (OLS-projection identity;
+  disclosed in RESULTS; empirical content re-registered as CK1b above); the
+  sham contrast (0.634 vs ~0 real) stands. CK2 FAILED (ρ +0.054, lower
+  −0.158) and every clock arm's pooled cost is ~1e-4 with CIs straddling
+  zero: pinning the annealing schedule costs nothing measurable at 8k.
+- **Head classes (descriptive):** rising-band heads matter (+0.0199); the 45
+  L11 negative-seam heads are null.
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 

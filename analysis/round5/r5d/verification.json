@@ -1,0 +1,42 @@
+{
+  "artifacts_rehashed": 1062,
+  "ck1": {
+    "exact_projection_residual_L53": 2.4932833575519453e-13,
+    "exact_projection_residual_L59": 2.9320990080350384e-13,
+    "l53": 4.711188454714924e-16,
+    "l59": 2.1281996798255966e-16,
+    "sham": 0.6342954843829491,
+    "structural_note": "real-arm pre-r is bitwise the certified data G was OLS-fit on, so projection annihilates the regressor correlation identically; the float64 residuals below bound the statistic by construction"
+  },
+  "ck2": {
+    "lower_95": -0.15786687050033357,
+    "pass": false,
+    "rho": 0.05420416197975253
+  },
+  "ck3": {
+    "abs_pooled_delta_nll": 6.749748053318054e-05,
+    "pass": true
+  },
+  "created_at_utc": "2026-07-18T23:49:11.986598+00:00",
+  "errors": [],
+  "kind": "round5_r5d_independent_verification",
+  "near_off_L29_bias_below_d4": 0.0,
+  "parent_verdicts": {
+    "bias_argmax_layer": 29,
+    "bias_off_depth_pass": false,
+    "carrier_equivalent_layers": [
+      1,
+      4
+    ],
+    "carrier_pass": false,
+    "near_over_far_ratio": 81.12260205133592,
+    "near_pass": true,
+    "wall_abs_delta": 9.784526558715636e-05,
+    "wall_pass": true
+  },
+  "passed": true,
+  "pooled_costs_verified": 72,
+  "results_sha256": "875462e25002b4e5ed75da9f63bd49c7e1aee10e68850fa0ad03a5e615cdf129",
+  "source_sha256": "e5de4e7ec209c18f5750b759bba270222d4bbea8de208204439a794b9a2197a6",
+  "wall_heal_L65_random_mass_beyond_1024": 216685.2771786654
+}
