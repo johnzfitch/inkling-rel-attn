@@ -50,15 +50,19 @@ def state_path(layer: int, text: str) -> Path:
     return CAPTURE / "states" / f"hidden_L{layer:02d}_{text}.npy"
 
 
-def all_coordinate_variance(path: Path, chunk_rows: int = 1024) -> float:
+def state_variance_and_channels(
+    path: Path, chunk_rows: int = 1024
+) -> tuple[float, np.ndarray]:
     words = np.load(path, mmap_mode="r")
     if words.shape != (8192, 6144) or words.dtype != np.uint16:
         raise RuntimeError(f"invalid state payload: {path}")
     coordinate_sum = np.zeros(6144, dtype=np.float64)
     square_sum = 0.0
     count = 0
+    channel_values = np.empty((8192, 2), dtype=np.float32)
     for start in range(0, 8192, chunk_rows):
         block = bf16_words_to_float32(words[start : start + chunk_rows])
+        channel_values[start : start + block.shape[0]] = block[:, CHANNELS]
         coordinate_sum += block.sum(axis=0, dtype=np.float64)
         # Decoded values are float32 by registration. Form products in that
         # dtype and retain float64 accumulation; this avoids an unnecessary
@@ -69,7 +73,7 @@ def all_coordinate_variance(path: Path, chunk_rows: int = 1024) -> float:
     total = square_sum / count - float(mean @ mean)
     if not np.isfinite(total) or total <= 0:
         raise RuntimeError(f"invalid total hidden variance: {path}: {total}")
-    return total
+    return total, channel_values
 
 
 def channel_statistics(values: np.ndarray, total_variance: float) -> list[float]:
@@ -187,15 +191,15 @@ def run(out: Path) -> None:
             if record is None or record.get("kind") != "residual_hidden_state":
                 raise RuntimeError(f"state is not bound by manifest: {relative}")
             input_hashes[relative] = record["sha256"]
-            words = np.load(path, mmap_mode="r")
-            channel_values = bf16_words_to_float32(words[:, CHANNELS]).astype(np.float64)
-            total_variance = all_coordinate_variance(path)
+            total_variance, channel_values = state_variance_and_channels(path)
             for channel_index in range(2):
                 stats[layer, text_index, channel_index] = channel_statistics(
                     channel_values[:, channel_index], total_variance
                 )
             if 35 <= layer <= 44:
-                block_means[layer - 35, text_index] = channel_values.reshape(32, 256, 2).mean(axis=1).T
+                block_means[layer - 35, text_index] = channel_values.reshape(
+                    32, 256, 2
+                ).mean(axis=1, dtype=np.float64).T
         print(f"R5-C lifecycle L{layer:02d}/65", flush=True)
 
     stat_index = {name: index for index, name in enumerate(STAT_NAMES)}
