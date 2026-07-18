@@ -1,8 +1,8 @@
 """R5-A — the Atlas: one navigable per-layer map of everything measured.
 
 Descriptive glue per the registration: NO new claims; every cell cites the
-committed artifact it came from; in-situ (activation-derived) cells carry the
-A6 provisional flag until the widened pass re-certifies them. Writes
+committed artifact it came from. Activation-derived cells use the certified
+A6-corrected widened capture and corrected LF4 instrument. Writes
 analysis/round5/atlas.json and the poster figure.
 """
 
@@ -38,7 +38,8 @@ def main() -> None:
         "lf6": A / "round5" / "lf6" / "lf6_mi_mimicry.json",
         "lf7": A / "round5" / "lf7" / "lf7_parentage.json",
         "lf1": A / "round5" / "lf1" / "lf1_pips.json",
-        "needles": A / "needles" / "needle_results.json",
+        "insitu": A / "round5" / "insitu_corrected" / "insitu_corrected.json",
+        "lf4": A / "round5" / "lf4_corrected" / "zoom_lens_corrected.json",
         "depth": A / "round5" / "corpus_v2_corrected" / "depth_readouts.json",
         "figdata": A / "round5" / "corpus_v2_corrected" / "figures" / "figure_data.json",
         "meta": ROOT / "weights" / "_meta.json",
@@ -51,6 +52,10 @@ def main() -> None:
     for class_name, series in fig1["effects"].items():
         for layer, value in zip(fig1["layers"], series):
             depth_effects.setdefault(f"L{layer:02d}", {})[class_name] = value
+    lf4_effects: dict[str, dict[str, float]] = {}
+    for row in data["lf4"]["primary"]:
+        for layer, value in row["per_layer_effects"].items():
+            lf4_effects.setdefault(f"L{int(layer):02d}", {})[row["name"]] = value
 
     layers = {}
     for layer in range(66):
@@ -85,17 +90,31 @@ def main() -> None:
                     "source": "round5/lf6/lf6_mi_mimicry.json"}
             if corr:
                 cell["mi_rank_corr_prose"] = corr["prose"]
-            needle = data["needles"].get(str(layer))
-            if needle:
-                cell["needle_in_situ_PROVISIONAL"] = {
-                    "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
-                    "summary_keys": (sorted(needle)[:6] if isinstance(needle, dict)
-                                     else f"list[{len(needle)}]"),
-                    "source": "needles/needle_results.json"}
+            seam_rows = data["insitu"]["seam"][str(layer)]
+            in_situ = {
+                "seam_bias_attributable_step_mean": float(np.mean([
+                    row["bias_attrib_step_mean"] for row in seam_rows.values()
+                ])),
+                "needle_retrieval": data["insitu"]["needle_summary"][str(layer)],
+                "heartbeat_high_head_ratio_q975": data["insitu"][
+                    "heartbeat_content_only"
+                ]["high_head_ratio_97_5pct_by_layer"][str(layer)],
+                "source": "round5/insitu_corrected/insitu_corrected.json",
+            }
+            if layer == 65:
+                in_situ["terminal_wall_with_bias_inside_outside_ratio"] = data[
+                    "insitu"
+                ]["terminal_wall"]["L65_with_bias_mass_inside_outside_ratio"]
+            cell["in_situ_corrected"] = in_situ
         if name in depth_effects:
             cell["aperture_class_effects_corrected"] = {
                 **{k: round(v, 4) for k, v in depth_effects[name].items()},
                 "source": "round5/corpus_v2_corrected/figures/figure_data.json"}
+        if name in lf4_effects:
+            cell["lf4_class_effects_corrected"] = {
+                **{key: round(value, 6) for key, value in lf4_effects[name].items()},
+                "source": "round5/lf4_corrected/zoom_lens_corrected.json",
+            }
         layers[name] = cell
 
     mtp = {m: {"parent_search": "no fork (null-median distances, metrics disagree)",
@@ -110,6 +129,7 @@ def main() -> None:
                  "pips": "none survive (round5/lf1/)",
                  "oscillation": "none genuine (round4/oscillation_audit.json)",
                  "far_field_geometry": "rise -> paragraph-scale crest -> single-exp tail (lf2+lf6)",
+                 "in_situ": "A6-corrected seam/needle/wall/heartbeat readouts (round5/insitu_corrected/)",
                  "null_benchmark": "round5/lf11/bundle.json"},
              "source_sha256": {key: sha256_file(path) for key, path in sources.items()},
              "script_sha256": sha256_file(Path(__file__)),
@@ -152,7 +172,7 @@ def main() -> None:
     for ax in axes:
         for g in GLOBALS:
             ax.axvline(g, color="gold", lw=0.5, alpha=0.5)
-    fig.suptitle("Atlas poster v1 — the depth story in five channels "
+    fig.suptitle("Atlas poster v2 — the depth story in five channels "
                  "(gold lines: global layers; every value cites atlas.json)", fontsize=12)
     fig.tight_layout()
     fig.savefig(POSTER, dpi=150)

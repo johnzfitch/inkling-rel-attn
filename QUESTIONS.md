@@ -36,8 +36,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 |---|---|---|---|
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
-| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired freeze and corrected capture CERTIFIED | runnable after mechanical re-certifications |
-| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); classes, controls, and corrected capture CERTIFIED | runnable with P-e |
 
 ## FORECAST
 
@@ -75,9 +73,35 @@ re-derivation from raw dumps) is not yet satisfied.
 - **LF11:** bundle frozen; the naive-tool demonstration is itself the
   specimen — an independent rerun of the demo would complete the loop.
 - **R5-A (Atlas): BUILT** (`analysis/round5/atlas.json` + poster, commit
-  2792639). Descriptive glue with no claims of its own, so the promotion rule
-  does not apply; in-situ cells carry provisional flags and the Atlas
-  regenerates when the widened pass re-certifies them.
+  2792639; corrected refresh in this result batch). Descriptive glue with no
+  claims of its own, so the promotion rule does not apply. All 66 layers now
+  cite the A6-corrected LF4 and in-situ artifacts; no provisional cells remain.
+- **LF4 corrected re-certification: no verdict flips.** Function words remain
+  narrow and pass (effect −0.0215, Holm p=0.00360); pronouns remain a
+  direction-reversed failure (−0.0527), closers remain null (+0.00039), and
+  all random-mask controls remain null. Sentence starts remain strongly wide
+  (+0.1223, BH p=0.000167).
+- **Corrected in-situ findings: one registered flip, the rest retained.** The
+  d=1024 seam remains positive and bias-attributable at all 11 globals with
+  exact zero bias outside extent; the 512 echo remains 33/33; L65's wall is
+  8.351× with bias versus 1.023× content-only; and every global retains the
+  beyond-horizon heartbeat (minimum head-q97.5 ratio 1.684). The registered
+  A6 no-flip expectation fails because the needle seam test is now significant
+  only at L5 (L65 p=0.0999), not at both L5/L65.
+- **P-e: the primary dose law passed; both directional consequences failed.**
+  Deep boundary score rises with retired-context dose (rho +0.1041,
+  structure-block p=0.0322, block-bootstrap 95% [+0.0058,+0.2022]); shallow,
+  crossed-math, and frozen-random controls are null. Single-thread does not
+  exceed multi-conversation (+0.0801 vs +0.0840), and seven higher-scope
+  boundaries are not wider than ordinary starts (raw contrast −0.0375; only
+  2/7 have exact dose-bin controls).
+- **P-f: P-f1/P-f2 failed; P-f3 passed.** URLs (+0.244) and proper-noun
+  proxies (+0.184) pass their anchor subtests, but gratitude (+0.0957) misses
+  significance (p=0.0656), so the all-three P-f1 conjunction fails. The
+  boundary transient itself is large and precise (deep−shallow +0.2574;
+  bootstrap lower +0.2398), but its registered offsets-6..11 median is
+  +0.000976 rather than <=0, so P-f2 fails at the frozen zero boundary. Label
+  colons narrow in both shallow (−0.334) and deep (−0.244), so P-f3 passes.
 
 ## ANSWERED — corrected-capture certified (2026-07-17)
 
@@ -105,6 +129,9 @@ passed, zero errors). All true-null controls passed in both families.
   +0.193). Combined with P-d3's reversal, the revised picture: content-onset
   widening in deep globals is the general phenomenon; the v2.0 single-thread
   arm's first-content narrowing was the outlier, not the rule.
+- **LF5 production replay re-certified on the widened capture.** All 66 × 24
+  registered needle rows remain bitwise equal across 830,472,192 FP16
+  attention values after the independently validated corrected capture.
 
 ## ANSWERED — certified (corrected-capture dump science, 2026-07-18)
 
@@ -151,21 +178,6 @@ is on record in the batch RESULTS.
   the flip-band discontinuity failed both metrics (PR max at L64, rotation
   max at L1); globals-rotate-more passed (+0.0235, exact sign-flip p = 1/64,
   positive in all six texts, driven by templated/needles).
-
-## PROVISIONAL — awaiting re-certification on v1-text captures
-
-The corpus-v2 re-certification above confirms the A6 no-flip expectation where
-tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025).
-
-- **LF4 (flagship): ANSWERED, prediction failed informatively.** The aperture
-  is real and content-responsive but tracks segment-integration scope, not
-  referential need: sentence starts widen (+0.117, 62/64 heads), pronouns and
-  function words narrow, closers null.
-- **LF5 (instrument): ANSWERED.** Offline rows validated bitwise on the A5 GPU
-  replay backend (24.24B values). CPU backend demoted (Amendment A5).
-- **In-situ findings:** d=1024 seam real and bias-caused; needle retrieval
-  seam-robust except L5/L65; d=512 echo (33/33); L65 terminal wall; heartbeat
-  induction beyond the bias horizon.
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
