@@ -50,6 +50,8 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 | R5-B | Does realized transport change with input? (depth profile) | reads tier2 meters — **not in recapture scope** | decision D1 below |
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
+| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired group-channel arms not yet built | build paired renders from the largest group channel, freeze boundaries/dose, capture, evaluate |
+| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); rides the P-e capture | freeze classes on the fresh arms, evaluate after the P-e capture |
 
 ## FORECAST
 
