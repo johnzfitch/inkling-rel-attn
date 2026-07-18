@@ -32,8 +32,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 |---|---|---|---|
 | LF11 | Which of our own tools false-positives on the certified null? | curation | freeze the null-benchmark bundle + certification statement |
 | R5-A | The Atlas: one navigable end-to-end map | existing dumps | build atlas.json + poster; mark in-situ cells provisional |
-| R4-W | Whittaker band-limit section (ROUND4_SPEC, never run) | weights | run as specified |
-| R4-N | Near-field battery section (ROUND4_SPEC, never run) | weights | run as specified |
 
 ## OPEN — gated
 
@@ -107,6 +105,14 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
+- **R4-W (2026-07-17): oversampled but not band-limited.** Mode-0 f90 median
+  0.0195 cycles/token (~4% of Nyquist), yet 2×/4× decimation costs 7.3/9.1%
+  RMS — a real broadband residue rides the smooth kernel. L5/L17 mode-0 are
+  broadband outliers. `analysis/round4/RESULTS_BANDLIMIT_NEARFIELD.md`.
+- **R4-N (2026-07-17): P5 supported — near field is its own regime.** Handoff
+  discontinuity median 0.37 far-RMS (q90 1.22, max 3.1 at L48/L64); exactly
+  two motifs (silhouette 0.514), depth-split: shallow "self-suppress" (d=0
+  pinned to zero) vs deep "self-inclusive" (mild d=1 peak). Same file.
 - **LF2 (2026-07-17): prediction FAILED inverted — paragraph crest, no
   sentence scale.** 8/11 globals have Holm-significant breakpoints in the
   frozen paragraph range [21,160] (median d≈116), 0/11 in the sentence range;
