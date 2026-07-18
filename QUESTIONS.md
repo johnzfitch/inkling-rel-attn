@@ -36,7 +36,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | corrected rvec now exists (4 arms); hidden-state side still reads the provisional round5 capture | run rvec-side now; hidden-state side per decision D1 |
+| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`: carrier = 67% of live fiber, PR≈18, content-stable except L53 anomaly); registered hidden-state predictions await the widened pass | evaluate registered clauses when D1 pass lands |
 | LF3 | Absolute-position counter hiding in the r-channel? | needs rvec on 06_random — **not in recapture scope** | decision D1 below |
 | LF8 | Fiber orientation: content-stable anchor? chirality? | needs rvec across the 6 v1 texts — **not in recapture scope** | decision D1 below |
 | LF9 | Long-range bandwidth budget per layer | reads tier2 meters — **not in recapture scope** | decision D1 below |
