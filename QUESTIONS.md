@@ -36,7 +36,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| LF7 | Are MTP drafters forks of trunk layers? **REOPENED by audit** — K_STORE=640 corrupted 406/2145 null pairs; fixed-k + sketch metrics already support "no fork" | full-rank rerun (K_STORE=1024, self-contained dump) in progress | replace numbers, then independent verification |
 | R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); registered clauses need corrected HIDDEN STATES — **not covered by D1** (audit correction) | decision D4 below |
 | LF3 | Absolute-position counter hiding in the r-channel? | D1 approved; widened pass not fire-ready (see D1 execution note) | run when the widened pass lands |
 | LF8 | Fiber orientation: content-stable anchor? chirality? | same | run when the widened pass lands (start at the L53 anomaly, `analysis/round5/r5c_rvec/`) |
@@ -76,6 +75,11 @@ recomputations partially confirm LF1 (raw-bank diagnostic: zero survivors)
 and LF2 (hinge recomputation; block-residual sensitivity) — committing those
 as verifier artifacts would close the gap.
 
+- **LF7: no fork — rerun complete on clean numbers** (K_STORE=1024; MTP
+  distances unchanged from the audited run, null median 0.945, nearest
+  parents at the 55th–73rd percentile, sketch argmin agreement 0/8). Dump is
+  now self-contained (full bases) for the independent re-derivation the
+  promotion rule requires. `analysis/round5/lf7/RESULTS.md`.
 - **LF1: no power-of-two pips** (prediction passed). Audit-noted: full local
   table now in the report; d=16 disclosed as an unregistered addition.
 - **LF2: prediction failed inverted.** Corrected claim (audit): eight

@@ -1,5 +1,5 @@
 {
-  "created_at_utc": "2026-07-18T02:06:15.260620+00:00",
+  "created_at_utc": "2026-07-18T03:43:50.363934+00:00",
   "curve_note": "secondary observation, NOT promoted: all 8 MTP banks sit below the trunk-trunk minimum, nearest L51 (deep LOCAL) x7 / L47 (global) x1; the mode-0 cosine re-derivation (lf7_rederivation.json) does not confirm the neighborhood (1/8) - its null is saturated (p95=0.996), so a discriminating re-derivation is still owed before any promotion",
   "curve_parents": {
     "M0": {
@@ -64,7 +64,7 @@
     "min": 0.6978640506145422,
     "p05": 0.7414024537405935
   },
-  "dump_sha256": "3823077b20ea5fd8e3a885aab7e497603f6fc21f8cb0f31534f3903d667bb9f1",
+  "dump_sha256": "cc13e1480b5f2340770406d18e2cf8ade5fa2021037fa0d1b083c30ba2e4ba2f",
   "fixed_k_parents": {
     "M0": {
       "depth": 49,
@@ -119,7 +119,7 @@
       "depth": 15,
       "distance": 0.9482927433818422,
       "fork": false,
-      "null_percentile": 49.417249417249415,
+      "null_percentile": 54.59207459207459,
       "parent": "L15",
       "sketch_agrees": false
     },
@@ -175,7 +175,7 @@
       "depth": 65,
       "distance": 0.9523586934726315,
       "fork": false,
-      "null_percentile": 61.25874125874125,
+      "null_percentile": 61.81818181818181,
       "parent": "L65",
       "sketch_agrees": false
     }
@@ -228,12 +228,12 @@
       "parent": "L14"
     }
   },
-  "source_sha256": "1acf333c8f152e47cb05667a06b23dc44e49518f599c3bfd679d128b45c34c67",
+  "source_sha256": "08376c5863f10f90e84c3109435cebf4ba91a478d4368904f88aabce82580fe7",
   "trunk_null": {
     "max": 0.9727984234039465,
-    "median": 0.9484684942653212,
+    "median": 0.945009134962998,
     "min": 0.8696956673022501,
     "n_pairs": 2145,
-    "p05": 0.900826646338814
+    "p05": 0.9004805255885006
   }
 }
