@@ -1,4 +1,4 @@
-# LF2 — linguistic knees: ANSWERED, prediction failed inverted (paragraph crest, no sentence scale)
+# LF2 — linguistic knees: ANSWERED, independently certified inverted result
 
 **Question** (ROUND5_LEFTFIELD_SPEC.md): does the kernel have curvature knees
 at text-statistic scales — sentence (~15–40 tokens) or paragraph (~100–250)?
@@ -55,3 +55,13 @@ Frozen scales: [`corpus_scales.json`](corpus_scales.json) (written before
 detection; refuses overwrite). Dump-first:
 `dumps/round5/lf2/lf2_knees.npz` + manifest with input hashes. Full table:
 [`lf2_knees.json`](lf2_knees.json). Script: `scripts/round5_lf2_knees.py`.
+
+**Independent verification.** A no-producer-import verifier rebuilt every
+log curve from the original weight banks using a Gram eigensystem, implemented
+the hinge scan through residualized regressors, regenerated all 22,000 IID
+surrogates and all 44,000 circular-block surrogates from their fixed seeds,
+and reproduced every breakpoint and decision. Maximum IID-statistic difference
+was 9.1e-12; all 22,000 null breakpoint identities matched exactly. The
+8 IID / 7 block-robust / 6 crest hierarchy is certified with zero errors:
+[`verification.json`](verification.json); script:
+`scripts/round5_lf2_verify.py`.

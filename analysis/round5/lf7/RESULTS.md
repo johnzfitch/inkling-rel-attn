@@ -1,4 +1,4 @@
-# LF7 — MTP parentage: ANSWERED (rerun complete), prediction failed → no fork; awaiting independent verification
+# LF7 — MTP parentage: ANSWERED, hidden-side no-fork independently certified
 
 **Question** (ROUND5_LEFTFIELD_SPEC.md): are the 8 MTP drafter layers *copies*
 of specific trunk layers — a fork at some depth — or fresh solutions of the
@@ -43,11 +43,23 @@ a sharper discriminator (decay-mode-excluded angles) would need registering.
 
 ## Status
 
-Verdict on record; the LEFTFIELD promotion rule still requires an independent
-re-derivation from the (now self-contained) dump by a second analyst before
-"certified". The dump carries full bases, spectra, all four distance
-matrices, and input hashes: `dumps/round5/lf7/lf7_dump.npz` + manifest.
-Tables: [`lf7_parentage.json`](lf7_parentage.json),
+The hidden-side no-fork verdict now satisfies the LEFTFIELD promotion rule. A
+standalone second implementation rederived every primary and fixed-k distance
+from the dump's full bases using the Frobenius projector-overlap identity,
+rather than the producer's cross-matrix SVD. Both matrices match to 2.3e-16;
+the fixed-seed sketch reconstruction matches to 1.5e-8 and reproduces 0/8
+parent agreement. The clean null (median 0.945, p05 0.900), all eight
+non-fork decisions, and the registered prediction failure reproduce with zero
+errors: [`verification.json`](verification.json); verifier script:
+`scripts/round5_lf7_verify.py`.
+
+Certification is deliberately scoped to the hidden-side **no-fork** verdict.
+It does not promote any nearest-parent identity, and it does not promote the
+curve-side L47/L51 neighborhood: curve bases are absent from the dump and the
+separate mode-0 rederivation agrees only 1/8 against a saturated null. The dump
+carries full hidden bases, spectra, all four finished distance matrices, and
+input hashes: `dumps/round5/lf7/lf7_dump.npz` + manifest. Tables:
+[`lf7_parentage.json`](lf7_parentage.json),
 [`lf7_rederivation.json`](lf7_rederivation.json).
 
 ## Interpretation

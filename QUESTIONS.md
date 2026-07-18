@@ -70,23 +70,8 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 ## ANSWERED — pending independent confirmation (promotion rule)
 
 Verdicts on record; the LEFTFIELD promotion rule (control pass + independent
-re-derivation from raw dumps) is not yet satisfied. The audit's own
-recomputations partially confirm LF1 (raw-bank diagnostic: zero survivors)
-and LF2 (hinge recomputation; block-residual sensitivity) — committing those
-as verifier artifacts would close the gap.
+re-derivation from raw dumps) is not yet satisfied.
 
-- **LF7: no fork — rerun complete on clean numbers** (K_STORE=1024; MTP
-  distances unchanged from the audited run, null median 0.945, nearest
-  parents at the 55th–73rd percentile, sketch argmin agreement 0/8). Dump is
-  now self-contained (full bases) for the independent re-derivation the
-  promotion rule requires. `analysis/round5/lf7/RESULTS.md`.
-- **LF1: no power-of-two pips** (prediction passed). Audit-noted: full local
-  table now in the report; d=16 disclosed as an unregistered addition.
-- **LF2: prediction failed inverted.** Corrected claim (audit): eight
-  paragraph-range hinges under the registered IID null (median breakpoint
-  124); seven survive block-residual sensitivity (L47 drops at blocks 16/32);
-  six are fitted rise-to-decay crests (L47 rises on both sides, L59 decays on
-  both sides). Zero sentence knees — the inversion stands.
 - **LF6: prediction failed — no MI mimicry** (robust to window choice per
   audit). "Crest → single-exp tail" and "content matching does long range"
   are now explicitly labeled interpretations, not LF6 results.
@@ -138,6 +123,24 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
+- **LF1: no power-of-two pips, independently certified.** A standalone
+  verifier rebuilt all mode-0 and raw-row pip curves from the 66 original
+  projection banks (no producer imports): 0/341 published-family survivors
+  and 0/341 max-row diagnostic survivors. The d=16 addition remains disclosed
+  as unregistered. `analysis/round5/lf1/verification.json`.
+- **LF2: inverted paragraph-scale result, independently certified.** The
+  verifier rebuilt the log curves from weights, regenerated the registered
+  IID null and both fixed-seed circular-block nulls, and reproduced the exact
+  corrected hierarchy: 8 IID paragraph hinges, 7 block-robust hinges, 6
+  rise-to-decay crests, 0 sentence knees. Prediction failed.
+  `analysis/round5/lf2/verification.json`.
+- **LF7: hidden-side no-fork verdict, independently certified.** From the
+  self-contained K_STORE=1024 dump, the verifier rederived every primary and
+  fixed-k distance via the projector-overlap identity (rather than the
+  producer's SVD formula), rebuilt the sketch metric, and reproduced the
+  clean null, 0/8 parent agreement, and no-fork decision. Certification does
+  **not** promote a parent identity or the curve-side L47/L51 observation.
+  `analysis/round5/lf7/verification.json`.
 - **Rounds 1–3:** mechanism ground truth from source; transport is low-rank
   (~1.5–3 of 16), decay-dominated; positional energy concentrates early; no
   learned signal beyond d=1024 anywhere.
