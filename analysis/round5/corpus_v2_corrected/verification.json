@@ -1,0 +1,27 @@
+{
+  "amendment_a8_validation_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099",
+  "capture_validation_sha256": "3d0e1c7ca8036b43f955312800acad674aa9604d8e7cd69a998680d0477f0ac1",
+  "created_at_utc": "2026-07-18T00:20:54.771369+00:00",
+  "depth_readouts_sha256": "7d476f5b84ec2c518a327215a217e60ad7e40df9c1c018091ba4605dac52940e",
+  "errors": [],
+  "independent_depth_controls_passed": true,
+  "independent_depth_summary": {
+    "P-d1": true,
+    "P-d2": false,
+    "P-d3": false,
+    "P-d4": true
+  },
+  "independent_v2_controls_passed": true,
+  "independent_v2_summary": {
+    "P-v2-1": true,
+    "P-v2-2": true,
+    "P-v2-3": true,
+    "P-v2-4": false
+  },
+  "kind": "corpus_v2_a6_independent_readout_verification",
+  "novelty_sha256": "681cd38906995c1f33b3532fe4d111c09b2b4b1b8eafba29c78b5597b7a49562",
+  "passed": true,
+  "readouts_sha256": "01641794ffab961886fecaa37f6af9281023602a5217bf67d08df1d3d96b4ee0",
+  "schema_version": 1,
+  "source_sha256": "da670aaad910e89464ebc03130f1c47dc9014ab08a12c7bce888bc1b49f52ba9"
+}

@@ -1,0 +1,571 @@
+{
+  "all_true_null_controls_passed": true,
+  "amendment_a6_commit": "061bb04dffef05eae33f9fffc430394faa4052c5",
+  "amendment_a7_execution_sha256": "60a6b61db69739296fdf85a7c4edf3952e98fcf2354fca7973709e13c8c1c400",
+  "amendment_a8_validation_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099",
+  "aperture_manifest_sha256": "6a713a8e68284431e32ba4664c6f56e9fd83c8d4a66a0c2da8a65fe5a6ad0093",
+  "band_statistic": "median of per-layer effects",
+  "bands": {
+    "deep_global": [
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "shallow_global": [
+      17,
+      23,
+      29
+    ],
+    "terminal_global": [
+      53,
+      59
+    ]
+  },
+  "capture_validation_sha256": "3d0e1c7ca8036b43f955312800acad674aa9604d8e7cd69a998680d0477f0ac1",
+  "class_counts": {
+    "first_content": 231,
+    "pronouns": 700,
+    "sentence_starts": 267,
+    "speaker_labels": 232
+  },
+  "created_at_utc": "2026-07-18T00:20:19.518426+00:00",
+  "crossed_math_controls": [
+    {
+      "count": 232,
+      "direction": "positive",
+      "effect": -0.015625,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "mask_source": "07b_slack_multi",
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": 0.0,
+        "q975": 0.044921875
+      },
+      "p": 0.7665233476652334,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": -0.025390625,
+        "41": 0.01171875,
+        "47": -0.015625,
+        "53": -0.0390625,
+        "59": 0.033203125
+      },
+      "permutations": 10000,
+      "prediction": "P-d1",
+      "seed": 16984294416425253069,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 700,
+      "direction": "negative",
+      "effect": 0.01171875,
+      "layers": [
+        17,
+        23,
+        29
+      ],
+      "mask_source": "07b_slack_multi",
+      "null_quantiles": {
+        "q025": -0.02734375,
+        "q50": 0.0,
+        "q975": 0.025390625
+      },
+      "p": 0.8218178182181782,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "17": 0.0078125,
+        "23": 0.01953125,
+        "29": 0.01171875
+      },
+      "permutations": 10000,
+      "prediction": "P-d2",
+      "seed": 9142427046710931166,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 231,
+      "direction": "negative",
+      "effect": -0.029296875,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "mask_source": "07b_slack_multi",
+      "null_quantiles": {
+        "q025": -0.048828125,
+        "q50": 0.001953125,
+        "q975": 0.044921875
+      },
+      "p": 0.12368763123687632,
+      "p_holm": 0.49475052494750527,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": -0.029296875,
+        "41": -0.005859375,
+        "47": -0.041015625,
+        "53": -0.013671875,
+        "59": -0.029296875
+      },
+      "permutations": 10000,
+      "prediction": "P-d3",
+      "seed": 16090775349332141236,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 267,
+      "direction": "positive",
+      "effect": 0.005859375,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "mask_source": "01_prose_en",
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": -0.001953125,
+        "q975": 0.044921875
+      },
+      "p": 0.42555744425557446,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": 0.064453125,
+        "41": 0.005859375,
+        "47": -0.056640625,
+        "53": -0.048828125,
+        "59": 0.037109375
+      },
+      "permutations": 10000,
+      "prediction": "P-d4",
+      "seed": 15318437739025603890,
+      "text": "08_math_llm"
+    }
+  ],
+  "depth_classes_sha256": "c6391367d23b5d4ac86fb64214ba4edc11b3dac342c69253ec66068d3094af6e",
+  "depth_prereg_sha256": "4e2ce9fc9ada99f883b8c7aa91ea59d926a56fdaa384a118e40b253edc92a941",
+  "holm_family": [
+    "P-d1",
+    "P-d2",
+    "P-d3",
+    "P-d4"
+  ],
+  "kind": "round5_a6_depth_resolved_readouts",
+  "permutations": 10000,
+  "position_bin": 256,
+  "prediction_summary": {
+    "P-d1": true,
+    "P-d2": false,
+    "P-d3": false,
+    "P-d4": true
+  },
+  "primary": [
+    {
+      "class_name": "speaker_labels",
+      "count": 232,
+      "deep_band_effect": 0.1328125,
+      "direction": "positive",
+      "effect": 0.1328125,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.046875,
+        "q50": 0.0,
+        "q975": 0.04692382812499929
+      },
+      "p": 9.999000099990002e-05,
+      "p_holm": 0.00039996000399960006,
+      "per_layer_effects": {
+        "35": 0.171875,
+        "41": 0.1328125,
+        "47": 0.162109375,
+        "53": 0.095703125,
+        "59": 0.076171875
+      },
+      "permutations": 10000,
+      "prediction": "P-d1",
+      "prediction_passed": true,
+      "seed": 18282762463918727642,
+      "shallow_band_effect": -0.08203125,
+      "terminal_band_effect": 0.0859375,
+      "text": "07b_slack_multi",
+      "threshold_passed": true
+    },
+    {
+      "class_name": "pronouns",
+      "count": 700,
+      "deep_band_effect": -0.0234375,
+      "direction": "negative",
+      "effect": -0.09375,
+      "layers": [
+        17,
+        23,
+        29
+      ],
+      "null_quantiles": {
+        "q025": -0.02734375,
+        "q50": 0.0,
+        "q975": 0.02734375
+      },
+      "p": 9.999000099990002e-05,
+      "p_holm": 0.00039996000399960006,
+      "per_layer_effects": {
+        "17": -0.169921875,
+        "23": -0.09375,
+        "29": -0.013671875
+      },
+      "permutations": 10000,
+      "prediction": "P-d2",
+      "prediction_passed": false,
+      "seed": 14367220316157011938,
+      "shallow_band_effect": -0.09375,
+      "terminal_band_effect": 0.0400390625,
+      "text": "07b_slack_multi",
+      "threshold_passed": false
+    },
+    {
+      "class_name": "first_content",
+      "count": 231,
+      "deep_band_effect": 0.083984375,
+      "direction": "negative",
+      "effect": 0.083984375,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.048828125,
+        "q50": -0.001953125,
+        "q975": 0.048828125
+      },
+      "p": 1.0,
+      "p_holm": 1.0,
+      "per_layer_effects": {
+        "35": -0.052734375,
+        "41": 0.076171875,
+        "47": 0.083984375,
+        "53": 0.083984375,
+        "59": 0.099609375
+      },
+      "permutations": 10000,
+      "prediction": "P-d3",
+      "prediction_passed": false,
+      "seed": 4647698274694457761,
+      "shallow_band_effect": -0.134765625,
+      "terminal_band_effect": 0.091796875,
+      "text": "07b_slack_multi",
+      "threshold_passed": false
+    },
+    {
+      "class_name": "sentence_starts",
+      "count": 267,
+      "deep_band_effect": 0.173828125,
+      "direction": "positive",
+      "effect": 0.173828125,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": 0.001953125,
+        "q975": 0.044921875
+      },
+      "p": 9.999000099990002e-05,
+      "p_holm": 0.00039996000399960006,
+      "per_layer_effects": {
+        "35": 0.119140625,
+        "41": 0.072265625,
+        "47": 0.173828125,
+        "53": 0.193359375,
+        "59": 0.193359375
+      },
+      "permutations": 10000,
+      "prediction": "P-d4",
+      "prediction_passed": true,
+      "seed": 15909549271687401000,
+      "shallow_band_effect": -0.009765625,
+      "terminal_band_effect": 0.193359375,
+      "text": "01_prose_en",
+      "threshold_passed": true
+    }
+  ],
+  "random_position_controls_math": [
+    {
+      "count": 232,
+      "direction": "positive",
+      "effect": -0.013671875,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": 0.0,
+        "q975": 0.044921875
+      },
+      "p": 0.7454254574542546,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": -0.046875,
+        "41": -0.037109375,
+        "47": 0.00390625,
+        "53": 0.009765625,
+        "59": -0.013671875
+      },
+      "permutations": 10000,
+      "prediction": "P-d1",
+      "seed": 6800213857523521944,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 700,
+      "direction": "negative",
+      "effect": -0.0078125,
+      "layers": [
+        17,
+        23,
+        29
+      ],
+      "null_quantiles": {
+        "q025": -0.02734375,
+        "q50": 0.0,
+        "q975": 0.02734375
+      },
+      "p": 0.3027697230276972,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "17": 0.037109375,
+        "23": -0.0078125,
+        "29": -0.013671875
+      },
+      "permutations": 10000,
+      "prediction": "P-d2",
+      "seed": 16797188480955456922,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 231,
+      "direction": "negative",
+      "effect": 0.021484375,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": 0.001953125,
+        "q975": 0.044921875
+      },
+      "p": 0.836016398360164,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": -0.021484375,
+        "41": 0.029296875,
+        "47": 0.041015625,
+        "53": 0.021484375,
+        "59": -0.005859375
+      },
+      "permutations": 10000,
+      "prediction": "P-d3",
+      "seed": 6388870366812278078,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 267,
+      "direction": "positive",
+      "effect": -0.005859375,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.041015625,
+        "q50": -0.001953125,
+        "q975": 0.041015625
+      },
+      "p": 0.6320367963203679,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": 0.001953125,
+        "41": -0.005859375,
+        "47": -0.005859375,
+        "53": -0.044921875,
+        "59": 0.005859375
+      },
+      "permutations": 10000,
+      "prediction": "P-d4",
+      "seed": 10872101498070607121,
+      "text": "08_math_llm"
+    }
+  ],
+  "random_position_controls_source": [
+    {
+      "count": 232,
+      "direction": "positive",
+      "effect": -0.0078125,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.046923828124999956,
+        "q50": 0.0,
+        "q975": 0.046875
+      },
+      "p": 0.6493350664933507,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": 0.021484375,
+        "41": -0.009765625,
+        "47": -0.0078125,
+        "53": -0.013671875,
+        "59": 0.001953125
+      },
+      "permutations": 10000,
+      "prediction": "P-d1",
+      "seed": 15207975599563209785,
+      "text": "07b_slack_multi"
+    },
+    {
+      "count": 700,
+      "direction": "negative",
+      "effect": -0.005859375,
+      "layers": [
+        17,
+        23,
+        29
+      ],
+      "null_quantiles": {
+        "q025": -0.02734375,
+        "q50": 0.0,
+        "q975": 0.029296875
+      },
+      "p": 0.3675632436756324,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "17": -0.005859375,
+        "23": -0.009765625,
+        "29": 0.017578125
+      },
+      "permutations": 10000,
+      "prediction": "P-d2",
+      "seed": 684629510242683464,
+      "text": "07b_slack_multi"
+    },
+    {
+      "count": 231,
+      "direction": "negative",
+      "effect": -0.005859375,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.048828125,
+        "q50": 0.001953125,
+        "q975": 0.048828125
+      },
+      "p": 0.4320567943205679,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": 0.017578125,
+        "41": 0.033203125,
+        "47": -0.005859375,
+        "53": -0.009765625,
+        "59": -0.037109375
+      },
+      "permutations": 10000,
+      "prediction": "P-d3",
+      "seed": 4377437911536511786,
+      "text": "07b_slack_multi"
+    },
+    {
+      "count": 267,
+      "direction": "positive",
+      "effect": 0.009765625,
+      "layers": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "null_quantiles": {
+        "q025": -0.044921875,
+        "q50": 0.001953125,
+        "q975": 0.044921875
+      },
+      "p": 0.36396360363963604,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "per_layer_effects": {
+        "35": 0.013671875,
+        "41": -0.009765625,
+        "47": 0.033203125,
+        "53": -0.001953125,
+        "59": 0.009765625
+      },
+      "permutations": 10000,
+      "prediction": "P-d4",
+      "seed": 16244527781782331695,
+      "text": "01_prose_en"
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "e19b53a818da91867f73251fcf7a5ee0d47c9f57786491cea8d4f8e0680d966c",
+  "threshold_summary": {
+    "P-d1": true,
+    "P-d2": false,
+    "P-d3": false,
+    "P-d4": true
+  }
+}

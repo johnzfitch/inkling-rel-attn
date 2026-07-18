@@ -43,9 +43,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| P-d1..4 | Delimiter depth flip; pronoun band; first-content narrowing; prose transfer | corrected capture + missing corrected verifier | agent lands verifier; run GPU pass; evaluate |
-| P-v2-1..4 re-eval | Do the corpus-v2 verdicts survive corrected arithmetic? | same | re-run unchanged definitions on corrected capture |
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | corrected capture (rvec + hidden) | run after capture; channel-lifecycle prereg already registered |
+| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | corrected rvec now exists (4 arms); hidden-state side still reads the provisional round5 capture | run rvec-side now; hidden-state side per decision D1 |
 | LF3 | Absolute-position counter hiding in the r-channel? | needs rvec on 06_random — **not in recapture scope** | decision D1 below |
 | LF8 | Fiber orientation: content-stable anchor? chirality? | needs rvec across the 6 v1 texts — **not in recapture scope** | decision D1 below |
 | LF9 | Long-range bandwidth budget per layer | reads tier2 meters — **not in recapture scope** | decision D1 below |
@@ -66,29 +64,50 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
   meters that stay provisional (≤0.025 Δp) unless the pass is widened. Choose:
   widen the pass (add v1 rvec + meter re-run) or run those rows on provisional
   dumps with the deviation disclosed.
-- **D2 — corrected verifier.** Nothing yet produces
-  `corpus_v2_a6_capture_independent_validation`; the corrected pipeline
-  hard-requires it. In flight with the agent.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
 
-## PROVISIONAL — answered, awaiting A6 re-certification
+## ANSWERED — corrected-capture certified (2026-07-17)
 
-Registered expectation (A6): effects 0.04–0.35 vs worst-case Δp 0.025 — no
-verdict is expected to flip. Re-certification = corrected capture + re-run.
+Full chain on the A6/A7/A8-corrected four-arm capture: attempt-2 validation
+(git-blob authenticated) → novelty → compute → analyze → independent
+confirmation (`analysis/round5/corpus_v2_corrected/verification.json`,
+passed, zero errors). All true-null controls passed in both families.
+
+- **P-v2-1..4 re-certified, every verdict identical** to the provisional run —
+  A6's registered no-flip expectation confirmed. Novelty: slack 2.557 /
+  math-LLM 1.617 nats (v2.1 arm 2.572, also novel; prose 0.114, memorized,
+  outside the gate). Aperture–surprisal law holds: median ρ +0.148 (16/16
+  bins) slack, +0.120 (13/16) math. Message-starts widen (+0.051, Holm
+  0.0016). P-v2-4 still fails jointly: pronouns narrow (−0.040) but function
+  words are null (−0.004).
+- **P-d1 CONFIRMED — the delimiter depth flip is real.** On the new
+  multi-conversation arm: speaker labels shallow −0.082, deep +0.133 (Holm
+  4e-4). Replicated on different conversations under corrected arithmetic.
+- **P-d2 FAILED on its terminal clause.** Pronoun shallow narrowing is strong
+  (−0.094, p 1e-4) but the effect does NOT vanish at L53/L59 (+0.040 vs the
+  registered |·|<0.03) — the two-band story was right, the vanishing wrong.
+- **P-d3 FAILED with a sign reversal.** First-content deep effect +0.084
+  (predicted ≤ −0.05). The v2.0 single-thread narrowing did not transfer.
+- **P-d4 CONFIRMED.** Prose sentence-starts widen deep (+0.174, terminal
+  +0.193). Combined with P-d3's reversal, the revised picture: content-onset
+  widening in deep globals is the general phenomenon; the v2.0 single-thread
+  arm's first-content narrowing was the outlier, not the rule.
+
+## PROVISIONAL — awaiting re-certification on v1-text captures
+
+The corpus-v2 re-certification above confirms the A6 no-flip expectation where
+tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025).
 
 - **LF4 (flagship): ANSWERED, prediction failed informatively.** The aperture
   is real and content-responsive but tracks segment-integration scope, not
   referential need: sentence starts widen (+0.117, 62/64 heads), pronouns and
-  function words narrow, closers null. Aperture–surprisal law: Spearman
-  ~0.11–0.15 within 512-token bins, registered and replicated on corpus v2.
+  function words narrow, closers null.
 - **LF5 (instrument): ANSWERED.** Offline rows validated bitwise on the A5 GPU
   replay backend (24.24B values). CPU backend demoted (Amendment A5).
-- **P-v2-1..3 pass, P-v2-4 fail jointly** (commit 2ffbc30).
 - **In-situ findings:** d=1024 seam real and bias-caused; needle retrieval
   seam-robust except L5/L65; d=512 echo (33/33); L65 terminal wall; heartbeat
-  induction beyond the bias horizon; delimiter deep-vs-shallow sign flip
-  (peeked — now registered as P-d1..3).
+  induction beyond the bias horizon.
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
