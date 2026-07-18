@@ -28,9 +28,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## OPEN — runnable now (no dependence on the corrected recapture)
 
-| Row | Question | Inputs | Next action |
-|---|---|---|---|
-| R5-A | The Atlas: one navigable end-to-end map | existing dumps | build atlas.json + poster; mark in-situ cells provisional |
+*(empty — the runnable queue is cleared)*
 
 ## OPEN — gated
 
@@ -78,6 +76,10 @@ re-derivation from raw dumps) is not yet satisfied.
 - **R4-W / R4-N:** as reported; same confirmation gap.
 - **LF11:** bundle frozen; the naive-tool demonstration is itself the
   specimen — an independent rerun of the demo would complete the loop.
+- **R5-A (Atlas): BUILT** (`analysis/round5/atlas.json` + poster, commit
+  2792639). Descriptive glue with no claims of its own, so the promotion rule
+  does not apply; in-situ cells carry provisional flags and the Atlas
+  regenerates when the widened pass re-certifies them.
 
 ## ANSWERED — corrected-capture certified (2026-07-17)
 
