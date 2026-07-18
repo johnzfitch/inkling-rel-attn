@@ -146,4 +146,3 @@ def self_test_common() -> None:
     p = np.array([0.01, 0.04, 0.03])
     if not np.allclose(holm_adjust(p), [0.03, 0.06, 0.06]):
         raise AssertionError("Holm adjustment failed")
-

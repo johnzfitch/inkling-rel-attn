@@ -50,7 +50,7 @@ def state_path(layer: int, text: str) -> Path:
     return CAPTURE / "states" / f"hidden_L{layer:02d}_{text}.npy"
 
 
-def all_coordinate_variance(path: Path, chunk_rows: int = 256) -> float:
+def all_coordinate_variance(path: Path, chunk_rows: int = 1024) -> float:
     words = np.load(path, mmap_mode="r")
     if words.shape != (8192, 6144) or words.dtype != np.uint16:
         raise RuntimeError(f"invalid state payload: {path}")
@@ -60,7 +60,10 @@ def all_coordinate_variance(path: Path, chunk_rows: int = 256) -> float:
     for start in range(0, 8192, chunk_rows):
         block = bf16_words_to_float32(words[start : start + chunk_rows])
         coordinate_sum += block.sum(axis=0, dtype=np.float64)
-        square_sum += float(np.square(block, dtype=np.float64).sum(dtype=np.float64))
+        # Decoded values are float32 by registration. Form products in that
+        # dtype and retain float64 accumulation; this avoids an unnecessary
+        # float64 elementwise temporary while keeping the reduction stable.
+        square_sum += float(np.sum(block * block, dtype=np.float64))
         count += block.shape[0]
     mean = coordinate_sum / count
     total = square_sum / count - float(mean @ mean)
