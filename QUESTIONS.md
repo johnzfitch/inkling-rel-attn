@@ -35,14 +35,14 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 | Row | Question | Gate | Next action |
 |---|---|---|---|
 | R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); registered clauses need corrected HIDDEN STATES — **not covered by D1** (audit correction) | decision D4 below |
-| LF3 | Absolute-position counter hiding in the r-channel? | D1 approved; widened pass not fire-ready (see D1 execution note) | run when the widened pass lands |
+| LF3 | Absolute-position counter hiding in the r-channel? | D1 runner built and inputs frozen; awaiting the GPU pass | run when the widened pass lands |
 | LF8 | Fiber orientation: content-stable anchor? chirality? | same | run when the widened pass lands (start at the L53 anomaly, `analysis/round5/r5c_rvec/`) |
 | LF9 | Long-range bandwidth budget per layer | same (corrected meters) | run when the widened pass lands |
 | R5-B | Does realized transport change with input? (depth profile) | same (corrected meters) | run when the widened pass lands |
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
-| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired group-channel arms not yet built | build paired renders from the largest group channel, freeze boundaries/dose, capture, evaluate |
-| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); rides the P-e capture | freeze classes on the fresh arms, evaluate after the P-e capture |
+| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired arms, boundaries, dose, and pairing frozen (`analysis/round5/pe/corpus_freeze.json`); awaiting capture | run the widened pass, then evaluate |
+| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); all four classes and controls frozen on both fresh arms; awaiting the same capture | evaluate after the widened pass |
 
 ## FORECAST
 
@@ -52,12 +52,12 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — scope RESOLVED: widen** (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`);
-  **execution BLOCKED** (audit): the current runner knows only the six v1
-  texts, lacks the A8 startup gate/shard hashes/package provenance, and the
-  P-e paired builder + independent validator do not exist yet. Do not fire
-  until those land. If the pass is meant to clear LF5's provisional stamp, it
-  must also recapture the needle rows / replay outputs.
+- **D1 — scope RESOLVED: widen; execution READY**
+  (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`; production handoff:
+  `analysis/round5/widened_capture/README.md`). The widened runner, A8
+  Git-blob/parity/shard/package gate, paired builder/freeze, independent
+  validator, normalized replay inputs, and all 66 × 24 LF5 needle rows are
+  implemented. The GPU pass has **not** been fired.
 - **D4 — hidden-state capture scope.** R5-C's registered clauses and the
   channel-lifecycle prereg need corrected hidden states, which D1 does NOT
   cover (it registers rvec + meters only). Decide: extend a pass or accept

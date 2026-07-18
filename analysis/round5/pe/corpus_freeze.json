@@ -1,0 +1,173 @@
+{
+  "arms": {
+    "09_pe_single_thread": {
+      "class_counts": {
+        "gratitude_tokens": 30,
+        "higher_scope_starts": 0,
+        "label_colons": 571,
+        "ordinary_message_starts": 570,
+        "proper_noun_proxy": 136,
+        "url_tokens": 129
+      },
+      "conversations": 1,
+      "ids_sha256": "16d854908a96da2bbdad0e2c2f990f1be01ae2d7c721ed45d3db7dd6882db13a",
+      "messages": 571,
+      "sidecar_sha256": "dc08012db64b6e22d9e684b257b6fb1cf9f31228d0188118eb64f70a4985c1ef",
+      "text_sha256": "278d6eb86e591f784f0429505584b8610ca7ca918c7474389ddb6b399c3a0797",
+      "voided_below_8": {
+        "gratitude_tokens": false,
+        "label_colons": false,
+        "proper_noun_proxy": false,
+        "url_tokens": false
+      }
+    },
+    "10_pe_multi_conversation": {
+      "class_counts": {
+        "gratitude_tokens": 30,
+        "higher_scope_starts": 7,
+        "label_colons": 571,
+        "ordinary_message_starts": 563,
+        "proper_noun_proxy": 136,
+        "url_tokens": 129
+      },
+      "conversations": 8,
+      "ids_sha256": "f39659256b1f1f12713751fd35de79711d222a5c75142de34d6c00742cd1db62",
+      "messages": 571,
+      "sidecar_sha256": "c5421ff434ac31a03708acc593d1d57a9a4e1a1c9be2b46b8a0ecefc4644867e",
+      "text_sha256": "8b5e4658f7ef3f288ab90ca683681252555d3e478af4499ac64ae2b94659f9df",
+      "voided_below_8": {
+        "gratitude_tokens": false,
+        "label_colons": false,
+        "proper_noun_proxy": false,
+        "url_tokens": false
+      }
+    }
+  },
+  "builder_source_sha256": "d6b238c00ce23154849a1b5ec9ab2e4ee23565e1a0a29b06d7509a16dda5138f",
+  "control_freeze": {
+    "crossed_math_arm": "08_math_llm corrected A6/A8 capture at identical absolute positions",
+    "random_masks": "stored privately; deterministic, 256-token-position-stratified"
+  },
+  "created_at_utc": "2026-07-18T05:24:04.736403+00:00",
+  "dose_definition": {
+    "higher_scope": "boundary token minus opening token of the conversation just closed",
+    "ordinary_message": "boundary token minus current conversation opening token",
+    "outcome_dependent": false
+  },
+  "kind": "round5_pe_pf_public_corpus_freeze",
+  "outcome_data_opened": false,
+  "pair_position_alignment": {
+    "exact_position_matches": 571,
+    "max_multi_minus_single": 0,
+    "median_multi_minus_single": 0.0,
+    "min_multi_minus_single": 0,
+    "mismatched_positions": 0,
+    "paired_count": 571
+  },
+  "pair_preservation": {
+    "intersection": 571,
+    "intersection_over_union": 1.0,
+    "minimum": 0.8,
+    "multi_message_starts": 571,
+    "passed": true,
+    "single_message_starts": 571,
+    "union": 571
+  },
+  "paired_ordinary_message_count": 563,
+  "partition": {
+    "conversation_count": 8,
+    "realized": [
+      {
+        "message_index": 81,
+        "single_thread_token": 1026,
+        "target_token": 1024
+      },
+      {
+        "message_index": 156,
+        "single_thread_token": 2053,
+        "target_token": 2048
+      },
+      {
+        "message_index": 226,
+        "single_thread_token": 3083,
+        "target_token": 3072
+      },
+      {
+        "message_index": 295,
+        "single_thread_token": 4113,
+        "target_token": 4096
+      },
+      {
+        "message_index": 369,
+        "single_thread_token": 5147,
+        "target_token": 5120
+      },
+      {
+        "message_index": 441,
+        "single_thread_token": 6149,
+        "target_token": 6144
+      },
+      {
+        "message_index": 506,
+        "single_thread_token": 7171,
+        "target_token": 7168
+      }
+    ],
+    "rule": "first complete message start at or after each 1024-token target in the single-thread draft",
+    "targets": [
+      1024,
+      2048,
+      3072,
+      4096,
+      5120,
+      6144,
+      7168
+    ]
+  },
+  "permutation_seed_rule": "derive from SHA-256 of this committed public freeze",
+  "prior_arm_overlap": {
+    "message_or_conversation_overlap": false,
+    "reason": "fresh C-channel family; prior Slack arms use D-channel family",
+    "speaker_overlap_excluded": false
+  },
+  "private_classes_sha256": "97d0fb0547faffa312e6d1a7fbfb4cb0306ca82e4a63a91494911d3346cc71ee",
+  "private_manifest_sha256": "2dfa5dada6481d73f571e43fdb55e536736639ebe6388e241e9d147d6f769823",
+  "registration_commits": {
+    "D1": "51b8c00fe9b632086d0745221578be452f76f60c",
+    "P-e": "71f0ad3efff199a83c333340ddd8c8f9a8d7f228",
+    "P-f": "71f0ad3efff199a83c333340ddd8c8f9a8d7f228"
+  },
+  "registration_sha256": {
+    "D1": "f5480ae28286439510be62930135be33e46c9e849a59dde79bae6a8287268c1f",
+    "P-e": "5f5ec38e6b700bd8bf76e9f18e62a9b231b25975923a9f4fd3425aecdbfa2ab2",
+    "P-f": "bb6e5c2c82a973835a302933263b48e65a7f2c3c06845c3cf652e0846e42f6a7"
+  },
+  "schema_version": 1,
+  "scrub_audit": {
+    "09_pe_single_thread": {
+      "common_mojibake_count": 0,
+      "raw_user_id_hits": 0,
+      "replacement_character_count": 0,
+      "slack_angle_markup_count": 0
+    },
+    "10_pe_multi_conversation": {
+      "common_mojibake_count": 0,
+      "raw_user_id_hits": 0,
+      "replacement_character_count": 0,
+      "slack_angle_markup_count": 0
+    }
+  },
+  "source_inventory": {
+    "glob": "C*.json",
+    "human_chars": 1008273,
+    "human_messages": 14352,
+    "nonempty_channels": 19,
+    "selected_distinct_users": 15,
+    "selected_file_sha256": "a8f41a6c413bd234e9b3b29555f114ace8ab49b8702d32072505affb53c3f679",
+    "selected_human_chars": 807211,
+    "selected_human_messages": 11599,
+    "selected_rank": 1,
+    "selection": "maximum human-message character count; SHA-256 tie break"
+  },
+  "tokenizer_sha256": "9fb6333a7db8fe5da90728e741e4a3ee4ac2ae12c5dd4958cc6f31688787d3c2"
+}
