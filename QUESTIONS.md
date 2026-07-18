@@ -35,7 +35,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 | Row | Question | Gate | Next action |
 |---|---|---|---|
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
-| R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | methods frozen; raw-row tail rejected pre-GPU; amended LF6-envelope tail built and verified; runner not yet built | build/authenticate runner, then execute 67 arms |
+| R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class, clock-freeze) | methods frozen; raw-row tail rejected pre-GPU; amended LF6-envelope tail built and verified; clock-freeze family added pre-runner (`ROUND5_R5D_CLOCK_AMENDMENT.md`: freeze/sham at L53/L59/L65 + joint terminal, frozen inputs sealed at `analysis/round5/r5d_clock/`); runner not yet built | build/authenticate runner, then execute 72 arms |
 
 ## FORECAST
 
