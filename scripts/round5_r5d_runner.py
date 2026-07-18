@@ -270,9 +270,22 @@ def critical_git_gate() -> dict[str, Any]:
     for relative in critical:
         current = sha256_file(ROOT / relative)
         committed = git_blob_sha256(head, relative)
-        if current != committed:
+        # Git's checkout filter may represent a clean text blob with CRLF on
+        # Windows while the canonical object stores LF.  Authenticate the
+        # worktree through the same clean filter Git uses, then retain both
+        # raw SHA-256 values in provenance instead of falsely treating EOLs as
+        # source drift.
+        committed_oid = git_output("rev-parse", f"{head}:{relative}")
+        worktree_oid = git_output("hash-object", "--path", relative, relative)
+        if worktree_oid != committed_oid:
             raise RuntimeError(f"critical dependency differs from HEAD: {relative}")
-        records[relative] = {"sha256": current, "git_blob_sha256": committed, "equal": True}
+        records[relative] = {
+            "worktree_sha256": current,
+            "git_blob_sha256": committed,
+            "git_blob_oid": committed_oid,
+            "filtered_worktree_blob_oid": worktree_oid,
+            "equal_after_git_clean_filter": True,
+        }
     return {"passed": True, "git_head": head, "files": records}
 
 
