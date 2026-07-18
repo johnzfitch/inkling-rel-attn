@@ -35,7 +35,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 | Row | Question | Gate | Next action |
 |---|---|---|---|
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
-| R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class, clock-freeze) | methods frozen; raw-row tail rejected pre-GPU; amended LF6-envelope tail built and verified; clock-freeze family added pre-runner (`ROUND5_R5D_CLOCK_AMENDMENT.md`: freeze/sham at L53/L59/L65 + joint terminal, frozen inputs sealed at `analysis/round5/r5d_clock/`); runner not yet built | build/authenticate runner, then execute 72 arms |
 
 ## FORECAST
 
@@ -72,6 +71,18 @@ re-derivation from raw dumps) is not yet satisfied.
 - **R4-W / R4-N:** as reported; same confirmation gap.
 - **LF11:** bundle frozen; the naive-tool demonstration is itself the
   specimen — an independent rerun of the demo would complete the loop.
+- **R5-D: mixed causal verdicts; all 72 arms sealed and hash-revalidated.**
+  The registered bias-off depth pattern failed and inverted toward mid-depth
+  load (L29 +0.1208 NLL; early layers and L65 near zero); carrier equivalence
+  failed at 14/16 layers. Near-field dominance passed by 81.1x on the frozen
+  pooled ratio, and wall healing was nearly free at 8k (absolute delta NLL
+  9.78e-5). Clock CK1/CK3 passed while CK2 failed (rho +0.0542, bootstrap
+  lower -0.1579): freezing removes the realized gain schedule, but not with
+  the predicted log-extremes cost. Descriptively, removing rising-band heads
+  costs +0.0199 NLL (95% block interval [+0.0149,+0.0255]); the L11
+  negative-seam head arm is null. GPU preflight, full registered readouts, and
+  provenance are in `analysis/round5/r5d/`; certification awaits an
+  independent raw-dump re-derivation.
 - **R5-A (Atlas): BUILT** (`analysis/round5/atlas.json` + poster, commit
   2792639; corrected refresh in this result batch). Descriptive glue with no
   claims of its own, so the promotion rule does not apply. All 66 layers now
