@@ -1,0 +1,1283 @@
+{
+  "created_at_utc": "2026-07-18T03:06:44.876426+00:00",
+  "global_facts": {
+    "far_field_geometry": "rise -> paragraph-scale crest -> single-exp tail (lf2+lf6)",
+    "null_benchmark": "round5/lf11/bundle.json",
+    "oscillation": "none genuine (round4/oscillation_audit.json)",
+    "pips": "none survive (round5/lf1/)"
+  },
+  "kind": "round5_atlas",
+  "layers": {
+    "L00": {
+      "decimate_2x_rel_rmse": 0.13808387344716297,
+      "extent": 512,
+      "f90_cycles_per_token": 0.029296875,
+      "nearfield_motif_counts": [
+        62,
+        2
+      ],
+      "nearfield_selfinclusive_share": 0.03125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L01": {
+      "decimate_2x_rel_rmse": 0.12441180995091233,
+      "extent": 512,
+      "f90_cycles_per_token": 0.0234375,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L02": {
+      "decimate_2x_rel_rmse": 0.12148600949197456,
+      "extent": 512,
+      "f90_cycles_per_token": 0.02734375,
+      "nearfield_motif_counts": [
+        50,
+        14
+      ],
+      "nearfield_selfinclusive_share": 0.21875,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L03": {
+      "decimate_2x_rel_rmse": 0.12524243383229317,
+      "extent": 512,
+      "f90_cycles_per_token": 0.033203125,
+      "nearfield_motif_counts": [
+        45,
+        19
+      ],
+      "nearfield_selfinclusive_share": 0.296875,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L04": {
+      "decimate_2x_rel_rmse": 0.11891369051318701,
+      "extent": 512,
+      "f90_cycles_per_token": 0.0390625,
+      "nearfield_motif_counts": [
+        51,
+        13
+      ],
+      "nearfield_selfinclusive_share": 0.203125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L05": {
+      "crest": {
+        "breakpoint_d": 260,
+        "paragraph_scale": false,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.15821661021635972,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.3515625,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp2"
+      },
+      "mi_rank_corr_prose": 0.43112979777266336,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L06": {
+      "decimate_2x_rel_rmse": 0.10096426745441302,
+      "extent": 512,
+      "f90_cycles_per_token": 0.029296875,
+      "nearfield_motif_counts": [
+        55,
+        9
+      ],
+      "nearfield_selfinclusive_share": 0.140625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L07": {
+      "decimate_2x_rel_rmse": 0.09774161472100446,
+      "extent": 512,
+      "f90_cycles_per_token": 0.021484375,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L08": {
+      "decimate_2x_rel_rmse": 0.11504731319096863,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L09": {
+      "decimate_2x_rel_rmse": 0.12694939070966005,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L10": {
+      "decimate_2x_rel_rmse": 0.11690373871821642,
+      "extent": 512,
+      "f90_cycles_per_token": 0.025390625,
+      "nearfield_motif_counts": [
+        25,
+        39
+      ],
+      "nearfield_selfinclusive_share": 0.609375,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L11": {
+      "crest": {
+        "breakpoint_d": 246,
+        "paragraph_scale": false,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.1086658821688818,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.1181640625,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6110006747331893,
+      "nearfield_motif_counts": [
+        58,
+        6
+      ],
+      "nearfield_selfinclusive_share": 0.09375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L12": {
+      "decimate_2x_rel_rmse": 0.15636346872458334,
+      "extent": 512,
+      "f90_cycles_per_token": 0.03515625,
+      "nearfield_motif_counts": [
+        63,
+        1
+      ],
+      "nearfield_selfinclusive_share": 0.015625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L13": {
+      "decimate_2x_rel_rmse": 0.15080057952154924,
+      "extent": 512,
+      "f90_cycles_per_token": 0.021484375,
+      "nearfield_motif_counts": [
+        63,
+        1
+      ],
+      "nearfield_selfinclusive_share": 0.015625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L14": {
+      "decimate_2x_rel_rmse": 0.19496216571119118,
+      "extent": 512,
+      "f90_cycles_per_token": 0.03125,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L15": {
+      "decimate_2x_rel_rmse": 0.15184979107783161,
+      "extent": 512,
+      "f90_cycles_per_token": 0.01953125,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L16": {
+      "decimate_2x_rel_rmse": 0.1662051347281768,
+      "extent": 512,
+      "f90_cycles_per_token": 0.021484375,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L17": {
+      "aperture_class_effects_corrected": {
+        "first_content": -0.2363,
+        "pronouns": -0.1699,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": -0.2715
+      },
+      "crest": {
+        "breakpoint_d": 132,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.1747513205351833,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.3046875,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.5549653417160155,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L18": {
+      "decimate_2x_rel_rmse": 0.1603776487786609,
+      "extent": 512,
+      "f90_cycles_per_token": 0.0234375,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L19": {
+      "decimate_2x_rel_rmse": 0.1424086317172273,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L20": {
+      "decimate_2x_rel_rmse": 0.14417739839862384,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L21": {
+      "decimate_2x_rel_rmse": 0.13278009803884816,
+      "extent": 512,
+      "f90_cycles_per_token": 0.01171875,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L22": {
+      "decimate_2x_rel_rmse": 0.15060841578130982,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        64,
+        0
+      ],
+      "nearfield_selfinclusive_share": 0.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L23": {
+      "aperture_class_effects_corrected": {
+        "first_content": 0.0566,
+        "pronouns": -0.0938,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": -0.082
+      },
+      "crest": {
+        "breakpoint_d": 136,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.09899449765653572,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.0146484375,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6283320780212212,
+      "nearfield_motif_counts": [
+        53,
+        11
+      ],
+      "nearfield_selfinclusive_share": 0.171875,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L24": {
+      "decimate_2x_rel_rmse": 0.13093773049304533,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        63,
+        1
+      ],
+      "nearfield_selfinclusive_share": 0.015625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L25": {
+      "decimate_2x_rel_rmse": 0.17212723716572828,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        56,
+        8
+      ],
+      "nearfield_selfinclusive_share": 0.125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L26": {
+      "decimate_2x_rel_rmse": 0.18420482175639216,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        58,
+        6
+      ],
+      "nearfield_selfinclusive_share": 0.09375,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L27": {
+      "decimate_2x_rel_rmse": 0.16642572289768584,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        58,
+        6
+      ],
+      "nearfield_selfinclusive_share": 0.09375,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L28": {
+      "decimate_2x_rel_rmse": 0.15404197201540662,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        38,
+        26
+      ],
+      "nearfield_selfinclusive_share": 0.40625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L29": {
+      "aperture_class_effects_corrected": {
+        "first_content": -0.1348,
+        "pronouns": -0.0137,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": -0.0625
+      },
+      "crest": {
+        "breakpoint_d": 116,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.06916160443875409,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.0048828125,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6516722833506339,
+      "nearfield_motif_counts": [
+        17,
+        47
+      ],
+      "nearfield_selfinclusive_share": 0.734375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L30": {
+      "decimate_2x_rel_rmse": 0.18702163941648176,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        42,
+        22
+      ],
+      "nearfield_selfinclusive_share": 0.34375,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L31": {
+      "decimate_2x_rel_rmse": 0.10692786314017377,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        63,
+        1
+      ],
+      "nearfield_selfinclusive_share": 0.015625,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L32": {
+      "decimate_2x_rel_rmse": 0.040629279269923976,
+      "extent": 512,
+      "f90_cycles_per_token": 0.171875,
+      "nearfield_motif_counts": [
+        11,
+        53
+      ],
+      "nearfield_selfinclusive_share": 0.828125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L33": {
+      "decimate_2x_rel_rmse": 0.03028248994344575,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        62,
+        2
+      ],
+      "nearfield_selfinclusive_share": 0.03125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L34": {
+      "decimate_2x_rel_rmse": 0.04276184365626878,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        51,
+        13
+      ],
+      "nearfield_selfinclusive_share": 0.203125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L35": {
+      "aperture_class_effects_corrected": {
+        "first_content": -0.0527,
+        "pronouns": -0.0371,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": 0.1719
+      },
+      "crest": {
+        "breakpoint_d": 92,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.046147138431891874,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.0048828125,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6162339225965693,
+      "nearfield_motif_counts": [
+        4,
+        60
+      ],
+      "nearfield_selfinclusive_share": 0.9375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L36": {
+      "decimate_2x_rel_rmse": 0.021375761517200918,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        53,
+        11
+      ],
+      "nearfield_selfinclusive_share": 0.171875,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L37": {
+      "decimate_2x_rel_rmse": 0.025653617604435415,
+      "extent": 512,
+      "f90_cycles_per_token": 0.01171875,
+      "nearfield_motif_counts": [
+        51,
+        13
+      ],
+      "nearfield_selfinclusive_share": 0.203125,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L38": {
+      "decimate_2x_rel_rmse": 0.04707962009439548,
+      "extent": 512,
+      "f90_cycles_per_token": 0.009765625,
+      "nearfield_motif_counts": [
+        8,
+        56
+      ],
+      "nearfield_selfinclusive_share": 0.875,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L39": {
+      "decimate_2x_rel_rmse": 0.08983123537039876,
+      "extent": 512,
+      "f90_cycles_per_token": 0.013671875,
+      "nearfield_motif_counts": [
+        34,
+        30
+      ],
+      "nearfield_selfinclusive_share": 0.46875,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L40": {
+      "decimate_2x_rel_rmse": 0.044220518538425506,
+      "extent": 512,
+      "f90_cycles_per_token": 0.01953125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L41": {
+      "aperture_class_effects_corrected": {
+        "first_content": 0.0762,
+        "pronouns": -0.0254,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": 0.1328
+      },
+      "crest": {
+        "breakpoint_d": 144,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.03773224739477346,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.00390625,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.5939325308052935,
+      "nearfield_motif_counts": [
+        1,
+        63
+      ],
+      "nearfield_selfinclusive_share": 0.984375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L42": {
+      "decimate_2x_rel_rmse": 0.01725754293196283,
+      "extent": 512,
+      "f90_cycles_per_token": 0.080078125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L43": {
+      "decimate_2x_rel_rmse": 0.02582754591126615,
+      "extent": 512,
+      "f90_cycles_per_token": 0.015625,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L44": {
+      "decimate_2x_rel_rmse": 0.026585708240250087,
+      "extent": 512,
+      "f90_cycles_per_token": 0.01953125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L45": {
+      "decimate_2x_rel_rmse": 0.021256885207070076,
+      "extent": 512,
+      "f90_cycles_per_token": 0.046875,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L46": {
+      "decimate_2x_rel_rmse": 0.02837066212061693,
+      "extent": 512,
+      "f90_cycles_per_token": 0.02734375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L47": {
+      "aperture_class_effects_corrected": {
+        "first_content": 0.084,
+        "pronouns": -0.0234,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": 0.1621
+      },
+      "crest": {
+        "breakpoint_d": 74,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.034421353879553744,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.00390625,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.3325195245907839,
+      "nearfield_motif_counts": [
+        1,
+        63
+      ],
+      "nearfield_selfinclusive_share": 0.984375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L48": {
+      "decimate_2x_rel_rmse": 0.03845351200887274,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L49": {
+      "decimate_2x_rel_rmse": 0.019128500387516227,
+      "extent": 512,
+      "f90_cycles_per_token": 0.0546875,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L50": {
+      "decimate_2x_rel_rmse": 0.03336304167481708,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L51": {
+      "decimate_2x_rel_rmse": 0.022020871636850303,
+      "extent": 512,
+      "f90_cycles_per_token": 0.009765625,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L52": {
+      "decimate_2x_rel_rmse": 0.019290085350583703,
+      "extent": 512,
+      "f90_cycles_per_token": 0.04296875,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L53": {
+      "aperture_class_effects_corrected": {
+        "first_content": 0.084,
+        "pronouns": 0.0312,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": 0.0957
+      },
+      "crest": {
+        "breakpoint_d": 56,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.04197178547623761,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.005859375,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6290429567945331,
+      "nearfield_motif_counts": [
+        1,
+        63
+      ],
+      "nearfield_selfinclusive_share": 0.984375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L54": {
+      "decimate_2x_rel_rmse": 0.019731275729336306,
+      "extent": 512,
+      "f90_cycles_per_token": 0.03125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L55": {
+      "decimate_2x_rel_rmse": 0.01813166533052027,
+      "extent": 512,
+      "f90_cycles_per_token": 0.021484375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L56": {
+      "decimate_2x_rel_rmse": 0.02040698728017588,
+      "extent": 512,
+      "f90_cycles_per_token": 0.0234375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L57": {
+      "decimate_2x_rel_rmse": 0.01745534615942197,
+      "extent": 512,
+      "f90_cycles_per_token": 0.142578125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L58": {
+      "decimate_2x_rel_rmse": 0.032997537768003335,
+      "extent": 512,
+      "f90_cycles_per_token": 0.017578125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L59": {
+      "aperture_class_effects_corrected": {
+        "first_content": 0.0996,
+        "pronouns": 0.0488,
+        "source": "round5/corpus_v2_corrected/figures/figure_data.json",
+        "speaker_labels": 0.0762
+      },
+      "crest": {
+        "breakpoint_d": 140,
+        "paragraph_scale": true,
+        "significant": true,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.038710373231262606,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.005859375,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp1"
+      },
+      "mi_rank_corr_prose": 0.6561293912080723,
+      "nearfield_motif_counts": [
+        1,
+        63
+      ],
+      "nearfield_selfinclusive_share": 0.984375,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L60": {
+      "decimate_2x_rel_rmse": 0.018903550328520768,
+      "extent": 512,
+      "f90_cycles_per_token": 0.02734375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L61": {
+      "decimate_2x_rel_rmse": 0.04004781478925518,
+      "extent": 512,
+      "f90_cycles_per_token": 0.03125,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L62": {
+      "decimate_2x_rel_rmse": 0.0485331537274503,
+      "extent": 512,
+      "f90_cycles_per_token": 0.02734375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L63": {
+      "decimate_2x_rel_rmse": 0.036630945791899405,
+      "extent": 512,
+      "f90_cycles_per_token": 0.021484375,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L64": {
+      "decimate_2x_rel_rmse": 0.07751173851476074,
+      "extent": 512,
+      "f90_cycles_per_token": 0.009765625,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "scope": "local",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    },
+    "L65": {
+      "crest": {
+        "breakpoint_d": 114,
+        "paragraph_scale": false,
+        "significant": false,
+        "source": "round5/lf2/lf2_knees.json"
+      },
+      "decimate_2x_rel_rmse": 0.04238961757391424,
+      "extent": 1024,
+      "f90_cycles_per_token": 0.0224609375,
+      "far_field_family": {
+        "source": "round5/lf6/lf6_mi_mimicry.json",
+        "winner": "exp2"
+      },
+      "mi_rank_corr_prose": 0.5979966066971005,
+      "nearfield_motif_counts": [
+        0,
+        64
+      ],
+      "nearfield_selfinclusive_share": 1.0,
+      "needle_in_situ_PROVISIONAL": {
+        "note": "uncorrected capture, dP<=0.025; re-certifies on the widened pass",
+        "source": "needles/needle_results.json",
+        "summary_keys": "list[24]"
+      },
+      "scope": "global",
+      "sources": {
+        "f90": "round4/bandlimit.json",
+        "motifs": "round4/nearfield.json"
+      }
+    }
+  },
+  "mtp": {
+    "M0": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M1": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M2": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M3": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M4": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M5": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M6": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    },
+    "M7": {
+      "curve_observation": "nearest bank L51/L47, below trunk minimum (unpromoted)",
+      "parent_search": "no fork (null-median distances, metrics disagree)",
+      "source": "round5/lf7/lf7_parentage.json"
+    }
+  },
+  "registration": "ROUND5_LEFTFIELD_SPEC.md R5-A: descriptive glue, no new claims",
+  "schema_version": 1,
+  "script_sha256": "67865d9e1952c35868a3e8695bb19bad787ab01e211b2aa5549a09316f68f5f9",
+  "source_sha256": {
+    "bandlimit": "c4f519173d1b268641158ba4a9257eb6b1ec179bec4f7aab86105a78c530ed75",
+    "depth": "7d476f5b84ec2c518a327215a217e60ad7e40df9c1c018091ba4605dac52940e",
+    "figdata": "4d0818f7e05a873c86c0f791f05520f7d80964e4fdbb0fde104a0292d7323a1a",
+    "lf1": "2bba99cad01668983e10da9ac07ff9232ab873dd1087c85bc7d2387baf358416",
+    "lf2": "0edc2ae9a538db6e15cbd4524b22adf8313a6b398d501d6f1084400b881ee0ed",
+    "lf6": "ac185ab8ec7527b653558b910d148750e329cbb8b514d88313dd61370168b531",
+    "lf7": "5e98c42ba9e263a0407f1d00dfe782068416962fc4a8ea630faf52dbc9b34e1a",
+    "meta": "765d9978627951c579ada266727a8697de5f0a646657bd13358f2150106732fc",
+    "nearfield": "77073dc8d0cbc23d10a1cfe91ce5b4b89a0296e3d5aa9e9b5a3cbabba4dbaee8",
+    "needles": "e75e3369c14512d6ab8c98f6ab142e917972748e9d198c2be882f7a822e32554"
+  }
+}
