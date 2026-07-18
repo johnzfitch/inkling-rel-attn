@@ -34,11 +34,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | D4 lossless full-depth state capture CERTIFIED (`analysis/round5/widened_capture/`) | run channel-4786/3290 lifecycle first |
-| LF3 | Absolute-position counter hiding in the r-channel? | D1 corrected r-vectors CERTIFIED | runnable now |
-| LF8 | Fiber orientation: content-stable anchor? chirality? | D1 corrected r-vectors CERTIFIED | runnable now; start at the L53 anomaly (`analysis/round5/r5c_rvec/`) |
-| LF9 | Long-range bandwidth budget per layer | D1 corrected meters CERTIFIED | runnable now |
-| R5-B | Does realized transport change with input? (depth profile) | D1 corrected meters CERTIFIED | runnable now |
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
 | P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired freeze and corrected capture CERTIFIED | runnable after mechanical re-certifications |
@@ -110,6 +105,52 @@ passed, zero errors). All true-null controls passed in both families.
   +0.193). Combined with P-d3's reversal, the revised picture: content-onset
   widening in deep globals is the general phenomenon; the v2.0 single-thread
   arm's first-content narrowing was the outlier, not the rule.
+
+## ANSWERED — certified (corrected-capture dump science, 2026-07-18)
+
+Six rows from the certified D1+D4 capture, run under the outcome-blind
+execution plan at `88dd002` (estimators frozen pre-outcome), answered by the
+first analyst (`d3cca8f`) and independently re-derived from raw dumps by the
+second analyst with no producer imports
+(`analysis/round5/dump_science_batch/verification_*.json`). An
+execution-order deviation (these ran before the mechanical re-certifications)
+is on record in the batch RESULTS.
+
+- **LF3: prediction failed into the registered surprise branch — there IS an
+  absolute-position clock in the r-channel.** Log-shaped tail signal, max
+  |r| = 0.975 (L59, random text), search-wide circular-shift p = 1/127; BOS
+  transient present. The prose control clocks too (0.939 at L11, same p
+  floor). Exploratory, unregistered: 74 coordinates exceed |r| 0.9 at L59,
+  concentrated on relative dims 5/9/10 across heads; every global layer from
+  L11 on carries a ≥0.96 clock; the clock is NOT communal carrier component 1
+  read out (0/74 clock coordinates track the carrier above 0.9; the carrier
+  scalar itself drifts only at r = −0.72).
+- **LF8: all three registered clauses failed.** Minimum cross-text mean-r
+  cosine 0.385 at L53 (prose vs needles) — the disclosed anomaly is real
+  under corrected arithmetic; no global/local depth-family split (p ≈ 0.75);
+  47 chirality candidates under the frozen census. Exploratory: L53 mean-r
+  splits the texts into camps — {prose, multilingual} ≥0.97 and
+  {templated, needles} ≥0.93, cross-camp down to 0.385.
+- **LF9: inverted.** The learned bias REDUCES far-field (d > 256) attention
+  share at every registered mid-depth global (−0.036 to −0.086) and
+  catastrophically at L65 (−0.410); the far-share peak sits at L11, not
+  mid-depth (though L65 is the unique global minimum as predicted). The bias
+  is a near-field concentrator everywhere tested.
+- **R5-B: depth profile passed; text centrality failed.** Realized transport
+  is most prompt-dependent at L41 (unique maximum; mid-band median 0.365 vs
+  early 0.255) and collapses at L65 (0.164). Ordering inverted: code is the
+  most central text (0.133), needles the farthest (0.325); random is not
+  nearest.
+- **R5-C lifecycle: half the registered pattern.** Channel 4786 has a clean
+  sustained broadcast onset at L26 (inside the flip band; census and raw
+  states agree bitwise); channel 3290 never crosses the 30k threshold in the
+  window (no onset); the L39/40 handoff is gradual/mixed (0/6 texts sharp).
+- **R5-C geometry: carrier prediction failed, one clause passed.** Communal
+  component 1 carries up to 10.8% of hidden variance (L20/needles) against
+  the registered <1% ceiling, with median positional read-energy share 64.1%;
+  the flip-band discontinuity failed both metrics (PR max at L64, rotation
+  max at L1); globals-rotate-more passed (+0.0235, exact sign-flip p = 1/64,
+  positive in all six texts, driven by templated/needles).
 
 ## PROVISIONAL — awaiting re-certification on v1-text captures
 
