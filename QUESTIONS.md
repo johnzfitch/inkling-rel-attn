@@ -28,9 +28,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## OPEN — runnable now (no dependence on the corrected recapture)
 
-| Row | Question | Registration | Next action |
-|---|---|---|---|
-| CK1b | Is the clock ONE shared direction — does the random-fit `G_L` flatten the kernel-gain drift on texts it never saw? | `ROUND5_R5D_CLOCK_TRANSFER_PREREG.md` (repairs CK1's circular real-arm clause) | compute the four frozen cells from the sealed clock dumps |
+*(empty — the runnable queue is cleared)*
 
 ## OPEN — gated
 
@@ -204,10 +202,20 @@ dumps with no producer imports — zero discrepancies
   d=1024 confirmed in the healed meters). LF10's 1M forecast is untouched.
 - **Clock: kernel-real, behaviorally null at 8k.** CK1 passed as registered
   but its real-arm clause was structurally trivial (OLS-projection identity;
-  disclosed in RESULTS; empirical content re-registered as CK1b above); the
-  sham contrast (0.634 vs ~0 real) stands. CK2 FAILED (ρ +0.054, lower
-  −0.158) and every clock arm's pooled cost is ~1e-4 with CIs straddling
-  zero: pinning the annealing schedule costs nothing measurable at 8k.
+  disclosed in RESULTS); the sham contrast (0.634 vs ~0 real) stands. CK2
+  FAILED (ρ +0.054, lower −0.158) and every clock arm's pooled cost is ~1e-4
+  with CIs straddling zero: pinning the annealing schedule costs nothing
+  measurable at 8k.
+- **CK1b (clock transfer): FAILED in all four registered cells**
+  (`ROUND5_R5D_CLOCK_TRANSFER_PREREG.md` @ 3f5a467; outcome
+  `analysis/round5/r5d/ck1b_transfer.json`; first-analyst run by the second
+  analyst — cross-confirmation by the other analyst still owed). The clock is
+  NOT one shared direction: unseen-text baselines 0.81–0.90 drop only to
+  0.54–0.63 under the random-fit direction. Position-correlated kernel drift
+  = a shared component (the transferring coordinates) plus a larger
+  text-specific, content-coupled component that dominates on structured
+  texts. The "universal broadcast annealing schedule" interpretation is
+  downgraded to: text-conditioned gain schedules with a common ingredient.
 - **Head classes (descriptive):** rising-band heads matter (+0.0199); the 45
   L11 negative-seam heads are null.
 
