@@ -14,17 +14,20 @@ range).
   01_prose_en + 04_multilingual): sentence [7, 44] tokens, paragraph
   [21, 160]. Disclosure: the ranges overlap on [21, 44]; no observed
   breakpoint landed in the overlap, so no verdict depends on it.
-- 10/11 global layers have Holm-significant breakpoints (2-exp-surrogate
-  null, 2,000 replicates); L65 (the wall layer) does not. Breakpoints:
-  L47 74, L53 56, L35 92, L65 114*, L29 116, L17 132, L23 136, L59 140,
-  L41 144 (all in the paragraph range), L11 246, L5 260 (outside both
-  ranges — the two farthest-looking early globals live at a longer scale).
-- **The "knees" are crests, not decay kinks.** In all 8 paragraph-range
-  layers the fitted slope BEFORE the breakpoint is slightly positive
-  (log₁₀|mode-0| rising ~+0.0005–0.0014/token) and turns negative after:
-  the kernel rises gently to a crest at ~56–144 tokens, then decays. This
-  is the weight-level face of the deep-global hump family, now localized:
-  **the crest sits at paragraph scale, consistently across mid/deep globals.**
+- **Corrected claim structure (audit 2026-07-17), three tiers:**
+  **eight** paragraph-range hinges under the registered IID null (L17, L23,
+  L29, L35, L41, L47, L53, L59; median breakpoint 124); **seven** survive
+  block-residual sensitivity (L47 loses Holm significance at block sizes 16
+  and 32 — the registered IID null is optimistic, residual lag-1
+  autocorrelation reaches 0.915; `lf2_block_sensitivity.json`, independently
+  matching the auditor's recomputation); **six** are fitted rise-to-decay
+  crests — L47 rises on both sides of its hinge (+0.00074 → +0.00027) and
+  L59 decays on both sides (−0.00001 → −0.00039), so "all eight are crests"
+  (this file's first version) was an overgeneralization.
+- L11 (246) and L5 (260) break outside both frozen ranges — the two
+  farthest-looking early globals live at a longer scale (L5 also drops just
+  below Holm significance under block resampling). L65, the wall layer,
+  never reaches significance.
 
 ## Consistency with LF6 (answered the same day)
 
