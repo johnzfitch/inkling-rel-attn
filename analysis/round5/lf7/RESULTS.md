@@ -1,4 +1,19 @@
-# LF7 — MTP parentage: ANSWERED, prediction failed → no fork (the registered surprise)
+# LF7 — MTP parentage: REOPENED (audit 2026-07-17) — rerun in progress
+
+**Audit findings that reopened this row:** (1) K_STORE=640 still truncated
+the primary null — trunk energy-90% ranks reach 776, so 406/2,145 trunk-trunk
+null pairs were computed on truncated bases with an unmatched √k
+normalization (MTP ranks top out at 616, so the MTP-trunk distances
+themselves were intact); (2) the dump did not store the bases it claimed;
+(3) the dump-manifest source hash predates the committed script. Rerun at
+K_STORE=1024 with a self-contained dump is in progress; the fixed-k and
+sketch metrics — both unaffected — already support "no close parent", so the
+conclusion is expected to survive, but nothing below is citable until the
+rerun replaces these numbers and an independent verifier confirms.
+
+---
+
+# (superseded pending rerun) LF7 — MTP parentage: prediction failed → no fork
 
 **Question** (ROUND5_LEFTFIELD_SPEC.md): are the 8 MTP drafter layers *copies*
 of specific trunk layers — a fork at some depth — or fresh solutions of the

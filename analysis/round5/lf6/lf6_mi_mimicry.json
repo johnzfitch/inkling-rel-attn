@@ -45,7 +45,7 @@
       "prose": 0.5979966066971005
     }
   },
-  "created_at_utc": "2026-07-18T02:13:03.847028+00:00",
+  "created_at_utc": "2026-07-18T03:39:27.706745+00:00",
   "family_race": {
     "L05": {
       "bic": {
@@ -158,6 +158,7 @@
       "exp3_not_decisive": true
     }
   },
+  "fits_manifest_sha256": "36c4c60592452d7f1b402427650836d4092d7f275a7e40a3d0c2ba1bc07daa8e",
   "kind": "round5_lf6_mi_mimicry",
   "mi_dump_sha256": "f0709ae24a6cd4c41a59a7beef8914ceeeae14c30cf32c3045714c2ee4b2512c",
   "prediction": {
@@ -167,6 +168,10 @@
     "passed": false,
     "registered": "BIC 2exp > power > 1exp on most globals; 3exp not decisive; prose rank-corr > 0.9"
   },
+  "provenance_notes": [
+    "the correlation stage reloads proj weights (mode-0 is recomputed live, not read from a dump) - a deviation from the dump-first docstring, disclosed",
+    "only the staged-init fits manifest is on disk; the collapsed first-pass BIC table exists in the session record, not as an artifact"
+  ],
   "schema_version": 1,
-  "source_sha256": "46a1bcb5c012538c7aae0edc7eab80659aed86a381f2cebfa4f0836dbc4b01da"
+  "source_sha256": "a905d34fb12dbc12a569d722ffde8dede2f5b6de5e97b582592b3cab7d82b1c3"
 }

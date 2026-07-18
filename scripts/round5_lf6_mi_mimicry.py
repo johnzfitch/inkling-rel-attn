@@ -232,6 +232,7 @@ def analyze_command() -> None:
     mi_manifest = json.loads((DUMP_DIR / "mi_manifest.json").read_text(encoding="utf-8"))
     if mi_manifest["dump_sha256"] != sha256_file(DUMP_DIR / "lf6_mi.npz"):
         raise RuntimeError("MI dump hash mismatch")
+    fits_manifest_sha = sha256_file(DUMP_DIR / "fits_manifest.json")
     fits = json.loads((DUMP_DIR / "fits_manifest.json").read_text(encoding="utf-8"))["fits"]
     z = np.load(DUMP_DIR / "lf6_mi.npz", allow_pickle=False)
     mi_prose = z["mi_prose"]; mi_code = z["mi_code"]
@@ -261,7 +262,15 @@ def analyze_command() -> None:
     report = {"kind": "round5_lf6_mi_mimicry", "schema_version": 1,
               "created_at_utc": datetime.now(timezone.utc).isoformat(),
               "mi_dump_sha256": mi_manifest["dump_sha256"],
+              "fits_manifest_sha256": fits_manifest_sha,
               "source_sha256": sha256_file(Path(__file__)),
+              "provenance_notes": [
+                  "the correlation stage reloads proj weights (mode-0 is "
+                  "recomputed live, not read from a dump) - a deviation from "
+                  "the dump-first docstring, disclosed",
+                  "only the staged-init fits manifest is on disk; the "
+                  "collapsed first-pass BIC table exists in the session "
+                  "record, not as an artifact"],
               "correlations": correlations,
               "family_race": order,
               "prediction": {

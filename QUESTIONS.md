@@ -36,11 +36,12 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`: carrier = 67% of live fiber, PR≈18, content-stable except L53 anomaly); registered hidden-state predictions await the widened pass | evaluate registered clauses when D1 pass lands |
-| LF3 | Absolute-position counter hiding in the r-channel? | needs rvec on 06_random — **not in recapture scope** | decision D1 below |
-| LF8 | Fiber orientation: content-stable anchor? chirality? | needs rvec across the 6 v1 texts — **not in recapture scope** | decision D1 below |
-| LF9 | Long-range bandwidth budget per layer | reads tier2 meters — **not in recapture scope** | decision D1 below |
-| R5-B | Does realized transport change with input? (depth profile) | reads tier2 meters — **not in recapture scope** | decision D1 below |
+| LF7 | Are MTP drafters forks of trunk layers? **REOPENED by audit** — K_STORE=640 corrupted 406/2145 null pairs; fixed-k + sketch metrics already support "no fork" | full-rank rerun (K_STORE=1024, self-contained dump) in progress | replace numbers, then independent verification |
+| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); registered clauses need corrected HIDDEN STATES — **not covered by D1** (audit correction) | decision D4 below |
+| LF3 | Absolute-position counter hiding in the r-channel? | D1 approved; widened pass not fire-ready (see D1 execution note) | run when the widened pass lands |
+| LF8 | Fiber orientation: content-stable anchor? chirality? | same | run when the widened pass lands (start at the L53 anomaly, `analysis/round5/r5c_rvec/`) |
+| LF9 | Long-range bandwidth budget per layer | same (corrected meters) | run when the widened pass lands |
+| R5-B | Does realized transport change with input? (depth profile) | same (corrected meters) | run when the widened pass lands |
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
 | P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired group-channel arms not yet built | build paired renders from the largest group channel, freeze boundaries/dose, capture, evaluate |
@@ -54,11 +55,40 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — RESOLVED: widen** (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`). The
-  P-e capture pass also takes v1-text rvec + corrected tier2 meters; every
-  provisional stamp re-certifies and LF3/LF8/LF9/R5-B unblock when it lands.
+- **D1 — scope RESOLVED: widen** (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`);
+  **execution BLOCKED** (audit): the current runner knows only the six v1
+  texts, lacks the A8 startup gate/shard hashes/package provenance, and the
+  P-e paired builder + independent validator do not exist yet. Do not fire
+  until those land. If the pass is meant to clear LF5's provisional stamp, it
+  must also recapture the needle rows / replay outputs.
+- **D4 — hidden-state capture scope.** R5-C's registered clauses and the
+  channel-lifecycle prereg need corrected hidden states, which D1 does NOT
+  cover (it registers rvec + meters only). Decide: extend a pass or accept
+  the provisional round5 capture with disclosure.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
+
+## ANSWERED — pending independent confirmation (promotion rule)
+
+Verdicts on record; the LEFTFIELD promotion rule (control pass + independent
+re-derivation from raw dumps) is not yet satisfied. The audit's own
+recomputations partially confirm LF1 (raw-bank diagnostic: zero survivors)
+and LF2 (hinge recomputation; block-residual sensitivity) — committing those
+as verifier artifacts would close the gap.
+
+- **LF1: no power-of-two pips** (prediction passed). Audit-noted: full local
+  table now in the report; d=16 disclosed as an unregistered addition.
+- **LF2: prediction failed inverted.** Corrected claim (audit): eight
+  paragraph-range hinges under the registered IID null (median breakpoint
+  124); seven survive block-residual sensitivity (L47 drops at blocks 16/32);
+  six are fitted rise-to-decay crests (L47 rises on both sides, L59 decays on
+  both sides). Zero sentence knees — the inversion stands.
+- **LF6: prediction failed — no MI mimicry** (robust to window choice per
+  audit). "Crest → single-exp tail" and "content matching does long range"
+  are now explicitly labeled interpretations, not LF6 results.
+- **R4-W / R4-N:** as reported; same confirmation gap.
+- **LF11:** bundle frozen; the naive-tool demonstration is itself the
+  specimen — an independent rerun of the demo would complete the loop.
 
 ## ANSWERED — corrected-capture certified (2026-07-17)
 
@@ -104,43 +134,6 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
-- **LF11 (2026-07-17): prediction PASSED — fourth tool caught, first caught
-  prospectively.** The damped-sinusoid BIC race, run naively, "detects
-  oscillation" in 8/11 globals (ΔBIC up to 584); all are fractional-cycle
-  phantoms (0.004–0.54 cycles in window); the cycle-audit rule kills all 8.
-  Bundle frozen: 148 hashed channels + absent/present certifications +
-  calibration rules. `analysis/round5/lf11/RESULTS.md`.
-- **R4-W (2026-07-17): oversampled but not band-limited.** Mode-0 f90 median
-  0.0195 cycles/token (~4% of Nyquist), yet 2×/4× decimation costs 7.3/9.1%
-  RMS — a real broadband residue rides the smooth kernel. L5/L17 mode-0 are
-  broadband outliers. `analysis/round4/RESULTS_BANDLIMIT_NEARFIELD.md`.
-- **R4-N (2026-07-17): P5 supported — near field is its own regime.** Handoff
-  discontinuity median 0.37 far-RMS (q90 1.22, max 3.1 at L48/L64); exactly
-  two motifs (silhouette 0.514), depth-split: shallow "self-suppress" (d=0
-  pinned to zero) vs deep "self-inclusive" (mild d=1 peak). Same file.
-- **LF2 (2026-07-17): prediction FAILED inverted — paragraph crest, no
-  sentence scale.** 8/11 globals have Holm-significant breakpoints in the
-  frozen paragraph range [21,160] (median d≈116), 0/11 in the sentence range;
-  slope is slightly POSITIVE before each break — the kernel rises to a
-  paragraph-scale crest, then decays. `analysis/round5/lf2/RESULTS.md`.
-- **LF6 (2026-07-17): prediction FAILED — no MI mimicry.** Prose rank-corr
-  0.33–0.66 (needed >0.9, 0/11); far field d≥32 is SINGLE-exponential in
-  9/11 globals (2-exp adds nothing; power law never wins). SGD didn't copy
-  the corpus's power law — long range is delegated to content matching.
-  `analysis/round5/lf6/RESULTS.md`.
-- **LF7 (2026-07-17): prediction FAILED → the registered surprise: no fork.**
-  MTP nearest-parent distances sit at the 49th–73rd percentile of the
-  trunk-trunk null under two independent metrics that disagree on argmin
-  (0/8) — the drafters re-derived transport on read directions unrelated to
-  any trunk layer's. Convergent shape, not inheritance: a mini universality
-  result inside one checkpoint. Curve-side L47/L51 bank convergence recorded
-  as an unpromoted secondary (re-derivation discriminator saturated).
-  `analysis/round5/lf7/RESULTS.md`.
-- **LF1 (2026-07-17): clean null, prediction PASSED.** No power-of-two pip
-  survives Holm in 341 tests (globals + locals); the pre-flagged d=128 is
-  flat (best raw p 0.040, Holm 1.0); the d=512 echo does not register as a
-  pip — band step and pip statistics dissociate correctly.
-  `analysis/round5/lf1/RESULTS.md`.
 - **Rounds 1–3:** mechanism ground truth from source; transport is low-rank
   (~1.5–3 of 16), decay-dominated; positional energy concentrates early; no
   learned signal beyond d=1024 anywhere.

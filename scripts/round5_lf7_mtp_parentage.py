@@ -46,10 +46,13 @@ OUT_DIR = ROOT / "analysis" / "round5" / "lf7"
 GLOBALS = {5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65}
 ENERGY = 0.90
 K_FIXED = 64
-# K_STORE must exceed every layer's energy-90% rank (max observed 616) so the
-# PRIMARY metric truly uses k = min(k90_i, k90_j); the first dump stored only
-# 64 directions, silently degrading the primary to the k=64 secondary.
-K_STORE = 640
+# K_STORE must cover every unit's energy-90% rank. History of this constant:
+# 64 (bug: silently degraded the primary to k=64), then 640 (bug: TRUNK k90
+# reaches 776 - MTP tops out at 616, so MTP-trunk distances were intact, but
+# 406/2145 trunk-trunk null pairs were computed on truncated bases with an
+# unmatched sqrt(k) normalization, corrupting the null percentiles). Now the
+# full row-space bound; chordal() also refuses k beyond the stored basis.
+K_STORE = 1024
 SKETCH_SEED = 0x1F7
 DEEP_MIN = 30
 MIN_DEEP_PARENTS = 6
@@ -78,6 +81,8 @@ def unit_files() -> list[tuple[str, Path, Path]]:
 
 def chordal(u: np.ndarray, v: np.ndarray, k: int) -> float:
     """Chordal distance between the leading-k column subspaces of u, v."""
+    if k > u.shape[1] or k > v.shape[1]:
+        raise ValueError(f"k={k} exceeds stored basis width {u.shape[1]}")
     a, b = u[:, :k], v[:, :k]
     s = np.linalg.svd(a.T @ b, compute_uv=False)
     s = np.clip(s, 0.0, 1.0)
@@ -132,7 +137,11 @@ def dump_command() -> None:
              names=np.array(names), k90=np.array([k90[m] for m in names]),
              d_primary=d_primary, d_fixed=d_fixed, d_curve=d_curve,
              s_sketch=s_sketch,
-             spectra=np.stack([np.pad(spectra[m], (0, 1024 - len(spectra[m]))) for m in names]))
+             spectra=np.stack([np.pad(spectra[m], (0, 1024 - len(spectra[m]))) for m in names]),
+             # full bases so the dump is self-contained for independent
+             # re-derivation (audit finding: earlier dumps stored only the
+             # finished matrices)
+             **{f"basis_{m}": bases[m] for m in names})
     manifest = {
         "kind": "round5_lf7_parentage_dump", "schema_version": 1,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),

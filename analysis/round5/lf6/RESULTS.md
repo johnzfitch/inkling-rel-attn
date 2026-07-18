@@ -21,22 +21,23 @@ on prose. **FAILED on both substantive clauses.**
   (the wall layer, decisively two-scale) and marginally L5 support 2-exp.
   The power law never wins. 3-exp is never decisive (11/11, vacuously where
   fits collapse to fewer components).
-- The two LF6 fitting passes are both recorded: the first (pure random
-  restarts) and the staged rerun (seeded from the (k−1)-exp solution) agree
-  everywhere except L5; the collapse is a data property, not an optimizer
-  artifact — confirmed by the crest geometry below.
+- Two fitting passes were run: pure random restarts, then staged
+  initialization (seeded from the (k−1)-exp solution); they agree everywhere
+  except L5. Provenance correction (audit): only the staged pass's manifest
+  exists on disk — the first pass's BIC table was overwritten and survives
+  only in the session record. The report now binds the fits-manifest hash.
 
-## Synthesis with LF2
+## Synthesis with LF2 (interpretation, not a registered LF6 result)
 
-LF2 (same day) shows why 2-exp finds nothing: the mid/deep global kernels
-RISE to a crest at ~56–144 tokens before decaying, and positive-amplitude
-exponential sums cannot express a rise. The true far-field geometry is:
-gentle rise → paragraph-scale crest → single exponential tail. Corpus MI has
-the opposite far-field character (slow power-law flattening). **SGD did not
-approximate the corpus statistics' shape — it built a shorter-sighted,
-simpler kernel and delegates genuine long range to content matching** (the
-needle/heartbeat results), which is where the power-law work actually
-happens.
+LF2 (same day) suggests why 2-exp finds nothing: several mid/deep global
+kernels rise toward a paragraph-range hinge before decaying, and
+positive-amplitude exponential sums cannot express a rise. The
+"rise → crest → single exponential tail" geometry is a post-hoc synthesis of
+LF2 + LF6 — the registered d≥32 race does not directly test it, and it needs
+its own artifact before promotion (the audit's post-hinge diagnostic supports
+1-exp after the hinge in 9/11). Likewise, "long range is delegated to content
+matching" is an interpretation connecting LF6 to the needle/heartbeat
+results, not an LF6 finding.
 
 ## Caveats
 

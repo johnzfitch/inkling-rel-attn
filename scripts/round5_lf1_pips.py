@@ -142,8 +142,12 @@ def analyze_command() -> None:
         "dump_sha256": manifest["dump_sha256"],
         "source_sha256": sha256_file(Path(__file__)),
         "global_tests": global_tests,
-        "local_tests_significant": [t for t in local_tests if t["significant"]],
+        "local_tests": local_tests,
         "n_local_tests": len(local_tests),
+        "notes": ["d=16 was not among the spec's example powers {32,64,128,"
+                  "256,...}; it is an unregistered addition to the family "
+                  "(disclosed; its inclusion only makes Holm stricter and no "
+                  "verdict depends on it)"],
         "global_survivors": survivors,
         "prediction": {
             "registered": "no pips survive control; 128 most likely surprise",
