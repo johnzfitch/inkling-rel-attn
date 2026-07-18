@@ -30,7 +30,7 @@ LOCI = ROOT / "analysis" / "round5" / "loci.json"
 DEFAULT_DUMP = ROOT / "dumps" / "round5" / "lf5"
 DEFAULT_REPLAY_GATE = ROOT / "analysis" / "round5" / "lf5" / "parity_replay.json"
 DEFAULT_CPU_GATE = ROOT / "analysis" / "round5" / "lf5" / "parity_cpu_sentinels.json"
-DEFAULT_A5 = ROOT / "ROUND5_AMENDMENT_A5.md"
+DEFAULT_A5 = ROOT / "registrations" / "ROUND5_AMENDMENT_A5.md"
 DEFAULT_BRACKET_REPORT = ROOT / "analysis" / "round5" / "lf5" / "brackets.json"
 TEXTS = [
     "01_prose_en",

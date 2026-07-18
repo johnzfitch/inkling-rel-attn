@@ -120,12 +120,12 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         errors.append("stock attention parity did not pass")
 
     expected_specs = {
-        "spec_sha256": ROOT / "CORPUS_V2_SPEC.md",
-        "amendment_a1_sha256": ROOT / "CORPUS_V2_AMENDMENT_A1.md",
-        "amendment_a6_sha256": ROOT / "ROUND5_AMENDMENT_A6.md",
-        "amendment_a7_execution_sha256": ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md",
-        "depth_prereg_sha256": ROOT / "ROUND5_DEPTH_RESOLVED_PREREG.md",
-        "execution_plan_sha256": ROOT / "CORPUS_V2_EXECUTION_PLAN.md",
+        "spec_sha256": ROOT / "registrations" / "CORPUS_V2_SPEC.md",
+        "amendment_a1_sha256": ROOT / "registrations" / "CORPUS_V2_AMENDMENT_A1.md",
+        "amendment_a6_sha256": ROOT / "registrations" / "ROUND5_AMENDMENT_A6.md",
+        "amendment_a7_execution_sha256": ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md",
+        "depth_prereg_sha256": ROOT / "registrations" / "ROUND5_DEPTH_RESOLVED_PREREG.md",
+        "execution_plan_sha256": ROOT / "registrations" / "CORPUS_V2_EXECUTION_PLAN.md",
         "tokenizer_sha256": CORPUS_V1 / "tokenizer.json",
         "checkpoint_index_sha256": NVFP4 / "model.safetensors.index.json",
         "config_sha256": NVFP4 / "config.json",
@@ -688,8 +688,9 @@ def fixture_capture_validator_self_test() -> None:
                 "depth_prereg_sha256": "ROUND5_DEPTH_RESOLVED_PREREG.md",
                 "execution_plan_sha256": "CORPUS_V2_EXECUTION_PLAN.md",
             }
+            (root / "registrations").mkdir(parents=True, exist_ok=True)
             for filename in spec_fields.values():
-                (root / filename).write_text(filename + "\n", encoding="utf-8")
+                (root / "registrations" / filename).write_text(filename + "\n", encoding="utf-8")
             (CORPUS_V1 / "tokenizer.json").write_text("{}\n", encoding="utf-8")
             (NVFP4 / "config.json").write_text("{}\n", encoding="utf-8")
 

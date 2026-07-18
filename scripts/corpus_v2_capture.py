@@ -314,17 +314,22 @@ def provenance(
         "git_head": git_output("rev-parse", "HEAD"),
         "git_branch": git_output("branch", "--show-current"),
         "git_status_porcelain": git_output("status", "--porcelain"),
-        "spec_sha256": sha256_file(ROOT / "CORPUS_V2_SPEC.md"),
-        "amendment_a1_sha256": sha256_file(ROOT / "CORPUS_V2_AMENDMENT_A1.md"),
-        "amendment_a6_sha256": sha256_file(ROOT / "ROUND5_AMENDMENT_A6.md"),
+        "spec_sha256": sha256_file(ROOT / "registrations" / "CORPUS_V2_SPEC.md"),
+        "amendment_a1_sha256": sha256_file(ROOT / "registrations" / "CORPUS_V2_AMENDMENT_A1.md"),
+        "amendment_a6_sha256": sha256_file(ROOT / "registrations" / "ROUND5_AMENDMENT_A6.md"),
         "amendment_a7_execution_sha256": sha256_file(
-            ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
         "amendment_a7_execution_commit": git_output(
-            "log", "-1", "--format=%H", "--", "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            "log", "-1", "--follow", "--format=%H", "--",
+            "registrations/ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
-        "depth_prereg_sha256": sha256_file(ROOT / "ROUND5_DEPTH_RESOLVED_PREREG.md"),
-        "execution_plan_sha256": sha256_file(ROOT / "CORPUS_V2_EXECUTION_PLAN.md"),
+        "depth_prereg_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_DEPTH_RESOLVED_PREREG.md"
+        ),
+        "execution_plan_sha256": sha256_file(
+            ROOT / "registrations" / "CORPUS_V2_EXECUTION_PLAN.md"
+        ),
         "input_manifest_sha256": {
             root.relative_to(ROOT).as_posix(): sha256_file(root / "manifest.json")
             for root in manifests

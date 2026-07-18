@@ -180,7 +180,7 @@ def novelty_command(_args: argparse.Namespace) -> None:
         "registration_commit": REGISTRATION_COMMIT,
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
-            ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
@@ -225,7 +225,7 @@ def compute_command(args: argparse.Namespace) -> None:
         "registration_commit": REGISTRATION_COMMIT,
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
-            ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
@@ -446,7 +446,7 @@ def v20_readout(
         "registration_commit": REGISTRATION_COMMIT,
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
-            ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
         "legacy_dependency_sha256": sha256_file(ROOT / "scripts" / "corpus_v2_pipeline.py"),
@@ -584,10 +584,12 @@ def depth_readout(depth_classes: dict[str, Any]) -> dict[str, Any]:
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "amendment_a6_commit": A6_COMMIT,
         "amendment_a7_execution_sha256": sha256_file(
-            ROOT / "ROUND5_AMENDMENT_A7_EXECUTION.md"
+            ROOT / "registrations" / "ROUND5_AMENDMENT_A7_EXECUTION.md"
         ),
         "source_sha256": sha256_file(Path(__file__)),
-        "depth_prereg_sha256": sha256_file(ROOT / "ROUND5_DEPTH_RESOLVED_PREREG.md"),
+        "depth_prereg_sha256": sha256_file(
+            ROOT / "registrations" / "ROUND5_DEPTH_RESOLVED_PREREG.md"
+        ),
         "capture_validation_sha256": sha256_file(CAPTURE_VALIDATION),
         "aperture_manifest_sha256": sha256_file(APERTURE_DUMP / "manifest.json"),
         "depth_classes_sha256": sha256_file(CLASSES_DEPTH),
