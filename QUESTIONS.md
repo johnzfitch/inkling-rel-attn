@@ -35,7 +35,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 | Row | Question | Gate | Next action |
 |---|---|---|---|
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
-| R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
+| R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | execution methods frozen in `ROUND5_R5D_EXECUTION_AMENDMENT.md`; runner not yet built | build/authenticate runner and tail, then execute 67 arms |
 
 ## FORECAST
 
