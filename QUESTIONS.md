@@ -34,7 +34,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); registered clauses need corrected HIDDEN STATES — **not covered by D1** (audit correction) | decision D4 below |
+| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); D4 lossless full-depth state capture registered and implemented; awaiting GPU pass | channel-4786/3290 lifecycle first when the widened pass lands |
 | LF3 | Absolute-position counter hiding in the r-channel? | D1 runner built and inputs frozen; awaiting the GPU pass | run when the widened pass lands |
 | LF8 | Fiber orientation: content-stable anchor? chirality? | same | run when the widened pass lands (start at the L53 anomaly, `analysis/round5/r5c_rvec/`) |
 | LF9 | Long-range bandwidth budget per layer | same (corrected meters) | run when the widened pass lands |
@@ -52,18 +52,19 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — scope RESOLVED: widen; execution PAUSED for D4 extension**
+- **D1 — scope RESOLVED: widen; execution READY with D4**
   (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`; production handoff:
   `analysis/round5/widened_capture/README.md`). The widened runner, A8
   Git-blob/parity/shard/package gate, paired builder/freeze, independent
   validator, normalized replay inputs, and all 66 × 24 LF5 needle rows are
-  implemented. The GPU pass has **not** been fired; its first production
-  preflight was stopped without an output when D4 was authorized.
-- **D4 — scope RESOLVED: full-depth lossless states**
+  implemented, including the registered D4 extension. The GPU pass has **not**
+  been fired; its first production preflight was stopped without an output
+  when D4 was authorized.
+- **D4 — scope RESOLVED and IMPLEMENTED: full-depth lossless states**
   (`registrations/ROUND5_CAPTURE_SCOPE_D4.md`). Capture BF16 embedding state
   plus all 66 layer outputs for all eight arms; six v1 texts are confirmatory,
-  paired arms descriptive only. Execution awaits the registered runner and
-  independent-validator extension.
+  paired arms descriptive only. The runner and independent validator enforce
+  the 536-state / 2,324-total-artifact contract.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
 

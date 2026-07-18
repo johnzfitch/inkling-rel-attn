@@ -1,6 +1,6 @@
 # D1 widened corrected capture — production handoff
 
-Status: **runner build complete; paired inputs frozen; GPU capture not fired**.
+Status: **D1+D4 runner build complete; paired inputs frozen; GPU capture not fired**.
 
 The production pass writes a fresh `dumps/round5/widened_corrected_capture/`
 tree and refuses to overwrite a nonempty output. It captures all 66 layers for
@@ -14,13 +14,16 @@ boundary. Old dumps remain immutable.
   Tier-2 with/without-bias meters, massive-coordinate censuses, and NLL;
 - `05_needles`: 24 full production attention rows at every layer for the LF5
   CUDA/BF16 replay handoff;
+- all eight arms: lossless BF16 normalized embedding residual plus all 66
+  layer-output residuals, stored bit-for-bit as uint16 (536 D4 artifacts,
+  approximately 50.25 GiB raw payload);
 - paired arms: P-e boundaries/dose, message pairing, P-f classes, and random
   controls are frozen privately and bound by
   `analysis/round5/pe/corpus_freeze.json`;
-- residual hidden states are excluded. This pass does **not** satisfy D4 or
-  the registered hidden-state clauses of R5-C.
+- the six v1 texts are the confirmatory R5-C/channel-lifecycle population;
+  the paired-arm states are secondary descriptive replications only.
 
-The expected production inventory is 1,788 artifacts. The runner records a
+The expected production inventory is 2,324 artifacts. The runner records a
 failed manifest on any exception and never treats a partial tree as reusable.
 
 ## Required environment
@@ -60,5 +63,5 @@ After independent validation passes, run the LF5 CUDA/BF16 replay parity gate:
 ```
 
 The production order after validation is: mechanical re-certifications first;
-LF3, LF8 (beginning at the L53 anomaly), LF9, and R5-B; then P-e/P-f; then the
-separate R5-D ablation campaign.
+R5-C (channel 4786/3290 lifecycle first), LF3, LF8 (beginning at the L53
+anomaly), LF9, and R5-B; then P-e/P-f; then the separate R5-D ablation campaign.

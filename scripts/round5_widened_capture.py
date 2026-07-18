@@ -3,8 +3,9 @@
 Production scope is frozen by ROUND5_CAPTURE_SCOPE_D1.md.  All six v1 texts
 receive corrected r-vectors, Tier-2 meters, lossless BF16 normalized attention
 inputs, massive-coordinate censuses, LF5 needle rows, and next-token NLL.  The
-two fresh paired arms receive r-vectors for P-e/P-f.  Residual hidden states
-are deliberately not captured: D4 remains a separate decision.
+two fresh paired arms receive r-vectors for P-e/P-f.  Under the registered D4
+extension, all eight arms also receive lossless BF16 embedding residuals and
+all 66 layer-output residuals.
 
 The production command refuses uncommitted drift in every critical public
 source/spec, runs the A8 stock-parity gate, records every checkpoint shard and
@@ -69,11 +70,15 @@ V1_TEXTS = [
 ]
 PAIRED_TEXTS = ["09_pe_single_thread", "10_pe_multi_conversation"]
 TEXTS = V1_TEXTS + PAIRED_TEXTS
+STATE_TEXTS = TEXTS
 LAYERS = list(range(66))
 SEQ = 8192
+HIDDEN_SIZE = 6144
 QCHUNK = 512
 MASSIVE_THRESHOLD = 30_000.0
 EXPECTED_NEEDLE_QUERIES = 24
+STATE_SNAPSHOTS_PER_TEXT = len(LAYERS) + 1
+STATE_PAYLOAD_BYTES = len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT * SEQ * HIDDEN_SIZE * 2
 ATTENTION_DTYPE_BOUNDARY = "BF16 content+bias add, then FP32 softmax"
 
 D1_COMMIT = "51b8c00fe9b632086d0745221578be452f76f60c"
@@ -81,6 +86,7 @@ A5_COMMIT = "7bf608d9971997a655a4f9cd46e3bc921ffb74b8"
 A6_COMMIT = "061bb04dffef05eae33f9fffc430394faa4052c5"
 A8_COMMIT = "93665e2d75a68d4d2d77e2751c316f9a6665f796"
 PE_PF_COMMIT = "71f0ad3efff199a83c333340ddd8c8f9a8d7f228"
+D4_COMMIT = "2264ae457b36c75c778fe7874d08fdd0eb84aae5"
 
 CRITICAL_PUBLIC_FILES = [
     "scripts/round5_widened_capture.py",
@@ -90,6 +96,7 @@ CRITICAL_PUBLIC_FILES = [
     "scripts/tier2_stream.py",
     "scripts/tier2_nvfp4.py",
     "registrations/ROUND5_CAPTURE_SCOPE_D1.md",
+    "registrations/ROUND5_CAPTURE_SCOPE_D4.md",
     "registrations/ROUND5_AMENDMENT_A5.md",
     "registrations/ROUND5_AMENDMENT_A6.md",
     "registrations/ROUND5_AMENDMENT_A8_VALIDATION.md",
@@ -180,12 +187,14 @@ def package_record(module: Any) -> dict[str, str]:
 
 
 def expected_artifact_count() -> int:
-    # All-arm rvec + three v1 layer/text products + one needle file/layer + v1 NLL.
+    # All-arm rvec + three v1 layer/text products + one needle file/layer +
+    # v1 NLL + lossless embedding/layer-output residual states for all arms.
     return (
         len(TEXTS) * len(LAYERS)
         + 3 * len(V1_TEXTS) * len(LAYERS)
         + len(LAYERS)
         + len(V1_TEXTS)
+        + len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT
     )
 
 
@@ -451,11 +460,49 @@ def bf16_bits(tensor: torch.Tensor) -> np.ndarray:
     return tensor.detach().contiguous().to("cpu").view(torch.uint16).numpy().copy()
 
 
+def save_residual_state(
+    out_root: Path,
+    path: Path,
+    tensor: torch.Tensor,
+    *,
+    text: str,
+    state_name: str,
+    state_index: int,
+    state_role: str,
+    layer: int | None,
+) -> dict[str, Any]:
+    values = bf16_bits(tensor)
+    if values.shape != (SEQ, HIDDEN_SIZE):
+        raise RuntimeError(f"invalid residual state shape for {state_name}, {text}: {values.shape}")
+    nonfinite = int(
+        np.count_nonzero((values & np.uint16(0x7F80)) == np.uint16(0x7F80))
+    )
+    if nonfinite:
+        raise RuntimeError(f"non-finite BF16 residual state for {state_name}, {text}")
+    atomic_npy(path, values)
+    return artifact_record(
+        out_root,
+        path,
+        kind="residual_hidden_state",
+        dtype="bfloat16 payload stored losslessly as uint16",
+        shape=values.shape,
+        layer=layer,
+        text=text,
+        extra={
+            "state_name": state_name,
+            "state_index": state_index,
+            "state_role": state_role,
+            "nonfinite_bf16_words": nonfinite,
+            "d4_commit": D4_COMMIT,
+        },
+    )
+
+
 def save_normalized(
     out_root: Path, path: Path, tensor: torch.Tensor, layer: int, text: str
 ) -> dict[str, Any]:
     values = bf16_bits(tensor)
-    if values.shape != (SEQ, 6144):
+    if values.shape != (SEQ, HIDDEN_SIZE):
         raise RuntimeError(f"invalid normalized input shape: {values.shape}")
     decoded = torch.from_numpy(values.copy()).view(torch.bfloat16).float()
     if not bool(torch.isfinite(decoded).all()):
@@ -659,6 +706,7 @@ def provenance(
             "A6": A6_COMMIT,
             "A8": A8_COMMIT,
             "P-e/P-f": PE_PF_COMMIT,
+            "D4": D4_COMMIT,
         },
         "git_head": gate["critical_git_blobs"]["git_head"],
         "git_branch": git_output("branch", "--show-current"),
@@ -694,6 +742,7 @@ def provenance(
         "texts": TEXTS,
         "v1_texts": V1_TEXTS,
         "paired_texts": PAIRED_TEXTS,
+        "state_texts": STATE_TEXTS,
         "layers": LAYERS,
         "seq": SEQ,
         "qchunk": args.qchunk,
@@ -702,8 +751,27 @@ def provenance(
             "v1": ["rvec", "meter", "normalized_attention_input", "massive_census", "nll"],
             "05_needles_addition": ["lf5_needle_rows"],
             "paired": ["rvec"],
-            "residual_hidden_states": False,
-            "D4_satisfied": False,
+            "all_arms_addition": ["lossless_bf16_residual_states"],
+            "residual_hidden_states": True,
+            "D4_satisfied": True,
+        },
+        "d4_state_contract": {
+            "registration_commit": D4_COMMIT,
+            "confirmatory_texts": V1_TEXTS,
+            "secondary_descriptive_texts": PAIRED_TEXTS,
+            "snapshots_per_text": STATE_SNAPSHOTS_PER_TEXT,
+            "artifact_count": len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT,
+            "raw_payload_bytes": STATE_PAYLOAD_BYTES,
+            "shape": [SEQ, HIDDEN_SIZE],
+            "storage_dtype": "uint16",
+            "logical_dtype": "bfloat16",
+            "state_sequence": ["hidden_embed"]
+            + [f"hidden_L{layer:02d}" for layer in LAYERS],
+            "layer_semantics": (
+                "hidden_embed enters L0; hidden_Lxx is the residual output of Lxx; "
+                "rotation attributable to L compares its input with hidden_Lxx"
+            ),
+            "clipping_or_imputation": False,
         },
         "model": {
             "num_hidden_layers": int(config.num_hidden_layers),
@@ -787,6 +855,19 @@ def capture_command(args: argparse.Namespace) -> None:
             hidden[name] = embed_norm(
                 torch.nn.functional.embedding(ids_cuda, embed_weight).unsqueeze(0)
             )
+            embed_state_path = out_root / "states" / f"hidden_embed_{name}.npy"
+            manifest["artifacts"].append(
+                save_residual_state(
+                    out_root,
+                    embed_state_path,
+                    hidden[name][0],
+                    text=name,
+                    state_name="hidden_embed",
+                    state_index=0,
+                    state_role="normalized_embedding_entering_L0",
+                    layer=None,
+                )
+            )
         del embed_weight, embed_norm
         torch.cuda.empty_cache()
         print(f"embedded {len(TEXTS)} arms at seq={SEQ}", flush=True)
@@ -836,6 +917,21 @@ def capture_command(args: argparse.Namespace) -> None:
                         attention_mask=None,
                         conv_mask=None,
                         past_key_values=None,
+                    )
+
+                    state_name = f"hidden_L{layer_index:02d}"
+                    state_path = out_root / "states" / f"{state_name}_{name}.npy"
+                    manifest["artifacts"].append(
+                        save_residual_state(
+                            out_root,
+                            state_path,
+                            hidden[name][0],
+                            text=name,
+                            state_name=state_name,
+                            state_index=layer_index + 1,
+                            state_role="layer_output_residual",
+                            layer=layer_index,
+                        )
                     )
 
                     captured = T._CAPTURE["rvec"]
@@ -1061,8 +1157,10 @@ def self_test() -> None:
     restored = torch.from_numpy(payload.copy()).view(torch.bfloat16)
     if not torch.equal(original.view(torch.uint16), restored.view(torch.uint16)):
         raise AssertionError("BF16 bit round-trip failed")
-    if expected_artifact_count() != 1788:
+    if expected_artifact_count() != 2324:
         raise AssertionError(f"unexpected production artifact count: {expected_artifact_count()}")
+    if STATE_PAYLOAD_BYTES != 53_955_526_656:
+        raise AssertionError(f"unexpected D4 payload size: {STATE_PAYLOAD_BYTES}")
     meter = Meter(2, 4, "cpu")
     with_bias = torch.tensor([[[1.0]], [[1.0]]], dtype=torch.float32)
     meter.add_chunk(

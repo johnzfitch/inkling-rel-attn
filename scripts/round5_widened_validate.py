@@ -47,13 +47,17 @@ V1_TEXTS = [
 ]
 PAIRED_TEXTS = ["09_pe_single_thread", "10_pe_multi_conversation"]
 TEXTS = V1_TEXTS + PAIRED_TEXTS
+STATE_TEXTS = TEXTS
 LAYERS = list(range(66))
 GLOBALS = {5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65}
 SEQ = 8192
+HIDDEN_SIZE = 6144
 BIN_SIZE = 256
 QCHUNK = 512
 MASSIVE_THRESHOLD = 30_000.0
 EXPECTED_NEEDLE_QUERIES = 24
+STATE_SNAPSHOTS_PER_TEXT = len(LAYERS) + 1
+STATE_PAYLOAD_BYTES = len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT * SEQ * HIDDEN_SIZE * 2
 ATTENTION_DTYPE_BOUNDARY = "BF16 content+bias add, then FP32 softmax"
 
 D1_COMMIT = "51b8c00fe9b632086d0745221578be452f76f60c"
@@ -61,6 +65,7 @@ A5_COMMIT = "7bf608d9971997a655a4f9cd46e3bc921ffb74b8"
 A6_COMMIT = "061bb04dffef05eae33f9fffc430394faa4052c5"
 A8_COMMIT = "93665e2d75a68d4d2d77e2751c316f9a6665f796"
 PE_PF_COMMIT = "71f0ad3efff199a83c333340ddd8c8f9a8d7f228"
+D4_COMMIT = "2264ae457b36c75c778fe7874d08fdd0eb84aae5"
 
 CRITICAL_PUBLIC_FILES = [
     "scripts/round5_widened_capture.py",
@@ -70,6 +75,7 @@ CRITICAL_PUBLIC_FILES = [
     "scripts/tier2_stream.py",
     "scripts/tier2_nvfp4.py",
     "registrations/ROUND5_CAPTURE_SCOPE_D1.md",
+    "registrations/ROUND5_CAPTURE_SCOPE_D4.md",
     "registrations/ROUND5_AMENDMENT_A5.md",
     "registrations/ROUND5_AMENDMENT_A6.md",
     "registrations/ROUND5_AMENDMENT_A8_VALIDATION.md",
@@ -126,11 +132,19 @@ def package_record(module: Any) -> dict[str, str]:
 
 
 def expected_artifact_count() -> int:
-    return len(TEXTS) * len(LAYERS) + 3 * len(V1_TEXTS) * len(LAYERS) + len(LAYERS) + len(V1_TEXTS)
+    return (
+        len(TEXTS) * len(LAYERS)
+        + 3 * len(V1_TEXTS) * len(LAYERS)
+        + len(LAYERS)
+        + len(V1_TEXTS)
+        + len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT
+    )
 
 
 def expected_paths() -> dict[str, str]:
     result: dict[str, str] = {}
+    for text in STATE_TEXTS:
+        result[f"states/hidden_embed_{text}.npy"] = "residual_hidden_state"
     for layer in LAYERS:
         for text in V1_TEXTS:
             result[f"replay/rvec_L{layer:02d}_{text}.npy"] = "rvec"
@@ -139,10 +153,33 @@ def expected_paths() -> dict[str, str]:
             result[f"massive/massive_L{layer:02d}_{text}.npz"] = "massive_activation_census"
         for text in PAIRED_TEXTS:
             result[f"paired/rvec_L{layer:02d}_{text}.npy"] = "rvec"
+        for text in STATE_TEXTS:
+            result[f"states/hidden_L{layer:02d}_{text}.npy"] = "residual_hidden_state"
         result[f"replay/needlerows_L{layer:02d}.npz"] = "lf5_needle_rows"
     for text in V1_TEXTS:
         result[f"nll/nll_{text}.npz"] = "next_token_nll"
     return result
+
+
+def expected_d4_contract() -> dict[str, Any]:
+    return {
+        "registration_commit": D4_COMMIT,
+        "confirmatory_texts": V1_TEXTS,
+        "secondary_descriptive_texts": PAIRED_TEXTS,
+        "snapshots_per_text": STATE_SNAPSHOTS_PER_TEXT,
+        "artifact_count": len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT,
+        "raw_payload_bytes": STATE_PAYLOAD_BYTES,
+        "shape": [SEQ, HIDDEN_SIZE],
+        "storage_dtype": "uint16",
+        "logical_dtype": "bfloat16",
+        "state_sequence": ["hidden_embed"]
+        + [f"hidden_L{layer:02d}" for layer in LAYERS],
+        "layer_semantics": (
+            "hidden_embed enters L0; hidden_Lxx is the residual output of Lxx; "
+            "rotation attributable to L compares its input with hidden_Lxx"
+        ),
+        "clipping_or_imputation": False,
+    }
 
 
 def safe_artifact(capture: Path, relative: str) -> Path:
@@ -665,6 +702,9 @@ def validate_artifacts(
         errors.append("needle query count differs")
     meter_errors: list[float] = []
     normalized_nonfinite = 0
+    state_nonfinite = 0
+    state_payload_bytes = 0
+    state_artifact_count = 0
     meter_integrity: dict[str, dict[str, dict[str, float]]] = {
         f"L{layer:02d}": {} for layer in LAYERS
     }
@@ -695,6 +735,51 @@ def validate_artifacts(
                 errors.append(f"invalid r-vector shape/dtype: {relative}")
             elif not np.isfinite(values).all():
                 errors.append(f"non-finite r-vector: {relative}")
+        elif expected[relative] == "residual_hidden_state":
+            bits = np.load(path, mmap_mode="r", allow_pickle=False)
+            if bits.shape != (SEQ, HIDDEN_SIZE) or bits.dtype != np.uint16:
+                errors.append(f"invalid BF16 residual shape/dtype: {relative}")
+            else:
+                nonfinite = int(
+                    np.count_nonzero(
+                        (bits & np.uint16(0x7F80)) == np.uint16(0x7F80)
+                    )
+                )
+                state_nonfinite += nonfinite
+                state_payload_bytes += int(bits.nbytes)
+                state_artifact_count += 1
+                if nonfinite:
+                    errors.append(f"non-finite BF16 residual state: {relative}")
+            match = re.fullmatch(
+                r"states/(hidden_embed|hidden_L(\d{2}))_(.+)\.npy", relative
+            )
+            if not match:
+                errors.append(f"invalid D4 state path: {relative}")
+            else:
+                state_name = match.group(1)
+                layer_text = match.group(2)
+                text = match.group(3)
+                layer = None if layer_text is None else int(layer_text)
+                state_index = 0 if layer is None else layer + 1
+                state_role = (
+                    "normalized_embedding_entering_L0"
+                    if layer is None
+                    else "layer_output_residual"
+                )
+                if (
+                    record.get("dtype")
+                    != "bfloat16 payload stored losslessly as uint16"
+                    or record.get("shape") != [SEQ, HIDDEN_SIZE]
+                    or record.get("text") != text
+                    or record.get("state_name") != state_name
+                    or record.get("state_index") != state_index
+                    or record.get("state_role") != state_role
+                    or record.get("nonfinite_bf16_words") != 0
+                    or record.get("d4_commit") != D4_COMMIT
+                    or (layer is None and "layer" in record)
+                    or (layer is not None and record.get("layer") != layer)
+                ):
+                    errors.append(f"D4 state manifest metadata mismatch: {relative}")
         elif expected[relative] == "normalized_attention_input":
             bits = np.load(path, mmap_mode="r", allow_pickle=False)
             if bits.shape != (SEQ, 6144) or bits.dtype != np.uint16:
@@ -791,6 +876,10 @@ def validate_artifacts(
         errors.append("manifest massive-coordinate summary differs from artifacts")
     if manifest.get("nll_summary") != nll_summary:
         errors.append("manifest NLL summary differs from artifacts")
+    if state_artifact_count != len(STATE_TEXTS) * STATE_SNAPSHOTS_PER_TEXT:
+        errors.append("D4 state artifact count differs")
+    if state_payload_bytes != STATE_PAYLOAD_BYTES:
+        errors.append("D4 raw state payload size differs")
     if set(nll_summary) == set(V1_TEXTS):
         uniform = math.log(int(manifest.get("model", {}).get("unpadded_vocab_size", 0)))
         rebuilt_nll_gate = {
@@ -812,6 +901,9 @@ def validate_artifacts(
     return {
         "artifact_count": len(expected),
         "normalized_nonfinite_words": normalized_nonfinite,
+        "state_nonfinite_words": state_nonfinite,
+        "state_artifact_count": state_artifact_count,
+        "state_payload_bytes": state_payload_bytes,
         "maximum_meter_mass_error": max(meter_errors, default=0.0),
         "nll_gate": rebuilt_nll_gate,
     }
@@ -838,6 +930,7 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         manifest.get("texts") != TEXTS
         or manifest.get("v1_texts") != V1_TEXTS
         or manifest.get("paired_texts") != PAIRED_TEXTS
+        or manifest.get("state_texts") != STATE_TEXTS
         or manifest.get("layers") != LAYERS
         or manifest.get("seq") != SEQ
         or manifest.get("qchunk") != QCHUNK
@@ -850,14 +943,20 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         "A6": A6_COMMIT,
         "A8": A8_COMMIT,
         "P-e/P-f": PE_PF_COMMIT,
+        "D4": D4_COMMIT,
     }
     if registrations != expected_registrations:
         errors.append("wrong registration commit boundaries")
     if manifest.get("attention_dtype_boundary") != ATTENTION_DTYPE_BOUNDARY:
         errors.append("wrong attention dtype boundary")
     features = manifest.get("capture_features", {})
-    if features.get("residual_hidden_states") is not False or features.get("D4_satisfied") is not False:
-        errors.append("D4 scope was silently broadened")
+    if (
+        features.get("residual_hidden_states") is not True
+        or features.get("D4_satisfied") is not True
+        or features.get("all_arms_addition") != ["lossless_bf16_residual_states"]
+        or manifest.get("d4_state_contract") != expected_d4_contract()
+    ):
+        errors.append("D4 lossless residual-state scope is incomplete")
     startup = manifest.get("startup_gate", {})
     parity = manifest.get("stock_attention_parity", {})
     if startup.get("passed") is not True or parity.get("passed") is not True:
@@ -902,7 +1001,7 @@ def validate_capture_command(args: argparse.Namespace) -> None:
         },
         "artifact_validation": artifacts,
         "lf5_replay_parity_ready": not errors,
-        "D4_satisfied": False,
+        "D4_satisfied": not errors,
         "errors": errors,
         "passed": not errors,
     }
@@ -942,8 +1041,12 @@ def self_test() -> None:
         raise AssertionError("BF16 finite-bit self-test failed")
     if not np.all((nonfinite & np.uint16(0x7F80)) == np.uint16(0x7F80)):
         raise AssertionError("BF16 nonfinite-bit self-test failed")
-    if expected_artifact_count() != 1788 or len(expected_paths()) != 1788:
+    if expected_artifact_count() != 2324 or len(expected_paths()) != 2324:
         raise AssertionError("artifact inventory self-test failed")
+    if STATE_PAYLOAD_BYTES != 53_955_526_656:
+        raise AssertionError("D4 payload-size self-test failed")
+    if expected_d4_contract()["artifact_count"] != 536:
+        raise AssertionError("D4 contract self-test failed")
     reference = [1, 3, 260]
     first = stratified_random_mask(reference, set(reference), seed=9)
     second = stratified_random_mask(reference, set(reference), seed=9)
