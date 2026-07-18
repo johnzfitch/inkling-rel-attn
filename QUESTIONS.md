@@ -34,15 +34,15 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Gate | Next action |
 |---|---|---|---|
-| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | rvec side DONE descriptively (`analysis/round5/r5c_rvec/`); D4 lossless full-depth state capture registered and implemented; awaiting GPU pass | channel-4786/3290 lifecycle first when the widened pass lands |
-| LF3 | Absolute-position counter hiding in the r-channel? | D1 runner built and inputs frozen; awaiting the GPU pass | run when the widened pass lands |
-| LF8 | Fiber orientation: content-stable anchor? chirality? | same | run when the widened pass lands (start at the L53 anomaly, `analysis/round5/r5c_rvec/`) |
-| LF9 | Long-range bandwidth budget per layer | same (corrected meters) | run when the widened pass lands |
-| R5-B | Does realized transport change with input? (depth profile) | same (corrected meters) | run when the widened pass lands |
+| R5-C | Activation-space geometry (intrinsic dim, carrier share, flip-band discontinuity) | D4 lossless full-depth state capture CERTIFIED (`analysis/round5/widened_capture/`) | run channel-4786/3290 lifecycle first |
+| LF3 | Absolute-position counter hiding in the r-channel? | D1 corrected r-vectors CERTIFIED | runnable now |
+| LF8 | Fiber orientation: content-stable anchor? chirality? | D1 corrected r-vectors CERTIFIED | runnable now; start at the L53 anomaly (`analysis/round5/r5c_rvec/`) |
+| LF9 | Long-range bandwidth budget per layer | D1 corrected meters CERTIFIED | runnable now |
+| R5-B | Does realized transport change with input? (depth profile) | D1 corrected meters CERTIFIED | runnable now |
 | LF5-b | Bracket matching above baseline (the science LF5 was built for) | BPE starved the corpus (n=1) | engineered long-range bracket corpus, then rerun |
 | R5-D | Ablation campaign (bias-off, carrier-out, near/far, heal-the-wall, head-class) | own GPU campaign on corrected code | schedule after recapture |
-| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired arms, boundaries, dose, and pairing frozen (`analysis/round5/pe/corpus_freeze.json`); awaiting capture | run the widened pass, then evaluate |
-| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); all four classes and controls frozen on both fresh arms; awaiting the same capture | evaluate after the widened pass |
+| P-e | Does deep-global boundary widening scale with the amount of prior context a boundary retires? | REGISTERED (`ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md`); paired freeze and corrected capture CERTIFIED | runnable after mechanical re-certifications |
+| P-f | Are the deep-aperture extremes referential anchors (URLs, names, gratitude)? Is the depth flip a boundary-locked transient? Does delimiter punctuation narrow everywhere? | REGISTERED (`ROUND5_APERTURE_ANCHOR_PREREG.md`); classes, controls, and corrected capture CERTIFIED | runnable with P-e |
 
 ## FORECAST
 
@@ -52,19 +52,19 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — scope RESOLVED: widen; execution READY with D4**
+- **D1 — scope RESOLVED; execution COMPLETE and CERTIFIED with D4**
   (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`; production handoff:
   `analysis/round5/widened_capture/README.md`). The widened runner, A8
   Git-blob/parity/shard/package gate, paired builder/freeze, independent
   validator, normalized replay inputs, and all 66 × 24 LF5 needle rows are
-  implemented, including the registered D4 extension. The GPU pass has **not**
-  been fired; its first production preflight was stopped without an output
-  when D4 was authorized.
-- **D4 — scope RESOLVED and IMPLEMENTED: full-depth lossless states**
+  implemented, including the registered D4 extension. The 2,324-artifact
+  production pass and independent validation passed at capture head `e291453`;
+  LF5 replay is bitwise at all 66 layers (`analysis/round5/widened_capture/`).
+- **D4 — scope RESOLVED, COMPLETE, and CERTIFIED: full-depth lossless states**
   (`registrations/ROUND5_CAPTURE_SCOPE_D4.md`). Capture BF16 embedding state
   plus all 66 layer outputs for all eight arms; six v1 texts are confirmatory,
-  paired arms descriptive only. The runner and independent validator enforce
-  the 536-state / 2,324-total-artifact contract.
+  paired arms descriptive only. All 536 states passed independent hashes,
+  shape/dtype checks, and BF16 finiteness with zero non-finite words.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
 

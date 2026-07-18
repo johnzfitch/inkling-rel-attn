@@ -1,9 +1,11 @@
 # D1 widened corrected capture — production handoff
 
-Status: **D1+D4 runner build complete; paired inputs frozen; GPU capture not fired**.
+Status: **D1+D4 capture complete and independently certified**. See
+`RESULTS.md`, `preflight.json`, `capture_validation.json`, and
+`lf5_replay_parity.json` in this directory.
 
-The production pass writes a fresh `dumps/round5/widened_corrected_capture/`
-tree and refuses to overwrite a nonempty output. It captures all 66 layers for
+The production pass wrote a fresh `dumps/round5/widened_corrected_capture/`
+tree and refuses to overwrite it. It captures all 66 layers for
 the six v1 texts plus the fresh paired P-e/P-f arms under the A6 arithmetic
 boundary. Old dumps remain immutable.
 
@@ -23,7 +25,7 @@ boundary. Old dumps remain immutable.
 - the six v1 texts are the confirmatory R5-C/channel-lifecycle population;
   the paired-arm states are secondary descriptive replications only.
 
-The expected production inventory is 2,324 artifacts. The runner records a
+The certified production inventory is 2,324 artifacts. The runner records a
 failed manifest on any exception and never treats a partial tree as reusable.
 
 ## Required environment

@@ -1,0 +1,194 @@
+{
+  "D4_satisfied": true,
+  "artifact_validation": {
+    "artifact_count": 2324,
+    "maximum_meter_mass_error": 0.0002977301337523386,
+    "nll_gate": {
+      "all_finite": true,
+      "passed": true,
+      "prose_positive_below_uniform": true,
+      "random_above_prose": true,
+      "uniform_nll": 12.206362603488301
+    },
+    "normalized_nonfinite_words": 0,
+    "state_artifact_count": 536,
+    "state_nonfinite_words": 0,
+    "state_payload_bytes": 53955526656
+  },
+  "capture_git_head": "e291453d1f3f9fb0ff4b0c40077b4fda132dd1b6",
+  "capture_manifest_sha256": "2fc2ec9dd4d6b684a473847f6fbd4541d4326b49d7d6456b463ee5722399a75f",
+  "checkpoint_validation": {
+    "nontrunk": [
+      "mtp.safetensors"
+    ],
+    "rehash_shards": true,
+    "trunk_shards": 33
+  },
+  "created_at_utc": "2026-07-18T07:30:34.577539+00:00",
+  "errors": [],
+  "historical_source_validation": {
+    "capture_git_head": "e291453d1f3f9fb0ff4b0c40077b4fda132dd1b6",
+    "capture_git_tree_verified": true,
+    "current_checkout_drift": [],
+    "files": {
+      "analysis/round5/pe/corpus_freeze.json": {
+        "captured_sha256": "a72071a6a5bb6a22038f07171b08d90e1a4d09b09c99c2f36bafcd22c0df1a57",
+        "current_sha256": "a72071a6a5bb6a22038f07171b08d90e1a4d09b09c99c2f36bafcd22c0df1a57",
+        "git_blob_sha256": "a72071a6a5bb6a22038f07171b08d90e1a4d09b09c99c2f36bafcd22c0df1a57"
+      },
+      "registrations/ROUND5_AMENDMENT_A5.md": {
+        "captured_sha256": "81033ea5e35bc3a2bd74deea46971b0fa866cecda6718fba96b16b516a65fe84",
+        "current_sha256": "81033ea5e35bc3a2bd74deea46971b0fa866cecda6718fba96b16b516a65fe84",
+        "git_blob_sha256": "81033ea5e35bc3a2bd74deea46971b0fa866cecda6718fba96b16b516a65fe84"
+      },
+      "registrations/ROUND5_AMENDMENT_A6.md": {
+        "captured_sha256": "1f8c7dc402f6eeaf71b057d93c48b8a53095e399bdd2899fdbf302d8bfc15103",
+        "current_sha256": "1f8c7dc402f6eeaf71b057d93c48b8a53095e399bdd2899fdbf302d8bfc15103",
+        "git_blob_sha256": "1f8c7dc402f6eeaf71b057d93c48b8a53095e399bdd2899fdbf302d8bfc15103"
+      },
+      "registrations/ROUND5_AMENDMENT_A8_VALIDATION.md": {
+        "captured_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099",
+        "current_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099",
+        "git_blob_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099"
+      },
+      "registrations/ROUND5_APERTURE_ANCHOR_PREREG.md": {
+        "captured_sha256": "bb6e5c2c82a973835a302933263b48e65a7f2c3c06845c3cf652e0846e42f6a7",
+        "current_sha256": "bb6e5c2c82a973835a302933263b48e65a7f2c3c06845c3cf652e0846e42f6a7",
+        "git_blob_sha256": "bb6e5c2c82a973835a302933263b48e65a7f2c3c06845c3cf652e0846e42f6a7"
+      },
+      "registrations/ROUND5_APERTURE_CONTEXT_DOSE_PREREG.md": {
+        "captured_sha256": "5f5ec38e6b700bd8bf76e9f18e62a9b231b25975923a9f4fd3425aecdbfa2ab2",
+        "current_sha256": "5f5ec38e6b700bd8bf76e9f18e62a9b231b25975923a9f4fd3425aecdbfa2ab2",
+        "git_blob_sha256": "5f5ec38e6b700bd8bf76e9f18e62a9b231b25975923a9f4fd3425aecdbfa2ab2"
+      },
+      "registrations/ROUND5_CAPTURE_AMENDMENT.md": {
+        "captured_sha256": "550d6cde3c62fd63cbde2f668396fded482793c68d1bc84a3c625ed2c82ace36",
+        "current_sha256": "550d6cde3c62fd63cbde2f668396fded482793c68d1bc84a3c625ed2c82ace36",
+        "git_blob_sha256": "550d6cde3c62fd63cbde2f668396fded482793c68d1bc84a3c625ed2c82ace36"
+      },
+      "registrations/ROUND5_CAPTURE_SCOPE_D1.md": {
+        "captured_sha256": "f5480ae28286439510be62930135be33e46c9e849a59dde79bae6a8287268c1f",
+        "current_sha256": "f5480ae28286439510be62930135be33e46c9e849a59dde79bae6a8287268c1f",
+        "git_blob_sha256": "f5480ae28286439510be62930135be33e46c9e849a59dde79bae6a8287268c1f"
+      },
+      "registrations/ROUND5_CAPTURE_SCOPE_D4.md": {
+        "captured_sha256": "bd01ef3649f5c2653abf58c14b11b59da8b19abb1942d61a4378707db03a6bc8",
+        "current_sha256": "bd01ef3649f5c2653abf58c14b11b59da8b19abb1942d61a4378707db03a6bc8",
+        "git_blob_sha256": "bd01ef3649f5c2653abf58c14b11b59da8b19abb1942d61a4378707db03a6bc8"
+      },
+      "scripts/round5_pe_paired_build.py": {
+        "captured_sha256": "d6b238c00ce23154849a1b5ec9ab2e4ee23565e1a0a29b06d7509a16dda5138f",
+        "current_sha256": "d6b238c00ce23154849a1b5ec9ab2e4ee23565e1a0a29b06d7509a16dda5138f",
+        "git_blob_sha256": "d6b238c00ce23154849a1b5ec9ab2e4ee23565e1a0a29b06d7509a16dda5138f"
+      },
+      "scripts/round5_widened_capture.py": {
+        "captured_sha256": "36c61bd9dc217d21a7ea511e5d19c20ca43b4b71153b352f3b3924a8d5697c4b",
+        "current_sha256": "36c61bd9dc217d21a7ea511e5d19c20ca43b4b71153b352f3b3924a8d5697c4b",
+        "git_blob_sha256": "36c61bd9dc217d21a7ea511e5d19c20ca43b4b71153b352f3b3924a8d5697c4b"
+      },
+      "scripts/round5_widened_validate.py": {
+        "captured_sha256": "00ca5dbf233e2b201759db2fc651ab0adb805c1c14d263fcc3888a54bff29af4",
+        "current_sha256": "00ca5dbf233e2b201759db2fc651ab0adb805c1c14d263fcc3888a54bff29af4",
+        "git_blob_sha256": "00ca5dbf233e2b201759db2fc651ab0adb805c1c14d263fcc3888a54bff29af4"
+      },
+      "scripts/tier2_nvfp4.py": {
+        "captured_sha256": "d90817379601fc21f157946caf68f21c3ca6e84cbf80c58a60e15bf33ebee2b5",
+        "current_sha256": "d90817379601fc21f157946caf68f21c3ca6e84cbf80c58a60e15bf33ebee2b5",
+        "git_blob_sha256": "d90817379601fc21f157946caf68f21c3ca6e84cbf80c58a60e15bf33ebee2b5"
+      },
+      "scripts/tier2_run.py": {
+        "captured_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124",
+        "current_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124",
+        "git_blob_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124"
+      },
+      "scripts/tier2_stream.py": {
+        "captured_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f",
+        "current_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f",
+        "git_blob_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f"
+      }
+    }
+  },
+  "input_validation": {
+    "hashes": {
+      "01_prose_en": "900e6d0babb6824a8b46cd3ea17b7e4d03beffad182bd595bc30e627e3b5cb88",
+      "02_code": "d867bb5d5f1de56c850dff56e5389d5edfdc38bfd46fc69517c7ed843481108d",
+      "03_templated": "f5ef166f9ef541c23e362c4c8fa318064e5aa0467a38f01a9ffa57d00e90210b",
+      "04_multilingual": "d6b9a54d6c2d9ae7b7ccd3896cd3ffb9ccb28a08d8166fbce354bc73ff785627",
+      "05_needles": "c6c859c1833f69f51f896edbd0c5e772f8506c3a94d08477e912b2a403267fb8",
+      "06_random": "4240840c3e7b4f27795626b992727f213b73c57ac1b84df640444104d276d23c",
+      "09_pe_single_thread": "16d854908a96da2bbdad0e2c2f990f1be01ae2d7c721ed45d3db7dd6882db13a",
+      "10_pe_multi_conversation": "f39659256b1f1f12713751fd35de79711d222a5c75142de34d6c00742cd1db62"
+    },
+    "paired": {
+      "all_pf_classes_nonvoid": true,
+      "class_counts": {
+        "09_pe_single_thread": {
+          "gratitude_tokens": 30,
+          "higher_scope_starts": 0,
+          "label_colons": 571,
+          "ordinary_message_starts": 570,
+          "proper_noun_proxy": 136,
+          "url_tokens": 129
+        },
+        "10_pe_multi_conversation": {
+          "gratitude_tokens": 30,
+          "higher_scope_starts": 7,
+          "label_colons": 571,
+          "ordinary_message_starts": 563,
+          "proper_noun_proxy": 136,
+          "url_tokens": 129
+        }
+      },
+      "pair_position_alignment": {
+        "exact_position_matches": 571,
+        "max_multi_minus_single": 0,
+        "median_multi_minus_single": 0.0,
+        "min_multi_minus_single": 0,
+        "mismatched_positions": 0,
+        "paired_count": 571
+      },
+      "pair_preservation": {
+        "intersection": 571,
+        "intersection_over_union": 1.0,
+        "minimum": 0.8,
+        "multi_message_starts": 571,
+        "passed": true,
+        "single_message_starts": 571,
+        "union": 571
+      },
+      "paired_ordinary_messages": 563,
+      "private_classes_sha256": "97d0fb0547faffa312e6d1a7fbfb4cb0306ca82e4a63a91494911d3346cc71ee",
+      "private_manifest_sha256": "2dfa5dada6481d73f571e43fdb55e536736639ebe6388e241e9d147d6f769823",
+      "public_freeze_sha256": "a72071a6a5bb6a22038f07171b08d90e1a4d09b09c99c2f36bafcd22c0df1a57"
+    }
+  },
+  "kind": "round5_d1_widened_independent_capture_validation",
+  "lf5_replay_parity_ready": true,
+  "passed": true,
+  "runtime_validation": {
+    "modeling_inkling": {
+      "path": "R:\\inkling\\.venv-tier2\\Lib\\site-packages\\transformers\\models\\inkling\\modeling_inkling.py",
+      "sha256": "888009de3f84cfd493a977d75bd18517db60234d5fecccc7449be4b8a680c5f6"
+    },
+    "packages": {
+      "numpy": {
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\numpy\\__init__.py",
+        "version": "2.5.0"
+      },
+      "tokenizers": {
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\tokenizers\\__init__.py",
+        "version": "0.22.2"
+      },
+      "torch": {
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\torch\\__init__.py",
+        "version": "2.11.0+cu128"
+      },
+      "transformers": {
+        "module_path": "R:\\inkling\\.venv-tier2\\Lib\\site-packages\\transformers\\__init__.py",
+        "version": "5.14.0"
+      }
+    }
+  },
+  "schema_version": 1,
+  "source_sha256": "00ca5dbf233e2b201759db2fc651ab0adb805c1c14d263fcc3888a54bff29af4"
+}
