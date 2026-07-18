@@ -61,11 +61,9 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## Decision queue (blocking human/agent calls, not compute)
 
-- **D1 — recapture scope.** The corrected GPU pass covers rvec+NLL for
-  07/08/07b/01_prose only. LF3, LF8, LF9, R5-B consume v1-text rvec and tier2
-  meters that stay provisional (≤0.025 Δp) unless the pass is widened. Choose:
-  widen the pass (add v1 rvec + meter re-run) or run those rows on provisional
-  dumps with the deviation disclosed.
+- **D1 — RESOLVED: widen** (`registrations/ROUND5_CAPTURE_SCOPE_D1.md`). The
+  P-e capture pass also takes v1-text rvec + corrected tier2 meters; every
+  provisional stamp re-certifies and LF3/LF8/LF9/R5-B unblock when it lands.
 - **D3 — engineered bracket corpus** for LF5-b (spec: pairs at d ∈ 64–2048,
   no BPE-merged pairs, distance-matched controls).
 
