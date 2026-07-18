@@ -1,0 +1,239 @@
+{
+  "created_at_utc": "2026-07-18T02:06:15.260620+00:00",
+  "curve_note": "secondary observation, NOT promoted: all 8 MTP banks sit below the trunk-trunk minimum, nearest L51 (deep LOCAL) x7 / L47 (global) x1; the mode-0 cosine re-derivation (lf7_rederivation.json) does not confirm the neighborhood (1/8) - its null is saturated (p95=0.996), so a discriminating re-derivation is still owed before any promotion",
+  "curve_parents": {
+    "M0": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6794087530718269,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M1": {
+      "below_trunk_minimum": true,
+      "depth": 47,
+      "distance": 0.6748408813116014,
+      "null_percentile": 0.0,
+      "parent": "L47"
+    },
+    "M2": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6674989563189558,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M3": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6821630137696352,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M4": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6735116407840562,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M5": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6670737099428617,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M6": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6680144438465094,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    },
+    "M7": {
+      "below_trunk_minimum": true,
+      "depth": 51,
+      "distance": 0.6803111921762051,
+      "null_percentile": 0.0,
+      "parent": "L51"
+    }
+  },
+  "curve_trunk_null": {
+    "median": 0.8156651502450444,
+    "min": 0.6978640506145422,
+    "p05": 0.7414024537405935
+  },
+  "dump_sha256": "3823077b20ea5fd8e3a885aab7e497603f6fc21f8cb0f31534f3903d667bb9f1",
+  "fixed_k_parents": {
+    "M0": {
+      "depth": 49,
+      "distance": 0.9938142824880162,
+      "parent": "L49"
+    },
+    "M1": {
+      "depth": 65,
+      "distance": 0.9934897335198195,
+      "parent": "L65"
+    },
+    "M2": {
+      "depth": 63,
+      "distance": 0.9936521836003803,
+      "parent": "L63"
+    },
+    "M3": {
+      "depth": 64,
+      "distance": 0.993329711296551,
+      "parent": "L64"
+    },
+    "M4": {
+      "depth": 62,
+      "distance": 0.9931410400039726,
+      "parent": "L62"
+    },
+    "M5": {
+      "depth": 64,
+      "distance": 0.993099052748684,
+      "parent": "L64"
+    },
+    "M6": {
+      "depth": 63,
+      "distance": 0.9929277831064462,
+      "parent": "L63"
+    },
+    "M7": {
+      "depth": 65,
+      "distance": 0.9928001481778137,
+      "parent": "L65"
+    }
+  },
+  "kind": "round5_lf7_parentage",
+  "prediction": {
+    "clause_a_deep_cluster": true,
+    "clause_b_shared_neighborhood": false,
+    "passed": false,
+    "registered": "parents cluster L30+ and share one neighborhood"
+  },
+  "primary_parents": {
+    "M0": {
+      "depth": 15,
+      "distance": 0.9482927433818422,
+      "fork": false,
+      "null_percentile": 49.417249417249415,
+      "parent": "L15",
+      "sketch_agrees": false
+    },
+    "M1": {
+      "depth": 65,
+      "distance": 0.9539402410697738,
+      "fork": false,
+      "null_percentile": 64.47552447552447,
+      "parent": "L65",
+      "sketch_agrees": false
+    },
+    "M2": {
+      "depth": 63,
+      "distance": 0.957518721175944,
+      "fork": false,
+      "null_percentile": 73.33333333333333,
+      "parent": "L63",
+      "sketch_agrees": false
+    },
+    "M3": {
+      "depth": 64,
+      "distance": 0.9557640512139326,
+      "fork": false,
+      "null_percentile": 68.62470862470863,
+      "parent": "L64",
+      "sketch_agrees": false
+    },
+    "M4": {
+      "depth": 65,
+      "distance": 0.9571607770577107,
+      "fork": false,
+      "null_percentile": 72.68065268065268,
+      "parent": "L65",
+      "sketch_agrees": false
+    },
+    "M5": {
+      "depth": 64,
+      "distance": 0.9575407940096577,
+      "fork": false,
+      "null_percentile": 73.37995337995338,
+      "parent": "L64",
+      "sketch_agrees": false
+    },
+    "M6": {
+      "depth": 64,
+      "distance": 0.9555108671206654,
+      "fork": false,
+      "null_percentile": 67.83216783216784,
+      "parent": "L64",
+      "sketch_agrees": false
+    },
+    "M7": {
+      "depth": 65,
+      "distance": 0.9523586934726315,
+      "fork": false,
+      "null_percentile": 61.25874125874125,
+      "parent": "L65",
+      "sketch_agrees": false
+    }
+  },
+  "promotion_gate": {
+    "met": false,
+    "requires": "sketch parents match primary for >= 6/8"
+  },
+  "schema_version": 1,
+  "sketch_agreement": "0/8",
+  "sketch_parents": {
+    "M0": {
+      "depth": 14,
+      "distance": 0.5175888973160444,
+      "parent": "L14"
+    },
+    "M1": {
+      "depth": 16,
+      "distance": 0.5341132979136984,
+      "parent": "L16"
+    },
+    "M2": {
+      "depth": 14,
+      "distance": 0.5186728113881581,
+      "parent": "L14"
+    },
+    "M3": {
+      "depth": 14,
+      "distance": 0.5110007074448213,
+      "parent": "L14"
+    },
+    "M4": {
+      "depth": 14,
+      "distance": 0.49523895432423476,
+      "parent": "L14"
+    },
+    "M5": {
+      "depth": 15,
+      "distance": 0.51865092924288,
+      "parent": "L15"
+    },
+    "M6": {
+      "depth": 12,
+      "distance": 0.5186917894435076,
+      "parent": "L12"
+    },
+    "M7": {
+      "depth": 14,
+      "distance": 0.5235891993422549,
+      "parent": "L14"
+    }
+  },
+  "source_sha256": "1acf333c8f152e47cb05667a06b23dc44e49518f599c3bfd679d128b45c34c67",
+  "trunk_null": {
+    "max": 0.9727984234039465,
+    "median": 0.9484684942653212,
+    "min": 0.8696956673022501,
+    "n_pairs": 2145,
+    "p05": 0.900826646338814
+  }
+}

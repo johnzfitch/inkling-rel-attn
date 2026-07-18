@@ -30,8 +30,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Inputs | Next action |
 |---|---|---|---|
-| LF7 | Are MTP drafter layers forks of specific trunk layers or fresh solutions? | weights only | run Procrustes/nearest-parent vs trunk-pair null |
-| LF1 | Does the table treat power-of-two distances specially (pips)? | weights | z-score pips vs all-d null, multiple-comparison controlled |
 | LF2 | Does the kernel have sentence/paragraph knees? | weights + corpus stats | freeze corpus scale distributions FIRST, then knee detection |
 | LF6 | Is the 2-exp kernel a quadrature of corpus MI(d)? | weights + corpus | measure MI(d) frozen estimator; k-exp vs power-law BIC |
 | LF11 | Which of our own tools false-positives on the certified null? | curation | freeze the null-benchmark bundle + certification statement |
@@ -111,6 +109,19 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
+- **LF7 (2026-07-17): prediction FAILED → the registered surprise: no fork.**
+  MTP nearest-parent distances sit at the 49th–73rd percentile of the
+  trunk-trunk null under two independent metrics that disagree on argmin
+  (0/8) — the drafters re-derived transport on read directions unrelated to
+  any trunk layer's. Convergent shape, not inheritance: a mini universality
+  result inside one checkpoint. Curve-side L47/L51 bank convergence recorded
+  as an unpromoted secondary (re-derivation discriminator saturated).
+  `analysis/round5/lf7/RESULTS.md`.
+- **LF1 (2026-07-17): clean null, prediction PASSED.** No power-of-two pip
+  survives Holm in 341 tests (globals + locals); the pre-flagged d=128 is
+  flat (best raw p 0.040, Holm 1.0); the d=512 echo does not register as a
+  pip — band step and pip statistics dissociate correctly.
+  `analysis/round5/lf1/RESULTS.md`.
 - **Rounds 1–3:** mechanism ground truth from source; transport is low-rank
   (~1.5–3 of 16), decay-dominated; positional energy concentrates early; no
   learned signal beyond d=1024 anywhere.
