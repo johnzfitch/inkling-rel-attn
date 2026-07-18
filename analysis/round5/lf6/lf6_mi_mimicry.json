@@ -1,0 +1,172 @@
+{
+  "correlations": {
+    "L05": {
+      "code_descriptive": 0.589958274053404,
+      "prose": 0.43112979777266336
+    },
+    "L11": {
+      "code_descriptive": 0.8994245201237286,
+      "prose": 0.6110006747331893
+    },
+    "L17": {
+      "code_descriptive": 0.8170170878511798,
+      "prose": 0.5549653417160155
+    },
+    "L23": {
+      "code_descriptive": 0.915710700915949,
+      "prose": 0.6283320780212212
+    },
+    "L29": {
+      "code_descriptive": 0.9457616941919095,
+      "prose": 0.6516722833506339
+    },
+    "L35": {
+      "code_descriptive": 0.9218468150854724,
+      "prose": 0.6162339225965693
+    },
+    "L41": {
+      "code_descriptive": 0.9181641014667115,
+      "prose": 0.5939325308052935
+    },
+    "L47": {
+      "code_descriptive": 0.6705217894484701,
+      "prose": 0.3325195245907839
+    },
+    "L53": {
+      "code_descriptive": 0.9320304144995133,
+      "prose": 0.6290429567945331
+    },
+    "L59": {
+      "code_descriptive": 0.9551000844857622,
+      "prose": 0.6561293912080723
+    },
+    "L65": {
+      "code_descriptive": 0.8762088618145771,
+      "prose": 0.5979966066971005
+    }
+  },
+  "created_at_utc": "2026-07-18T02:13:03.847028+00:00",
+  "family_race": {
+    "L05": {
+      "bic": {
+        "exp1": -2811.497324854258,
+        "exp2": -2853.915981923617,
+        "exp3": -2840.116535577377,
+        "power": -2852.534719092564
+      },
+      "bic_order_2exp_power_1exp": true,
+      "exp3_not_decisive": true
+    },
+    "L11": {
+      "bic": {
+        "exp1": -3480.0662300771373,
+        "exp2": -3466.266783862568,
+        "exp3": -3452.467337647998,
+        "power": -2789.654921513513
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L17": {
+      "bic": {
+        "exp1": -2210.9551988478242,
+        "exp2": -2197.155752633254,
+        "exp3": -2183.3563064186847,
+        "power": -1977.7835091681911
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L23": {
+      "bic": {
+        "exp1": -3348.2924361238797,
+        "exp2": -3334.49298990931,
+        "exp3": -3320.69354369474,
+        "power": -2651.176864642533
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L29": {
+      "bic": {
+        "exp1": -4229.555578448406,
+        "exp2": -4215.83381236055,
+        "exp3": -4202.034366139474,
+        "power": -2871.0114293491683
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L35": {
+      "bic": {
+        "exp1": -4786.5802973984055,
+        "exp2": -4772.780851183836,
+        "exp3": -4758.981404969266,
+        "power": -3651.3712841550455
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L41": {
+      "bic": {
+        "exp1": -4396.939809862492,
+        "exp2": -4383.140363647923,
+        "exp3": -4369.340917433353,
+        "power": -3006.1214796582726
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L47": {
+      "bic": {
+        "exp1": -1641.5925715452988,
+        "exp2": -1627.7931253307288,
+        "exp3": -1613.9936791161595,
+        "power": -1052.1416932719974
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L53": {
+      "bic": {
+        "exp1": -4132.889596498493,
+        "exp2": -4119.090150283923,
+        "exp3": -4105.2907040693535,
+        "power": -3169.7458475368708
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L59": {
+      "bic": {
+        "exp1": -4992.771797765369,
+        "exp2": -4978.9723515507985,
+        "exp3": -4965.172905336229,
+        "power": -3558.6806679542005
+      },
+      "bic_order_2exp_power_1exp": false,
+      "exp3_not_decisive": true
+    },
+    "L65": {
+      "bic": {
+        "exp1": -5354.614100533124,
+        "exp2": -5795.6763074579185,
+        "exp3": -5782.406873773359,
+        "power": -5778.3804156679735
+      },
+      "bic_order_2exp_power_1exp": true,
+      "exp3_not_decisive": true
+    }
+  },
+  "kind": "round5_lf6_mi_mimicry",
+  "mi_dump_sha256": "f0709ae24a6cd4c41a59a7beef8914ceeeae14c30cf32c3045714c2ee4b2512c",
+  "prediction": {
+    "clause_bic_order": "2/11 (needs >=6)",
+    "clause_exp3": "11/11 (needs >=6)",
+    "clause_rho": "0/11 (needs >=6)",
+    "passed": false,
+    "registered": "BIC 2exp > power > 1exp on most globals; 3exp not decisive; prose rank-corr > 0.9"
+  },
+  "schema_version": 1,
+  "source_sha256": "46a1bcb5c012538c7aae0edc7eab80659aed86a381f2cebfa4f0836dbc4b01da"
+}

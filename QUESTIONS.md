@@ -30,8 +30,6 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 | Row | Question | Inputs | Next action |
 |---|---|---|---|
-| LF2 | Does the kernel have sentence/paragraph knees? | weights + corpus stats | freeze corpus scale distributions FIRST, then knee detection |
-| LF6 | Is the 2-exp kernel a quadrature of corpus MI(d)? | weights + corpus | measure MI(d) frozen estimator; k-exp vs power-law BIC |
 | LF11 | Which of our own tools false-positives on the certified null? | curation | freeze the null-benchmark bundle + certification statement |
 | R5-A | The Atlas: one navigable end-to-end map | existing dumps | build atlas.json + poster; mark in-situ cells provisional |
 | R4-W | Whittaker band-limit section (ROUND4_SPEC, never run) | weights | run as specified |
@@ -109,6 +107,16 @@ tested; these rows still cite dumps from the uncorrected capture (Δp ≤ 0.025)
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
+- **LF2 (2026-07-17): prediction FAILED inverted — paragraph crest, no
+  sentence scale.** 8/11 globals have Holm-significant breakpoints in the
+  frozen paragraph range [21,160] (median d≈116), 0/11 in the sentence range;
+  slope is slightly POSITIVE before each break — the kernel rises to a
+  paragraph-scale crest, then decays. `analysis/round5/lf2/RESULTS.md`.
+- **LF6 (2026-07-17): prediction FAILED — no MI mimicry.** Prose rank-corr
+  0.33–0.66 (needed >0.9, 0/11); far field d≥32 is SINGLE-exponential in
+  9/11 globals (2-exp adds nothing; power law never wins). SGD didn't copy
+  the corpus's power law — long range is delegated to content matching.
+  `analysis/round5/lf6/RESULTS.md`.
 - **LF7 (2026-07-17): prediction FAILED → the registered surprise: no fork.**
   MTP nearest-parent distances sit at the 49th–73rd percentile of the
   trunk-trunk null under two independent metrics that disagree on argmin
