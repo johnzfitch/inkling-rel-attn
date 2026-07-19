@@ -28,7 +28,15 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## OPEN — runnable now (no dependence on the corrected recapture)
 
-*(empty — the runnable queue is cleared)*
+| Row | Question | Frozen method |
+|---|---|---|
+| F7-1 | Which signed d=0/1/2/3 pieces make L29 causal, and are they sufficient? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-1 |
+| F7-2 | Are L23/L35 backup shoulders for L29? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-2 |
+| F7-3 | Is L29 load in the static non-carrier mean or centered r variation? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-3 |
+| F7-4 | Which L29 head quartile carries the stencil, and how many heads rescue it? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-4 |
+| F7-5 | Does restoring only L29 needle-query states rescue retrieval? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-5 |
+| F7-6 | Is the complete text-conditioned clock subspace functional at 8k? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-6 |
+| F7-7 | Does L29 act through rank rather than calibration, and do boundary/pronoun costs replicate fresh? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-7 |
 
 ## OPEN — gated
 
