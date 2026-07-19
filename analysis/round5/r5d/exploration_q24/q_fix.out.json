@@ -1,0 +1,87 @@
+{
+ "q19_normalized": {
+  "mean_abs_h4786_normalized": 4.405796051025391,
+  "contribution_norm_vs_rbar_norm": 0.4600701804491811,
+  "r_variance_explained_by_4786_alone": -0.0004065808620206113,
+  "corr_h4786_with_r_along_col": -0.16755149415870266
+ },
+ "q21_chirality": {
+  "per_layer_counts": {
+   "0": 2,
+   "2": 1,
+   "3": 1,
+   "5": 2,
+   "8": 1,
+   "11": 2,
+   "13": 1,
+   "15": 2,
+   "16": 1,
+   "17": 2,
+   "19": 1,
+   "20": 1,
+   "25": 3,
+   "26": 1,
+   "28": 2,
+   "29": 1,
+   "30": 2,
+   "34": 1,
+   "35": 2,
+   "36": 1,
+   "37": 1,
+   "40": 1,
+   "41": 1,
+   "42": 1,
+   "43": 1,
+   "45": 1,
+   "48": 2,
+   "49": 1,
+   "50": 1,
+   "52": 1,
+   "57": 1,
+   "59": 2,
+   "60": 2,
+   "63": 1
+  },
+  "clock_overlap": {
+   "L53": {
+    "n_chirality_coords": 0,
+    "G_energy_on_them": 0.0,
+    "expected_if_uniform": 0.0
+   },
+   "L59": {
+    "n_chirality_coords": 2,
+    "G_energy_on_them": 0.005898508968298239,
+    "expected_if_uniform": 0.001953125
+   },
+   "L65": {
+    "n_chirality_coords": 0,
+    "G_energy_on_them": 0.0,
+    "expected_if_uniform": 0.0
+   }
+  }
+ },
+ "q23_bias_off_L29_01_prose_en": {
+  "__all__": {
+   "n": 8191,
+   "mean_dnll": 0.17647417478546265
+  }
+ },
+ "q23_bias_off_L29_02_code": {
+  "__all__": {
+   "n": 8191,
+   "mean_dnll": 0.2243896575655755
+  }
+ },
+ "q23_clock_freeze_L53_L59_01_prose_en": {
+  "__all__": {
+   "n": 8191,
+   "mean_dnll": 0.00014524037199657256
+  }
+ },
+ "q23_bias_off_L65_01_prose_en": {
+  "__all__": {
+   "n": 8191,
+   "mean_dnll": 0.004745673760726271
+  }
+ }
+}
