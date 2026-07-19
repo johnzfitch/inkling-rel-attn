@@ -1,0 +1,27 @@
+{
+  "artifact_count_rehashed": 563,
+  "clock_method": "16x16 projection-Gram identity; no full producer kernels",
+  "created_at_utc": "2026-07-19T08:18:45.065013+00:00",
+  "errors": [
+    "F7-3 ratio r_remove_mean_L29: 0.7807839110722191 != 0.7807838847199452",
+    "F7-3 ratio r_remove_centered_L29: 0.018903481121674115 != 0.01890348048366185",
+    "F7-3 ratio r_remove_noncarrier_all_L29: 0.9487113685940578 != 0.9487113365740566",
+    "F7-3 ratio r_remove_noncarrier_mean_L29: 0.7961485668655071 != 0.7961485399946598",
+    "F7-4 rescue: 0.9337706043496907 != 0.9337706065850021"
+  ],
+  "kind": "round5_followup7_independent_verification",
+  "passed": false,
+  "producer_imported": false,
+  "results_sha256": "0a82c75fbf3df70b3ddab3f2350ee8503222b16d55c83039d711f595929ac429",
+  "schema_version": 1,
+  "verdicts": {
+    "F7-1": true,
+    "F7-2": true,
+    "F7-3": true,
+    "F7-4": true,
+    "F7-5": true,
+    "F7-6": false,
+    "F7-7": false
+  },
+  "verifier_sha256": "b7a854a5b7cfd841e58613897d41947da8c7258c36ffb7a67200985b73559718"
+}

@@ -175,7 +175,11 @@ def family_f7_1(dump: Path) -> dict[str, Any]:
         singles[arm]["positive_confirmed"] = bool(
             singles[arm]["effect"] > 0 and singles[arm]["ci95"][0] > 0 and value < 0.05
         )
-    parent_cost = float(np.mean(np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])))
+    parent_cost = float(
+        np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])
+        .astype(np.float64)
+        .mean()
+    )
     rescue = 1.0 - costs["stencil_only_d0_3_L29"] / parent_cost
     return {
         "costs": costs,
@@ -224,7 +228,11 @@ def adjusted_labels() -> tuple[str, str, str]:
 def family_f7_3(dump: Path) -> dict[str, Any]:
     names = [arm.arm_id for arm in F.ARMS if arm.family == "F7-3"]
     costs = {name: pooled_cost(dump, name)[0] for name in names}
-    bias = float(np.mean(np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])))
+    bias = float(
+        np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])
+        .astype(np.float64)
+        .mean()
+    )
     ratios = {name: costs[name] / bias for name in names}
     clauses = {
         "remove_mean_at_least_half": ratios["r_remove_mean_L29"] >= 0.5,
@@ -255,7 +263,11 @@ def family_f7_4(dump: Path) -> dict[str, Any]:
         contrasts[other]["positive_confirmed"] = bool(
             contrasts[other]["effect"] > 0 and contrasts[other]["ci95"][0] > 0 and value < 0.05
         )
-    bias = float(np.mean(np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])))
+    bias = float(
+        np.concatenate([parent_tokens("bias_off_L29", t)["delta_nll"] for t in TEXTS])
+        .astype(np.float64)
+        .mean()
+    )
     rescue = 1 - costs["head_top16_stencil_only_L29"] / bias
     return {
         "costs": costs,

@@ -222,3 +222,18 @@ interpreter-provided `__file__`). They are corrected to `R.HEADS` and
 `R.RPERHEAD`. This completes the same namespace-only repair described in A1;
 no scientific or execution rule changes, and no result output existed or was
 inspected before A2.
+
+## Amendment A3 — verifier-discovered denominator dtype mismatch (2026-07-18)
+
+The first complete analyzer output was independently recomputed from raw dumps.
+The verifier agreed on all seven family verdicts but rejected five subsidiary
+F7-3/F7-4 values, with a maximum discrepancy of `3.2021e-8`. The common cause
+was a dtype asymmetry: intervention costs were reduced in float64, while the
+shared certified `bias_off_L29` denominator was concatenated and averaged in
+its stored float32 dtype. The verifier reduced both in float64. The analyzer
+now casts that parent denominator to float64 in F7-1, F7-3, and F7-4. The
+verifier, its `2e-10` comparison tolerance, every scientific threshold, and all
+verdict logic remain unchanged. All seven pre-A3 verdict booleans already
+matched the verifier. The original artifacts are preserved as
+`results_pre_a3.json`, `RESULTS_pre_a3.md`, and
+`verification_pre_a3.json`; the failed verification remains on the record.
