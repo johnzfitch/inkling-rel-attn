@@ -1,0 +1,422 @@
+{
+  "array_count": 65,
+  "array_dtypes": {
+    "carrier_g_L29": "float32",
+    "class_07b_first_content": "int32",
+    "class_07b_pronouns": "int32",
+    "class_08_pronouns": "int32",
+    "class_08_unit_starts": "int32",
+    "clock_direction_matrix_L53": "float32",
+    "clock_direction_matrix_L59": "float32",
+    "clock_g_L53_01_prose_en": "float32",
+    "clock_g_L53_02_code": "float32",
+    "clock_g_L53_03_templated": "float32",
+    "clock_g_L53_04_multilingual": "float32",
+    "clock_g_L53_05_needles": "float32",
+    "clock_g_L53_06_random": "float32",
+    "clock_g_L59_01_prose_en": "float32",
+    "clock_g_L59_02_code": "float32",
+    "clock_g_L59_03_templated": "float32",
+    "clock_g_L59_04_multilingual": "float32",
+    "clock_g_L59_05_needles": "float32",
+    "clock_g_L59_06_random": "float32",
+    "clock_loto_L53_01_prose_en": "float32",
+    "clock_loto_L53_02_code": "float32",
+    "clock_loto_L53_03_templated": "float32",
+    "clock_loto_L53_04_multilingual": "float32",
+    "clock_loto_L53_05_needles": "float32",
+    "clock_loto_L53_06_random": "float32",
+    "clock_loto_L59_01_prose_en": "float32",
+    "clock_loto_L59_02_code": "float32",
+    "clock_loto_L59_03_templated": "float32",
+    "clock_loto_L59_04_multilingual": "float32",
+    "clock_loto_L59_05_needles": "float32",
+    "clock_loto_L59_06_random": "float32",
+    "clock_sham6_L53": "float32",
+    "clock_sham6_L59": "float32",
+    "clock_union_L53": "float32",
+    "clock_union_L59": "float32",
+    "head_order": "int16",
+    "head_q1": "int16",
+    "head_q2": "int16",
+    "head_q3": "int16",
+    "head_q4": "int16",
+    "head_stencil_score_by_text": "float32",
+    "head_stencil_score_median": "float32",
+    "head_top08": "int16",
+    "head_top16": "int16",
+    "head_top32": "int16",
+    "mu_L29_01_prose_en": "float32",
+    "mu_L29_02_code": "float32",
+    "mu_L29_03_templated": "float32",
+    "mu_L29_04_multilingual": "float32",
+    "mu_L29_05_needles": "float32",
+    "mu_L29_06_random": "float32",
+    "mu_L53_01_prose_en": "float32",
+    "mu_L53_02_code": "float32",
+    "mu_L53_03_templated": "float32",
+    "mu_L53_04_multilingual": "float32",
+    "mu_L53_05_needles": "float32",
+    "mu_L53_06_random": "float32",
+    "mu_L59_01_prose_en": "float32",
+    "mu_L59_02_code": "float32",
+    "mu_L59_03_templated": "float32",
+    "mu_L59_04_multilingual": "float32",
+    "mu_L59_05_needles": "float32",
+    "mu_L59_06_random": "float32",
+    "patch_query_positions": "int32",
+    "patch_sham_positions": "int32"
+  },
+  "array_shapes": {
+    "carrier_g_L29": [
+      1024
+    ],
+    "class_07b_first_content": [
+      231
+    ],
+    "class_07b_pronouns": [
+      700
+    ],
+    "class_08_pronouns": [
+      180
+    ],
+    "class_08_unit_starts": [
+      10
+    ],
+    "clock_direction_matrix_L53": [
+      1024,
+      6
+    ],
+    "clock_direction_matrix_L59": [
+      1024,
+      6
+    ],
+    "clock_g_L53_01_prose_en": [
+      1024
+    ],
+    "clock_g_L53_02_code": [
+      1024
+    ],
+    "clock_g_L53_03_templated": [
+      1024
+    ],
+    "clock_g_L53_04_multilingual": [
+      1024
+    ],
+    "clock_g_L53_05_needles": [
+      1024
+    ],
+    "clock_g_L53_06_random": [
+      1024
+    ],
+    "clock_g_L59_01_prose_en": [
+      1024
+    ],
+    "clock_g_L59_02_code": [
+      1024
+    ],
+    "clock_g_L59_03_templated": [
+      1024
+    ],
+    "clock_g_L59_04_multilingual": [
+      1024
+    ],
+    "clock_g_L59_05_needles": [
+      1024
+    ],
+    "clock_g_L59_06_random": [
+      1024
+    ],
+    "clock_loto_L53_01_prose_en": [
+      1024,
+      5
+    ],
+    "clock_loto_L53_02_code": [
+      1024,
+      5
+    ],
+    "clock_loto_L53_03_templated": [
+      1024,
+      5
+    ],
+    "clock_loto_L53_04_multilingual": [
+      1024,
+      5
+    ],
+    "clock_loto_L53_05_needles": [
+      1024,
+      5
+    ],
+    "clock_loto_L53_06_random": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_01_prose_en": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_02_code": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_03_templated": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_04_multilingual": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_05_needles": [
+      1024,
+      5
+    ],
+    "clock_loto_L59_06_random": [
+      1024,
+      5
+    ],
+    "clock_sham6_L53": [
+      1024,
+      6
+    ],
+    "clock_sham6_L59": [
+      1024,
+      6
+    ],
+    "clock_union_L53": [
+      1024,
+      6
+    ],
+    "clock_union_L59": [
+      1024,
+      6
+    ],
+    "head_order": [
+      64
+    ],
+    "head_q1": [
+      16
+    ],
+    "head_q2": [
+      16
+    ],
+    "head_q3": [
+      16
+    ],
+    "head_q4": [
+      16
+    ],
+    "head_stencil_score_by_text": [
+      6,
+      64
+    ],
+    "head_stencil_score_median": [
+      64
+    ],
+    "head_top08": [
+      8
+    ],
+    "head_top16": [
+      16
+    ],
+    "head_top32": [
+      32
+    ],
+    "mu_L29_01_prose_en": [
+      1024
+    ],
+    "mu_L29_02_code": [
+      1024
+    ],
+    "mu_L29_03_templated": [
+      1024
+    ],
+    "mu_L29_04_multilingual": [
+      1024
+    ],
+    "mu_L29_05_needles": [
+      1024
+    ],
+    "mu_L29_06_random": [
+      1024
+    ],
+    "mu_L53_01_prose_en": [
+      1024
+    ],
+    "mu_L53_02_code": [
+      1024
+    ],
+    "mu_L53_03_templated": [
+      1024
+    ],
+    "mu_L53_04_multilingual": [
+      1024
+    ],
+    "mu_L53_05_needles": [
+      1024
+    ],
+    "mu_L53_06_random": [
+      1024
+    ],
+    "mu_L59_01_prose_en": [
+      1024
+    ],
+    "mu_L59_02_code": [
+      1024
+    ],
+    "mu_L59_03_templated": [
+      1024
+    ],
+    "mu_L59_04_multilingual": [
+      1024
+    ],
+    "mu_L59_05_needles": [
+      1024
+    ],
+    "mu_L59_06_random": [
+      1024
+    ],
+    "patch_query_positions": [
+      24
+    ],
+    "patch_sham_positions": [
+      24
+    ]
+  },
+  "class_counts": {
+    "07b_first_content": 231,
+    "07b_pronouns": 700,
+    "08_pronouns": 180,
+    "08_unit_starts": 10
+  },
+  "clock_singular_values": {
+    "L53": [
+      1.9277985654164396,
+      0.9040259852272482,
+      0.8271785386358161,
+      0.6928942394739556,
+      0.429385832492962,
+      0.3429734015789966
+    ],
+    "L59": [
+      2.01587850102727,
+      0.8807448113022828,
+      0.7156330879852166,
+      0.6208057637236899,
+      0.44424186699259965,
+      0.25620518569941786
+    ]
+  },
+  "created_at_utc": "2026-07-19T03:21:14.461514+00:00",
+  "head_order": [
+    49,
+    51,
+    54,
+    24,
+    26,
+    10,
+    11,
+    27,
+    62,
+    28,
+    25,
+    48,
+    47,
+    37,
+    6,
+    33,
+    16,
+    7,
+    52,
+    36,
+    60,
+    22,
+    50,
+    29,
+    59,
+    30,
+    43,
+    45,
+    63,
+    56,
+    32,
+    15,
+    3,
+    13,
+    23,
+    2,
+    61,
+    4,
+    58,
+    17,
+    9,
+    44,
+    1,
+    53,
+    38,
+    42,
+    34,
+    39,
+    41,
+    8,
+    57,
+    19,
+    18,
+    5,
+    21,
+    14,
+    35,
+    0,
+    20,
+    40,
+    55,
+    46,
+    31,
+    12
+  ],
+  "kind": "round5_followup7_frozen_inputs",
+  "npz_sha256": "b4b518a034fccae665e246aa6798a75f62dcd1f38fd7dcfec8abebda2f7443d3",
+  "patch_sham_seed": 3443350174178923311,
+  "registration_commit": "eec3999",
+  "registration_sha256": "eea16879b5b054c67a25a475569fa0322952cacf9c01857ddd327660d777b9b1",
+  "schema_version": 1,
+  "source_git_head_at_build": "fb22c87a2965e353613fe195851cde0c534acc60",
+  "source_sha256": {
+    "analysis/subspace_anatomy/common_bases_top4.npz": "621610027c6ddbdc8f4a9ecb4997ff5885b31f52209a43ccd86cc664a72eb16f",
+    "corpus/05_needles.sidecar.json": "9f1fd753909cdfe7591779a3b42c3ae9e86b3e931e5072d7ce53670fca2ea1fc",
+    "corpus/tokenizer.json": "9fb6333a7db8fe5da90728e741e4a3ee4ac2ae12c5dd4958cc6f31688787d3c2",
+    "corpus_v2/08_math_llm.ids.npy": "957d681705eb1fbb36c884bbe4121bafa73b0d85b7515cc6d8edfbe35ef978c3",
+    "corpus_v2/08_math_llm.sidecar.json": "3f9a767031cc7b4e17c680a26ea76a108031b5c9a19d2586a074d9e0c48813c3",
+    "corpus_v2/depth_classes.json": "c6391367d23b5d4ac86fb64214ba4edc11b3dac342c69253ec66068d3094af6e",
+    "corpus_v2/manifest.json": "939dc3f922abb918f0fffdf171b43296be1f6652f617031375ad06e9b5e00542",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_01_prose_en.npy": "f161b84cbb74381c531cef3ab42c0e82cecb247f1d87c55a92f1002ab9834d78",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_02_code.npy": "a640a632b5dbed599a78487da26bd94ca75a11fbd43c0fc4fc38bfddfca69500",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_03_templated.npy": "5a7997e770772ad366ccea8ec0f5adf344bcae45a0adc3a737d329706327a3d6",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_04_multilingual.npy": "7b0f6f03474bd382d25df76959de82595775c4af73ed6b458891ae5be06a20de",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_05_needles.npy": "741d22218a93880acd539a00be93c8878177ee5d32369e7083991e94c1883d7a",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L29_06_random.npy": "cc940e95afd63280b004cba957f9057c913b0c632b358166905364ea79ecfa98",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_01_prose_en.npy": "3e973985eab2747c3c9f85c68185275c11ff7ccbda9b58c91a221472adc68d59",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_02_code.npy": "90956ae667239d94471caee2f959ef206cd1c674d2fbf3f223bc88ec68664bda",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_03_templated.npy": "2986ac6f53f6033eaa7c273833973c87ae4937c34a28ae141e923c02c0d3d5b7",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_04_multilingual.npy": "ee39773f38c5959ce0d1d52b2f89d7e7d337dd81323dd51fcda76ef5ed9c797c",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_05_needles.npy": "494f54d97de8292a1e0e1b8663dde15b98b28b0e957ebcd637af89c0e1458843",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L53_06_random.npy": "315dada60cfa847ad042ab1cf8c0778151ce879315dac06817d670b0a7a87774",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_01_prose_en.npy": "b70d0551fd8df274ea1a4a192dc1b6c075c71ad351501a27a834a36bf327cd6d",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_02_code.npy": "231267675a5ab719f33ebbb887ab4f5159fc7ffe2e8a55db0fa202df32861e7a",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_03_templated.npy": "d5cf72d1b23863c2bb31065da766621efafcb43a914ad92091638ff1c0211668",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_04_multilingual.npy": "a757aa72dd7a487e586d3decae9a96506fe76d13413dd62d6777c54fd04cd868",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_05_needles.npy": "c704b4730c3270ff32e525d52be6736f24b96f5c074c9cd1ddb8672d712a685d",
+    "dumps/round5/widened_corrected_capture/replay/rvec_L59_06_random.npy": "9e51038edb264f6ad10f66ddff72748caa1b1c7a62d798ea049fb0d468e90cf9",
+    "registrations/ROUND5_FOLLOWUP7_PREREG.md": "eea16879b5b054c67a25a475569fa0322952cacf9c01857ddd327660d777b9b1",
+    "weights/layer29_rel_logits_proj.npy": "e0f5c3a7dd90e73f94ea830ba9f3d95da13d502e806680674c706bf7202c7221",
+    "weights/layer29_wr_du.npy": "db68b8227c2553743bbbb2e322273715d662931ad590c2c7071762b84537a436"
+  },
+  "texts": [
+    "01_prose_en",
+    "02_code",
+    "03_templated",
+    "04_multilingual",
+    "05_needles",
+    "06_random"
+  ]
+}
