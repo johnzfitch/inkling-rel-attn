@@ -779,7 +779,7 @@
     "dumps/round5/r5d/arms/bias_off_L23/manifest.json": "c2601a73ac0325cc0757e375ab59ae6cecd00bd0ddf134153e206600acef7605",
     "dumps/round5/r5d/arms/bias_off_L29/manifest.json": "86c217a6fd03d4a42c9154bc4a9a26d8a8143257f4cc61c564d87b48805a09af",
     "dumps/round5/r5d/arms/bias_off_L35/manifest.json": "027aee138490291f7c0829285a2adc827c79fea01d7bc67da1a40ba563650a27",
-    "scripts/round5_followup7_figures.py": "c71566bd3755ca014380bf6267e0e8fcff4cad34d3629b3584c8866a370050fe"
+    "scripts/round5_followup7_figures.py": "30593da344e29b67cea2f36be086a47aa5aaf97d24cdb8a5e08a0fac06bba6a3"
   },
   "verdicts": {
     "F7-1": true,

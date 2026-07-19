@@ -4,7 +4,8 @@ Status: **independently verified; post-verdict visualizations**
 
 Each numbered discovery has two standalone figures. PNG files are
 300 dpi; PDF and SVG are vector exports from the same Matplotlib
-artists. Interpretive synthesis panels are labeled post-verdict and
+artists. SVG typography is stored as glyph paths for cross-viewer
+stability. Interpretive synthesis panels are labeled post-verdict and
 do not change any registered disposition.
 
 ## 1. F7-1a — signed distance ablation forest
@@ -61,7 +62,7 @@ Exports: [`PNG`](./f7-3a-r-component-causal-costs.png) · [`PDF`](./f7-3a-r-comp
 
 ![F7-3b — r components by text](./f7-3b-r-components-by-text.png)
 
-Raw per-text mean ΔNLL for all six registered r-space interventions. The needle mixture is the clear low-cost exception to the otherwise stable static-mean mechanism.
+Raw per-text mean ΔNLL for all six registered r-space interventions, shown with a symmetric-log color scale and exact cell labels. The needle mixture is the clear low-cost exception to the otherwise stable static-mean mechanism.
 
 Sources: `followup r-component token dumps`.
 
@@ -71,7 +72,7 @@ Exports: [`PNG`](./f7-3b-r-components-by-text.png) · [`PDF`](./f7-3b-r-componen
 
 ![F7-4a — head-quartile localization](./f7-4a-head-quartile-localization.png)
 
-Pooled cost of removing each frozen 16-head quartile. The highest pre-outcome stencil-score quartile costs 30–67 times more than Q2–Q4.
+Pooled cost of removing each frozen 16-head quartile on a logarithmic ΔNLL axis. The highest pre-outcome stencil-score quartile carries 94% of the summed quartile-ablation cost and costs 30–67 times more than Q2–Q4.
 
 Sources: `results.json:F7-4.costs`.
 
@@ -91,7 +92,7 @@ Exports: [`PNG`](./f7-4b-head-rescue-saturation.png) · [`PDF`](./f7-4b-head-res
 
 ![F7-5a — query-state rescue forest](./f7-5a-query-patch-rescue-forest.png)
 
-Absolute needle recall rescue and registered 95% bootstrap intervals. Query patching rescues 54.1%; the seeded sham interval spans zero.
+Needle-recall rescue as a percentage of the common parent damage, with registered 95% bootstrap intervals transformed to the same scale. Query patching rescues 54.1%; the seeded sham interval spans zero.
 
 Sources: `results.json:F7-5`.
 
@@ -121,7 +122,7 @@ Exports: [`PNG`](./f7-6a-clock-loto-transfer-heatmap.png) · [`PDF`](./f7-6a-clo
 
 ![F7-6b — clock geometry versus behavior](./f7-6b-clock-geometry-behavior-dissociation.png)
 
-Fitted union/per-text bases flatten kernel drift, whereas LOTO transfer fails. All real joint interventions remain far below the registered 0.005 NLL null ceiling.
+Fitted union/per-text bases flatten kernel drift, whereas LOTO transfer fails. Behavioral costs are normalized to the registered 0.005 NLL null ceiling; every real joint intervention remains below 12% of it.
 
 Sources: `results.json:F7-6.kernel_gain_correlation`; `results.json:F7-6.behavior_costs`.
 
