@@ -87,6 +87,9 @@ are all measurable but not load-bearing in these interventions. This is an
 - Machine results: `results.json`
 - Independent raw-dump verification: `verification.json` (563 artifacts
   rehashed; zero errors; producer not imported)
+- Publication figure suite: `figures/FIGURES.md` (16 figures; 300-dpi PNG and
+  vector PDF/SVG; plotted values and source hashes in `figure_data.json` and
+  `figure_manifest.json`)
 - Frozen registration and A1/A2/A3: `registrations/ROUND5_FOLLOWUP7_PREREG.md`
 - Original A3-rejected output and five-error verifier record: `*_pre_a3.*`
 
