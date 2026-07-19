@@ -317,7 +317,7 @@ def clock_gain_stat(dump: Path, arm_id: str, kind: str, layer: int, text: str) -
     r = np.load(
         dump / "arms" / arm_id / "clock" / f"rvec_pre_L{layer:02d}_{text}.npy",
         allow_pickle=False,
-    ).astype(np.float32).reshape(SEQ, RFLAT).astype(np.float64)
+    ).astype(np.float32).reshape(R.SEQ, R.RFLAT).astype(np.float64)
     mu = F.frozen()[f"mu_L{layer:02d}_{text}"].astype(np.float64)
     u = clock_basis(kind, layer, text)
     transformed = r - ((r - mu) @ u) @ u.T
@@ -327,7 +327,7 @@ def clock_gain_stat(dump: Path, arm_id: str, kind: str, layer: int, text: str) -
     mean_kernel = kernels.mean(axis=0)
     denominator = np.sum(mean_kernel * mean_kernel, axis=1)
     gains = np.sum(kernels * mean_kernel[None, :, :], axis=2) / np.maximum(denominator[None, :], 1e-30)
-    x = np.log1p(np.arange(64, SEQ, 64, dtype=np.float64) + 31.5)
+    x = np.log1p(np.arange(64, R.SEQ, 64, dtype=np.float64) + 31.5)
     xc = x - x.mean()
     gc = gains - gains.mean(axis=0)
     corr = (xc[:, None] * gc).sum(axis=0) / np.maximum(

@@ -200,3 +200,14 @@ All seven rows remain OPEN until every required arm/job is sealed. A failed
 prediction is an answer, not a reason to refit a threshold, regroup heads,
 change clock rank, or choose different classes. Any execution defect requires
 a public amendment before replacement output is inspected.
+
+## Amendment A1 — post-capture analyzer namespace fix (2026-07-18)
+
+All 35 intervention arms and the fresh-text job were sealed before the frozen
+analyzer was first invoked. That invocation stopped in F7-6 with `NameError`
+before either `results.json` or `RESULTS.md` was written. The cause was two
+unqualified runner constants in `clock_gain_stat`: `SEQ` and `RFLAT`. They are
+corrected mechanically to `R.SEQ` and `R.RFLAT`, matching every other analyzer
+use and the already-frozen independent verifier implementation. No dump,
+intervention, statistic, resample, threshold, prediction, or reporting rule is
+changed. No result output existed or was inspected before this amendment.
