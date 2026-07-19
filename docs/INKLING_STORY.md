@@ -150,14 +150,20 @@ global layers the whole positional curve starts strong — about 1.7× its
 average at the start of a document — and anneals to ~0.9× by 8,000 tokens.
 
 Two careful facts keep this honest. First, the clock is not one universal
-direction: when we froze the direction estimated from random text and
-tested whether it silenced the drift on other texts (a preregistered
-transfer test), it failed in all four cells — each text drifts along a
-partially different direction with a shared ingredient. Second, and more
-striking: **pinning the clock changes essentially nothing** at 8k. Model
-predictions shift by ~0.0001 nats; retrieval is, if anything, a hair
-better. The clock is real, readable, geometrically clean — and causally
-idle at this context length. Remember that phrase; it becomes a theme.
+direction. A preregistered transfer test froze the direction estimated
+from random text and asked whether it silenced the drift on other texts:
+it failed in all four cells. A stronger follow-up then fit each text its
+*own* clock direction and measured how much they share: about two-thirds
+of their combined energy lies along one common axis, the rest is
+text-specific — and a clock subspace learned from five texts still cannot
+fully silence the sixth (that registered transfer prediction failed too,
+in all but one of twelve cells). Each text keeps time along a partially
+private direction built on a shared core. Second, and more striking:
+**pinning the clock changes essentially nothing** at 8k — own-text, union,
+and five-text bases alike cost ~0.0001–0.0006 nats; retrieval is, if
+anything, a hair better. The clock is real, readable, geometrically clean —
+and causally idle at this context length. Remember that phrase; it becomes
+a theme.
 
 ## 6. The ghost in the residual stream: big structure, deleted by the exit door
 
@@ -187,7 +193,8 @@ evidence it is infrastructure, not mechanism.
 
 ## 7. The surgery: where position actually lives
 
-Then we cut things, 72 ways, and the map redrew itself.
+Then we cut things, 72 ways — and, in a registered follow-up campaign, 35
+more — and the map redrew itself twice.
 
 **Nearly everything is one layer.** Zero the positional bias at any of the
 first six layers: the model barely notices (≤0.002 nats; the five early
@@ -196,8 +203,14 @@ sum of removing them singly). Zero it at the last layer, the one with the
 most dramatic bias in the entire network: *nothing* — in fact random text
 gets slightly better. Zero it at **layer 29**, an unremarkable-looking
 global layer at mid-depth: +0.121 nats pooled, the largest causal effect in
-the campaign by a factor of six, with small shoulders at its neighbor
-globals L23 and L35.
+the campaign by a factor of six. Its neighbor globals L23 and L35 look like
+small shoulders (+0.019 each) — until you remove them *together* with L29.
+Then the pairs cost +0.60 and +0.35 nats beyond the sum of their parts, and
+removing all three costs a full extra nat: prose loses 2.6 nats and half of
+all its tokens lose more than one. The shoulders are not separate little
+mechanisms; they are backup generators for the same computation, quietly
+covering for L29 whenever it alone is knocked out. (The L23+L35 pair
+*without* L29 shows almost no interaction — L29 is the hub.)
 
 **And within that layer, nearly everything is close range.** Silencing only
 distances closer than 4 tokens reproduces 84% of the entire effect — the
@@ -206,32 +219,62 @@ same tokens, token by token (correlation 0.91). Silencing everything
 one-eightieth as much as silencing under-4. The learned far field — all
 that careful curve out to distance 1024 — is causally almost free at 8k.
 
-What the bias actually writes at L29 turned out to be sharper than a band
-of attention: a **contrastive stencil** on the immediate neighborhood —
-suppress the token itself (the realized curve is *negative* at distance 0
-on every text) and boost distances 1–3. How strongly a text's stencil
-contrasts predicts how much that text suffers (correlation 0.77 across the
-six texts; exploratory). Full bias removal does collapse the
-phrase-and-sentence band (4–128 tokens, ~26% → ~8% of attention on prose),
-but that collapse is a side effect, not the mechanism: silencing *only*
-d<4 leaves the band intact — even slightly fuller — and still does 84% of
-the damage. The injury is broad (two-thirds of all tokens hurt; the worst
-1% of tokens carry only 28% of the gross damage), essentially uncorrelated
-with how difficult a token already was, and — after matching for position
-and difficulty — concentrated at sentence starts (+0.14) and pronouns
-(+0.08), the integration tokens. Texts that can be predicted by copying
-from far away (templates, needle documents) sail through unharmed; texts
-whose structure lives in the local neighborhood (code, prose) pay full
-price. Even long-range *retrieval* breaks through the near field: recall
-queries suffer 487× more than ordinary tokens when L29's bias goes, yet
-silencing the far field does nothing to them — the far-field match still
-happens; what fails is the locally-assembled representation doing the
-asking.
+What the bias actually writes at L29 kept getting sharper the closer we
+looked. First it resolved from a band of attention into a **contrastive
+stencil** on the immediate neighborhood — suppress the token itself, boost
+distances 1–3. Then the registered follow-up surgery took the stencil
+apart entry by entry, and almost the whole thing fell away except one
+number: **the self-mute**. Deleting only the distance-0 entry — the single
+"don't look at yourself" instruction — reproduces 78% of the full damage;
+deleting distances 1, 2, and 3 together costs essentially nothing; and
+restoring d=0 alone to an otherwise bias-stripped layer rescues 98% of
+everything. The look-just-behind-you part turned out to be decoration.
+About **16 of the 64 heads** carry it: keeping just those heads' four
+near-field entries — a few dozen numbers out of a million-entry positional
+structure — rescues 93% of the damage, and knocking out that head quartile
+costs thirty times more than any other. And it is a *standing setting*,
+not a live computation: replacing every token's positional signal with the
+text's plain average changes almost nothing (2% of the damage), while
+removing that static average does 78% — and the giant communal carrier
+component contributes none of it.
+
+Full bias removal does collapse the phrase-and-sentence band (4–128
+tokens, ~26% → ~8% of attention on prose), but that collapse is a side
+effect, not the mechanism. The injury is broad (two-thirds of all tokens
+hurt; the worst 1% carry only 28% of the gross damage) and essentially
+uncorrelated with how difficult a token already was. One earlier
+refinement did *not* survive: the appealing claim that sentence starts and
+pronouns — the integration tokens — are especially dependent failed to
+replicate on fresh, never-before-measured text, and is withdrawn. What
+replicated instead was the raw effect itself, larger than ever: on fresh
+conversational (Slack-style) text, removing L29's bias costs **+0.45
+nats** — two and a half times the prose cost — with top-1 accuracy down
+~4.5 points. In full-vocabulary terms the signature is quiet and uniform:
+the correct word's rank barely moves for most tokens (the median rank
+change is exactly zero on natural text), but its margin over competitors
+erodes everywhere, accuracy drops ~4 points on prose, and calibration
+barely shifts. Texts that can be predicted by copying from far away
+(templates, needle documents) sail through unharmed; texts whose structure
+lives in the local neighborhood pay full price.
+
+Even long-range *retrieval* breaks through the near field: recall queries
+suffer 487× more than ordinary tokens when L29's bias goes, yet silencing
+the far field does nothing to them. The follow-up campaign confirmed the
+suspected reason causally: under bias-off, surgically restoring just the
+24 question-position states — and nothing else — rescues 54% of the recall
+damage (64% median on the queries actually hurt), while restoring 24
+random positions rescues nothing. The far-field match still happens; what
+fails is the locally-assembled representation doing the asking. One
+asterisk on "static": for ordinary prediction the standing average is the
+whole story, but recall damage tracks the token-*varying* part of the
+self-mute signal — retrieval is the one place the dial, not just the
+setting, seems to matter.
 
 **The engine and the guardrails.** Here is the picture the surgery paints.
 Inkling's positional system at 8k is a small, hot **engine** — a
-don't-look-at-yourself, look-just-behind-you stencil, sharpest at one
-mid-depth layer — surrounded by an elaborate array of **quiet structure**:
+don't-listen-to-yourself self-mute, written by a dozen-odd heads at one
+mid-depth layer with two neighbors standing by as backups — surrounded by
+an elaborate array of **quiet structure**:
 the terminal layer's near-field vise (near-gauge at the readout: it shifts
 target and competitors by a nearly identical +2.1 nats, mean-canceling
 though not pointwise-silent), the 512-boundary echo, the distance-1024
@@ -265,8 +308,10 @@ Strip away the detail and the story is three sentences long.
 
 **Told what to do about position, earlier models obeyed; left free, Inkling
 built a short-range recency engine tuned to the shape of text — a
-paragraph-crested decay, almost all of whose causal force lives within a
-few tokens and one mid-depth sentence-window layer.** **It handed every
+paragraph-crested decay whose causal force lives, almost entirely, in a
+single standing instruction ("don't listen to yourself") written by a
+dozen-odd heads at one mid-depth layer, with two neighboring layers as
+backups.** **It handed every
 token a dial — open wide when surprised or starting fresh, stay narrow when
 the next word is cheap — so that position policy became a per-token,
 per-head decision made by content.** **And around that engine it grew
@@ -279,17 +324,23 @@ know arrived through predictions that *failed* under preregistration:
 the sentence-scale knees that turned out to be paragraph crests, the
 "long-range bandwidth budget" that inverted into a near-field concentrator,
 the depth map that pointed everywhere except layer 29, the universal clock
-that dissolved into a family of text-specific schedules. A frontier model's
-positional system turned out to be at once simpler than predicted (one
-engine, close range) and stranger (elaborate structure held in reserve,
-invisible to every 8k measurement except the geometry itself).
+that dissolved into a family of text-specific schedules built on one
+shared core, the near-field stencil that collapsed into a single self-mute
+entry, the boundary-and-pronoun vulnerability that vanished the moment it
+was tested on fresh text. A frontier model's positional system turned out
+to be at once simpler than predicted (one engine, close range, one
+instruction) and stranger (elaborate structure held in reserve, invisible
+to every 8k measurement except the geometry itself).
 
 ---
 
 *Provenance: verdicts and effect sizes are drawn from the certified rows of
 `QUESTIONS.md` — weight-level (LF1, LF2, LF6, LF7, Rounds 1–4), captures
-(LF4, P-v2, P-d, P-e, P-f, LF3, LF8, LF9, R5-B, R5-C), and the R5-D causal
-campaign with its post-hoc anatomy (`analysis/round5/r5d/`). Interpretive
-passages — the antenna metaphor, the engine/guardrails picture, and all
-claims about 1M-context purpose — are labeled interpretations, not
-certified results. Architecture facts follow the public Inkling model card.*
+(LF4, P-v2, P-d, P-e, P-f, LF3, LF8, LF9, R5-B, R5-C), the R5-D causal
+campaign with its post-hoc anatomy (`analysis/round5/r5d/`), and the
+seven-experiment causal follow-up (F7-1..F7-7,
+`analysis/round5/followup7/`, verified independently by both analysts).
+Interpretive passages — the antenna metaphor, the engine/guardrails
+picture, and all claims about 1M-context purpose — are labeled
+interpretations, not certified results. Architecture facts follow the
+public Inkling model card.*

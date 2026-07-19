@@ -226,6 +226,9 @@ analysis. The independent verifier rehashed 563 artifacts and reproduced all
 statistics and verdicts from raw dumps with zero discrepancies
 (`analysis/round5/followup7/verification.json`). Analyzer errata A1/A2/A3 are
 public; the original A3-rejected report and verifier artifact remain preserved.
+The second analyst additionally re-derived every registered statistic and all
+seven verdicts from raw dumps with fully separate code, zero errors
+(`analysis/round5/followup7/analyst2_verification.json`); both analysts agree.
 
 - **F7-1 passed — the causal near field is overwhelmingly d=0.** Removing d=0
   costs +0.09392 NLL (77.8% of full L29 bias-off); d=1/2/3 and their joint are
