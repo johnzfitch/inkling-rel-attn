@@ -1,0 +1,30 @@
+{
+  "capture_validation_gate": true,
+  "class_freeze_agreement_gate": true,
+  "class_readout_rederivation_gate": true,
+  "created_at_utc": "2026-07-17T10:02:57.858006+00:00",
+  "kind": "corpus_v2_confirmation",
+  "methodology_passed": true,
+  "novelty_rederivation_gate": true,
+  "p_v2_2_rederivation_gate": true,
+  "prediction_field_agreement_gate": true,
+  "prediction_summary": {
+    "P-v2-1": true,
+    "P-v2-2": true,
+    "P-v2-3": true,
+    "P-v2-4": false
+  },
+  "public_boundary_commit": "65b220c2d185829dfc4c8e617a67e673d2fa9cd2",
+  "raw_aperture_rederivation_gate": true,
+  "registration_commit": "7fb84ab4e5d164bc759c32e38b0e58803abd5299",
+  "schema_version": 1,
+  "source_hashes": {
+    "aperture_manifest": "ba6e8f5ae21d95a5cf100aeea2e5452cbeb74c1059a68940f7dd0b0691e9810d",
+    "capture_validation": "1ec6b74a83c00f03af7e709b6b1b830629cdd12ef795ac147c949468fe015e15",
+    "novelty": "43108a8d539fa11a36636ecdf9f9f8632fa486bbb574964d9fd0b6a5bf00881b",
+    "private_classes": "a23668ec05805d7dfac8967bb76007f864cd68d5e3ff82fc045682bca94d75cd",
+    "readouts": "d46b7a7a59825377d4c397b1e7673c4b78130141d890cc84bea7e4b8768e8860",
+    "verification": "b1624e01b585670f77e52dd3da56c38093dcb1e1fe29e129cd3645a07996f819"
+  },
+  "true_null_control_gate": true
+}

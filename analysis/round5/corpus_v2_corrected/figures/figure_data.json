@@ -1,0 +1,266 @@
+{
+  "display": {
+    "effect_format": "signed fixed-point with 3 decimal places",
+    "effect_rounding": "decimal ROUND_HALF_UP"
+  },
+  "figure_1": {
+    "arm": "07b_slack_multi",
+    "deep_band": [
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "effects": {
+      "first_content": [
+        -0.236328125,
+        0.056640625,
+        -0.134765625,
+        -0.052734375,
+        0.076171875,
+        0.083984375,
+        0.083984375,
+        0.099609375
+      ],
+      "pronouns": [
+        -0.169921875,
+        -0.09375,
+        -0.013671875,
+        -0.037109375,
+        -0.025390625,
+        -0.0234375,
+        0.03125,
+        0.048828125
+      ],
+      "speaker_labels": [
+        -0.271484375,
+        -0.08203125,
+        -0.0625,
+        0.171875,
+        0.1328125,
+        0.162109375,
+        0.095703125,
+        0.076171875
+      ]
+    },
+    "layers": [
+      17,
+      23,
+      29,
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "null_definition": "envelope of the three committed registered band-test 95% permutation-null intervals",
+    "null_envelope_95": [
+      -0.048828125,
+      0.048828125
+    ],
+    "shallow_band": [
+      17,
+      23,
+      29
+    ],
+    "thresholds": {
+      "narrowing": -0.05,
+      "widening": 0.1
+    },
+    "unmeasured_bridge": {
+      "display": "faint dashed segment; no crossing point is measured",
+      "intervening_layers": [
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "measured_endpoints": [
+        29,
+        35
+      ]
+    }
+  },
+  "figure_2": {
+    "band": [
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "v20_first_content_definition": "frozen message-start position + 2",
+    "v20_single_thread": {
+      "first_content": -0.037109375,
+      "pronouns": -0.013671875,
+      "speaker_labels": 0.240234375
+    },
+    "v21_multi_conversation": {
+      "first_content": 0.083984375,
+      "pronouns": -0.0234375,
+      "speaker_labels": 0.1328125
+    }
+  },
+  "figure_3": {
+    "arm": "07b_slack_multi",
+    "boundary_fraction_above_0_5": 0.8536585365853658,
+    "boundary_median_percentile": 0.689453125,
+    "deep_band": [
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "message_boundary_count": 41,
+    "slice": [
+      4096,
+      5632
+    ],
+    "slice_median_percentile": 0.5046875,
+    "token_reducer": "mean of five per-layer within-256-token percentile ranks"
+  },
+  "figure_4": {
+    "07_slack_human": {
+      "bin_correlations": [
+        0.01714750631283755,
+        0.12929283040307993,
+        0.13372567714554437,
+        0.07408919883788691,
+        0.04428142579195567,
+        0.14964603483502972,
+        0.13278402424359068,
+        0.08152959726955475,
+        0.17655757382285645,
+        0.21667193984329805,
+        0.2582285094897823,
+        0.2423198971174073,
+        0.1876482892943092,
+        0.14640903526527688,
+        0.157978688117038,
+        0.2148488727688176
+      ],
+      "median_spearman": 0.1480275350501533,
+      "positive_bins": 16
+    },
+    "08_math_llm": {
+      "bin_correlations": [
+        -0.07204159799969782,
+        0.2629977547636291,
+        0.048355886958888226,
+        0.15938762049201224,
+        0.02155401035184806,
+        0.07596344056290677,
+        0.12556323918488618,
+        0.5223718641441931,
+        0.2969235658160608,
+        0.3478748025583352,
+        0.1938125608954663,
+        0.11516062983934656,
+        0.05365133612019164,
+        0.3083052464266434,
+        -0.020973111772807765,
+        -0.03706580896056844
+      ],
+      "median_spearman": 0.12036193451211638,
+      "positive_bins": 13
+    }
+  },
+  "figure_5": {
+    "classes": [
+      "speaker_labels",
+      "first_content",
+      "pronouns"
+    ],
+    "layers": [
+      17,
+      23,
+      29,
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "math_control_bands": {
+      "first_content": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ],
+      "pronouns": [
+        17,
+        23,
+        29
+      ],
+      "speaker_labels": [
+        35,
+        41,
+        47,
+        53,
+        59
+      ]
+    },
+    "math_control_registered_band": {
+      "first_content": -0.029296875,
+      "pronouns": 0.01171875,
+      "speaker_labels": -0.015625
+    },
+    "v21_effect_matrix": [
+      [
+        -0.271484375,
+        -0.236328125,
+        -0.169921875
+      ],
+      [
+        -0.08203125,
+        0.056640625,
+        -0.09375
+      ],
+      [
+        -0.0625,
+        -0.134765625,
+        -0.013671875
+      ],
+      [
+        0.171875,
+        -0.052734375,
+        -0.037109375
+      ],
+      [
+        0.1328125,
+        0.076171875,
+        -0.025390625
+      ],
+      [
+        0.162109375,
+        0.083984375,
+        -0.0234375
+      ],
+      [
+        0.095703125,
+        0.083984375,
+        0.03125
+      ],
+      [
+        0.076171875,
+        0.099609375,
+        0.048828125
+      ]
+    ]
+  },
+  "generated_by_sha256": "0fd066825b7f4034495126ffde7e66d5b2db289b1ff65bb966b12f256b0fccca",
+  "kind": "corpus_v2_corrected_figure_data",
+  "schema_version": 1,
+  "sources": {
+    "aperture_manifest_sha256": "6a713a8e68284431e32ba4664c6f56e9fd83c8d4a66a0c2da8a65fe5a6ad0093",
+    "depth_readouts_sha256": "7d476f5b84ec2c518a327215a217e60ad7e40df9c1c018091ba4605dac52940e",
+    "readouts_sha256": "01641794ffab961886fecaa37f6af9281023602a5217bf67d08df1d3d96b4ee0",
+    "v20_classes_sha256": "a23668ec05805d7dfac8967bb76007f864cd68d5e3ff82fc045682bca94d75cd",
+    "v21_classes_sha256": "c6391367d23b5d4ac86fb64214ba4edc11b3dac342c69253ec66068d3094af6e"
+  }
+}

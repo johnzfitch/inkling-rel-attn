@@ -1,0 +1,69 @@
+{
+  "cell_passes": {
+    "L53_03_templated": false,
+    "L53_05_needles": false,
+    "L59_03_templated": false,
+    "L59_05_needles": false
+  },
+  "clock_freeze_sha256": "c730e76809700715828c2defc3d6a2da74c36b0d4c98b6dd048fc56dfe253e0e",
+  "created_at_utc": "2026-07-18T23:53:00.854010+00:00",
+  "descriptive_cells": {
+    "L53_01_prose_en": {
+      "baseline": 0.3727220259767225,
+      "input_sha256": "3e973985eab2747c3c9f85c68185275c11ff7ccbda9b58c91a221472adc68d59",
+      "transferred_freeze": 0.2070812839295498
+    },
+    "L53_02_code": {
+      "baseline": 0.5069324769189294,
+      "input_sha256": "90956ae667239d94471caee2f959ef206cd1c674d2fbf3f223bc88ec68664bda",
+      "transferred_freeze": 0.4356875743859441
+    },
+    "L53_04_multilingual": {
+      "baseline": 0.21783261669579462,
+      "input_sha256": "ee39773f38c5959ce0d1d52b2f89d7e7d337dd81323dd51fcda76ef5ed9c797c",
+      "transferred_freeze": 0.130668700149471
+    },
+    "L59_01_prose_en": {
+      "baseline": 0.5459698708556544,
+      "input_sha256": "b70d0551fd8df274ea1a4a192dc1b6c075c71ad351501a27a834a36bf327cd6d",
+      "transferred_freeze": 0.41349516198668745
+    },
+    "L59_02_code": {
+      "baseline": 0.47865164916000547,
+      "input_sha256": "231267675a5ab719f33ebbb887ab4f5159fc7ffe2e8a55db0fa202df32861e7a",
+      "transferred_freeze": 0.41147359239940484
+    },
+    "L59_04_multilingual": {
+      "baseline": 0.28083754898351165,
+      "input_sha256": "a757aa72dd7a487e586d3decae9a96506fe76d13413dd62d6777c54fd04cd868",
+      "transferred_freeze": 0.1859248492863972
+    }
+  },
+  "kind": "round5_r5d_ck1b_clock_transfer",
+  "passed": false,
+  "registration": "ROUND5_R5D_CLOCK_TRANSFER_PREREG.md @ 3f5a467",
+  "source_sha256": "33ca751c551adcecb45d6c9b1bc415dd57dfc34639543431e6fe2d8e1ad4fb84",
+  "tie_policy": "ties fail; baseline <= 0.50 fails the cell",
+  "verdict_cells": {
+    "L53_03_templated": {
+      "baseline": 0.8581541445925318,
+      "input_sha256": "2986ac6f53f6033eaa7c273833973c87ae4937c34a28ae141e923c02c0d3d5b7",
+      "transferred_freeze": 0.5934319134498542
+    },
+    "L53_05_needles": {
+      "baseline": 0.8967442144208349,
+      "input_sha256": "494f54d97de8292a1e0e1b8663dde15b98b28b0e957ebcd637af89c0e1458843",
+      "transferred_freeze": 0.5381084794101665
+    },
+    "L59_03_templated": {
+      "baseline": 0.8497341990482701,
+      "input_sha256": "d5cf72d1b23863c2bb31065da766621efafcb43a914ad92091638ff1c0211668",
+      "transferred_freeze": 0.6310249267415264
+    },
+    "L59_05_needles": {
+      "baseline": 0.8110430530086566,
+      "input_sha256": "c704b4730c3270ff32e525d52be6736f24b96f5c074c9cd1ddb8672d712a685d",
+      "transferred_freeze": 0.5400612191582903
+    }
+  }
+}

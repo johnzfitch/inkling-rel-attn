@@ -1,0 +1,24 @@
+{
+  "both_means_ge_1_5": true,
+  "capture_git_head": "c834fdf3acd4b314625a923fceff4315d1c240a0",
+  "capture_manifest_sha256": "1659b614845456bdb873891fd29d9ea6480f7a76842cd936e6fe6998bf36c32c",
+  "capture_validation_passed": true,
+  "capture_validation_sha256": "1ec6b74a83c00f03af7e709b6b1b830629cdd12ef795ac147c949468fe015e15",
+  "contaminated_arms": [],
+  "count_per_arm": 8191,
+  "created_at_utc": "2026-07-17T10:00:14.379573+00:00",
+  "eligible_for_aperture": true,
+  "kind": "corpus_v2_novelty_gate",
+  "mean_nll": {
+    "07_slack_human": 2.5586349633773042,
+    "08_math_llm": 1.6132289184171658
+  },
+  "prediction_passed": true,
+  "prediction_threshold": 1.5,
+  "public_boundary_commit": "65b220c2d185829dfc4c8e617a67e673d2fa9cd2",
+  "registration_commit": "7fb84ab4e5d164bc759c32e38b0e58803abd5299",
+  "replacement_threshold": 1.0,
+  "schema_version": 1,
+  "slack_gt_math_llm": true,
+  "source_sha256": "3a2c29418b0912ae92215c198ca8cdffd8fdb99fa624499c0587fd732c1256b9"
+}

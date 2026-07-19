@@ -1,0 +1,43 @@
+{
+  "artifact_sha256": "c730e76809700715828c2defc3d6a2da74c36b0d4c98b6dd048fc56dfe253e0e",
+  "builder_source_sha256": "233c06a39d2c78639f4477bd0c1c4e7831c4a40425448cd157f0024dc0e92429",
+  "capture_manifest_sha256": "2fc2ec9dd4d6b684a473847f6fbd4541d4326b49d7d6456b463ee5722399a75f",
+  "created_at_utc": "2026-07-18T10:18:07.814191+00:00",
+  "input_sha256": {
+    "amendment": "928b66fbd0885996871b3c0de1e8847c3a9d23781f8b0772f2d6d6d7998d32d9",
+    "layer53_rel_logits_proj.npy": "e58f857eb2ddb64b060366e96128f40e891d639480d93f3437b83631726ffdf3",
+    "layer59_rel_logits_proj.npy": "ae9b9f4fbd9dc9331621db1947efe896f70f2fe0b6675c8a37d3679c103d4d43",
+    "layer65_rel_logits_proj.npy": "0126cea40f2e1dd5ec935395c2492ec8eafd3bc576b4b4d8e5eab2fcb8494568",
+    "rvec_L53_01_prose_en.npy": "3e973985eab2747c3c9f85c68185275c11ff7ccbda9b58c91a221472adc68d59",
+    "rvec_L53_02_code.npy": "90956ae667239d94471caee2f959ef206cd1c674d2fbf3f223bc88ec68664bda",
+    "rvec_L53_03_templated.npy": "2986ac6f53f6033eaa7c273833973c87ae4937c34a28ae141e923c02c0d3d5b7",
+    "rvec_L53_04_multilingual.npy": "ee39773f38c5959ce0d1d52b2f89d7e7d337dd81323dd51fcda76ef5ed9c797c",
+    "rvec_L53_05_needles.npy": "494f54d97de8292a1e0e1b8663dde15b98b28b0e957ebcd637af89c0e1458843",
+    "rvec_L53_06_random.npy": "315dada60cfa847ad042ab1cf8c0778151ce879315dac06817d670b0a7a87774",
+    "rvec_L59_01_prose_en.npy": "b70d0551fd8df274ea1a4a192dc1b6c075c71ad351501a27a834a36bf327cd6d",
+    "rvec_L59_02_code.npy": "231267675a5ab719f33ebbb887ab4f5159fc7ffe2e8a55db0fa202df32861e7a",
+    "rvec_L59_03_templated.npy": "d5cf72d1b23863c2bb31065da766621efafcb43a914ad92091638ff1c0211668",
+    "rvec_L59_04_multilingual.npy": "a757aa72dd7a487e586d3decae9a96506fe76d13413dd62d6777c54fd04cd868",
+    "rvec_L59_05_needles.npy": "c704b4730c3270ff32e525d52be6736f24b96f5c074c9cd1ddb8672d712a685d",
+    "rvec_L59_06_random.npy": "9e51038edb264f6ad10f66ddff72748caa1b1c7a62d798ea049fb0d468e90cf9",
+    "rvec_L65_01_prose_en.npy": "d38aa0d4f97767f4e31130fd7ed7721adb30e604376c4cd6a8bde1388e5d43c9",
+    "rvec_L65_02_code.npy": "275fb1cc24d473d93a637625e64427e43461fe51df772c9a2379cfb3087e0955",
+    "rvec_L65_03_templated.npy": "d5510d50fcb3d9ea9753b3ccf4045f48828274d3d3a24b1f7fcc4587dffbec3b",
+    "rvec_L65_04_multilingual.npy": "5c809f733c2508cf2f7bdb3981a0407def29cfb13590d171fb7541c6f9a565b9",
+    "rvec_L65_05_needles.npy": "83f8c807a83f60536c2f4c6b73408da24427b0e2df1f570e98a67b846e565246",
+    "rvec_L65_06_random.npy": "32dda6367e240a8c43aec2071d82062ea3d83a94bfba8e3816d8111dffccc9ce"
+  },
+  "kind": "round5_r5d_clock_freeze",
+  "layers": [
+    53,
+    59,
+    65
+  ],
+  "peeked_baseline_stats": {
+    "baseline_abs_gain_corr_median_L53": 0.7469907311433424,
+    "baseline_abs_gain_corr_median_L59": 0.6337276373872379,
+    "baseline_abs_gain_corr_median_L65": 0.7612590230952503
+  },
+  "schema_version": 1,
+  "sham_seed_unsigned_be": 14760715597852484454
+}

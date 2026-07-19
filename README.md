@@ -57,7 +57,12 @@ What we found, in plain terms:
 
 ## Layout
 
-- `ROUND{2,3,4}_SPEC.md`, `TIER2_SPEC.md` — pre-registered experiment specs
+- `QUESTIONS.md` — **the question ledger**: every registered question with its
+  current status (open / answered / provisional / forecast) and the gate on it.
+  Start here to see what is actually answered vs pending.
+- `registrations/` — all pre-registered specs, preregs, execution plans, and
+  amendments; the git timestamp of each file is its registration, and contents
+  are immutable after registration (corrections arrive as new amendments)
 - `scripts/` — extraction (range requests), Round 3 dumps, Tier-2 streaming runner,
   Round 4 battery/fingerprints/curiosity, audits
 - `analysis/` — results (JSON + figures) per round

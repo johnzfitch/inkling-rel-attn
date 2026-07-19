@@ -1,0 +1,88 @@
+{
+  "controls_sha256": "5417551c03a44539e2d2fb9ed3010e8b4da66e2a557785df3d35d86301bfd515",
+  "created_at_utc": "2026-07-17T08:24:52.258968+00:00",
+  "kind": "round5_lf4_independent_verification",
+  "main_report_sha256": "170afabaedb6561ccb2235034841fc317e9f4468dd173750323a59ebb4946d1e",
+  "passed": false,
+  "plan_commit": "d4e2579",
+  "registration_commit": "34278b4",
+  "results": [
+    {
+      "checks": {
+        "effect_sign_agreement": false,
+        "raw_dump_max_abs_delta_le_1e-12": true
+      },
+      "class_count": 302,
+      "control_count": 302,
+      "direction": "positive",
+      "main_rank_effect": -0.004296874999999978,
+      "matched_sample_effect": 0.031222943722943763,
+      "max_abs_delta_vs_blocked_dump": 3.3306690738754696e-16,
+      "name": "closers",
+      "p_one_sided": 0.10018998100189981,
+      "passed": false,
+      "per_layer_effects": {
+        "23": 0.04303977272727272,
+        "29": 0.10773809523809519,
+        "35": 0.00029761904761904656,
+        "41": -0.06349206349206349,
+        "47": 0.027157738095238193
+      },
+      "permutations": 10000,
+      "seed": 17610798481109515379,
+      "text": "02_code"
+    },
+    {
+      "checks": {
+        "effect_sign_agreement": true,
+        "raw_dump_max_abs_delta_le_1e-12": true
+      },
+      "class_count": 1843,
+      "control_count": 1843,
+      "direction": "negative",
+      "main_rank_effect": -0.021484375,
+      "matched_sample_effect": -0.019482561463693537,
+      "max_abs_delta_vs_blocked_dump": 4.440892098500626e-16,
+      "name": "function_words",
+      "p_one_sided": 0.014298570142985701,
+      "passed": true,
+      "per_layer_effects": {
+        "23": -0.15440742924528306,
+        "29": -0.007411067193675902,
+        "35": 0.02475649350649345,
+        "41": -0.024931318681318648,
+        "47": 0.007352941176470562
+      },
+      "permutations": 10000,
+      "seed": 11474230584536544207,
+      "text": "01_prose_en"
+    },
+    {
+      "checks": {
+        "effect_sign_agreement": false,
+        "raw_dump_max_abs_delta_le_1e-12": true
+      },
+      "class_count": 413,
+      "control_count": 413,
+      "direction": "positive",
+      "main_rank_effect": -0.05039062500000002,
+      "matched_sample_effect": -0.06806722689075634,
+      "max_abs_delta_vs_blocked_dump": 4.440892098500626e-16,
+      "name": "pronouns",
+      "p_one_sided": 1.0,
+      "passed": false,
+      "per_layer_effects": {
+        "23": -0.13764880952380953,
+        "29": -0.050000000000000044,
+        "35": -0.03846153846153849,
+        "41": -0.15833333333333338,
+        "47": -0.1282894736842105
+      },
+      "permutations": 10000,
+      "seed": 14670834464634432360,
+      "text": "01_prose_en"
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": "07fb7e2732f3956467c5ef077a053b8ea47289865b2b7c70d98e58a67cf013d6"
+}

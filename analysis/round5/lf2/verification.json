@@ -1,0 +1,447 @@
+{
+  "block_sensitivity": {
+    "common_paragraph_survivors": [
+      17,
+      23,
+      29,
+      35,
+      41,
+      53,
+      59
+    ],
+    "paragraph_layers": {
+      "block_16": [
+        17,
+        23,
+        29,
+        35,
+        41,
+        53,
+        59
+      ],
+      "block_32": [
+        17,
+        23,
+        29,
+        35,
+        41,
+        53,
+        59
+      ]
+    },
+    "results": {
+      "block_16": [
+        {
+          "breakpoint": 260,
+          "improvement": 0.029819173496454607,
+          "layer": 5,
+          "p": 0.02048975512243878,
+          "p_holm": 0.06146926536731634,
+          "paragraph_scale": false,
+          "significant": false
+        },
+        {
+          "breakpoint": 246,
+          "improvement": 0.11101897292632343,
+          "layer": 11,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": false,
+          "significant": true
+        },
+        {
+          "breakpoint": 132,
+          "improvement": 0.059570297414604005,
+          "layer": 17,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 136,
+          "improvement": 0.3722314022777773,
+          "layer": 23,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 116,
+          "improvement": 0.5597221959308362,
+          "layer": 29,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 92,
+          "improvement": 0.4352187490371412,
+          "layer": 35,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 144,
+          "improvement": 0.8207487544261716,
+          "layer": 41,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 74,
+          "improvement": 0.19872228391780727,
+          "layer": 47,
+          "p": 0.06346826586706647,
+          "p_holm": 0.12693653173413294,
+          "paragraph_scale": false,
+          "significant": false
+        },
+        {
+          "breakpoint": 56,
+          "improvement": 0.3686886472657759,
+          "layer": 53,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 140,
+          "improvement": 0.2868944936766155,
+          "layer": 59,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 114,
+          "improvement": 0.27938246300348485,
+          "layer": 65,
+          "p": 0.3008495752123938,
+          "p_holm": 0.3008495752123938,
+          "paragraph_scale": false,
+          "significant": false
+        }
+      ],
+      "block_32": [
+        {
+          "breakpoint": 260,
+          "improvement": 0.029819173496454607,
+          "layer": 5,
+          "p": 0.019490254872563718,
+          "p_holm": 0.05847076461769116,
+          "paragraph_scale": false,
+          "significant": false
+        },
+        {
+          "breakpoint": 246,
+          "improvement": 0.11101897292632343,
+          "layer": 11,
+          "p": 0.0024987506246876563,
+          "p_holm": 0.012493753123438282,
+          "paragraph_scale": false,
+          "significant": true
+        },
+        {
+          "breakpoint": 132,
+          "improvement": 0.059570297414604005,
+          "layer": 17,
+          "p": 0.004997501249375313,
+          "p_holm": 0.01999000499750125,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 136,
+          "improvement": 0.3722314022777773,
+          "layer": 23,
+          "p": 0.001999000499750125,
+          "p_holm": 0.01199400299850075,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 116,
+          "improvement": 0.5597221959308362,
+          "layer": 29,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 92,
+          "improvement": 0.4352187490371412,
+          "layer": 35,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 144,
+          "improvement": 0.8207487544261716,
+          "layer": 41,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 74,
+          "improvement": 0.19872228391780727,
+          "layer": 47,
+          "p": 0.25287356321839083,
+          "p_holm": 0.5057471264367817,
+          "paragraph_scale": false,
+          "significant": false
+        },
+        {
+          "breakpoint": 56,
+          "improvement": 0.3686886472657759,
+          "layer": 53,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 140,
+          "improvement": 0.2868944936766155,
+          "layer": 59,
+          "p": 0.0004997501249375312,
+          "p_holm": 0.005497251374312844,
+          "paragraph_scale": true,
+          "significant": true
+        },
+        {
+          "breakpoint": 114,
+          "improvement": 0.27938246300348485,
+          "layer": 65,
+          "p": 0.32733633183408295,
+          "p_holm": 0.5057471264367817,
+          "paragraph_scale": false,
+          "significant": false
+        }
+      ]
+    }
+  },
+  "created_at_utc": "2026-07-18T04:07:34.385405+00:00",
+  "dump_rederivation": {
+    "iid_null_breakpoint_mismatches": 0,
+    "max_abs_iid_null_improvement_difference": 9.031966147210468e-12,
+    "max_abs_log_curve_difference": 7.771561172376096e-15,
+    "max_abs_smooth_curve_difference": 0.0
+  },
+  "errors": [],
+  "iid_readout": {
+    "crest_layers": [
+      17,
+      23,
+      29,
+      35,
+      41,
+      53
+    ],
+    "layers": [
+      {
+        "breakpoint": 260,
+        "improvement": 0.029819173496454607,
+        "layer": 5,
+        "p": 0.010494752623688156,
+        "p_holm": 0.020989505247376312,
+        "paragraph_scale": false,
+        "post_slope": -0.0009606514280354607,
+        "pre_slope": -0.0005257665904688552,
+        "residual_lag1": 0.04448926506595161,
+        "rise_to_decay_crest": false,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 246,
+        "improvement": 0.11101897292632343,
+        "layer": 11,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": false,
+        "post_slope": -0.00047809902164169365,
+        "pre_slope": -2.6310640984599654e-05,
+        "residual_lag1": 0.018034419381509976,
+        "rise_to_decay_crest": false,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 132,
+        "improvement": 0.059570297414604005,
+        "layer": 17,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0005465716227754582,
+        "pre_slope": 6.007069373146869e-05,
+        "residual_lag1": 0.09979899810258572,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 136,
+        "improvement": 0.3722314022777773,
+        "layer": 23,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0005144411345983889,
+        "pre_slope": 0.0004923511555912365,
+        "residual_lag1": 0.49124196869361697,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 116,
+        "improvement": 0.5597221959308362,
+        "layer": 29,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0008524522208943517,
+        "pre_slope": 0.0004689647304922662,
+        "residual_lag1": 0.5521438087629366,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 92,
+        "improvement": 0.4352187490371412,
+        "layer": 35,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.000172458971660079,
+        "pre_slope": 0.0006688405483751202,
+        "residual_lag1": 0.5284339738223457,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 144,
+        "improvement": 0.8207487544261716,
+        "layer": 41,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0003421894017943864,
+        "pre_slope": 0.000804725567538764,
+        "residual_lag1": 0.8625933450037775,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 74,
+        "improvement": 0.19872228391780727,
+        "layer": 47,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": 0.0002728989952616988,
+        "pre_slope": 0.000739118312278828,
+        "residual_lag1": 0.9153237650572333,
+        "rise_to_decay_crest": false,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 56,
+        "improvement": 0.3686886472657759,
+        "layer": 53,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0002042223374697314,
+        "pre_slope": 0.0013830372050579476,
+        "residual_lag1": 0.4124171061730073,
+        "rise_to_decay_crest": true,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 140,
+        "improvement": 0.2868944936766155,
+        "layer": 59,
+        "p": 0.0004997501249375312,
+        "p_holm": 0.005497251374312844,
+        "paragraph_scale": true,
+        "post_slope": -0.0003881644011203616,
+        "pre_slope": -6.0995923937264034e-06,
+        "residual_lag1": 0.31916624011588646,
+        "rise_to_decay_crest": false,
+        "sentence_scale": false,
+        "significant": true
+      },
+      {
+        "breakpoint": 114,
+        "improvement": 0.27938246300348485,
+        "layer": 65,
+        "p": 0.2448775612193903,
+        "p_holm": 0.2448775612193903,
+        "paragraph_scale": false,
+        "post_slope": -0.00033399014684625124,
+        "pre_slope": -0.0008878782965562807,
+        "residual_lag1": 0.1273060222560224,
+        "rise_to_decay_crest": false,
+        "sentence_scale": false,
+        "significant": false
+      }
+    ],
+    "median_paragraph_breakpoint": 124.0,
+    "paragraph_knees": 8,
+    "paragraph_layers": [
+      17,
+      23,
+      29,
+      35,
+      41,
+      47,
+      53,
+      59
+    ],
+    "registered_prediction_passed": false,
+    "rise_to_decay_crests": 6,
+    "sentence_knees": 0
+  },
+  "independence": {
+    "curve_rederivation": "leading mode from eig(A A^T) on original weight banks",
+    "hinge_rederivation": "nested-regression increment from residualized hinge columns",
+    "null_rederivation": "registered IID and audit block nulls regenerated from fixed seeds",
+    "producer_imports": []
+  },
+  "inputs": {
+    "block_sensitivity_sha256": "9fb264d1049fbb0de4480df3be75fb2d803e7e6f567c78a26a004899214d2535",
+    "dump": {
+      "path": "dumps\\round5\\lf2\\lf2_knees.npz",
+      "sha256": "97ba42b053b3e25688dc7089ea903b3f450d5011367c3a69e6398aa2bc9153ac"
+    },
+    "manifest_sha256": "031cde50cffad7791904c4be8fef58a900f5bb6dda3338ff6e6e08ac9d03c607",
+    "published_result_sha256": "0edc2ae9a538db6e15cbd4524b22adf8313a6b398d501d6f1084400b881ee0ed",
+    "scales_sha256": "dda5fd58185142a1ebe36b4d03fd9c87a4b5973ed6acc238454f72841921c616",
+    "weight_hashes_verified": "11/11"
+  },
+  "kind": "round5_lf2_independent_verification",
+  "passed": true,
+  "schema_version": 1,
+  "source_sha256": "b9d725041988161dd1fe6559154a383bdea91c5efe1f64aed5012d5fd547707c"
+}

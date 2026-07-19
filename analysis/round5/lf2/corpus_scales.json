@@ -1,0 +1,54 @@
+{
+  "created_at_utc": "2026-07-18T02:08:43.291824+00:00",
+  "definitions": {
+    "paragraph": "split on blank lines",
+    "range": "[min(q25 of both texts), max(q75 of both texts)]",
+    "sentence": "split on [.!?]+ followed by whitespace"
+  },
+  "frozen_ranges": {
+    "paragraph": [
+      21.0,
+      160.25
+    ],
+    "sentence": [
+      7.0,
+      44.0
+    ]
+  },
+  "input_sha256": {
+    "01_prose_en.txt": "d0d6508e8a7f31e6620ad6cf44e5cb577e6dd0110383ed82422f87690f90b7ed",
+    "04_multilingual.txt": "ba467f5f7ebb2cdd6c2b98843a66c3842869ed4901ad6bbc36de943fa58db637"
+  },
+  "kind": "round5_lf2_frozen_scales",
+  "schema_version": 1,
+  "texts": {
+    "01_prose_en": {
+      "paragraph": {
+        "median": 71.5,
+        "n": 242,
+        "q25": 42.25,
+        "q75": 160.25
+      },
+      "sentence": {
+        "median": 29.0,
+        "n": 825,
+        "q25": 15.0,
+        "q75": 44.0
+      }
+    },
+    "04_multilingual": {
+      "paragraph": {
+        "median": 43.0,
+        "n": 760,
+        "q25": 21.0,
+        "q75": 93.0
+      },
+      "sentence": {
+        "median": 14.0,
+        "n": 2239,
+        "q25": 7.0,
+        "q75": 31.0
+      }
+    }
+  }
+}

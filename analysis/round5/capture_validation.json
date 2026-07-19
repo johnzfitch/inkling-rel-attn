@@ -1,0 +1,20 @@
+{
+  "artifact_counts": {
+    "massive_activation_census": 396,
+    "needle_rows_replay": 66,
+    "next_token_nll": 6,
+    "normalized_attention_input": 396,
+    "rvec_replay": 396
+  },
+  "capture_manifest_sha256": "125acd25ab3f94e5620a0185030e32468c13d2e55e5a5979bca904d3577820ea",
+  "errors": [],
+  "fast_mode": false,
+  "kind": "round5_capture_independent_validation",
+  "massive_checked": 396,
+  "nll_checked": 6,
+  "normalized_checked": 396,
+  "passed": true,
+  "replay_checked": 462,
+  "schema_version": 1,
+  "validated_at_utc": "2026-07-17T07:18:02.112540+00:00"
+}

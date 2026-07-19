@@ -1,0 +1,39 @@
+{
+  "attempts": [
+    {
+      "analyzer_source_sha256": "bf0e367e0f0639a66b2adc84b5c58b52f7319f859873f067a981ddc3e77bc40c",
+      "code_commit": "603bdeb",
+      "error": "WinError 32 while atomically renaming an open NumPy memmap on Windows",
+      "first_group": "L00_01_prose_en",
+      "group_manifest_written": false,
+      "offline_source_sha256": "64a9ba17c1ee8242dc3a73d3b0963bc442b126750cff219bfc70b192fad0c787",
+      "partial_bytes": 104592527,
+      "preserved_raw_path": "dumps/round5/_failed_lf5_gpu_603bdeb_win32_memmap",
+      "production_backend": "replay",
+      "rows_computed_before_seal_failure": 331,
+      "semantic_analysis_run": false,
+      "started_at_utc": "2026-07-17T07:49:21.533530+00:00",
+      "status": "failed_before_first_group_seal"
+    },
+    {
+      "amendment_a5_commit": "7bf608d9971997a655a4f9cd46e3bc921ffb74b8",
+      "analyzer_code_commit": "ea0eb74d7383e7dc648dbffe6b633d4e1364559c",
+      "analyzer_source_sha256": "6e4d14dce7a8197e05b3c5793fa6c06a4ce38ed65285a3c68d28cc760f9778f7",
+      "completed_at_utc": "2026-07-17T08:00:25.510485+00:00",
+      "elapsed_seconds": 461.487098,
+      "groups_sealed": 396,
+      "independent_dump_validation_passed": true,
+      "independent_dump_validation_sha256": "5d7115759322216d49ac57c7a97a71043e957b29150f3acf41c1dbc3277263c2",
+      "offline_code_commit": "603bdeb96c1a0d2639b298f022243ffdd83280f9",
+      "offline_source_sha256": "64a9ba17c1ee8242dc3a73d3b0963bc442b126750cff219bfc70b192fad0c787",
+      "production_backend": "replay",
+      "row_dump_manifest_sha256": "27221e523fb6cd2ec8816af19e84015f7937a5278a983c17b32fef94ca258706",
+      "rows_checked_independently": 63162,
+      "semantic_analysis_run": true,
+      "started_at_utc": "2026-07-17T07:52:44.023387+00:00",
+      "status": "complete"
+    }
+  ],
+  "kind": "round5_lf5_production_attempt_log",
+  "schema_version": 1
+}

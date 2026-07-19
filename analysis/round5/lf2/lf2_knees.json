@@ -1,0 +1,204 @@
+{
+  "created_at_utc": "2026-07-18T02:11:09.040869+00:00",
+  "dump_sha256": "97ba42b053b3e25688dc7089ea903b3f450d5011367c3a69e6398aa2bc9153ac",
+  "frozen_ranges": {
+    "paragraph": [
+      21.0,
+      160.25
+    ],
+    "sentence": [
+      7.0,
+      44.0
+    ]
+  },
+  "kind": "round5_lf2_knees",
+  "layers": [
+    {
+      "breakpoint": 260,
+      "improvement": 0.029819173496461075,
+      "layer": 5,
+      "p": 0.010494752623688156,
+      "p_holm": 0.020989505247376312,
+      "paragraph_scale": false,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        2.964019495019449e-05,
+        1.9285112678832477,
+        0.04691050945264849,
+        0.001410795842757929
+      ]
+    },
+    {
+      "breakpoint": 246,
+      "improvement": 0.11101897292631674,
+      "layer": 11,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": false,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.002247725918837002,
+        14.883462680789126,
+        0.04227974900002422,
+        0.00038569085012174985
+      ]
+    },
+    {
+      "breakpoint": 132,
+      "improvement": 0.05957029741460146,
+      "layer": 17,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.00047772153767149106,
+        14.909271477067485,
+        0.04634540510369003,
+        0.000847842521966033
+      ]
+    },
+    {
+      "breakpoint": 136,
+      "improvement": 0.3722314022780565,
+      "layer": 23,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        9.086543147440425e-05,
+        14.83207865782758,
+        0.045391688524022145,
+        0.0005480913834958747
+      ]
+    },
+    {
+      "breakpoint": 116,
+      "improvement": 0.5597221959311512,
+      "layer": 29,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.00013028333551438637,
+        1.8129661901390601,
+        0.05564233524148417,
+        0.0012664495147856724
+      ]
+    },
+    {
+      "breakpoint": 92,
+      "improvement": 0.435218749037796,
+      "layer": 35,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.000502162498493405,
+        5.466983430630564,
+        0.038433965962407536,
+        0.00015971869397889604
+      ]
+    },
+    {
+      "breakpoint": 144,
+      "improvement": 0.8207487544265181,
+      "layer": 41,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        3.1039976980847594e-10,
+        10.067368912947995,
+        0.04009477038011813,
+        5.600381725363656e-05
+      ]
+    },
+    {
+      "breakpoint": 74,
+      "improvement": 0.1987222839184206,
+      "layer": 47,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.0001237868608765973,
+        1.8523216681412786,
+        0.037257875974483955,
+        5.104162200786021e-16
+      ]
+    },
+    {
+      "breakpoint": 56,
+      "improvement": 0.3686886472668326,
+      "layer": 53,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.000475822818663779,
+        11.134494859040764,
+        0.03985652095222034,
+        0.00030645017853078444
+      ]
+    },
+    {
+      "breakpoint": 140,
+      "improvement": 0.28689449367691294,
+      "layer": 59,
+      "p": 0.0004997501249375312,
+      "p_holm": 0.005497251374312844,
+      "paragraph_scale": true,
+      "sentence_scale": false,
+      "significant": true,
+      "two_exp_params": [
+        0.0005398106829921836,
+        14.863574406313367,
+        0.04412692089229389,
+        0.000637789334368448
+      ]
+    },
+    {
+      "breakpoint": 114,
+      "improvement": 0.27938246300358144,
+      "layer": 65,
+      "p": 0.2448775612193903,
+      "p_holm": 0.2448775612193903,
+      "paragraph_scale": false,
+      "sentence_scale": false,
+      "significant": false,
+      "two_exp_params": [
+        0.008701471801351475,
+        0.016772283577972034,
+        0.03937192284086639,
+        0.0006893280048785819
+      ]
+    }
+  ],
+  "n_paragraph_knees": 8,
+  "n_sentence_knees": 0,
+  "prediction": {
+    "paragraph_clause": false,
+    "passed": false,
+    "registered": "sentence knee in >=6/11 globals; no paragraph knee",
+    "sentence_clause": false
+  },
+  "scales_sha256": "dda5fd58185142a1ebe36b4d03fd9c87a4b5973ed6acc238454f72841921c616",
+  "schema_version": 1,
+  "source_sha256": "55286873882b7e744d65a1b607121d592e5dda4092b0cd14f8acd2d16c8410c5"
+}

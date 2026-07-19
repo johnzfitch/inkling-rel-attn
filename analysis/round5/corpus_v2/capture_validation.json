@@ -1,0 +1,17 @@
+{
+  "artifacts_hashed": 134,
+  "capture_git_head": "c834fdf3acd4b314625a923fceff4315d1c240a0",
+  "capture_manifest_sha256": "1659b614845456bdb873891fd29d9ea6480f7a76842cd936e6fe6998bf36c32c",
+  "capture_source_sha256": "f5db0958b8804f23f88ed2a0a529b1b657a0a15e900e84c7afede6f012e1bc3f",
+  "errors": [],
+  "kind": "corpus_v2_capture_independent_validation",
+  "nll_checked": 2,
+  "passed": true,
+  "public_boundary_commit": "65b220c2d185829dfc4c8e617a67e673d2fa9cd2",
+  "registration_commit": "7fb84ab4e5d164bc759c32e38b0e58803abd5299",
+  "rvec_checked": 132,
+  "schema_version": 1,
+  "source_sha256": "19e71915d21d2185d9467bb3293565524f90e7ae09e57e78512d24c2fc389869",
+  "validated_at_utc": "2026-07-17T09:58:49.041033+00:00",
+  "values_checked": 1107312638
+}

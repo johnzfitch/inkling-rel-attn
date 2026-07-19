@@ -1,0 +1,268 @@
+{
+  "all_true_null_controls_passed": true,
+  "amendment_a6_commit": "061bb04dffef05eae33f9fffc430394faa4052c5",
+  "amendment_a7_execution_sha256": "60a6b61db69739296fdf85a7c4edf3952e98fcf2354fca7973709e13c8c1c400",
+  "amendment_a8_validation_sha256": "9dc7f05bc030947a39c9bda49998b310a19b3559b00a6d221c756528b3afe099",
+  "aperture_manifest_sha256": "6a713a8e68284431e32ba4664c6f56e9fd83c8d4a66a0c2da8a65fe5a6ad0093",
+  "aperture_source_sha256": "e19b53a818da91867f73251fcf7a5ee0d47c9f57786491cea8d4f8e0680d966c",
+  "capture_validation_sha256": "3d0e1c7ca8036b43f955312800acad674aa9604d8e7cd69a998680d0477f0ac1",
+  "class_counts": {
+    "function_words": 2016,
+    "message_starts": 311,
+    "pronouns": 946
+  },
+  "class_cross_arm_controls": [
+    {
+      "count": 311,
+      "direction": "positive",
+      "effect": -0.010546875000000011,
+      "mask_source": "07_slack_human",
+      "name": "message_starts",
+      "null_quantiles": {
+        "q025": -0.03242187499999999,
+        "q50": 0.0011718750000000444,
+        "q975": 0.03164062499999998
+      },
+      "p": 0.7935206479352065,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "permutations": 10000,
+      "prediction": "P-v2-3",
+      "seed": 11734535823191092137,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 946,
+      "direction": "negative",
+      "effect": 0.012499999999999956,
+      "mask_source": "07_slack_human",
+      "name": "pronouns",
+      "null_quantiles": {
+        "q025": -0.016015624999999978,
+        "q50": 0.0015625000000000222,
+        "q975": 0.017578125
+      },
+      "p": 0.9138086191380862,
+      "p_holm": 1.0,
+      "passed_as_null": true,
+      "permutations": 10000,
+      "prediction": "P-v2-4",
+      "seed": 347199805708944796,
+      "text": "08_math_llm"
+    },
+    {
+      "count": 2016,
+      "direction": "negative",
+      "effect": -0.005859375,
+      "mask_source": "07_slack_human",
+      "name": "function_words",
+      "null_quantiles": {
+        "q025": -0.009765625,
+        "q50": 0.0011718750000000444,
+        "q975": 0.010937500000000044
+      },
+      "p": 0.12998700129987,
+      "p_holm": 0.38996100389961,
+      "passed_as_null": true,
+      "permutations": 10000,
+      "prediction": "P-v2-4",
+      "seed": 7389131964110758493,
+      "text": "08_math_llm"
+    }
+  ],
+  "class_primary": [
+    {
+      "count": 311,
+      "direction": "positive",
+      "effect": 0.05117187499999998,
+      "name": "message_starts",
+      "null_quantiles": {
+        "q025": -0.041015625,
+        "q50": -0.008203124999999978,
+        "q975": 0.027734374999999978
+      },
+      "p": 0.0007999200079992001,
+      "p_holm": 0.0015998400159984002,
+      "permutations": 10000,
+      "prediction": "P-v2-3",
+      "prediction_passed": true,
+      "seed": 16635636830101074040,
+      "text": "07_slack_human"
+    },
+    {
+      "count": 946,
+      "direction": "negative",
+      "effect": -0.039843749999999956,
+      "name": "pronouns",
+      "null_quantiles": {
+        "q025": -0.02617187500000001,
+        "q50": -0.007031250000000044,
+        "q975": 0.010156249999999978
+      },
+      "p": 0.00019998000199980003,
+      "p_holm": 0.0005999400059994001,
+      "permutations": 10000,
+      "prediction": "P-v2-4",
+      "prediction_passed": true,
+      "seed": 6097798929140706704,
+      "text": "07_slack_human"
+    },
+    {
+      "count": 2016,
+      "direction": "negative",
+      "effect": -0.004296874999999978,
+      "name": "function_words",
+      "null_quantiles": {
+        "q025": -0.01835937500000001,
+        "q50": -0.007031250000000044,
+        "q975": 0.004296874999999978
+      },
+      "p": 0.6513348665133487,
+      "p_holm": 0.6513348665133487,
+      "permutations": 10000,
+      "prediction": "P-v2-4",
+      "prediction_passed": false,
+      "seed": 15832042538118521874,
+      "text": "07_slack_human"
+    }
+  ],
+  "classes_sha256": "a23668ec05805d7dfac8967bb76007f864cd68d5e3ff82fc045682bca94d75cd",
+  "created_at_utc": "2026-07-18T00:19:50.548846+00:00",
+  "kind": "corpus_v2_a6_corrected_registered_readouts",
+  "legacy_dependency_sha256": "3a2c29418b0912ae92215c198ca8cdffd8fdb99fa624499c0587fd732c1256b9",
+  "mid_global_layers": [
+    23,
+    29,
+    35,
+    41,
+    47
+  ],
+  "novelty_eligible": true,
+  "novelty_report_sha256": "681cd38906995c1f33b3532fe4d111c09b2b4b1b8eafba29c78b5597b7a49562",
+  "p_v2_2": {
+    "control_passed": true,
+    "cross_arm_controls": {
+      "math_aperture_slack_nll": {
+        "bin_correlations": [
+          -0.11654427182347334,
+          0.023124976502639363,
+          -0.050412272410277896,
+          -0.007542096530999859,
+          0.02285042031114401,
+          0.08848190221151049,
+          -0.009458594865093142,
+          5.409148555540966e-06,
+          -0.015649743857761727,
+          0.10380744248964802,
+          0.002720087072114154,
+          -0.10679282600545317,
+          -0.0020720183510674157,
+          0.10287663905461564,
+          -0.010941379867469327,
+          0.017799603142487002
+        ],
+        "bin_size": 512,
+        "median_spearman": -0.0010333046012559375,
+        "passed": false,
+        "positive_bins": 8,
+        "total_bins": 16
+      },
+      "slack_aperture_math_nll": {
+        "bin_correlations": [
+          -0.22295497990467075,
+          0.08525345997492442,
+          0.11027246086987297,
+          -0.026772517880401487,
+          -0.047123089821624484,
+          0.08574930406899406,
+          0.028955821369516164,
+          0.057783964895620245,
+          -0.05058824880013773,
+          -0.02754411115706414,
+          0.10518027479494502,
+          0.14262755721073597,
+          -0.043909161268786405,
+          -0.16157084881362355,
+          0.057264731737045244,
+          -0.21114592085966954
+        ],
+        "bin_size": 512,
+        "median_spearman": 0.0010916517445573384,
+        "passed": false,
+        "positive_bins": 8,
+        "total_bins": 16
+      }
+    },
+    "prediction_passed": true,
+    "primary": {
+      "07_slack_human": {
+        "bin_correlations": [
+          0.01714750631283755,
+          0.12929283040307993,
+          0.13372567714554437,
+          0.07408919883788691,
+          0.04428142579195567,
+          0.14964603483502972,
+          0.13278402424359068,
+          0.08152959726955475,
+          0.17655757382285645,
+          0.21667193984329805,
+          0.2582285094897823,
+          0.2423198971174073,
+          0.1876482892943092,
+          0.14640903526527688,
+          0.157978688117038,
+          0.2148488727688176
+        ],
+        "bin_size": 512,
+        "median_spearman": 0.1480275350501533,
+        "passed": true,
+        "positive_bins": 16,
+        "total_bins": 16
+      },
+      "08_math_llm": {
+        "bin_correlations": [
+          -0.07204159799969782,
+          0.2629977547636291,
+          0.048355886958888226,
+          0.15938762049201224,
+          0.02155401035184806,
+          0.07596344056290677,
+          0.12556323918488618,
+          0.5223718641441931,
+          0.2969235658160608,
+          0.3478748025583352,
+          0.1938125608954663,
+          0.11516062983934656,
+          0.05365133612019164,
+          0.3083052464266434,
+          -0.020973111772807765,
+          -0.03706580896056844
+        ],
+        "bin_size": 512,
+        "median_spearman": 0.12036193451211638,
+        "passed": true,
+        "positive_bins": 13,
+        "total_bins": 16
+      }
+    }
+  },
+  "p_v2_3": {
+    "control_passed": true,
+    "prediction_passed": true
+  },
+  "p_v2_4": {
+    "control_passed": true,
+    "prediction_passed": false
+  },
+  "permutations": 10000,
+  "prediction_summary": {
+    "P-v2-1": true,
+    "P-v2-2": true,
+    "P-v2-3": true,
+    "P-v2-4": false
+  },
+  "registration_commit": "7fb84ab4e5d164bc759c32e38b0e58803abd5299",
+  "schema_version": 1,
+  "source_sha256": "e19b53a818da91867f73251fcf7a5ee0d47c9f57786491cea8d4f8e0680d966c"
+}

@@ -1,0 +1,198 @@
+{
+  "certification_scope": "hidden-side no-fork verdict only; does not certify a parent identity or the curve-side L47/L51 neighborhood",
+  "created_at_utc": "2026-07-18T04:07:57.422381+00:00",
+  "curve_side_disposition": {
+    "basis_rederived": false,
+    "claim_promoted": false,
+    "finished_matrix_bookkeeping_matches": true,
+    "reason": "curve bases absent; published mode-0 rederivation has 1/8 agreement and saturated null"
+  },
+  "errors": [],
+  "hidden_side_readout": {
+    "fixed_k_parents": {
+      "M0": {
+        "depth": 49,
+        "distance": 0.9938142824880162,
+        "parent": "L49"
+      },
+      "M1": {
+        "depth": 65,
+        "distance": 0.9934897335198195,
+        "parent": "L65"
+      },
+      "M2": {
+        "depth": 63,
+        "distance": 0.9936521836003803,
+        "parent": "L63"
+      },
+      "M3": {
+        "depth": 64,
+        "distance": 0.993329711296551,
+        "parent": "L64"
+      },
+      "M4": {
+        "depth": 62,
+        "distance": 0.9931410400039726,
+        "parent": "L62"
+      },
+      "M5": {
+        "depth": 64,
+        "distance": 0.993099052748684,
+        "parent": "L64"
+      },
+      "M6": {
+        "depth": 63,
+        "distance": 0.9929277831064462,
+        "parent": "L63"
+      },
+      "M7": {
+        "depth": 65,
+        "distance": 0.9928001481778137,
+        "parent": "L65"
+      }
+    },
+    "no_fork_confirmed": true,
+    "parent_identity_promotion_gate_met": false,
+    "primary_parents": {
+      "M0": {
+        "depth": 15,
+        "distance": 0.9482927433818423,
+        "fork": false,
+        "null_percentile": 54.59207459207459,
+        "parent": "L15",
+        "sketch_agrees": false
+      },
+      "M1": {
+        "depth": 65,
+        "distance": 0.9539402410697737,
+        "fork": false,
+        "null_percentile": 64.47552447552447,
+        "parent": "L65",
+        "sketch_agrees": false
+      },
+      "M2": {
+        "depth": 63,
+        "distance": 0.9575187211759439,
+        "fork": false,
+        "null_percentile": 73.33333333333333,
+        "parent": "L63",
+        "sketch_agrees": false
+      },
+      "M3": {
+        "depth": 64,
+        "distance": 0.9557640512139327,
+        "fork": false,
+        "null_percentile": 68.62470862470863,
+        "parent": "L64",
+        "sketch_agrees": false
+      },
+      "M4": {
+        "depth": 65,
+        "distance": 0.9571607770577109,
+        "fork": false,
+        "null_percentile": 72.68065268065268,
+        "parent": "L65",
+        "sketch_agrees": false
+      },
+      "M5": {
+        "depth": 64,
+        "distance": 0.9575407940096579,
+        "fork": false,
+        "null_percentile": 73.37995337995338,
+        "parent": "L64",
+        "sketch_agrees": false
+      },
+      "M6": {
+        "depth": 64,
+        "distance": 0.9555108671206654,
+        "fork": false,
+        "null_percentile": 67.83216783216784,
+        "parent": "L64",
+        "sketch_agrees": false
+      },
+      "M7": {
+        "depth": 65,
+        "distance": 0.9523586934726315,
+        "fork": false,
+        "null_percentile": 61.81818181818181,
+        "parent": "L65",
+        "sketch_agrees": false
+      }
+    },
+    "registered_prediction_passed": false,
+    "sketch_agreement": "0/8",
+    "sketch_parents": {
+      "M0": {
+        "depth": 14,
+        "distance": 0.5175888973012298,
+        "parent": "L14"
+      },
+      "M1": {
+        "depth": 16,
+        "distance": 0.5341132937641779,
+        "parent": "L16"
+      },
+      "M2": {
+        "depth": 14,
+        "distance": 0.518672810012146,
+        "parent": "L14"
+      },
+      "M3": {
+        "depth": 14,
+        "distance": 0.5110007034032198,
+        "parent": "L14"
+      },
+      "M4": {
+        "depth": 14,
+        "distance": 0.4952389571373506,
+        "parent": "L14"
+      },
+      "M5": {
+        "depth": 15,
+        "distance": 0.5186509250230662,
+        "parent": "L15"
+      },
+      "M6": {
+        "depth": 12,
+        "distance": 0.5186917907387272,
+        "parent": "L12"
+      },
+      "M7": {
+        "depth": 14,
+        "distance": 0.5235892016085476,
+        "parent": "L14"
+      }
+    },
+    "trunk_null": {
+      "max": 0.9727984234039466,
+      "median": 0.9450091349629981,
+      "min": 0.8696956673022499,
+      "n_pairs": 2145,
+      "p05": 0.9004805255885008
+    }
+  },
+  "independence": {
+    "primary_rederivation": "projector Frobenius-overlap identity; no cross-matrix SVD",
+    "producer_imports": [],
+    "sketch_rederivation": "R^T V diag(s^2) V^T R from dumped bases/spectra and fixed seed",
+    "source_object": "self-contained LF7 dump"
+  },
+  "inputs": {
+    "dump": {
+      "path": "dumps\\round5\\lf7\\lf7_dump.npz",
+      "sha256": "cc13e1480b5f2340770406d18e2cf8ade5fa2021037fa0d1b083c30ba2e4ba2f"
+    },
+    "manifest_sha256": "4809e7e5f133781a12dfc3cf12ae42c9f2ccfac9b24df1c647619c787c01dbe5",
+    "published_result_sha256": "e68e17b996cdd358fcc155572ac8ed3b28c9508c2832112533efbaddfc918040"
+  },
+  "kind": "round5_lf7_independent_verification",
+  "matrix_rederivation": {
+    "k90_exact_match": true,
+    "max_abs_fixed_k_difference": 2.220446049250313e-16,
+    "max_abs_primary_difference": 2.220446049250313e-16,
+    "max_abs_sketch_difference": 1.4673930959219206e-08
+  },
+  "passed": true,
+  "schema_version": 1,
+  "source_sha256": "062bace0857dfadc0c3295163ceaceff175a4cc5255f4d8122514b06ede92c2a"
+}

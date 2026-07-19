@@ -1,0 +1,23 @@
+{
+  "all_three_primary_predictions_passed": false,
+  "created_at_utc": "2026-07-17T08:24:52.267167+00:00",
+  "independent_rederivation_gate": false,
+  "input_validation_gate": true,
+  "kind": "round5_lf4_confirmation",
+  "lf5_methodology_gate": true,
+  "lf5_production_backend": "replay",
+  "methodology_passed": false,
+  "negative_control_gate": true,
+  "plan_commit": "d4e2579",
+  "position_matched_control_gate": true,
+  "registered_cpu_gate_passed": false,
+  "registration_commit": "34278b4",
+  "schema_version": 1,
+  "source_hashes": {
+    "controls": "5417551c03a44539e2d2fb9ed3010e8b4da66e2a557785df3d35d86301bfd515",
+    "input_validation": "20dc754105823bc31aaabbba6f72f1589ed2c1c0389f49653494c5b6a1595c9b",
+    "lf5_confirmation": "8aa576801e5adede018818b2ddfade3b60067d8b3bc3735d9625abb8ba40de90",
+    "main_report": "170afabaedb6561ccb2235034841fc317e9f4468dd173750323a59ebb4946d1e",
+    "verification": "62c4234fdc9906ddf6580cfe6645b228e457752819620a718ee15a075a2d512f"
+  }
+}

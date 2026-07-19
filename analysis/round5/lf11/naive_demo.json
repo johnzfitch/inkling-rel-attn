@@ -1,0 +1,96 @@
+{
+  "kind": "round5_lf11_naive_tool_demo",
+  "tool": "damped-sinusoid vs 1-exp BIC, d in [8,400], no cycle check",
+  "rows": [
+    {
+      "layer": 5,
+      "delta_bic": -10.2,
+      "period": 27678438.6,
+      "cycles_in_window": 0.0,
+      "naive_win": false,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 11,
+      "delta_bic": 33.9,
+      "period": 1381.6,
+      "cycles_in_window": 0.284,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 17,
+      "delta_bic": 13.1,
+      "period": 18977.8,
+      "cycles_in_window": 0.021,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 23,
+      "delta_bic": 205.8,
+      "period": 67722.4,
+      "cycles_in_window": 0.006,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 29,
+      "delta_bic": 291.9,
+      "period": 1009.0,
+      "cycles_in_window": 0.388,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 35,
+      "delta_bic": 259.2,
+      "period": 92097.8,
+      "cycles_in_window": 0.004,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 41,
+      "delta_bic": 583.8,
+      "period": 726.6,
+      "cycles_in_window": 0.54,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 47,
+      "delta_bic": -11.9,
+      "period": 211286930.4,
+      "cycles_in_window": 0.0,
+      "naive_win": false,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 53,
+      "delta_bic": 312.2,
+      "period": 93547.4,
+      "cycles_in_window": 0.004,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 59,
+      "delta_bic": 126.6,
+      "period": 56459.9,
+      "cycles_in_window": 0.007,
+      "naive_win": true,
+      "survives_cycle_audit": false
+    },
+    {
+      "layer": 65,
+      "delta_bic": -11.9,
+      "period": 816390133.0,
+      "cycles_in_window": 0.0,
+      "naive_win": false,
+      "survives_cycle_audit": false
+    }
+  ],
+  "naive_detections": 8,
+  "audited_detections": 0
+}

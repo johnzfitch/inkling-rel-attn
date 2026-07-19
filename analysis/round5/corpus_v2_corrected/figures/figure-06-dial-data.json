@@ -1,0 +1,32 @@
+{
+  "L35_percentile": {
+    "colon": 0.513671875,
+    "label": 0.642578125
+  },
+  "L35_raw_aperture": {
+    "colon": 0.7503141699979293,
+    "label": 0.7597434509102782
+  },
+  "class_medians_L35_pct": {
+    "colon": 0.513671875,
+    "label": 0.669921875
+  },
+  "colon_token": 6087,
+  "direction_consistent_pairs": "138/229",
+  "display_head": 60,
+  "display_head_far_share": {
+    "colon": 0.7973905414893752,
+    "label": 0.8921659225806555
+  },
+  "kind": "figure_06_dial_to_aperture_data",
+  "label_token": 6086,
+  "layer": 35,
+  "schema_version": 1,
+  "selection_rule": "label+colon boundary with L35 percentiles jointly closest to class medians, restricted to pairs where raw L35 aperture ordering matches the class-level direction (holds for the stated fraction); head = argmax far-field |curve| difference",
+  "sources": {
+    "aperture_L35_sha256": "1a0e93b7a425f5cd84b28c9ebba5ada70e475d3ec3de78a6ecbc9950c9ac3215",
+    "ids_sha256": "fc3d718bba61107ac91e9be351fe9a6ab6c075a4cdd467e8b7482f45057a03eb",
+    "projection_sha256": "74b5771c72207eecb9a1e1f04f5096c9371528b0ddd89a5774b51bb627d4fc92",
+    "rvec_L35_sha256": "5ac9c6a0e11b8d5ff962b2e78c189b9f03ae4804f123cd1b24c1d8d98217357d"
+  }
+}
