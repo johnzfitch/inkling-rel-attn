@@ -321,7 +321,7 @@ def clock_gain_stat(dump: Path, arm_id: str, kind: str, layer: int, text: str) -
     mu = F.frozen()[f"mu_L{layer:02d}_{text}"].astype(np.float64)
     u = clock_basis(kind, layer, text)
     transformed = r - ((r - mu) @ u) @ u.T
-    blocks = transformed[64:].reshape(127, 64, HEADS, RPERHEAD).mean(axis=1)
+    blocks = transformed[64:].reshape(127, 64, R.HEADS, R.RPERHEAD).mean(axis=1)
     proj = np.load(ROOT / "weights" / f"layer{layer:02d}_rel_logits_proj.npy", allow_pickle=False).astype(np.float64)
     kernels = blocks @ proj
     mean_kernel = kernels.mean(axis=0)

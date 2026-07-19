@@ -211,3 +211,14 @@ corrected mechanically to `R.SEQ` and `R.RFLAT`, matching every other analyzer
 use and the already-frozen independent verifier implementation. No dump,
 intervention, statistic, resample, threshold, prediction, or reporting rule is
 changed. No result output existed or was inspected before this amendment.
+
+## Amendment A2 — complete analyzer constant qualification (2026-07-18)
+
+The first A1 rerun advanced to the next line of the same F7-6 function and
+stopped on unqualified `HEADS` and `RPERHEAD`, again before either result
+output was written. An exhaustive Python symbol-table audit then found these
+as the only remaining unresolved analyzer globals (apart from the
+interpreter-provided `__file__`). They are corrected to `R.HEADS` and
+`R.RPERHEAD`. This completes the same namespace-only repair described in A1;
+no scientific or execution rule changes, and no result output existed or was
+inspected before A2.
