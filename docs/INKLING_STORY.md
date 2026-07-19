@@ -206,16 +206,22 @@ same tokens, token by token (correlation 0.91). Silencing everything
 one-eightieth as much as silencing under-4. The learned far field — all
 that careful curve out to distance 1024 — is causally almost free at 8k.
 
-What breaks at L29 is specific and legible: at baseline, this layer
-constructs the *middle band* of attention — the phrase-and-sentence window,
-4 to 128 tokens back, where it concentrates ~26% of its weight on natural
-text. Cut the bias and that mass collapses to ~8%, spilling both inward
-and outward. The damage is broad (two-thirds of all tokens), gated by
-difficulty (correlation up to 0.8 with baseline surprisal), and worst
-exactly where the aperture machinery lives: sentence starts (+0.31),
-pronouns (+0.22) — the integration tokens. Texts that can be predicted by
-copying from far away (templates, needle documents) sail through unharmed;
-texts whose structure lives in the local window (code, prose) pay full
+What the bias actually writes at L29 turned out to be sharper than a band
+of attention: a **contrastive stencil** on the immediate neighborhood —
+suppress the token itself (the realized curve is *negative* at distance 0
+on every text) and boost distances 1–3. How strongly a text's stencil
+contrasts predicts how much that text suffers (correlation 0.77 across the
+six texts; exploratory). Full bias removal does collapse the
+phrase-and-sentence band (4–128 tokens, ~26% → ~8% of attention on prose),
+but that collapse is a side effect, not the mechanism: silencing *only*
+d<4 leaves the band intact — even slightly fuller — and still does 84% of
+the damage. The injury is broad (two-thirds of all tokens hurt; the worst
+1% of tokens carry only 28% of the gross damage), essentially uncorrelated
+with how difficult a token already was, and — after matching for position
+and difficulty — concentrated at sentence starts (+0.14) and pronouns
+(+0.08), the integration tokens. Texts that can be predicted by copying
+from far away (templates, needle documents) sail through unharmed; texts
+whose structure lives in the local neighborhood (code, prose) pay full
 price. Even long-range *retrieval* breaks through the near field: recall
 queries suffer 487× more than ordinary tokens when L29's bias goes, yet
 silencing the far field does nothing to them — the far-field match still
@@ -223,14 +229,15 @@ happens; what fails is the locally-assembled representation doing the
 asking.
 
 **The engine and the guardrails.** Here is the picture the surgery paints.
-Inkling's positional system at 8k is a small, hot **engine** — the
-immediate-neighbor bias everywhere, and one mid-depth layer that builds the
-sentence-scale window — surrounded by an elaborate array of **quiet
-structure**: the terminal layer's near-field vise (softmax-gauge at the
-readout: it shifts target and competitors by identical +2.1 nats),
-the 512-boundary echo, the distance-1024 wall (healing it: ±5-nat churn on
-individual tokens, net 0.0001), the log clock, the giant carrier. All real,
-all replicated, all certified — all causally silent at 8,192 tokens.
+Inkling's positional system at 8k is a small, hot **engine** — a
+don't-look-at-yourself, look-just-behind-you stencil, sharpest at one
+mid-depth layer — surrounded by an elaborate array of **quiet structure**:
+the terminal layer's near-field vise (near-gauge at the readout: it shifts
+target and competitors by a nearly identical +2.1 nats, mean-canceling
+though not pointwise-silent), the 512-boundary echo, the distance-1024
+wall (healing it: ±5-nat churn on individual tokens, net 0.0001), the log
+clock, the giant carrier. All real, all replicated, all certified — all
+mean-silent at 8,192 tokens.
 
 ## 8. Why keep guardrails you never touch? The 1M question
 
