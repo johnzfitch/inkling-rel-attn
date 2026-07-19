@@ -1,0 +1,1384 @@
+{
+  "arm_count": 35,
+  "baseline_fullvocab": {
+    "artifact_count": 6,
+    "manifest_sha256": "40b05243b1aa91ec53f2526df910ee3e71879520df423363f62fe1cf19f6bda6",
+    "passed": true
+  },
+  "baseline_identity_patch": {
+    "bitwise_equal": true,
+    "passed": true,
+    "positions": 24
+  },
+  "capture": {
+    "capture_manifest_sha256": "2fc2ec9dd4d6b684a473847f6fbd4541d4326b49d7d6456b463ee5722399a75f",
+    "capture_validation_sha256": "b101bcc181a2526f1b76e34ede6e3c337f17910ef3e450929529b1f62c0f7f2e",
+    "entry_state_names": [
+      "hidden_L00",
+      "hidden_L01",
+      "hidden_L02",
+      "hidden_L03",
+      "hidden_L04",
+      "hidden_L10",
+      "hidden_L16",
+      "hidden_L22",
+      "hidden_L28",
+      "hidden_L34",
+      "hidden_L40",
+      "hidden_L46",
+      "hidden_L52",
+      "hidden_L58",
+      "hidden_L64",
+      "hidden_embed"
+    ],
+    "passed": true,
+    "state_count": 102,
+    "states": [
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_01_prose_en.npy",
+        "sha256": "8783478558f453a2405a1f9e227a9d75beea19e2ed377c2d33379be1fec6bbd9",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_02_code.npy",
+        "sha256": "9c61312dd927fa9b08ef0cd969e7cc309effa4b703e87fa16953640c515d6655",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_03_templated.npy",
+        "sha256": "01541496c35e62ce5498c9b2a23418af237693e4d6d0ead84e74aa86cfb7e18c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_04_multilingual.npy",
+        "sha256": "a4c2dbdc52bfaa55aed570ea3eea108e399315c204ea14ebbca3acd51c7e6fdb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_05_needles.npy",
+        "sha256": "97ec7a81e7c8719ee96542c782c82ee462585fd4ca0c33585215996013746213",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L00_06_random.npy",
+        "sha256": "3581cd02a0ea07025400e1fb05f3f55c8f1be3863631960fde4e61ee7a4f6efb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_01_prose_en.npy",
+        "sha256": "f0e7b428a613cdfb192051b88559251faa3ca52477b2432f1314427941e2f8fd",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_02_code.npy",
+        "sha256": "1d11cef0b43e487c9b076fe07b7534adc8f4104da064ecc65fb3e03278b561d6",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_03_templated.npy",
+        "sha256": "73d0088213fb6715e9bb136524777b12f4629e65dde6e6863937a88409906aa5",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_04_multilingual.npy",
+        "sha256": "7cfb6cd5364d5bf50e90916141ecbe34d2003dd85ec26208363e42c611345f0a",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_05_needles.npy",
+        "sha256": "96b60f4047001402d55b3d5e8762bc5f04c2482bd9c31293cb0c71b300ee900a",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L01_06_random.npy",
+        "sha256": "5e9e679a29e281413f3a3a6bc8c0dcce9a5f510a4d9720f4e055f2e56fe44bfc",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_01_prose_en.npy",
+        "sha256": "38c01bf7c49973fd27f84ec130b8c32d62f1d377a5f697acd408bade64c88399",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_02_code.npy",
+        "sha256": "333050993f051b393d9c9b2ddac669720e445d90027603da7a63748710dc6d13",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_03_templated.npy",
+        "sha256": "873fc74daf4ea086e5a31f0cb8295ff1a710004fe1ae514ee95857410f85b624",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_04_multilingual.npy",
+        "sha256": "f2ae34dce5c16a5c7c1085f5b384ecf4165fb315312a2f555e51ea52adb20f8e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_05_needles.npy",
+        "sha256": "9a51cae7317db50670422a2322aa12f5010cb3514cc9bec209e24a4f997772d0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L02_06_random.npy",
+        "sha256": "3d545cfc1428f5c0afd01dd77bd89800588c2d029b90defb753b24228b845148",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_01_prose_en.npy",
+        "sha256": "0834487ad1f4885e178b2c4e3ab924189677e9d53ebc1695fb173ca47d44662f",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_02_code.npy",
+        "sha256": "e95bd3a1010e5d044ed133de61143d3c9081c5f8da63e1fe375f6ab8ccc79c60",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_03_templated.npy",
+        "sha256": "cc41433ad98445287bec4d619e215f000188d706e1fa4a8d37ab66c36a96bd7d",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_04_multilingual.npy",
+        "sha256": "38732c96f09af07b441437d8861875c3c2563c021d9b6b981b0fd6a10d97ac47",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_05_needles.npy",
+        "sha256": "e8b5690e0b4c5045ff12a98b62edd38bca05998dab72d5953a712709d87d3505",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L03_06_random.npy",
+        "sha256": "2e8cefe7f06a4e0c3e73ec9084065f100ff69869ecff6223b25ef70af1d75dda",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_01_prose_en.npy",
+        "sha256": "dbef1761dc1330ae6015a4fce40be05ceed9e25b1eb24303bb61e341458deff9",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_02_code.npy",
+        "sha256": "83e7953e1527da83912fb962b24199d9499a5c4028d6a64f738080b15d6742d6",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_03_templated.npy",
+        "sha256": "ee2361ff643448dbf6f33bf877be37f20a781f2799e399c0c7b44f1e1298a4e4",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_04_multilingual.npy",
+        "sha256": "6d2a8bc97abec6633048a1936ccfe7155c696c8ea4310f081faf3cf89128375d",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_05_needles.npy",
+        "sha256": "9a26e6a0004a2b9c3f22367bd17c243e440a5ea3134778827c7eab526649d342",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L04_06_random.npy",
+        "sha256": "c8275fb535be567dde6e095f40540ad469ce605eff26a18122d294fba047de29",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_01_prose_en.npy",
+        "sha256": "e73754a9310be0275fa096cf98e7a1b84b859adbf3ccdb453cb67d38b2163e1c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_02_code.npy",
+        "sha256": "0583d46a1bfad87943414f0ad11ca0e4cb2899d257966ed609bc25b490a02ec2",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_03_templated.npy",
+        "sha256": "13269f3f05da744fda7e3ffb77d61cf31e11c1b2f1c78d0ecc780e5d65471240",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_04_multilingual.npy",
+        "sha256": "78b9730d263b001dde5d4060ed975b1df6ac2a3fa30bc1e4128a31cbcbc10a8e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_05_needles.npy",
+        "sha256": "7d55d876f37807b526e6801dd9bebd540f724af2fa04241f59736296d5966bfd",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L10_06_random.npy",
+        "sha256": "7f0ebdd0b11a657974dac8b56979df2f63dde53a44d6c4b2562c91a120cc36b0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_01_prose_en.npy",
+        "sha256": "3aa4fd7eb454b2f4911a92be6015e006cdd287fcc9b179c59486b91caef151b2",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_02_code.npy",
+        "sha256": "e7658ee91cd7241c33a52891c9bd74173ec67b6326a048c33895974a944cb926",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_03_templated.npy",
+        "sha256": "a7773802b510ade98bcd3cfa353ded75ea330d58e8f18bacf541d61d95aaec47",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_04_multilingual.npy",
+        "sha256": "24df32ef7002255fe92b1c21b5ae228d17eddc8b58ebf331e984100d09bf8a8e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_05_needles.npy",
+        "sha256": "3b88e12c9ab928d15bcdf4479525a6c2d794e7c621611ac2365d1b57c76085eb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L16_06_random.npy",
+        "sha256": "f6ab18a72dbd881d930344e9d11f19487746683b2d35c56674239bbdd2cd4a5b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_01_prose_en.npy",
+        "sha256": "ca068c33ff73054340a019327a72d3fed7c11510dd9710171c08a9f63caaa01e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_02_code.npy",
+        "sha256": "cd49335672e13a11b662342b283ef8fce9af403251b2faae1dfa41a2575f78eb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_03_templated.npy",
+        "sha256": "a9de6a8e2ab709d6aab53d4b0f1d86fbbd10c1ce93ce6f25d7dc9085556b75aa",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_04_multilingual.npy",
+        "sha256": "0502a489106ee7e24e2d9e6c8bd085cf64c535afb98cbd9555b3fc0375d563bb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_05_needles.npy",
+        "sha256": "f56840e285a5f54c5d364a142cd35e2536e90b14c8fa0095ec44c6e6f8a8e375",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L22_06_random.npy",
+        "sha256": "6eb247b8314f759927919d2cc22572d186c79786ad37e9eff9f4c4ee192df145",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_01_prose_en.npy",
+        "sha256": "cea1b0b03fc8f242d21df9c09e0abf0bc458d8926882e71b322d3819f33eab46",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_02_code.npy",
+        "sha256": "5457dc63b493a4766391292a92465f4631490613a3143e7fa71af6690f731304",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_03_templated.npy",
+        "sha256": "965e27cc72c4804ed4305aaa832c6ca5acb2dd70fd15d388de98bcf9e803132e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_04_multilingual.npy",
+        "sha256": "5f1798fcf9de40a5b72146d9bb9d3f1a7ab63cb44f7133f6f73c47cf25b6092a",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_05_needles.npy",
+        "sha256": "1ffe61547097924089ba670bd7a798d1cee00ed9fd85117ba5d33008f634af2b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L28_06_random.npy",
+        "sha256": "2c00e317ae69e926a7c0c98a6fb98387fd892cce4a74a6f8fe07dc43d4b8fb8b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_01_prose_en.npy",
+        "sha256": "177000a3054cb96c4d7a04f69060acaa9cf9e2726d0715b8f76987a8a646994e",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_02_code.npy",
+        "sha256": "7b43f59ce54d11ac81bd41e06b48ee169295d84dfa399c013c400ee9d07f26fe",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_03_templated.npy",
+        "sha256": "85f43b9996238ac8f5c3966d745d04158e9f881bcbe387d1246f7871280d9ca2",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_04_multilingual.npy",
+        "sha256": "7b84f4f6633d154e43680c0f4ec95249d91453bb174331d3b7be8a9bec0050c5",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_05_needles.npy",
+        "sha256": "1490dbb953678d8099a163f4c56a6c587e5a97e6a712d92e39536a8bfdbdb8e1",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L34_06_random.npy",
+        "sha256": "2da3ef96184e5f5fca56ab6d2bea5f087de1257f29a24e3d544787b38cedfef0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_01_prose_en.npy",
+        "sha256": "c741705ac08a6adaea67b967ab19dba88ef76833f6b5ceb32cb624a2c13cfb3c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_02_code.npy",
+        "sha256": "a10daf51fe40f302cf3c862f552593130ea3773ac9ea73c770cbdbb88bd6e583",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_03_templated.npy",
+        "sha256": "0274972f9493f739009c4c20786532263df3663090be17598d4cc526af2a47a4",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_04_multilingual.npy",
+        "sha256": "5fc11d6ed1366c23ffa959f31a70d72f54aa7a9ed927ca89be79d7a1164ca7f4",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_05_needles.npy",
+        "sha256": "086351339e0f7720b0f03d98ad4044a4ffa097a75a51e67cd1937875d21779a0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L40_06_random.npy",
+        "sha256": "0ad0d0881961e9df9c1a362447ae9442874987fada2af292c5383b0f4cd1b464",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_01_prose_en.npy",
+        "sha256": "e1e8731a2952bd71a63f8321e86db4fc902cbae17c9c21c43b439a3f8b3d1ad6",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_02_code.npy",
+        "sha256": "2fe67918832671cca2b5eaee0b3dce333a759688a9d5fa15770f82055dc6ad14",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_03_templated.npy",
+        "sha256": "830de2f601761bad4502cc4368a734ef51e2c1e6074985e938220c9632c643b5",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_04_multilingual.npy",
+        "sha256": "e4ceec63c919a84b2e32afd9d870959449d9bcf8a040a5c3ca14c675ddf7631d",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_05_needles.npy",
+        "sha256": "3897df24413f6c7c4a51869a7fa2162a360451d68807a61167b2dae5a9b18a4b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L46_06_random.npy",
+        "sha256": "a2aa87e75091ade4c04a0af3469c3c5d70c4edae7f140e8fa1c84cdf3f42c645",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_01_prose_en.npy",
+        "sha256": "0d9ff31f374340125677a40eac07e4a4abdbe8f3b35fb80e60bd59e90aa5cb40",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_02_code.npy",
+        "sha256": "77dd23b1e2f8b00d928bd4bd309782b6e9cd22fdfb63f4641fba0b7698b1a993",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_03_templated.npy",
+        "sha256": "048c2848d770e0fb9d0f0740d3f21de56b62daa6de065e335b0ece8c4f066ad6",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_04_multilingual.npy",
+        "sha256": "a524e6e97e83de84c071c51f8757f8265019294a988b059c5c79502d01184ae8",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_05_needles.npy",
+        "sha256": "76203e2029b8ae4bab2539b5905344d83b3def5904dce7b6f1bb6e93e019d7e0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L52_06_random.npy",
+        "sha256": "fe02b6cc8bb5b216ccd520d5ed596ff18eb791f815f49435ad0871b17c7585de",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_01_prose_en.npy",
+        "sha256": "52e592e0103f356060e817f06732b35008710b5509966c93f3a3e4cb95e49eae",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_02_code.npy",
+        "sha256": "7de222d239c32593774ed818697654f1cc88cb3c9d7370b67dbedcbd75f4eef9",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_03_templated.npy",
+        "sha256": "119fce874195ff5ad016ca53af3330b368b16ebfde8c8dc4a279195c800c19ee",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_04_multilingual.npy",
+        "sha256": "f2c680e9be4b708d155390062eed3094d2ba546994b81719a8b825b48843ee75",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_05_needles.npy",
+        "sha256": "04d48567d86ce51012243df7dd914ef0582983139609494ee7ed48d4dcd6ca0c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L58_06_random.npy",
+        "sha256": "7aa0358881df25fee84cdef891f1ee29a665d187fe327bc6ff3cc28609af3343",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_01_prose_en.npy",
+        "sha256": "c86f65dfbb7293b0c5c9501f804aa81715ebce0dbca7a72163c099ba86f907b3",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_02_code.npy",
+        "sha256": "97c76f194b212ef7e499354487326ec151399f206edb95b7adf586d9271d8aaa",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_03_templated.npy",
+        "sha256": "d66158af2cf4b80d7f90d0c0f6fad75acca7954a3913ca4323c0cfbb1b989b5b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_04_multilingual.npy",
+        "sha256": "483375a1234a0dd0fa71e39422506deaa30034275fa29ded8368d7daa91ce527",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_05_needles.npy",
+        "sha256": "8c96b5d4af277c2dfbabda1e4eb6dd9af0bc781a5150b3698ebb919c2087ff84",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L64_06_random.npy",
+        "sha256": "83d218a5c63577fc5646d7839446b539f0c6e51ee47f9aaf06764d0d5eb401bb",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_01_prose_en.npy",
+        "sha256": "92fd83e2223e2f61d1b9686b24ed096675ca9d23c96ace7c8a8715ee8c10554d",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_02_code.npy",
+        "sha256": "bc040fe68bcc76d5aa0518c10252529ae7b8ffd937c884d32e80d7481212dc7c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_03_templated.npy",
+        "sha256": "10f00423bb03dc9ed779c9dd555de80bec843afdafebcf174fd0be6ec741815d",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_04_multilingual.npy",
+        "sha256": "35241193bb446802ffaaa674a773195bec5f1969113bc2da585c362bc0aca55a",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_05_needles.npy",
+        "sha256": "aad5b52d0a7fe06ed4458f1a75fbf1eb2b9f34b77451219db57550bc4eed6f3b",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_embed_06_random.npy",
+        "sha256": "fa405db99c16974c4f0ec9d056b86e3a797d0fa981116f95942e5117733a4c2a",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_01_prose_en.npy",
+        "sha256": "be0f1e7ebcc7557b7a1cc5442732ad67c4c05e735e5953476b7f5c48725e5ce9",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_02_code.npy",
+        "sha256": "6e0f09f9727f6d4a5b0454423f2cba2c85f0d0ee0035800fab65bb19b32b45b8",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_03_templated.npy",
+        "sha256": "b6a19861bc4690cadfa002b419e6e2e5419ab5a60ac02b2c621bb7053886b02c",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_04_multilingual.npy",
+        "sha256": "01b290ce36b6755abb5d7e28862573a34115d4d63fee63a09c47cce50683b871",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_05_needles.npy",
+        "sha256": "d32cd9d5e3438ef69fee69f8be79573a8e3fc4f3bfff16d6de4cde54ffff64d0",
+        "shape": [
+          8192,
+          6144
+        ]
+      },
+      {
+        "dtype": "uint16(lossless_bfloat16)",
+        "nonfinite_bf16_words": 0,
+        "path": "states/hidden_L65_06_random.npy",
+        "sha256": "dfdbe97af9f9593c2c6fceb3d8d05736b11af0959cd28b241478e4aee3d252cc",
+        "shape": [
+          8192,
+          6144
+        ]
+      }
+    ]
+  },
+  "checkpoint": {
+    "byte_sizes": {
+      "model-00001-of-00033.safetensors": 19116985342,
+      "model-00002-of-00033.safetensors": 19974331454,
+      "model-00003-of-00033.safetensors": 19167394188,
+      "model-00004-of-00033.safetensors": 15696646890,
+      "model-00005-of-00033.safetensors": 17858589788,
+      "model-00006-of-00033.safetensors": 19944324836,
+      "model-00007-of-00033.safetensors": 19208103526,
+      "model-00008-of-00033.safetensors": 19950824732,
+      "model-00009-of-00033.safetensors": 18726640016,
+      "model-00010-of-00033.safetensors": 19997716432,
+      "model-00011-of-00033.safetensors": 19503730654,
+      "model-00012-of-00033.safetensors": 15632104382,
+      "model-00013-of-00033.safetensors": 18122786004,
+      "model-00014-of-00033.safetensors": 18000161310,
+      "model-00015-of-00033.safetensors": 19849789206,
+      "model-00016-of-00033.safetensors": 19579605120,
+      "model-00017-of-00033.safetensors": 18349586234,
+      "model-00018-of-00033.safetensors": 19542373784,
+      "model-00019-of-00033.safetensors": 15483680186,
+      "model-00020-of-00033.safetensors": 19255845282,
+      "model-00021-of-00033.safetensors": 16632058036,
+      "model-00022-of-00033.safetensors": 17755343330,
+      "model-00023-of-00033.safetensors": 17842745792,
+      "model-00024-of-00033.safetensors": 16021544096,
+      "model-00025-of-00033.safetensors": 19384613910,
+      "model-00026-of-00033.safetensors": 19126417732,
+      "model-00027-of-00033.safetensors": 18252708640,
+      "model-00028-of-00033.safetensors": 19645387122,
+      "model-00029-of-00033.safetensors": 19871788438,
+      "model-00030-of-00033.safetensors": 1224040074,
+      "model-00031-of-00033.safetensors": 19352518936,
+      "model-00032-of-00033.safetensors": 18582473448,
+      "model-00033-of-00033.safetensors": 4831838368
+    },
+    "certified_capture_validation_rehashed_shards": true,
+    "config_sha256": "58720f145bcecef9a7ab2b419ab346e7c634af8d2f3e7362e900d00f789ea46c",
+    "content_hashes_inherited_from_certified_capture": true,
+    "index_sha256": "23e5784d569500563c2603920d0d2e7240caab5daa627bb5928e3d092fc6e560",
+    "nontrunk": [
+      "mtp.safetensors"
+    ],
+    "passed": true,
+    "tokenizer_sha256": "9fb6333a7db8fe5da90728e741e4a3ee4ac2ae12c5dd4958cc6f31688787d3c2",
+    "trunk_shards": 33
+  },
+  "completed_at_utc": "2026-07-19T03:25:10.377948+00:00",
+  "critical_git": {
+    "files": {
+      "analysis/round5/followup7/frozen_inputs.npz": {
+        "filtered_worktree_blob_oid": "43dc77ce66c843e484d683421c363d1ea31b503f",
+        "git_blob_oid": "43dc77ce66c843e484d683421c363d1ea31b503f",
+        "worktree_sha256": "b4b518a034fccae665e246aa6798a75f62dcd1f38fd7dcfec8abebda2f7443d3"
+      },
+      "analysis/round5/followup7/frozen_inputs_manifest.json": {
+        "filtered_worktree_blob_oid": "61bcef4488a01c073e9504725f6c401f99f9ca4e",
+        "git_blob_oid": "61bcef4488a01c073e9504725f6c401f99f9ca4e",
+        "worktree_sha256": "0bba6118ffbded8c5c63a44195b1e73423117daab9fbd49acf1b442edc6aaf50"
+      },
+      "registrations/ROUND5_FOLLOWUP7_PREREG.md": {
+        "filtered_worktree_blob_oid": "d3b4bf8ee2259369c92188f908882a434d06020c",
+        "git_blob_oid": "d3b4bf8ee2259369c92188f908882a434d06020c",
+        "worktree_sha256": "eea16879b5b054c67a25a475569fa0322952cacf9c01857ddd327660d777b9b1"
+      },
+      "scripts/round5_followup7_analyze.py": {
+        "filtered_worktree_blob_oid": "df47c44e64546f32a19dc09ca79280d80d6e19a5",
+        "git_blob_oid": "df47c44e64546f32a19dc09ca79280d80d6e19a5",
+        "worktree_sha256": "d5b83b478677ef8a95fdf7583fdf87a82cee267cc1b0262a691291dbb4108f23"
+      },
+      "scripts/round5_followup7_build.py": {
+        "filtered_worktree_blob_oid": "5207fc707ec64cd647194df6f197d0a8437a6585",
+        "git_blob_oid": "5207fc707ec64cd647194df6f197d0a8437a6585",
+        "worktree_sha256": "72d64d2a1636b9b1f0ab3077467b0c90917bf258584870a03b292c805961e6a3"
+      },
+      "scripts/round5_followup7_runner.py": {
+        "filtered_worktree_blob_oid": "3416a5949f56413907546d8d12467d8be91bef17",
+        "git_blob_oid": "3416a5949f56413907546d8d12467d8be91bef17",
+        "worktree_sha256": "137ef6ed1dd4812a3179a6e2ca9ca9b390330134e98e180ec64d113527323896"
+      },
+      "scripts/round5_followup7_verify.py": {
+        "filtered_worktree_blob_oid": "51cad19f3153c2cc8c27f24013e9bae1d1c0ea9e",
+        "git_blob_oid": "51cad19f3153c2cc8c27f24013e9bae1d1c0ea9e",
+        "worktree_sha256": "b7a854a5b7cfd841e58613897d41947da8c7258c36ffb7a67200985b73559718"
+      },
+      "scripts/round5_r5d_runner.py": {
+        "filtered_worktree_blob_oid": "c1bd2d453dfb6278f3e62c41d077b8ebcc3d4efd",
+        "git_blob_oid": "c1bd2d453dfb6278f3e62c41d077b8ebcc3d4efd",
+        "worktree_sha256": "346bf9ed55f419b73c3da6b8b67c059eb4d5a9b78f87e678a7079675b3d464d1"
+      },
+      "scripts/tier2_run.py": {
+        "filtered_worktree_blob_oid": "5a07a8c9932cffb1c3ef160b1000e4990226095a",
+        "git_blob_oid": "5a07a8c9932cffb1c3ef160b1000e4990226095a",
+        "worktree_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124"
+      },
+      "scripts/tier2_stream.py": {
+        "filtered_worktree_blob_oid": "f8f4b5bcc3d3ea5a98f7ddf256470fce86682102",
+        "git_blob_oid": "f8f4b5bcc3d3ea5a98f7ddf256470fce86682102",
+        "worktree_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f"
+      }
+    },
+    "git_head": "f0b0b927a5c51aabd39dbf8d0babd2033a8854e6",
+    "passed": true
+  },
+  "elapsed_seconds": 28.822,
+  "followup_toy_gates_cpu": {
+    "clock_subspaces": true,
+    "device": "cpu",
+    "distance_boundaries": true,
+    "head_partition": true,
+    "passed": true,
+    "patch_positions": true,
+    "r_decomposition_finite": true
+  },
+  "followup_toy_gates_gpu": {
+    "clock_subspaces": true,
+    "device": "cuda",
+    "distance_boundaries": true,
+    "head_partition": true,
+    "passed": true,
+    "patch_positions": true,
+    "r_decomposition_finite": true
+  },
+  "frozen_inputs": {
+    "array_count": 65,
+    "class_counts": {
+      "07b_first_content": 231,
+      "07b_pronouns": 700,
+      "08_pronouns": 180,
+      "08_unit_starts": 10
+    },
+    "manifest_sha256": "0bba6118ffbded8c5c63a44195b1e73423117daab9fbd49acf1b442edc6aaf50",
+    "npz_sha256": "b4b518a034fccae665e246aa6798a75f62dcd1f38fd7dcfec8abebda2f7443d3",
+    "passed": true
+  },
+  "kind": "round5_followup7_gpu_preflight",
+  "parent_critical_git": {
+    "files": {
+      "analysis/round5/r5d/tail_fit_v2.json": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "828d2ec600b44c3dee0b169154445eedc1584a53",
+        "git_blob_oid": "828d2ec600b44c3dee0b169154445eedc1584a53",
+        "git_blob_sha256": "08aa33d30db689bed51ee31cc80d75ee1d35c960cc37aa0f173522d2594c89c1",
+        "worktree_sha256": "08aa33d30db689bed51ee31cc80d75ee1d35c960cc37aa0f173522d2594c89c1"
+      },
+      "analysis/round5/r5d_clock/clock_freeze.npz": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "38ff901202c5f30f5106835a1f5db1510adacf9a",
+        "git_blob_oid": "38ff901202c5f30f5106835a1f5db1510adacf9a",
+        "git_blob_sha256": "c730e76809700715828c2defc3d6a2da74c36b0d4c98b6dd048fc56dfe253e0e",
+        "worktree_sha256": "c730e76809700715828c2defc3d6a2da74c36b0d4c98b6dd048fc56dfe253e0e"
+      },
+      "analysis/round5/r5d_clock/clock_freeze_manifest.json": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "073d1e3a39de89711def82a079df39af574c82ad",
+        "git_blob_oid": "073d1e3a39de89711def82a079df39af574c82ad",
+        "git_blob_sha256": "806671f74bb660b825d39b098912eaa78a00ed2354f1633b35997aa12d6e4f83",
+        "worktree_sha256": "7be55fdf68c8fcffa896230a463b7c5e9ae57886282c6d5fc95bae535ed65696"
+      },
+      "analysis/subspace_anatomy/common_bases_top4.npz": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "89aa853edf2ad9cab336c794ccdcd528e8b2ff97",
+        "git_blob_oid": "89aa853edf2ad9cab336c794ccdcd528e8b2ff97",
+        "git_blob_sha256": "621610027c6ddbdc8f4a9ecb4997ff5885b31f52209a43ccd86cc664a72eb16f",
+        "worktree_sha256": "621610027c6ddbdc8f4a9ecb4997ff5885b31f52209a43ccd86cc664a72eb16f"
+      },
+      "corpus/05_needles.sidecar.json": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "4a38b0131066a96d29502bf0477efc5fdb2fa894",
+        "git_blob_oid": "4a38b0131066a96d29502bf0477efc5fdb2fa894",
+        "git_blob_sha256": "cb3617d38bd2f34442b7e84da8fd695a0c6378187ac47635d97fe2398f74e379",
+        "worktree_sha256": "9f1fd753909cdfe7591779a3b42c3ae9e86b3e931e5072d7ce53670fca2ea1fc"
+      },
+      "corpus/manifest.json": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "0b7d80bef3921746dff9e253bcfaa43ddd497ea2",
+        "git_blob_oid": "0b7d80bef3921746dff9e253bcfaa43ddd497ea2",
+        "git_blob_sha256": "6d03d7cb03278ed49ad3114cc5f44e05f939a4b3cb82f274679050ee7cea8fb0",
+        "worktree_sha256": "391a5526aa5ebe05d93aff3006670a7938a24bb0dedcc79e6326d2c96f2801e7"
+      },
+      "corpus/tokenizer.json": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "5d508694814b53fd8768689368c67a07c7aff31f",
+        "git_blob_oid": "5d508694814b53fd8768689368c67a07c7aff31f",
+        "git_blob_sha256": "9fb6333a7db8fe5da90728e741e4a3ee4ac2ae12c5dd4958cc6f31688787d3c2",
+        "worktree_sha256": "9fb6333a7db8fe5da90728e741e4a3ee4ac2ae12c5dd4958cc6f31688787d3c2"
+      },
+      "registrations/ROUND5_R5D_CLOCK_AMENDMENT.md": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "6ae10020b8f2bc36da0714ec3a97b5ae1e7c7b35",
+        "git_blob_oid": "6ae10020b8f2bc36da0714ec3a97b5ae1e7c7b35",
+        "git_blob_sha256": "928b66fbd0885996871b3c0de1e8847c3a9d23781f8b0772f2d6d6d7998d32d9",
+        "worktree_sha256": "928b66fbd0885996871b3c0de1e8847c3a9d23781f8b0772f2d6d6d7998d32d9"
+      },
+      "registrations/ROUND5_R5D_EXECUTION_AMENDMENT.md": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "c18396921ca513b86e28bad5a763219c4ab2d90e",
+        "git_blob_oid": "c18396921ca513b86e28bad5a763219c4ab2d90e",
+        "git_blob_sha256": "d9188994fb42f96be7f402938f32676c73be6bef61790ab3b048565ffe06feba",
+        "worktree_sha256": "d9188994fb42f96be7f402938f32676c73be6bef61790ab3b048565ffe06feba"
+      },
+      "registrations/ROUND5_R5D_TAIL_AMENDMENT_A.md": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "776f388226c8084fd604fb2f147dd68f46a7e7ca",
+        "git_blob_oid": "776f388226c8084fd604fb2f147dd68f46a7e7ca",
+        "git_blob_sha256": "16d6e1e982d118582245afba3c00245e41edfa36ea8177ec04cea22e568135fe",
+        "worktree_sha256": "16d6e1e982d118582245afba3c00245e41edfa36ea8177ec04cea22e568135fe"
+      },
+      "scripts/round5_clock_freeze_build.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "d598c084634317834d162453d01ad27abded9d5d",
+        "git_blob_oid": "d598c084634317834d162453d01ad27abded9d5d",
+        "git_blob_sha256": "233c06a39d2c78639f4477bd0c1c4e7831c4a40425448cd157f0024dc0e92429",
+        "worktree_sha256": "233c06a39d2c78639f4477bd0c1c4e7831c4a40425448cd157f0024dc0e92429"
+      },
+      "scripts/round5_r5d_analyze.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "5f78ea42edf6ed37a7d9ef666e9dc46d23bd979f",
+        "git_blob_oid": "5f78ea42edf6ed37a7d9ef666e9dc46d23bd979f",
+        "git_blob_sha256": "696f6e1a24418ebd83a131e75881c769806722dabd957abbad4c6b43c067d8b8",
+        "worktree_sha256": "696f6e1a24418ebd83a131e75881c769806722dabd957abbad4c6b43c067d8b8"
+      },
+      "scripts/round5_r5d_runner.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "c1bd2d453dfb6278f3e62c41d077b8ebcc3d4efd",
+        "git_blob_oid": "c1bd2d453dfb6278f3e62c41d077b8ebcc3d4efd",
+        "git_blob_sha256": "346bf9ed55f419b73c3da6b8b67c059eb4d5a9b78f87e678a7079675b3d464d1",
+        "worktree_sha256": "346bf9ed55f419b73c3da6b8b67c059eb4d5a9b78f87e678a7079675b3d464d1"
+      },
+      "scripts/round5_r5d_tail_v2.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "80a22bad2e356738aa137e30ff01bb27fe4f05ee",
+        "git_blob_oid": "80a22bad2e356738aa137e30ff01bb27fe4f05ee",
+        "git_blob_sha256": "26b72ff311ef867595ebd201021991475808dbd0a9af777ac806a21940442f86",
+        "worktree_sha256": "26b72ff311ef867595ebd201021991475808dbd0a9af777ac806a21940442f86"
+      },
+      "scripts/tier2_nvfp4.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "4a1249a09ff93d7f58defe36778ce146354f360b",
+        "git_blob_oid": "4a1249a09ff93d7f58defe36778ce146354f360b",
+        "git_blob_sha256": "d90817379601fc21f157946caf68f21c3ca6e84cbf80c58a60e15bf33ebee2b5",
+        "worktree_sha256": "d90817379601fc21f157946caf68f21c3ca6e84cbf80c58a60e15bf33ebee2b5"
+      },
+      "scripts/tier2_run.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "5a07a8c9932cffb1c3ef160b1000e4990226095a",
+        "git_blob_oid": "5a07a8c9932cffb1c3ef160b1000e4990226095a",
+        "git_blob_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124",
+        "worktree_sha256": "bc0a963dd2d9492db61f2fc8d8bf343bfac051e1522b8188213fdeed07e34124"
+      },
+      "scripts/tier2_stream.py": {
+        "equal_after_git_clean_filter": true,
+        "filtered_worktree_blob_oid": "f8f4b5bcc3d3ea5a98f7ddf256470fce86682102",
+        "git_blob_oid": "f8f4b5bcc3d3ea5a98f7ddf256470fce86682102",
+        "git_blob_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f",
+        "worktree_sha256": "cf57a804874bc69a9cca6c034251d2215be64339846ea5a7309347ea8219cc0f"
+      }
+    },
+    "git_head": "f0b0b927a5c51aabd39dbf8d0babd2033a8854e6",
+    "passed": true
+  },
+  "parent_toy_gates_cpu": {
+    "carrier_fp32_resolution_bound": 0.0006011576042510569,
+    "carrier_max_abs_dot": 1.4901161193847656e-06,
+    "clock_fp32_resolution_bound": 0.0012853023363277316,
+    "clock_max_abs_dot": 4.231929779052734e-06,
+    "clock_sham_abs_dot_real": 1.734723475976807e-18,
+    "far_boundary_d128_retained": true,
+    "near_boundary_d4_retained": true,
+    "passed": true,
+    "selected_head_count": 45,
+    "wall_below_1024_bitwise_preserved": true
+  },
+  "passed": true,
+  "production_l29_replay": {
+    "bitwise_equal": true,
+    "passed": true,
+    "values": 50331648
+  },
+  "runtime": {
+    "cuda": "12.8",
+    "device": "NVIDIA GeForce RTX 4090",
+    "modeling_inkling": {
+      "path": "R:\\inkling\\.venv-tier2\\Lib\\site-packages\\transformers\\models\\inkling\\modeling_inkling.py",
+      "sha256": "888009de3f84cfd493a977d75bd18517db60234d5fecccc7449be4b8a680c5f6"
+    },
+    "packages": {
+      "numpy": {
+        "certified_capture_version_equal": true,
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\numpy\\__init__.py",
+        "version": "2.5.0"
+      },
+      "tokenizers": {
+        "certified_capture_version_equal": true,
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\tokenizers\\__init__.py",
+        "version": "0.22.2"
+      },
+      "torch": {
+        "certified_capture_version_equal": true,
+        "module_path": "C:\\Users\\johnz\\AppData\\Roaming\\Python\\Python314\\site-packages\\torch\\__init__.py",
+        "version": "2.11.0+cu128"
+      },
+      "transformers": {
+        "certified_capture_version_equal": true,
+        "module_path": "R:\\inkling\\.venv-tier2\\Lib\\site-packages\\transformers\\__init__.py",
+        "version": "5.14.0"
+      }
+    },
+    "passed": true
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-07-19T03:24:41.555187+00:00",
+  "stock_attention_parity": {
+    "cases": {
+      "global": {
+        "bitwise_equal": true,
+        "max_output_delta": 0.0
+      },
+      "sliding": {
+        "bitwise_equal": true,
+        "max_output_delta": 0.0
+      }
+    },
+    "passed": true
+  }
+}

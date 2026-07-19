@@ -28,15 +28,7 @@ Status vocabulary: **OPEN** (no verdict), **ANSWERED** (verdict on record),
 
 ## OPEN — runnable now (no dependence on the corrected recapture)
 
-| Row | Question | Frozen method |
-|---|---|---|
-| F7-1 | Which signed d=0/1/2/3 pieces make L29 causal, and are they sufficient? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-1 |
-| F7-2 | Are L23/L35 backup shoulders for L29? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-2 |
-| F7-3 | Is L29 load in the static non-carrier mean or centered r variation? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-3 |
-| F7-4 | Which L29 head quartile carries the stencil, and how many heads rescue it? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-4 |
-| F7-5 | Does restoring only L29 needle-query states rescue retrieval? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-5 |
-| F7-6 | Is the complete text-conditioned clock subspace functional at 8k? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-6 |
-| F7-7 | Does L29 act through rank rather than calibration, and do boundary/pronoun costs replicate fresh? | `ROUND5_FOLLOWUP7_PREREG.md` §F7-7 |
+_None. F7-1 through F7-7 are answered and certified below._
 
 ## OPEN — gated
 
@@ -226,6 +218,43 @@ dumps with no producer imports — zero discrepancies
   downgraded to: text-conditioned gain schedules with a common ingredient.
 - **Head classes (descriptive):** rising-band heads matter (+0.0199); the 45
   L11 negative-seam heads are null.
+
+## ANSWERED — certified (seven causal follow-ups, 2026-07-19)
+
+All 35 registered intervention arms plus the fresh-text job sealed before
+analysis. The independent verifier rehashed 563 artifacts and reproduced all
+statistics and verdicts from raw dumps with zero discrepancies
+(`analysis/round5/followup7/verification.json`). Analyzer errata A1/A2/A3 are
+public; the original A3-rejected report and verifier artifact remain preserved.
+
+- **F7-1 passed — the causal near field is overwhelmingly d=0.** Removing d=0
+  costs +0.09392 NLL (77.8% of full L29 bias-off); d=1/2/3 and their joint are
+  near-null. Restoring d=0 alone rescues 98.1%, and retaining only d=0..3
+  rescues 99.0%.
+- **F7-2 passed — L23/L35 are redundant shoulders around L29.** Joint-removal
+  interactions are strongly positive for L23+L29 (+0.60275), L29+L35
+  (+0.34832), and the triple (+1.03830); the L23+L35 control is only +0.02358.
+- **F7-3 passed — the static non-carrier mean is the causal r-object.** Mean
+  removal reproduces 78.1% of full bias-off and non-carrier-mean removal 79.6%;
+  centered token variation costs 1.9%, and carrier-only removals are null.
+- **F7-4 passed — the stencil is concentrated in the registered top quartile.**
+  Q1-off costs +0.03834 versus +0.00057 to +0.00127 for Q2-Q4. The top-8,
+  top-16, and top-32 stencil rescues are 85.7%, 93.4%, and 97.5%.
+- **F7-5 passed — retrieval damage is mediated through the L29 query state.**
+  Restoring only 24 frozen query residuals rescues 54.1% of recall damage
+  (absolute bootstrap lower +0.0374); the seeded sham rescues -3.2% with an
+  interval containing zero.
+- **F7-6 failed only its transfer prediction; behavior remains null at 8k.**
+  LOTO clock removal leaves median/max kernel correlation 0.322/0.470 (only
+  1/12 cells <0.20), while the sham median is 0.589. Yet union, per-text, and
+  LOTO joint-arm costs are all <=0.000585 NLL: the clock is text-specific and
+  kernel-real, but still behaviorally dispensable at 8k.
+- **F7-7 split: ranking passed; calibration promotion and fresh class
+  replication failed.** Bias-off worsens log-rank by +0.03114 and top-1
+  accuracy by -1.827 points with both intervals excluding zero. ECE worsens by
+  a real +0.00431, below the registered 0.01 evidence threshold. Fresh Slack
+  first-content and pronoun matched contrasts are negative (-0.090/-0.084),
+  not the predicted positive replication; math controls are also null.
 
 ## ANSWERED — certified (weight-level; unaffected by A5/A6)
 
