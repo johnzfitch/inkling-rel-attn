@@ -230,6 +230,8 @@ def verify_f7_4(dump: Path, reported: dict[str, Any], errors: list[str]) -> bool
         close(errors, f"F7-4 contrast {other}", row["effect"], reported["q1_contrasts"][other]["effect"])
         rows.append(row)
     adjusted = holm([row["p_positive"] for row in rows])
+    for other, value in zip(quartiles[1:], adjusted):
+        close(errors, f"F7-4 Holm {other}", value, reported["q1_contrasts"][other]["p_holm_positive"])
     localized = all(
         row["effect"] > 0 and row["ci95"][0] > 0 and p < .05
         for row, p in zip(rows, adjusted)
@@ -339,6 +341,57 @@ def ece(probability: np.ndarray, correct: np.ndarray, n_bins: int) -> float:
     return value
 
 
+def ece_sufficient_blocks(
+    probabilities: list[np.ndarray], correctness: list[np.ndarray], n_bins: int
+) -> np.ndarray:
+    rows: list[np.ndarray] = []
+    for probability, correct in zip(probabilities, correctness):
+        for start in range(0, probability.size, BLOCK):
+            p = probability[start : start + BLOCK]
+            c = correct[start : start + BLOCK]
+            assignment = np.clip(np.floor(p * n_bins).astype(np.int64), 0, n_bins - 1)
+            row = np.zeros((n_bins, 3), dtype=np.float64)
+            for index in range(n_bins):
+                selected = assignment == index
+                row[index, 0] = np.count_nonzero(selected)
+                row[index, 1] = np.add.reduce(c[selected]) if selected.any() else 0.0
+                row[index, 2] = np.add.reduce(p[selected]) if selected.any() else 0.0
+            rows.append(row)
+    return np.stack(rows)
+
+
+def ece_from_sufficient(values: np.ndarray) -> float:
+    total = np.add.reduce(values[:, 0])
+    selected = values[:, 0] > 0
+    accuracy = values[selected, 1] / values[selected, 0]
+    confidence = values[selected, 2] / values[selected, 0]
+    return float(np.add.reduce(values[selected, 0] / total * np.abs(accuracy - confidence)))
+
+
+def ece_resample(
+    baseline_probability: list[np.ndarray],
+    baseline_correct: list[np.ndarray],
+    arm_probability: list[np.ndarray],
+    arm_correct: list[np.ndarray],
+) -> dict[str, Any]:
+    baseline_stats = ece_sufficient_blocks(baseline_probability, baseline_correct, 20)
+    arm_stats = ece_sufficient_blocks(arm_probability, arm_correct, 20)
+    observed = ece_from_sufficient(np.add.reduce(arm_stats, axis=0)) - ece_from_sufficient(
+        np.add.reduce(baseline_stats, axis=0)
+    )
+    rng = np.random.Generator(np.random.PCG64(seed("F7-7:ece20")))
+    draws = np.empty(N_BOOT, dtype=np.float64)
+    for draw in range(N_BOOT):
+        chosen = rng.integers(0, baseline_stats.shape[0], size=baseline_stats.shape[0])
+        draws[draw] = ece_from_sufficient(np.add.reduce(arm_stats[chosen], axis=0)) - ece_from_sufficient(
+            np.add.reduce(baseline_stats[chosen], axis=0)
+        )
+    return {
+        "effect": observed,
+        "ci95": [float(np.quantile(draws, .025)), float(np.quantile(draws, .975))],
+    }
+
+
 def matched(
     delta: np.ndarray, nll: np.ndarray, positions: np.ndarray, excluded: set[int], label: str
 ) -> dict[str, float]:
@@ -372,12 +425,32 @@ def verify_f7_7(dump: Path, reported: dict[str, Any], errors: list[str]) -> bool
     close(errors, "F7-7 accuracy", accuracy["effect"], reported["ranking"]["accuracy"]["effect"])
     ranking_pass = rank["effect"] > 0 and rank["ci95"][0] > 0 and accuracy["effect"] < 0 and accuracy["ci95"][1] < 0
 
-    base_probability = np.concatenate([baseline(dump, text)["top1_probability"].astype(np.float64) for text in TEXTS])
-    base_correct = np.concatenate([baseline(dump, text)["top1_correct"].astype(np.float64) for text in TEXTS])
-    arm_probability = np.concatenate([arm(dump, "bias_off_L29_fullvocab", text)["top1_probability"].astype(np.float64) for text in TEXTS])
-    arm_correct = np.concatenate([arm(dump, "bias_off_L29_fullvocab", text)["top1_correct"].astype(np.float64) for text in TEXTS])
+    base_probability_list = [baseline(dump, text)["top1_probability"].astype(np.float64) for text in TEXTS]
+    base_correct_list = [baseline(dump, text)["top1_correct"].astype(np.float64) for text in TEXTS]
+    arm_probability_list = [arm(dump, "bias_off_L29_fullvocab", text)["top1_probability"].astype(np.float64) for text in TEXTS]
+    arm_correct_list = [arm(dump, "bias_off_L29_fullvocab", text)["top1_correct"].astype(np.float64) for text in TEXTS]
+    base_probability = np.concatenate(base_probability_list)
+    base_correct = np.concatenate(base_correct_list)
+    arm_probability = np.concatenate(arm_probability_list)
+    arm_correct = np.concatenate(arm_correct_list)
     close(errors, "F7-7 baseline ece20", ece(base_probability, base_correct, 20), reported["calibration"]["baseline_ece20"])
     close(errors, "F7-7 arm ece20", ece(arm_probability, arm_correct, 20), reported["calibration"]["arm_ece20"])
+    calibration = ece_resample(
+        base_probability_list, base_correct_list, arm_probability_list, arm_correct_list
+    )
+    close(errors, "F7-7 ece effect", calibration["effect"], reported["calibration"]["effect"])
+    close(errors, "F7-7 ece lower", calibration["ci95"][0], reported["calibration"]["ci95"][0])
+    close(errors, "F7-7 ece upper", calibration["ci95"][1], reported["calibration"]["ci95"][1])
+    calibration_evidence = bool(
+        abs(calibration["effect"]) >= .01
+        and not (calibration["ci95"][0] <= 0 <= calibration["ci95"][1])
+    )
+    equal(
+        errors,
+        "F7-7 calibration evidence",
+        calibration_evidence,
+        reported["calibration"]["evidence_threshold_met"],
+    )
 
     frozen = F.frozen()
     specs = [
